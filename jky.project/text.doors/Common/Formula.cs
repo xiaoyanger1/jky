@@ -13,7 +13,7 @@ using text.doors.Service;
 
 namespace text.doors.Common
 {
-    public class _SlopeCompute
+    public class Formula
     {
 
         #region   y=kx+b

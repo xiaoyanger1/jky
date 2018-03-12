@@ -102,7 +102,7 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\TcpConnection.cs" />
-    <Compile Include="Common\_SlopeCompute.cs" />
+    <Compile Include="Common\Formula.cs" />
     <Compile Include="Default\DefaultBase.cs" />
     <Compile Include="Detection\Conversions.cs" />
     <Compile Include="Detection\pic.cs">

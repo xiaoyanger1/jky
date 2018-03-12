@@ -642,7 +642,7 @@ namespace text.doors.Detection
 
                 if (settings.dt_qm_Info != null && settings.dt_qm_Info.Count > 0)
                 {
-                    _SlopeCompute slopeCompute = new _SlopeCompute();
+                    Formula slopeCompute = new Formula();
                     for (int i = 0; i < settings.dt_qm_Info.Count; i++)
                     {
                         if (i == 0)

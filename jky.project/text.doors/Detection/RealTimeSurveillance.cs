@@ -99,7 +99,7 @@ namespace text.doors.Detection
         public List<Pressure> GetLiuLiang()
         {
             List<Pressure> pressureList = new List<Pressure>();
-            _SlopeCompute slopeCompute = new _SlopeCompute();
+            Formula slopeCompute = new Formula();
             for (int i = 0; i < 3; i++)
             {
                 Pressure model = new Pressure();

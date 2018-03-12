@@ -165,7 +165,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_温度传感器, float.Parse(res.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_温度传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -192,7 +192,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -221,7 +221,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
-                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_风速传感器, float.Parse(res.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_风速传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -270,7 +270,7 @@ namespace text.doors.Common
                     res = int.Parse(holding_register[0].ToString());
                 }
 
-                res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_差压传感器, float.Parse(res.ToString()));
+                res = Formula.GetValues(PublicEnum.DemarcateType.enum_差压传感器, float.Parse(res.ToString()));
                 //}
                 //catch (Exception ex)
                 //{
