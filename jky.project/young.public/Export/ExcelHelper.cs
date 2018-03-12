@@ -14,7 +14,7 @@ using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace Jky.Public.Export
+namespace Young.Core.Export
 {
     /// <summary>
     /// Excel操作类，这里的NPOI使用的是2.0.1 (beta1)版本的

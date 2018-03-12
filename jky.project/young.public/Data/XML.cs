@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Jky.Public.Data
+namespace Young.Core.Data
 {
     /// <summary>
     /// XML操作类
