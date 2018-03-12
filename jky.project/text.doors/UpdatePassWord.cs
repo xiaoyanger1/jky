@@ -25,10 +25,12 @@ namespace text.doors
             if (string.IsNullOrWhiteSpace(txt_oldPassWord.Text))
             {
                 MessageBox.Show("请输入原始密码:");
+                return;
             }
             if (string.IsNullOrWhiteSpace(txt_NewPassWord.Text))
             {
                 MessageBox.Show("请输入新密码:");
+                return;
             }
             string sql = "select User_PassWord from User where User_Name='" + userName + "'";
             DataTable dt = SQLiteHelper.ExecuteDataRow(sql).Table;

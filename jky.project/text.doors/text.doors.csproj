@@ -104,7 +104,6 @@
     <Compile Include="Common\TcpConnection.cs" />
     <Compile Include="Common\Formula.cs" />
     <Compile Include="Default\DefaultBase.cs" />
-    <Compile Include="Detection\Conversions.cs" />
     <Compile Include="Detection\pic.cs">
       <SubType>Form</SubType>
     </Compile>
