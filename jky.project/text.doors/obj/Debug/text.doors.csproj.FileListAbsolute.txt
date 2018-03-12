@@ -1,0 +1,7 @@
+F:\jky\jky.project\text.doors\bin\Debug\text.doors.exe.config
+F:\jky\jky.project\text.doors\bin\Debug\text.doors.exe
+F:\jky\jky.project\text.doors\bin\Debug\text.doors.pdb
+F:\jky\jky.project\text.doors\obj\Debug\text.doors.Properties.Resources.resources
+F:\jky\jky.project\text.doors\obj\Debug\text.doors.csproj.GenerateResource.Cache
+F:\jky\jky.project\text.doors\obj\Debug\text.doors.exe
+F:\jky\jky.project\text.doors\obj\Debug\text.doors.pdb

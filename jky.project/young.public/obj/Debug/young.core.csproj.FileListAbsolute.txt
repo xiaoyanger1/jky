@@ -1,0 +1,12 @@
+F:\jky\jky.project\young.public\obj\Debug\young.core.csprojResolveAssemblyReference.cache
+F:\jky\jky.project\young.public\bin\Debug\young.@public.dll
+F:\jky\jky.project\young.public\bin\Debug\young.@public.pdb
+F:\jky\jky.project\young.public\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\jky\jky.project\young.public\bin\Debug\NPOI.dll
+F:\jky\jky.project\young.public\bin\Debug\NPOI.OOXML.dll
+F:\jky\jky.project\young.public\bin\Debug\NPOI.OpenXml4Net.dll
+F:\jky\jky.project\young.public\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\jky\jky.project\young.public\bin\Debug\System.Data.SQLite.DLL
+F:\jky\jky.project\young.public\bin\Debug\NPOI.xml
+F:\jky\jky.project\young.public\obj\Debug\young.@public.dll
+F:\jky\jky.project\young.public\obj\Debug\young.@public.pdb
