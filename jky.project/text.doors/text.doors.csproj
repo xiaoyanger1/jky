@@ -279,7 +279,7 @@
     <None Include="Resources\001mWx81gy6GMANTOqr07&amp;690.gif" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\young.public\Young.Core.csproj">
+    <ProjectReference Include="..\Young.Core\Young.Core.csproj">
       <Project>{fe892b79-a142-4c66-9c28-93f2435691da}</Project>
       <Name>Young.Core</Name>
     </ProjectReference>

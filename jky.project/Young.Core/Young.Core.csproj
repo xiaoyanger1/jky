@@ -7,8 +7,8 @@
     <ProjectGuid>{FE892B79-A142-4C66-9C28-93F2435691DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>young.public</RootNamespace>
-    <AssemblyName>young.public</AssemblyName>
+    <RootNamespace>Young.Core</RootNamespace>
+    <AssemblyName>Young.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

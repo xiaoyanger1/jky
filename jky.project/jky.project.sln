@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text.doors", "text.doors\te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text.lab", "text.lab\text.lab.csproj", "{E26EE059-F496-495B-BA8A-370F0A3B5D44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Core", "young.public\Young.Core.csproj", "{FE892B79-A142-4C66-9C28-93F2435691DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Core", "Young.Core\Young.Core.csproj", "{FE892B79-A142-4C66-9C28-93F2435691DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
