@@ -591,7 +591,7 @@ namespace text.doors.Detection
 
             dc.Add("实验室气压", settings.DaQiYaLi);
             dc.Add("实验室温度", settings.DangQianWenDu);
-            dc.Add("集流管经", (_GetConfig._D * 1000).ToString());
+            dc.Add("集流管经", (DefaultBase._D * 1000).ToString());
 
             dc.Add("检测条件第0樘五金件状况", settings.WuJinJianZhuangKuang);
             dc.Add("检测条件第0樘型号规格", settings.GuiGeXingHao);

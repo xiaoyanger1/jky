@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -22,7 +23,7 @@ namespace text.doors.Detection
             {
                 return 0;
             }
-            double _D = _GetConfig._D;
+            double _D = DefaultBase._D;
 
             return Math.Round(3.1415 * _D * _D / 4 * value * 3600, 2);
         }

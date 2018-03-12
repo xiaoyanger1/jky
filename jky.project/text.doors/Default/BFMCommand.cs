@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace text.doors.Common
+namespace text.doors.Default
 {
     /// <summary>
-    /// 硬件命令常量
+    /// 寄存器命令常量
     /// </summary>
-    public static class _Public_Command
+    public static class BFMCommand
     {
         public const string 风速0标定 = "M200";
         public const string 风速1 = "M201";
@@ -41,9 +41,7 @@ namespace text.doors.Common
         public const string 大气压力110 = "M226";
         public const string 标定全部清除 = "M60";
         public const string 高压标0_交替型按钮 = "M66";
-
         public const string 风速标0_交替型按钮 = "M66";//TODO:按钮命令未知
-
         public const string 正压阀 = "M62";
         public const string 负压阀 = "M63";
         public const string 正极限 = "X0";
@@ -69,14 +67,12 @@ namespace text.doors.Common
         public const string 温度标定值 = "D132";
         public const string 大气压力标定值 = "D134";
         public const string 风速标定值 = "D136";
-
         public const string 正压预备结束 = "D30";
         public const string 负压预备结束 = "D31";
         public const string 正压开始结束 = "T20";
         public const string 负压开始结束 = "T10";
         public const string 正负负压开始结束 = "T20";
         public const string 风机控制 = "D40";
-
         public const string 正压预备_设定值 = "D2000";
         public const string 正压开始_设定值 = "D2001";
         public const string 负压预备_设定值 = "D2002";
@@ -90,42 +86,31 @@ namespace text.doors.Common
         //public const string 负压150TimeStart = "M108";
         //public const string 负压_100TimeStart = "M109";
 
-
         public const string 正压100TimeStart = "T2";
         public const string 正压150TimeStart = "T3";
         public const string 正压_100TimeStart = "T4";
-
         public const string 负压100TimeStart = "T7";
         public const string 负压150TimeStart = "T8";
         public const string 负压_100TimeStart = "T9";
-
-
         public const string 水密设定压力 = "D2009";
         public const string 水密预备结束 = "D32";
         public const string 水密开始结束 = "T12";
-
         public const string 水密预备_设定值 = "D2008"; 
         public const string 水密开始_设定值 = "D2009";
         public const string 水密依次加压_设定值 = "D550";
-
         public const string P = "D2101";
         public const string I = "D2102";
         public const string D = "D2103";
 
 
-
         private static int m_10_Min = 0;//M命令十进制最小值
         private static int m_16_Min = 2048;//M命令十六进制最小值
-
         private static int d_10_Min = 0;//D命令十进制最小值
         private static int d_16_Min = 4096;//D命令十六进制最小值
-
         private static int x_10_Min = 0;//D命令十进制最小值
         private static int x_16_Min = 1024;//D命令十六进制最小值
-
         private static int y_10_Min = 0;//D命令十进制最小值
         private static int y_16_Min = 1280;//D命令十六进制最小值
-
         private static int t_10_Min = 0;//t命令十进制最小值
         private static int t_16_Min = 1536;//t命令十六进制最小值
 

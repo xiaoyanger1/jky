@@ -102,7 +102,6 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\TcpConnection.cs" />
-    <Compile Include="Common\formula.cs" />
     <Compile Include="Common\_SlopeCompute.cs" />
     <Compile Include="Default\DefaultBase.cs" />
     <Compile Include="Detection\Conversions.cs" />
@@ -124,10 +123,12 @@
     <Compile Include="Detection\SystemManager.Designer.cs">
       <DependentUpon>SystemManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Calibrating_Dict.cs" />
     <Compile Include="Model\Pressure.cs" />
-    <Compile Include="Common\_GetConfig.cs" />
-    <Compile Include="Common\_Public_Command.cs" />
+    <Compile Include="Default\BFMCommand.cs" />
     <Compile Include="Default\PublicEnum.cs" />
+    <Compile Include="Service\DAL_Demarcate_Dict.cs" />
+    <Compile Include="Service\DAL_dt_BaseSet.cs" />
     <Compile Include="Service\DAL_dt_Info.cs" />
     <Compile Include="Service\DAL_dt_qm_Info.cs" />
     <Compile Include="Service\DAL_dt_Settings.cs" />
