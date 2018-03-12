@@ -19,6 +19,7 @@ using AForge.Imaging;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Young.Core.Common;
+using text.doors.Default;
 
 namespace text.doors
 {
@@ -420,7 +421,7 @@ namespace text.doors
             if (NetSetIsOk)
             {
                 ComplexAssessment ca = new ComplexAssessment(JYBH);
-                if (Form_Base.IsOpenComplexAssessment)
+                if (DefaultBase.IsOpenComplexAssessment)
                 {
                     ca.Show();
                     ca.TopMost = true;

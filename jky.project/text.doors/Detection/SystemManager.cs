@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Young.Core.Common;
+using Young.Core.SQLite;
 
 namespace text.doors.Detection
 {

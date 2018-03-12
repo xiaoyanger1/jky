@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace text.doors.model
+namespace text.doors.Model.DataBase
 {
     public class Model_dt_qm_Info
     {

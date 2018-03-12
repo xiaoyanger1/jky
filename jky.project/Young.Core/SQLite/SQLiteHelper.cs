@@ -7,14 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace text.doors.Common
+namespace Young.Core.SQLite
 {
     public class SQLiteHelper
-    {
-        /// <summary>
-        /// 获得连接对象
-        /// </summary>
-        /// <returns></returns>
+    {  /// <summary>
+       /// 获得连接对象
+       /// </summary>
+       /// <returns></returns>
         public static SQLiteConnection GetSQLiteConnection()
         {
             return new SQLiteConnection("Data Source=" + Application.StartupPath + ("\\" + System.Configuration.ConfigurationSettings.AppSettings["db"].ToString()));

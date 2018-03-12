@@ -101,11 +101,10 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\TcpConnection1.cs" />
-    <Compile Include="Common\_Form_Base.cs" />
-    <Compile Include="Common\formula.cs" />
     <Compile Include="Common\TcpConnection.cs" />
+    <Compile Include="Common\formula.cs" />
     <Compile Include="Common\_SlopeCompute.cs" />
+    <Compile Include="Default\DefaultBase.cs" />
     <Compile Include="Detection\Conversions.cs" />
     <Compile Include="Detection\pic.cs">
       <SubType>Form</SubType>
@@ -125,14 +124,13 @@
     <Compile Include="Detection\SystemManager.Designer.cs">
       <DependentUpon>SystemManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="model\Pressure.cs" />
-    <Compile Include="Common\SQLiteHelper.cs" />
+    <Compile Include="Model\Pressure.cs" />
     <Compile Include="Common\_GetConfig.cs" />
     <Compile Include="Common\_Public_Command.cs" />
-    <Compile Include="Common\_Public_Enum.cs" />
-    <Compile Include="dal\DAL_dt_Info.cs" />
-    <Compile Include="dal\DAL_dt_qm_Info.cs" />
-    <Compile Include="dal\DAL_dt_Settings.cs" />
+    <Compile Include="Default\PublicEnum.cs" />
+    <Compile Include="Service\DAL_dt_Info.cs" />
+    <Compile Include="Service\DAL_dt_qm_Info.cs" />
+    <Compile Include="Service\DAL_dt_Settings.cs" />
     <Compile Include="Detection\ComplexAssessment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,12 +179,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="model\Model_dt_Info.cs" />
-    <Compile Include="model\LevelIndex.cs" />
-    <Compile Include="model\Model_dt_qm_Info.cs" />
-    <Compile Include="model\Model_dt_Settings.cs" />
-    <Compile Include="model\Model_dt_sm_Info.cs" />
-    <Compile Include="model\QM_Dict.cs" />
+    <Compile Include="Model\DataBase\Model_dt_Info.cs" />
+    <Compile Include="Model\LevelIndex.cs" />
+    <Compile Include="Model\DataBase\Model_dt_qm_Info.cs" />
+    <Compile Include="Model\DataBase\Model_dt_Settings.cs" />
+    <Compile Include="Model\DataBase\Model_dt_sm_Info.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdatePassWord.cs">
@@ -284,6 +281,7 @@
       <Name>Young.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

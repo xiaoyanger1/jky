@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using text.doors.Default;
+using Young.Core.SQLite;
 
 namespace text.doors.Detection
 {
@@ -103,7 +105,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            _Public_Enum.ENUM_Demarcate? enum_Demarcate = GetEnum(cbb_type.Text);
+            PublicEnum.DemarcateType? enum_Demarcate = GetEnum(cbb_type.Text);
 
             string sql = string.Format("insert into Demarcate_Dict(Enum,D_Key,D_Value) values('{0}','{1}','{2}')",
                 enum_Demarcate.ToString(), txt_Key.Text, txt_ave.Text);
@@ -142,7 +144,7 @@ namespace text.doors.Detection
         {
             this.lv_list.Items.Clear();
 
-            _Public_Enum.ENUM_Demarcate? enum_Demarcate = GetEnum(cbb_cgq.Text);
+            PublicEnum.DemarcateType? enum_Demarcate = GetEnum(cbb_cgq.Text);
 
             string sql = string.Format("select * from Demarcate_Dict where enum ='{0}'", enum_Demarcate.ToString());
 
@@ -162,24 +164,24 @@ namespace text.doors.Detection
                 }
             }
         }
-        private _Public_Enum.ENUM_Demarcate? GetEnum(string name)
+        private PublicEnum.DemarcateType? GetEnum(string name)
         {
-            _Public_Enum.ENUM_Demarcate? enum_Demarcate = null;
+            PublicEnum.DemarcateType? enum_Demarcate = null;
 
             if (name == "风速传感器      米/秒")
             {
-                enum_Demarcate = _Public_Enum.ENUM_Demarcate.enum_风速传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.enum_风速传感器;
             }
             if (name == "差压传感器      高 帕")
             {
-                enum_Demarcate = _Public_Enum.ENUM_Demarcate.enum_差压传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.enum_差压传感器;
             } if (name == "温度传感器      ℃")
             {
-                enum_Demarcate = _Public_Enum.ENUM_Demarcate.enum_温度传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.enum_温度传感器;
             }
             if (name == "大气压力传感器 KPa")
             {
-                enum_Demarcate = _Public_Enum.ENUM_Demarcate.enum_大气压力传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.enum_大气压力传感器;
             }
             return enum_Demarcate;
         }

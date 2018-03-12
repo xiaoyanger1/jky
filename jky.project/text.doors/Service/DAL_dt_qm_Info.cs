@@ -1,11 +1,13 @@
 ﻿using text.doors.Common;
-using text.doors.model;
+using text.doors.Model.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using text.doors.Default;
+using Young.Core.SQLite;
 
 namespace text.doors.dal
 {
@@ -74,22 +76,22 @@ namespace text.doors.dal
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public DataTable GetInfoByCode(string code, text.doors.Common._Public_Enum.ENUM_DetectionItem? enum_DetectionItem)
+        public DataTable GetInfoByCode(string code, PublicEnum.DetectionItem? enum_DetectionItem)
         {
             string sql = "";
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测)
+            if (enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能检测)
             {
                 sql = @"select  t1.info_DangH,t1.qm_F_FC,t1.qm_F_MJ,t1.qm_Z_FC,t1.qm_Z_MJ from dt_Info t
                             join dt_qm_Info t1 on t.dt_Code = t1.dt_Code and t.info_DangH = t1.info_DangH
                             where t.dt_Code='" + code + "' order by t.info_DangH";
             }
-            else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测)
+            else if (enum_DetectionItem == PublicEnum.DetectionItem.enum_水密性能检测)
             {
                 sql = @"select t2.* from dt_Info t
                             join dt_sm_Info t2 on t.dt_Code = t2.dt_Code and t.info_DangH = t2.info_DangH
                             where t.dt_Code='" + code + "' order by t.info_DangH";
             }
-            else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            else if (enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 sql = @"select  t1.qm_F_FC,t1.qm_F_MJ,t1.qm_Z_FC,t1.qm_Z_MJ
                             ,t2.* from dt_Info t
@@ -104,16 +106,16 @@ namespace text.doors.dal
             return dr.Table;
         }
 
-        public void AddSM_QM(List<Model_dt_qm_Info> qmModel, List<Model_dt_sm_Info> smModel, text.doors.Common._Public_Enum.ENUM_DetectionItem? enum_DetectionItem)
+        public void AddSM_QM(List<Model_dt_qm_Info> qmModel, List<Model_dt_sm_Info> smModel, PublicEnum.DetectionItem? enum_DetectionItem)
         {
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            if (enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 for (int i = 0; i < qmModel.Count; i++)
                 {
                     Update_qm_Info(qmModel[i]);
                 }
             }
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            if (enum_DetectionItem == PublicEnum.DetectionItem.enum_水密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 for (int i = 0; i < qmModel.Count; i++)
                 {

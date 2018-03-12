@@ -1,11 +1,13 @@
 ﻿using text.doors.Common;
-using text.doors.model;
+using text.doors.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using text.doors.Model.DataBase;
+using Young.Core.SQLite;
 
 namespace text.doors.dal
 {

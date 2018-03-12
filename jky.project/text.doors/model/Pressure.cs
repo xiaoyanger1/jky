@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using text.doors.Default;
 
-namespace text.doors.model
+namespace text.doors.Model
 {
     public class Pressure
     {
-
         public Pressure()
         {
             ZYFJ_100 = new List<double>();
@@ -41,7 +41,6 @@ namespace text.doors.model
             ZYFJ100 = new List<double>();
 
             Pressure_Z = 0;
-            //Pressure_Z_Z = 0;
             return GetPressure();
         }
 
@@ -143,13 +142,13 @@ namespace text.doors.model
         /// </summary>
         /// <param name="data"></param>
         /// <param name="fs">风速枚举</param>
-        public void AddZYFJ(double data, text.doors.Common._Public_Enum.ENUM_FS fs)
+        public void AddZYFJ(double data, PublicEnum.Kpa_Level fs)
         {
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+            if (fs == PublicEnum.Kpa_Level.liter100)
                 ZYFJ_100.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+            if (fs == PublicEnum.Kpa_Level.liter150)
                 ZYFJ150.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+            if (fs == PublicEnum.Kpa_Level.drop100)
                 ZYFJ100.Add(data);
         }
 
@@ -158,13 +157,13 @@ namespace text.doors.model
         /// </summary>
         /// <param name="data"></param>
         /// <param name="fs">风速枚举</param>
-        public void AddZYZD(double data, text.doors.Common._Public_Enum.ENUM_FS fs)
+        public void AddZYZD(double data, PublicEnum.Kpa_Level fs)
         {
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+            if (fs == PublicEnum.Kpa_Level.liter100)
                 ZYZD_100.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+            if (fs == PublicEnum.Kpa_Level.liter150)
                 ZYZD150.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+            if (fs == PublicEnum.Kpa_Level.drop100)
                 ZYZD100.Add(data);
         }
 
@@ -173,13 +172,13 @@ namespace text.doors.model
         /// </summary>
         /// <param name="data"></param>
         /// <param name="fs">风速枚举</param>
-        public void AddFYFJ(double data, text.doors.Common._Public_Enum.ENUM_FS fs)
+        public void AddFYFJ(double data, PublicEnum.Kpa_Level fs)
         {
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+            if (fs == PublicEnum.Kpa_Level.liter100)
                 FYFJ_100.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+            if (fs == PublicEnum.Kpa_Level.liter150)
                 FYFJ150.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+            if (fs == PublicEnum.Kpa_Level.drop100)
                 FYFJ100.Add(data);
         }
 
@@ -188,13 +187,13 @@ namespace text.doors.model
         /// </summary>
         /// <param name="data"></param>
         /// <param name="fs">风速枚举</param>
-        public void AddFYZD(double data, text.doors.Common._Public_Enum.ENUM_FS fs)
+        public void AddFYZD(double data, PublicEnum.Kpa_Level fs)
         {
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+            if (fs == PublicEnum.Kpa_Level.liter100)
                 FYZD_100.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+            if (fs == PublicEnum.Kpa_Level.liter150)
                 FYZD150.Add(data);
-            if (fs == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+            if (fs == PublicEnum.Kpa_Level.drop100)
                 FYZD100.Add(data);
         }
 

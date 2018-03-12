@@ -7,11 +7,13 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using text.doors.Default;
 using Young.Core.Common;
 
 namespace text.doors.Common
 {
-    public class TcpConnection1
+    public class TcpConnection
     {
 
         [DllImport("WININET", CharSet = CharSet.Auto)]
@@ -28,11 +30,10 @@ namespace text.doors.Common
         private ushort _NumOfPoints = 1;
         private byte _SlaveID = 1;
 
-        //public TcpConnection()
-        //{
-        //    Connect();
-        //}
-
+        /// <summary>
+        /// 是否连接
+        /// </summary>
+        public bool IsCommon = false;
         public void OpenTcpConnection()
         {
             Connect();
@@ -67,24 +68,21 @@ namespace text.doors.Common
                 _MASTER.Dispose();
             if (tcpClient != null)
                 tcpClient.Close();
-
-            if (CheckInternet())
+            IsCommon = CheckInternet();
+            if (IsCommon)
             {
                 try
                 {
-                    tcpClient = new TcpClient(_GetConfig._IPAddress, _GetConfig._TCPPort);
-                    tcpClient.ReceiveTimeout = 1500;
-
+                    tcpClient = new TcpClient();
                     //开始一个对远程主机连接的异步请求
-                    //IAsyncResult asyncResult = tcpClient..BeginConnect ( _GetConfig._IPAddress, _GetConfig._TCPPort, null, null );
-                    //asyncResult.AsyncWaitHandle.WaitOne ( 500, true );
-                    //if ( !asyncResult.IsCompleted )
-                    //{
-                    //    tcpClient.Close ();
-                    //    Log.Error ( "ExportReport.Eexport", "message:无法连接从端" );
-                    //    IsOpen = false;
-                    //}
-
+                    IAsyncResult asyncResult = tcpClient.BeginConnect(_GetConfig._IPAddress, _GetConfig._TCPPort, null, null);
+                    asyncResult.AsyncWaitHandle.WaitOne(500, true);
+                    if (!asyncResult.IsCompleted)
+                    {
+                        tcpClient.Close();
+                        Log.Error("ExportReport.Eexport", "message:无法连接从端");
+                        IsOpen = false;
+                    }
                     //由TCP客户端创建Modbus TCP的主
                     _MASTER = ModbusIpMaster.CreateIp(tcpClient);
                     _MASTER.Transport.Retries = 0;   //不必调试
@@ -94,7 +92,6 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     Log.Error("ExportReport.Eexport", "message:tcp打开失败" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-                    tcpClient.Close();
                     IsOpen = false;
                 }
             }
@@ -127,6 +124,34 @@ namespace text.doors.Common
             }
             IsSuccess = true;
         }
+
+        /// <summary>
+        /// 设置风速归零
+        /// </summary>
+        public void SendFSGL(ref bool IsSuccess, bool logon = false)
+        {
+            try
+            {
+                _StartAddress = _Public_Command.GetCommandDict(_Public_Command.风速标0_交替型按钮);
+                bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
+                if (readCoils[0])
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
+                else
+                {
+                    if (logon == false)
+                    {
+                        _MASTER.WriteSingleCoil(_StartAddress, true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                IsOpen = false;
+                IsSuccess = false;
+            }
+            IsSuccess = true;
+        }
+
         /// <summary>
         /// 获取温度显示
         /// </summary>
@@ -141,7 +166,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = _SlopeCompute.GetValues(text.doors.Common._Public_Enum.ENUM_Demarcate.enum_温度传感器, float.Parse(res.ToString()));
+                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_温度传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -168,8 +193,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-
-                    res = _SlopeCompute.GetValues(text.doors.Common._Public_Enum.ENUM_Demarcate.enum_大气压力传感器, float.Parse(res.ToString()));
+                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -198,12 +222,22 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
+                    res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_风速传感器, float.Parse(res.ToString()));
                 }
                 catch (Exception ex)
                 {
                     IsSuccess = false;
                     IsOpen = false;
                     Log.Error("ExportReport.Eexport", "message:获取风速显示" + ex.Message);
+
+                    MessageBox.Show("获取风速异常", "获取风速异常",
+                                           MessageBoxButtons.OKCancel,
+                                           MessageBoxIcon.Information,
+                                           MessageBoxDefaultButton.Button1,
+                                          MessageBoxOptions.ServiceNotification
+                                          );
+                    System.Environment.Exit(0);
+
                 }
 
                 IsSuccess = true;
@@ -216,38 +250,39 @@ namespace text.doors.Common
         /// </summary>
         /// <param name="IsSuccess"></param>
         /// <returns></returns>
-        public double GetCYXS(ref bool IsSuccess)
+        public int GetCYXS(ref bool IsSuccess)
         {
             double res = 0;
             lock (_MASTER)
             {
-                try
-                {
-                    _StartAddress = _Public_Command.GetCommandDict(_Public_Command.差压显示);
+                //try
+                //{
+                _StartAddress = _Public_Command.GetCommandDict(_Public_Command.差压显示);
 
-                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
+                ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                res = double.Parse(holding_register[0].ToString()) / 100;
 
-                    if (int.Parse(holding_register[0].ToString()) > 1100)
-                    {
-                        res = -(65535 - int.Parse(holding_register[0].ToString()));
-                    }
-                    else
-                    {
-                        res = int.Parse(holding_register[0].ToString());
-                    }
-                    res = _SlopeCompute.GetValues(text.doors.Common._Public_Enum.ENUM_Demarcate.enum_差压传感器, float.Parse(res.ToString()));
-                }
-                catch (Exception ex)
+                if (int.Parse(holding_register[0].ToString()) > 1100)
                 {
-                    IsOpen = false;
-                    IsSuccess = false;
-                    Log.Error("ExportReport.Eexport", "message:读取差压显示" + ex.Message);
+                    res = -(65535 - int.Parse(holding_register[0].ToString()));
                 }
+                else
+                {
+                    res = int.Parse(holding_register[0].ToString());
+                }
+
+                res = _SlopeCompute.GetValues(PublicEnum.DemarcateType.enum_差压传感器, float.Parse(res.ToString()));
+                //}
+                //catch (Exception ex)
+                //{
+                //    IsOpen = false;
+                //    IsSuccess = false;
+                //    Log.Error("ExportReport.Eexport", "message:读取差压显示" + ex.Message);
+                //}
 
                 IsSuccess = true;
             }
-            return res;
+            return int.Parse(Math.Round(res, 0).ToString());
         }
 
         /// <summary>
@@ -531,7 +566,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 读取正压开始结束
+        /// 读取负压开始结束
         /// </summary>
         /// <param name="IsSuccess"></param>
         public double GetFYKSJS(ref bool IsSuccess)
@@ -612,8 +647,19 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.正压100TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+
+                    if (Convert.ToInt32(t[0]) > 20)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -636,8 +682,13 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.正压150TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) > 20)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (Exception ex)
                 {
@@ -660,8 +711,13 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.正压_100TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) > 20)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (Exception ex)
                 {
@@ -684,8 +740,13 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.负压100TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) > 20)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (Exception ex)
                 {
@@ -708,8 +769,13 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.负压150TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) > 20)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (Exception ex)
                 {
@@ -733,8 +799,13 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = _Public_Command.GetCommandDict(_Public_Command.负压_100TimeStart);
-                    bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    res = bool.Parse(readCoils_z[0].ToString());
+                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
+                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) > 20)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (Exception ex)
                 {
@@ -931,8 +1002,96 @@ namespace text.doors.Common
                 IsSuccess = false;
                 IsOpen = false;
                 Log.Error("ExportReport.Eexport", "message:急停" + ex.Message);
+                MessageBox.Show("急停异常", "急停",
+                                         MessageBoxButtons.OKCancel,
+                                         MessageBoxIcon.Information,
+                                         MessageBoxDefaultButton.Button1,
+                                        MessageBoxOptions.ServiceNotification
+                                        );
+                System.Environment.Exit(0);
             }
             IsSuccess = true;
+        }
+
+        /// <summary>
+        /// 写入PID
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public void SendPid(ref bool IsSuccess, string type, double value)
+        {
+            try
+            {
+                if (IsOpen == false)
+                {
+                    Connect();
+                }
+                else
+                {
+                    if (type == "P")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.P);
+                    }
+                    else if (type == "I")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.I);
+                    }
+                    else if (type == "D")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.D);
+                    }
+
+                    _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)value);
+                }
+            }
+            catch (Exception ex)
+            {
+                IsSuccess = false;
+                IsOpen = false;
+                Log.Error("ExportReport.Eexport", "message:设置Pid" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            }
+
+        }
+
+        /// <summary>
+        /// 读取PID
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public int GetPID(ref bool IsSuccess, string type)
+        {
+            int res = 0;
+            try
+            {
+                if (IsOpen == false)
+                {
+                    Connect();
+                }
+                else
+                {
+                    if (type == "P")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.P);
+                    }
+                    else if (type == "I")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.I);
+                    }
+                    else if (type == "D")
+                    {
+                        _StartAddress = _Public_Command.GetCommandDict(_Public_Command.D);
+                    }
+
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = int.Parse(holding_register[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                IsSuccess = false;
+                IsOpen = false;
+                Log.Error("ExportReport.Eexport", "message:读取Pid" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            }
+            IsSuccess = true;
+            return res;
         }
     }
 }

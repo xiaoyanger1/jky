@@ -4,7 +4,7 @@ using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using text.doors.Common;
 using text.doors.dal;
-using text.doors.model;
+using text.doors.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +17,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Young.Core.Common;
+using text.doors.Model.DataBase;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -35,17 +37,17 @@ namespace text.doors.Detection
         /// <summary>
         /// 当前选项卡状态
         /// </summary>
-        private text.doors.Common._Public_Enum.ENUM_DetectBtn? enum_DetectBtn = text.doors.Common._Public_Enum.ENUM_DetectBtn.em_气密;
+        private PublicEnum.SystemItem? enum_DetectBtn = PublicEnum.SystemItem.Airtight;
 
         /// <summary>
         /// 气密数据位置
         /// </summary>
-        private text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn? enum_qmxnjc = null;
+        private PublicEnum.AirtightPropertyTest? enum_qmxnjc = null;
 
         /// <summary>
         /// 水密按钮位置
         /// </summary>
-        private text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn? enum_smxnjc = null;
+        private PublicEnum.WaterTightPropertyTest? enum_smxnjc = null;
 
         /// <summary>
         /// 分级指标
@@ -427,12 +429,12 @@ namespace text.doors.Detection
 
         private void AnimateSeries(Steema.TeeChart.TChart chart, int yl)
         {
-            if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_气密)
+            if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
             {
                 this.qm_Line.Add(DateTime.Now, yl);
                 this.tChart_qm.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
             }
-            else if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_水密)
+            else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
             {
                 this.sm_Line.Add(DateTime.Now, yl);
                 this.tChart_sm.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
@@ -442,12 +444,7 @@ namespace text.doors.Detection
         /// <summary>
         /// 确定当前读取的压力状态
         /// </summary>
-        private text.doors.Common._Public_Enum.ENUM_FS? enum_FS = null;
-
-        /// <summary>
-        /// 确定升压是否完成
-        /// </summary>
-        private bool ISMasu = false;
+        private PublicEnum.Kpa_Level? enum_FS = null;
 
         /// <summary>
         /// 差压读取
@@ -470,7 +467,7 @@ namespace text.doors.Detection
                     lbldqyl.Text = value.ToString();
 
                     //读取设定值
-                    if (enum_qmxnjc == text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.ZYKS)
+                    if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.ZStart)
                     {
                         double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                         if (!IsSeccess)
@@ -480,7 +477,7 @@ namespace text.doors.Detection
                         }
                         lbl_setYL.Text = yl.ToString();
                     }
-                    else if (enum_qmxnjc == text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.FYKS)
+                    else if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.FStart)
                     {
                         double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYKS");
                         if (!IsSeccess)
@@ -490,7 +487,7 @@ namespace text.doors.Detection
                         }
                         lbl_setYL.Text = "-" + yl.ToString();
                     }
-                    else if (enum_qmxnjc == text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.TZ)
+                    else if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.Stop)
                     {
                         lbl_setYL.Text = "0";
                     }
@@ -519,11 +516,11 @@ namespace text.doors.Detection
                     MessageBox.Show("获取大气压力异常"); return;
                 }
 
-                if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_气密)
+                if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
                 {
                     AnimateSeries(this.tChart_qm, value);
                 }
-                else if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_水密)
+                else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
                 {
                     AnimateSeries(this.tChart_sm, value);
                 }
@@ -545,21 +542,21 @@ namespace text.doors.Detection
             if (index > 8)
             {
                 //标记计时结束
-                if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+                if (enum_FS == PublicEnum.Kpa_Level.liter100)
                 {
                     if (cyvalue > 0)
                         Z_S_100Stop = false;
                     else
                         F_S_100Stop = false;
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+                else if (enum_FS == PublicEnum.Kpa_Level.liter150)
                 {
                     if (cyvalue > 0)
                         Z_S_150Stop = false;
                     else
                         F_S_150Stop = false;
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+                else if (enum_FS == PublicEnum.Kpa_Level.drop100)
                 {
                     if (cyvalue > 0)
                         Z_J_100Stop = false;
@@ -583,52 +580,52 @@ namespace text.doors.Detection
 
             if (rdb_fjstl.Checked)
             {
-                if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+                if (enum_FS == PublicEnum.Kpa_Level.liter100)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S100);
+                        pressure.AddZYFJ(fsvalue, PublicEnum.Kpa_Level.liter100);
                     else
-                        pressure.AddFYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S100);
+                        pressure.AddFYFJ(fsvalue, PublicEnum.Kpa_Level.liter100);
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+                else if (enum_FS == PublicEnum.Kpa_Level.liter150)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S150);
+                        pressure.AddZYFJ(fsvalue, PublicEnum.Kpa_Level.liter150);
                     else
-                        pressure.AddFYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S150);
+                        pressure.AddFYFJ(fsvalue, PublicEnum.Kpa_Level.liter150);
 
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+                else if (enum_FS == PublicEnum.Kpa_Level.drop100)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_J100);
+                        pressure.AddZYFJ(fsvalue, PublicEnum.Kpa_Level.drop100);
                     else
-                        pressure.AddFYFJ(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_J100);
+                        pressure.AddFYFJ(fsvalue, PublicEnum.Kpa_Level.drop100);
                 }
             }
             else if (rdb_zdstl.Checked)
             {
-                if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S100)
+                if (enum_FS == PublicEnum.Kpa_Level.liter100)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S100);
+                        pressure.AddZYZD(fsvalue, PublicEnum.Kpa_Level.liter100);
                     else
-                        pressure.AddFYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S100);
+                        pressure.AddFYZD(fsvalue, PublicEnum.Kpa_Level.liter100);
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_S150)
+                else if (enum_FS == PublicEnum.Kpa_Level.liter150)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S150);
+                        pressure.AddZYZD(fsvalue, PublicEnum.Kpa_Level.liter150);
                     else
-                        pressure.AddFYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_S150);
+                        pressure.AddFYZD(fsvalue, PublicEnum.Kpa_Level.liter150);
 
                 }
-                else if (enum_FS == text.doors.Common._Public_Enum.ENUM_FS.YL_J100)
+                else if (enum_FS == PublicEnum.Kpa_Level.drop100)
                 {
                     if (cyvalue > 0)
-                        pressure.AddZYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_J100);
+                        pressure.AddZYZD(fsvalue, PublicEnum.Kpa_Level.drop100);
                     else
-                        pressure.AddFYZD(fsvalue, text.doors.Common._Public_Enum.ENUM_FS.YL_J100);
+                        pressure.AddFYZD(fsvalue, PublicEnum.Kpa_Level.drop100);
                 }
             }
         }
@@ -655,7 +652,7 @@ namespace text.doors.Detection
 
             if (start && Z_S_100Stop)
             {
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_S100;
+                enum_FS = PublicEnum.Kpa_Level.liter100;
                 tim_Top10.Enabled = true;
                 Z_S_100Stop = false;
             }
@@ -664,7 +661,7 @@ namespace text.doors.Detection
 
             if (start && Z_S_150Stop)
             {
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_S150;
+                enum_FS = PublicEnum.Kpa_Level.liter150;
                 tim_Top10.Enabled = true;
                 Z_S_150Stop = false;
             }
@@ -674,7 +671,7 @@ namespace text.doors.Detection
             if (start && Z_J_100Stop)
             {
                 Thread.Sleep(500);
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_J100;
+                enum_FS = PublicEnum.Kpa_Level.drop100;
                 tim_Top10.Enabled = true;
                 Z_J_100Stop = false;
             }
@@ -684,7 +681,7 @@ namespace text.doors.Detection
 
             if (start && F_S_100Stop)
             {
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_S100;
+                enum_FS = PublicEnum.Kpa_Level.liter100;
                 tim_Top10.Enabled = true;
                 F_S_100Stop = false;
             }
@@ -693,7 +690,7 @@ namespace text.doors.Detection
 
             if (start && F_S_150Stop)
             {
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_S150;
+                enum_FS = PublicEnum.Kpa_Level.liter150;
                 tim_Top10.Enabled = true;
                 F_S_150Stop = false;
             }
@@ -703,7 +700,7 @@ namespace text.doors.Detection
             if (start && F_J_100Stop)
             {
                 Thread.Sleep(500);
-                enum_FS = text.doors.Common._Public_Enum.ENUM_FS.YL_J100;
+                enum_FS = PublicEnum.Kpa_Level.drop100;
                 tim_Top10.Enabled = true;
                 F_J_100Stop = false;
             }
@@ -743,7 +740,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            enum_qmxnjc = text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.ZYYB;
+            enum_qmxnjc = PublicEnum.AirtightPropertyTest.ZReady;
         }
 
         /// <summary>
@@ -804,7 +801,7 @@ namespace text.doors.Detection
 
             lbl_setYL.Text = yl.ToString();
 
-            enum_qmxnjc = text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.ZYKS;
+            enum_qmxnjc = PublicEnum.AirtightPropertyTest.ZStart;
         }
 
         private void btn_fyyb_Click(object sender, EventArgs e)
@@ -828,7 +825,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            enum_qmxnjc = text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.FYYB;
+            enum_qmxnjc = PublicEnum.AirtightPropertyTest.FReady;
         }
         /// <summary>
         /// 禁用按钮
@@ -896,7 +893,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            enum_qmxnjc = text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.FYKS;
+            enum_qmxnjc = PublicEnum.AirtightPropertyTest.FStart;
         }
 
 
@@ -1058,7 +1055,7 @@ namespace text.doors.Detection
             lbl_setYL.Text = "0";
             BindWindSpeed();
             BindFlow();
-            enum_qmxnjc = text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.TZ;
+            enum_qmxnjc = PublicEnum.AirtightPropertyTest.Stop;
         }
 
         /// <summary>
@@ -1072,11 +1069,11 @@ namespace text.doors.Detection
             {
                 if (tcpConnection.IsOpen)
                 {
-                    if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_气密)
+                    if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
                     {
                         if (enum_qmxnjc == null) { return; }
 
-                        if (enum_qmxnjc == _Public_Enum.ENUM_QMXNJC_Btn.ZYYB)
+                        if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.ZReady)
                         {
                             int value = tcpConnection.GetZYYBJS(ref IsSeccess);
 
@@ -1086,12 +1083,12 @@ namespace text.doors.Detection
                             }
                             if (value == 3)
                             {
-                                enum_qmxnjc = _Public_Enum.ENUM_QMXNJC_Btn.TZ;
+                                enum_qmxnjc = PublicEnum.AirtightPropertyTest.Stop;
                                 lbl_setYL.Text = "0";
                                 OpenBtnType();
                             }
                         }
-                        if (enum_qmxnjc == _Public_Enum.ENUM_QMXNJC_Btn.ZYKS)
+                        if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.ZStart)
                         {
                             double value = tcpConnection.GetZYKSJS(ref IsSeccess);
 
@@ -1101,7 +1098,7 @@ namespace text.doors.Detection
                             }
                             if (value >= 15)
                             {
-                                enum_qmxnjc = _Public_Enum.ENUM_QMXNJC_Btn.TZ;
+                                enum_qmxnjc = PublicEnum.AirtightPropertyTest.Stop;
                                 IsStart = false;
                                 Thread.Sleep(1000);
                                 lbl_setYL.Text = "0";
@@ -1109,7 +1106,7 @@ namespace text.doors.Detection
                             }
                         }
 
-                        if (enum_qmxnjc == _Public_Enum.ENUM_QMXNJC_Btn.FYYB)
+                        if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.FReady)
                         {
                             int value = tcpConnection.GetFYYBJS(ref IsSeccess);
 
@@ -1119,13 +1116,13 @@ namespace text.doors.Detection
                             }
                             if (value == 3)
                             {
-                                enum_qmxnjc = _Public_Enum.ENUM_QMXNJC_Btn.TZ;
+                                enum_qmxnjc = PublicEnum.AirtightPropertyTest.Stop;
                                 lbl_setYL.Text = "0";
                                 OpenBtnType();
                             }
                         }
 
-                        if (enum_qmxnjc == _Public_Enum.ENUM_QMXNJC_Btn.FYKS)
+                        if (enum_qmxnjc == PublicEnum.AirtightPropertyTest.FStart)
                         {
                             double value = tcpConnection.GetFYKSJS(ref IsSeccess);
 
@@ -1135,7 +1132,7 @@ namespace text.doors.Detection
                             }
                             if (value >= 15)
                             {
-                                enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+                                enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
                                 IsStart = false;
                                 Thread.Sleep(1000);
                                 lbl_setYL.Text = "0";
@@ -1143,9 +1140,9 @@ namespace text.doors.Detection
                             }
                         }
                     }
-                    else if (enum_DetectBtn == text.doors.Common._Public_Enum.ENUM_DetectBtn.em_水密)
+                    else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
                     {
-                        if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YB)
+                        if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.Ready)
                         {
                             int value = tcpConnection.GetSMYBJS(ref IsSeccess);
 
@@ -1155,7 +1152,7 @@ namespace text.doors.Detection
                             }
                             if (value == 3)
                             {
-                                enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+                                enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
                                 lbl_sdyl.Text = "0";
 
                                 this.btn_yb.Enabled = true;
@@ -1165,7 +1162,7 @@ namespace text.doors.Detection
                             }
                         }
 
-                        if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YCJY)
+                        if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.CycleLoading)
                         {
                             int value = tcpConnection.GetSMYBJS(ref IsSeccess);
 
@@ -1175,7 +1172,7 @@ namespace text.doors.Detection
                             }
                             if (value == 3)
                             {
-                                enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+                                enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
                                 lbl_sdyl.Text = "0";
 
                                 this.btn_ycjy.Enabled = true;
@@ -1209,20 +1206,20 @@ namespace text.doors.Detection
         private void tc_RealTimeSurveillance_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
 
             TabControl tc = (TabControl)sender;
             int index = tc_RealTimeSurveillance.SelectedIndex;
 
             if (tc.TabPages[index].Text == "气密监控")
             {
-                enum_DetectBtn = text.doors.Common._Public_Enum.ENUM_DetectBtn.em_气密;
+                enum_DetectBtn = PublicEnum.SystemItem.Airtight;
 
                 QMchartInit();
             }
             else if (tc.TabPages[index].Text == "水密监控")
             {
-                enum_DetectBtn = text.doors.Common._Public_Enum.ENUM_DetectBtn.em_水密;
+                enum_DetectBtn = PublicEnum.SystemItem.Watertight;
                 SMchartInit();
 
             }
@@ -1247,7 +1244,7 @@ namespace text.doors.Detection
                 this.btn_yb.Enabled = true;
                 this.btn_ks.Enabled = true;
                 this.btn_xyj.Enabled = true;
-                enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+                enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
                 return;
             }
 
@@ -1256,7 +1253,7 @@ namespace text.doors.Detection
             {
                 MessageBox.Show("水密性下一级");
             }
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.XYJ;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.Next;
         }
 
         private void btn_2tc_Click(object sender, EventArgs e)
@@ -1266,7 +1263,7 @@ namespace text.doors.Detection
             this.btn_yb.Enabled = true;
             this.btn_ks.Enabled = true;
             this.btn_xyj.Enabled = true;
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1296,7 +1293,7 @@ namespace text.doors.Detection
                 MessageBox.Show("水密预备异常");
             }
 
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YB;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.Ready;
 
         }
 
@@ -1312,7 +1309,7 @@ namespace text.doors.Detection
                 MessageBox.Show("水密开始异常");
             }
 
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.KS;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.Start;
         }
         /// <summary>
         /// 依次加压
@@ -1341,7 +1338,7 @@ namespace text.doors.Detection
                 this.btn_yb.Enabled = true;
                 this.btn_ks.Enabled = true;
                 this.btn_xyj.Enabled = true;
-                enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ;
+                enum_smxnjc = PublicEnum.WaterTightPropertyTest.Stop;
                 return;
             }
 
@@ -1356,14 +1353,14 @@ namespace text.doors.Detection
             var value = int.Parse(txt_ycjy.Text);
             tcpConnection.SendSMYCJY(value, ref IsSeccess);
             lbl_sdyl.Text = value.ToString();
-            enum_smxnjc = text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YCJY;
+            enum_smxnjc = PublicEnum.WaterTightPropertyTest.CycleLoading;
 
         }
         #endregion
 
         private void tim_upNext_Tick(object sender, EventArgs e)
         {
-            if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.TZ || enum_qmxnjc == text.doors.Common._Public_Enum.ENUM_QMXNJC_Btn.TZ)
+            if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.Stop || enum_qmxnjc == PublicEnum.AirtightPropertyTest.Stop)
             {
                 return;
             }
@@ -1371,13 +1368,13 @@ namespace text.doors.Detection
             if (tcpConnection.IsOpen)
             {
                 string TEMP = "";
-                if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YB)
+                if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.Ready)
                     TEMP = "SMYB";
-                if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.YCJY)
+                if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.CycleLoading)
                     TEMP = "SMKS";
-                if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.KS)
+                if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.Start)
                     TEMP = "SMKS";
-                if (enum_smxnjc == text.doors.Common._Public_Enum.ENUM_SMXNJC_Btn.XYJ)
+                if (enum_smxnjc == PublicEnum.WaterTightPropertyTest.Next)
                     TEMP = "XYJ";
 
                 double yl = tcpConnection.GetSMYBSDYL(ref IsSeccess, TEMP);

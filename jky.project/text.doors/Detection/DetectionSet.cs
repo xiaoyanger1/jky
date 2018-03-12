@@ -1,6 +1,6 @@
 ﻿using text.doors.Common;
 using text.doors.dal;
-using text.doors.model;
+using text.doors.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using text.doors.Model.DataBase;
 
 namespace text.doors.Detection
 {

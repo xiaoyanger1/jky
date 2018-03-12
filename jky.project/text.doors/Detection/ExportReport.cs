@@ -1,23 +1,15 @@
-﻿using Jky.Public.Common;
-using Microsoft.Office.Interop.Word;
+﻿using Microsoft.Office.Interop.Word;
 using text.doors.Common;
 using text.doors.dal;
-using text.doors.model;
+using text.doors.Model.DataBase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Young.Core.Common;
+using text.doors.Model;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -315,15 +307,32 @@ namespace text.doors.Detection
                     list.Sort();
 
                     int min = list[0], intermediate = list[1], max = list[2];
+                    //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
+                    //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                    //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
 
-                    int minlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == min).level,
-                        intermediatelevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == intermediate).level,
-                        maxlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == max).level;
+                    //if ((maxlevel - intermediatelevel) > 2)
+                    //{
+                    //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                    //}
+
+                    //todo update
+                    int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                    int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                    int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
 
                     if ((maxlevel - intermediatelevel) > 2)
                     {
-                        max = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+
+                        foreach (var item in DefaultBase.AirtightLevel)
+                        {
+                            if (item.Value == (intermediatelevel + 2))
+                            {
+                                max = item.Key; break;
+                            }
+                        }
                     }
+
 
                     qmValue = (min + intermediate + max) / 3;
                 }
@@ -362,15 +371,29 @@ namespace text.doors.Detection
 
                     int min = list[0], intermediate = list[1], max = list[2];
 
-                    int minlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == min).level,
-                        intermediatelevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == intermediate).level,
-                        maxlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == max).level;
+                    //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
+                    //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                    //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
+
+                    //if ((maxlevel - intermediatelevel) > 2)
+                    //{
+                    //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                    //}
+                    //todo update
+                    int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                    int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                    int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
 
                     if ((maxlevel - intermediatelevel) > 2)
                     {
-                        max = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                        foreach (var item in DefaultBase.AirtightLevel)
+                        {
+                            if (item.Value == (intermediatelevel + 2))
+                            {
+                                max = item.Key; break;
+                            }
+                        }
                     }
-
                     qmValue = (min + intermediate + max) / 3;
                 }
                 else

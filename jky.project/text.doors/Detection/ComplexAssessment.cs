@@ -1,6 +1,6 @@
 ﻿using text.doors.Common;
 using text.doors.dal;
-using text.doors.model;
+using text.doors.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using text.doors.Model.DataBase;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -21,7 +23,7 @@ namespace text.doors.Detection
         /// <summary>
         /// 检验项目
         /// </summary>
-        public text.doors.Common._Public_Enum.ENUM_DetectionItem? enum_DetectionItem = null;
+        public PublicEnum.DetectionItem? DetectionItemEnum = null;
         public ComplexAssessment(string code)
         {
             InitializeComponent();
@@ -33,17 +35,17 @@ namespace text.doors.Detection
         {
             if (jyxm == "气密性能检测")
             {
-                enum_DetectionItem = text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测;
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能检测;
                 return true;
             }
             else if (jyxm == "水密性能检测")
             {
-                enum_DetectionItem = text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测;
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_水密性能检测;
                 return true;
             }
             else if (jyxm == "气密性能及水密性能检测")
             {
-                enum_DetectionItem = text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测;
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
                 return true;
             }
             else
@@ -66,13 +68,12 @@ namespace text.doors.Detection
             if (ischeck == false)
             {
                 MessageBox.Show("未设置检测项");
-
                 this.Hide();
-                Form_Base.IsOpenComplexAssessment = false;
+                DefaultBase.IsOpenComplexAssessment = false;
                 return;
             }
 
-            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, enum_DetectionItem);
+            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, DetectionItemEnum);
             if (dt == null)
             {
                 MessageBox.Show("未检测完成，请完成检测");
@@ -85,7 +86,7 @@ namespace text.doors.Detection
                 MessageBox.Show("未检测完成，请完成" + con + "樘检测");
 
                 this.Hide();
-                Form_Base.IsOpenComplexAssessment = false;
+                DefaultBase.IsOpenComplexAssessment = false;
                 return;
             }
 
@@ -94,20 +95,20 @@ namespace text.doors.Detection
                 if (i == 0)
                 {
                     groupBox1.Text = dt.Rows[i]["info_DangH"].ToString();
-                    if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测)
+                    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
                     {
                         txt_1zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
                         txt_1ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
                         txt_1zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
                         txt_1fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
                     {
                         lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
                         txt_1fy.Text = dt.Rows[i]["sm_Pa"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
                     {
                         lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
@@ -121,20 +122,20 @@ namespace text.doors.Detection
                 if (i == 1)
                 {
                     groupBox2.Text = dt.Rows[i]["info_DangH"].ToString();
-                    if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测)
+                    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
                     {
                         txt_2zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
                         txt_2ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
                         txt_2zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
                         txt_2fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
                     {
                         lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
                         txt_2fy.Text = dt.Rows[i]["sm_Pa"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
                     {
                         lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
@@ -148,20 +149,20 @@ namespace text.doors.Detection
                 if (i == 2)
                 {
                     groupBox3.Text = dt.Rows[i]["info_DangH"].ToString();
-                    if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测)
+                    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
                     {
                         txt_3zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
                         txt_3ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
                         txt_3zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
                         txt_3fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
                     {
                         lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
                         txt_3fy.Text = dt.Rows[i]["sm_Pa"].ToString();
                     }
-                    else if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+                    else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
                     {
                         lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
                         lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
@@ -173,7 +174,7 @@ namespace text.doors.Detection
                     }
                 }
             }
-            Form_Base.IsOpenComplexAssessment = true;
+            DefaultBase.IsOpenComplexAssessment = true;
         }
 
 
@@ -198,21 +199,30 @@ namespace text.doors.Detection
             int qmValue = 0;
             if (dt != null && dt.Rows.Count > 0)
             {
-
                 if (dt.Rows.Count == 3)
                 {
                     List<int> list = new List<int>() { int.Parse(dt.Rows[0]["sm_Pa"].ToString()), int.Parse(dt.Rows[1]["sm_Pa"].ToString()), int.Parse(dt.Rows[2]["sm_Pa"].ToString()) };
                     list.Sort();
 
                     int min = list[0], intermediate = list[1], max = list[2];
-
-                    int minlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == min).level,
-                        intermediatelevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == intermediate).level,
-                        maxlevel = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.value == max).level;
+                    //int minlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == min).level,
+                    //    intermediatelevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                    //    maxlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == max).level;
+                    //todo  update
+                    int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                    int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                    int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
 
                     if ((maxlevel - intermediatelevel) > 2)
                     {
-                        max = new text.doors.model.QM_Dict.Dict().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                        //todo update
+                        foreach (var item in DefaultBase.AirtightLevel)
+                        {
+                            if (item.Value == (intermediatelevel + 2))
+                            {
+                                max = item.Key; break;
+                            }
+                        }
                     }
 
                     qmValue = (min + intermediate + max) / 3;
@@ -402,7 +412,7 @@ namespace text.doors.Detection
             #region 修改监测数据
             List<Model_dt_qm_Info> qmList = new List<Model_dt_qm_Info>();
 
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 for (int i = 0; i < con; i++)
                 {
@@ -440,7 +450,7 @@ namespace text.doors.Detection
 
 
             List<Model_dt_sm_Info> smList = new List<Model_dt_sm_Info>();
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 for (int i = 0; i < con; i++)
                 {
@@ -473,7 +483,7 @@ namespace text.doors.Detection
                 }
             }
 
-            new DAL_dt_qm_Info().AddSM_QM(qmList, smList, enum_DetectionItem);
+            new DAL_dt_qm_Info().AddSM_QM(qmList, smList, DetectionItemEnum);
 
             #endregion
 
@@ -489,8 +499,8 @@ namespace text.doors.Detection
                 txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
                 txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
             }
-            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, enum_DetectionItem);
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, DetectionItemEnum);
+            if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 txt_dj1.Text = Get_QMLevel(dt).ToString();
                 if (qm_z_FC >= double.Parse(txt_sjz2.Text))
@@ -529,7 +539,7 @@ namespace text.doors.Detection
                     txt_jg5.Text = "不合格";
                 }
             }
-            if (enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_水密性能检测 || enum_DetectionItem == text.doors.Common._Public_Enum.ENUM_DetectionItem.enum_气密性能及水密性能检测)
+            if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 txt_dj2.Text = Get_SMLevel(dt).ToString();
 

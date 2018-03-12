@@ -18,30 +18,30 @@ namespace text.doors
         [STAThread]
         static void Main()
         {
-            RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
-            if (reg.MiStart_Infos() && reg.MiEnd_Infos())
+            //RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
+            //if (reg.MiStart_Infos() && reg.MiEnd_Infos())
+            //{
+            Process instance = RunningInstance();
+            if (instance == null)
             {
-                Process instance = RunningInstance();
-                if (instance == null)
-                {
-                    //Application.EnableVisualStyles();
-                    //Application.SetCompatibleTextRenderingDefault(false);
-                    Form Login = new Login();
-                    Login.ShowDialog();//显示登陆窗体  
-                    if (Login.DialogResult == DialogResult.OK)
-                        Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口  
-                    else return;
-                }
-                else
-                {
-                    // 已经有一个实例在运行
-                    HandleRunningInstance(instance);
-                }
+                //Application.EnableVisualStyles();
+                //Application.SetCompatibleTextRenderingDefault(false);
+                Form Login = new Login();
+                Login.ShowDialog();//显示登陆窗体  
+                if (Login.DialogResult == DialogResult.OK)
+                    Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口  
+                else return;
             }
             else
             {
-                Application.Exit();
+                // 已经有一个实例在运行
+                HandleRunningInstance(instance);
             }
+            //}
+            //else
+            //{
+            //    Application.Exit();
+            //}
         }
 
 
@@ -94,6 +94,6 @@ namespace text.doors
         private static extern bool SetForegroundWindow(System.IntPtr hWnd);
 
         #endregion
-
+        
     }
 }

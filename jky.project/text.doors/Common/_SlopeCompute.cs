@@ -6,23 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using text.doors.Default;
+using Young.Core.SQLite;
 
 namespace Jky.Public.Common
 {
     public class _SlopeCompute
     {
 
-        private static List<Dict> DemarcateList = GetData();
+        private static List<Calibrating_Dict> DemarcateList = GetData();
         //<summary>
         //温度传感器
         //</summary>
-        static List<Dict> _温度传感器Dict = null;
-        private static List<Dict> 温度传感器Dict
+        static List<Calibrating_Dict> _温度传感器Dict = null;
+        private static List<Calibrating_Dict> 温度传感器Dict
         {
             get
             {
                 if (_温度传感器Dict == null)
-                    温度传感器Dict = DemarcateList.FindAll(t => t.Enum == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_温度传感器.ToString()).OrderBy(t => t.x).ToList();
+                    温度传感器Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_温度传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _温度传感器Dict;
             }
             set
@@ -34,13 +36,13 @@ namespace Jky.Public.Common
         //<summary>
         //差压传感器
         //</summary>
-        static List<Dict> _差压传感器Dict = null;
-        private static List<Dict> 差压传感器Dict
+        static List<Calibrating_Dict> _差压传感器Dict = null;
+        private static List<Calibrating_Dict> 差压传感器Dict
         {
             get
             {
                 if (_差压传感器Dict == null)
-                    差压传感器Dict = DemarcateList.FindAll(t => t.Enum == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_差压传感器.ToString()).OrderBy(t => t.x).ToList();
+                    差压传感器Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_差压传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _差压传感器Dict;
             }
             set
@@ -52,13 +54,13 @@ namespace Jky.Public.Common
         //<summary>
         //风速传感器
         //</summary>
-        static List<Dict> _风速传感器Dict = null;
-        private static List<Dict> 风速传感器Dict
+        static List<Calibrating_Dict> _风速传感器Dict = null;
+        private static List<Calibrating_Dict> 风速传感器Dict
         {
             get
             {
                 if (_风速传感器Dict == null)
-                    风速传感器Dict = DemarcateList.FindAll(t => t.Enum == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_风速传感器.ToString()).OrderBy(t => t.x).ToList();
+                    风速传感器Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_风速传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _风速传感器Dict;
             }
             set
@@ -70,13 +72,13 @@ namespace Jky.Public.Common
         //<summary>
         //大气压力传感器
         //</summary>
-        static List<Dict> _大气压力传感器Dict = null;
-        private static List<Dict> 大气压力传感器Dict
+        static List<Calibrating_Dict> _大气压力传感器Dict = null;
+        private static List<Calibrating_Dict> 大气压力传感器Dict
         {
             get
             {
                 if (_大气压力传感器Dict == null)
-                    大气压力传感器Dict = DemarcateList.FindAll(t => t.Enum == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_大气压力传感器.ToString()).OrderBy(t => t.x).ToList();
+                    大气压力传感器Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_大气压力传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _大气压力传感器Dict;
             }
             set
@@ -128,13 +130,9 @@ namespace Jky.Public.Common
         /// 获取标定后值
         /// </summary>
         /// <returns></returns>
-        public static double GetValues(text.doors.Common._Public_Enum.ENUM_Demarcate enum_Demarcate, float x)
+        public static double GetValues(PublicEnum.DemarcateType enum_Demarcate, float x)
         {
-            //if (x < 0)
-            //{
-            //    x = 0;
-            //}
-            List<Dict> dict = GetListByEnum(enum_Demarcate);
+            List<Calibrating_Dict> dict = GetListByEnum(enum_Demarcate);
 
             if (dict == null || dict.Count == 0)
             {
@@ -160,25 +158,25 @@ namespace Jky.Public.Common
         /// </summary>
         /// <param name="enum_Demarcate"></param>
         /// <returns></returns>
-        private static List<Dict> GetListByEnum(text.doors.Common._Public_Enum.ENUM_Demarcate enum_Demarcate)
+        private static List<Calibrating_Dict> GetListByEnum(PublicEnum.DemarcateType enum_Demarcate)
         {
-            if (enum_Demarcate == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_差压传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.enum_差压传感器)
             {
                 return 差压传感器Dict;
             }
-            if (enum_Demarcate == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_大气压力传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.enum_大气压力传感器)
             {
                 return 大气压力传感器Dict;
             }
-            if (enum_Demarcate == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_风速传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.enum_风速传感器)
             {
                 return 风速传感器Dict;
             }
-            if (enum_Demarcate == text.doors.Common._Public_Enum.ENUM_Demarcate.enum_温度传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.enum_温度传感器)
             {
                 return 温度传感器Dict;
             }
-            return new List<Dict>();
+            return new List<Calibrating_Dict>();
         }
 
 
@@ -192,7 +190,7 @@ namespace Jky.Public.Common
         /// <param name="x"></param>
         /// <param name="k"></param>
         /// <param name="b"></param>
-        private static void Compute_KB(List<Dict> dictList, float x, ref  float k, ref float b)
+        private static void Compute_KB(List<Calibrating_Dict> dictList, float x, ref  float k, ref float b)
         {
             // 对数据合计
             for (int i = 0; i < dictList.Count; i++)
@@ -210,22 +208,20 @@ namespace Jky.Public.Common
                 if (dictList[i].y > x && dictList[i - 1].y < x)
                 {
                     Calculate(dictList[i - 1].y, dictList[i].y, dictList[i - 1].x, dictList[i].x, ref k, ref b);
-
-                    // queue.Enqueue(new Dict() { Enum = dictList[i - 1].Enum, x = dictList[i - 1].x, y = dictList[i - 1].y, b = b, k = k, });
                 }
             }
         }
 
-        private static List<Dict> GetData()
+        private static List<Calibrating_Dict> GetData()
         {
-            List<Dict> list = new List<Dict>();
+            List<Calibrating_Dict> list = new List<Calibrating_Dict>();
             string sql = string.Format("select * from Demarcate_Dict");
 
             DataTable dt = SQLiteHelper.ExecuteDataset(sql).Tables[0];
 
             foreach (DataRow dr in dt.Rows)
             {
-                Dict model = new Dict();
+                Calibrating_Dict model = new Calibrating_Dict();
                 if (!string.IsNullOrWhiteSpace(dr["Enum"].ToString()))
                 {
                     model.Enum = dr["Enum"].ToString();
@@ -237,17 +233,7 @@ namespace Jky.Public.Common
                 {
                     model.y = float.Parse(dr["D_Value"].ToString());
                 }
-
-                //if (!string.IsNullOrWhiteSpace(dr["D_K"].ToString()))
-                //{
-                //    model.y = float.Parse(dr["D_K"].ToString());
-                //}
-
-                //if (!string.IsNullOrWhiteSpace(dr["D_B"].ToString()))
-                //{
-                //    model.y = float.Parse(dr["D_B"].ToString());
-                //}
-
+                
                 list.Add(model);
             }
             return list;
@@ -258,7 +244,7 @@ namespace Jky.Public.Common
     /// <summary>
     /// 获取标定范围字典
     /// </summary>
-    public class Dict
+    public class Calibrating_Dict
     {
         public float x { get; set; }
         public float y { get; set; }
