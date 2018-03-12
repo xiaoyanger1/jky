@@ -99,15 +99,15 @@ namespace text.doors.Detection
         public List<Pressure> GetLiuLiang()
         {
             List<Pressure> pressureList = new List<Pressure>();
-            Conversions cv = new Conversions();
+            _SlopeCompute slopeCompute = new _SlopeCompute();
             for (int i = 0; i < 3; i++)
             {
                 Pressure model = new Pressure();
                 model.PressurePa = int.Parse(this.dgv_WindSpeed.Rows[i].Cells["PressurePa"].Value.ToString());
-                model.Pressure_Z = cv.MathLL(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_Z"].Value.ToString()));
-                model.Pressure_Z_Z = cv.MathLL(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_Z_Z"].Value.ToString()));
-                model.Pressure_F = cv.MathLL(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_F"].Value.ToString()));
-                model.Pressure_F_Z = cv.MathLL(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_F_Z"].Value.ToString()));
+                model.Pressure_Z = slopeCompute.MathFlow(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_Z"].Value.ToString()));
+                model.Pressure_Z_Z = slopeCompute.MathFlow(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_Z_Z"].Value.ToString()));
+                model.Pressure_F = slopeCompute.MathFlow(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_F"].Value.ToString()));
+                model.Pressure_F_Z = slopeCompute.MathFlow(double.Parse(this.dgv_WindSpeed.Rows[i].Cells["Pressure_F_Z"].Value.ToString()));
                 pressureList.Add(model);
             }
             return pressureList;

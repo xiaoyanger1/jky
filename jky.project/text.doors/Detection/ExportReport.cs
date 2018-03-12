@@ -642,7 +642,7 @@ namespace text.doors.Detection
 
                 if (settings.dt_qm_Info != null && settings.dt_qm_Info.Count > 0)
                 {
-                    Conversions cv = new Conversions();
+                    _SlopeCompute slopeCompute = new _SlopeCompute();
                     for (int i = 0; i < settings.dt_qm_Info.Count; i++)
                     {
                         if (i == 0)
@@ -661,20 +661,20 @@ namespace text.doors.Detection
                             dc.Add("气密检测第1樘附加渗透负降压100帕时风速", double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100).ToString("#0.00"));
 
 
-                            dc.Add("流量第一樘升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
-                            dc.Add("流量第一樘升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
-                            dc.Add("流量第一樘负升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
-                            dc.Add("流量第一樘负升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第一樘升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第一樘升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
+                            dc.Add("流量第一樘负升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
+                            dc.Add("流量第一樘负升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
 
-                            dc.Add("流量第一樘负升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第一樘升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第一樘升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
-                            dc.Add("流量第一樘负升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
+                            dc.Add("流量第一樘负升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第一樘升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第一樘升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
+                            dc.Add("流量第一樘负升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
 
-                            dc.Add("流量第一樘降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第一樘降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
-                            dc.Add("流量第一樘负降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第一樘负降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第一樘降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第一樘降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第一樘负降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第一樘负降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
 
                         }
                         if (i == 1)
@@ -693,20 +693,20 @@ namespace text.doors.Detection
                             dc.Add("气密检测第2樘附加渗透负降压100帕时风速", double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100).ToString("#0.00"));
 
                             //第二樘
-                            dc.Add("流量第二樘升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
-                            dc.Add("流量第二樘升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
-                            dc.Add("流量第二樘负升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
-                            dc.Add("流量第二樘负升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第二樘升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第二樘升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
+                            dc.Add("流量第二樘负升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
+                            dc.Add("流量第二樘负升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
 
-                            dc.Add("流量第二樘负升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第二樘升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第二樘升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
-                            dc.Add("流量第二樘负升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
+                            dc.Add("流量第二樘负升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第二樘升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第二樘升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
+                            dc.Add("流量第二樘负升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
 
-                            dc.Add("流量第二樘降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第二樘降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
-                            dc.Add("流量第二樘负降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第二樘负降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第二樘降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第二樘降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第二樘负降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第二樘负降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
                         }
                         if (i == 2)
                         {
@@ -725,21 +725,21 @@ namespace text.doors.Detection
 
                             //流量
 
-                            dc.Add("流量第三樘负升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第三樘升100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第三樘负升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
-                            dc.Add("流量第三樘升100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第三樘负升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第三樘升100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第三樘负升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第三樘升100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj100)).ToString("#0.00"));
 
 
-                            dc.Add("流量第三樘升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
-                            dc.Add("流量第三樘负升150总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
-                            dc.Add("流量第三樘升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
-                            dc.Add("流量第三樘负升150附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
+                            dc.Add("流量第三樘升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_zd150)).ToString("#0.00"));
+                            dc.Add("流量第三樘负升150总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_zd150)).ToString("#0.00"));
+                            dc.Add("流量第三樘升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_z_fj150)).ToString("#0.00"));
+                            dc.Add("流量第三樘负升150附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_s_f_fj150)).ToString("#0.00"));
 
-                            dc.Add("流量第三樘负降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
-                            dc.Add("流量第三樘降100总的", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
-                            dc.Add("流量第三樘降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
-                            dc.Add("流量第三樘负降100附加", cv.MathLL(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
+                            dc.Add("流量第三樘负降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_zd100)).ToString("#0.00"));
+                            dc.Add("流量第三樘降100总的", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_zd100)).ToString("#0.00"));
+                            dc.Add("流量第三樘降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_z_fj100)).ToString("#0.00"));
+                            dc.Add("流量第三樘负降100附加", slopeCompute.MathFlow(double.Parse(settings.dt_qm_Info[i].qm_j_f_fj100)).ToString("#0.00"));
                         }
                     }
                 }

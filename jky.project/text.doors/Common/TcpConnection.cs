@@ -1,4 +1,4 @@
-﻿using Jky.Public.Common;
+﻿
 using Modbus.Device;
 using System;
 using System.Collections.Generic;

@@ -11,11 +11,12 @@ using Young.Core.SQLite;
 using text.doors.Model;
 using text.doors.Service;
 
-namespace Jky.Public.Common
+namespace text.doors.Common
 {
     public class _SlopeCompute
     {
 
+        #region   y=kx+b
         /// <summary>
         /// 获取标定后值
         /// </summary>
@@ -83,7 +84,7 @@ namespace Jky.Public.Common
             }
         }
 
-       
+
 
         /// <summary>
         /// 根据枚举获取字典数据
@@ -139,6 +140,30 @@ namespace Jky.Public.Common
                 }
             }
         }
+
+        #endregion
+
+
+
+        #region  计算流量
+        /// <summary>
+        /// 计算流量
+        /// 公式为 Q = 3.1415*D的平方（配置）/4*v(风速平均值)*3600
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public double MathFlow(double value)
+        {
+            if (value == 0)
+            {
+                return 0;
+            }
+            double _D = DefaultBase._D;
+
+            return Math.Round(3.1415 * _D * _D / 4 * value * 3600, 2);
+        }
+        #endregion
+
 
     }
 }

@@ -1,5 +1,4 @@
-﻿using Jky.Public.Common;
-using text.doors.Common;
+﻿using text.doors.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

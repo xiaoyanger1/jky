@@ -17,16 +17,16 @@ namespace text.doors.Detection
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public double MathLL(double value)
-        {
-            if (value == 0)
-            {
-                return 0;
-            }
-            double _D = DefaultBase._D;
+        //public double MathFlow(double value)
+        //{
+        //    if (value == 0)
+        //    {
+        //        return 0;
+        //    }
+        //    double _D = DefaultBase._D;
 
-            return Math.Round(3.1415 * _D * _D / 4 * value * 3600, 2);
-        }
+        //    return Math.Round(3.1415 * _D * _D / 4 * value * 3600, 2);
+        //}
 
     }
 }
