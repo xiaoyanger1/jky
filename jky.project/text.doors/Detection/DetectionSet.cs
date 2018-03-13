@@ -345,8 +345,8 @@ namespace text.doors.Detection
                 this._isok = isOK;
 
             }
-            public string BianHao { get { return _code; } }
-            public string DangHao { get { return _tong; } }
+            public string Code { get { return _code; } }
+            public string Tong { get { return _tong; } }
             public bool ISOK { get { return _isok; } }
         }
         #endregion

@@ -35,22 +35,25 @@ namespace text.doors
         /// <summary>
         /// 确定是否设置樘号
         /// </summary>
-        bool NetSetIsOk = false;
+        bool IsSetTong = false;
 
         /// <summary>
-        /// 传输设置页面
+        /// 当前温度
         /// </summary>
-        private double _DQWD = 0;
-        private double _DQYL = 0;
+        private double _temperature = 0;
+        /// <summary>
+        /// 当前压力
+        /// </summary>
+        private double _temppressure = 0;
 
         /// <summary>
         /// 检验编号
         /// </summary>
-        private string JYBH = "";
+        private string _tempCode = "";
         /// <summary>
         /// 当前樘号
         /// </summary>
-        private string DQDH = "";
+        private string _tempTong = "";
 
 
         public MainForm()
@@ -116,14 +119,14 @@ namespace text.doors
 
         private void SelectDangHao(text.doors.Detection.DetectionSet.BottomType bt)
         {
-            this.tssl_SetCode.Text = string.Format("{0}  {1}", bt.BianHao, bt.DangHao);
+            this.tssl_SetCode.Text = string.Format("{0}  {1}", bt.Code, bt.Tong);
             if (bt.ISOK == true)
             { this.tsl_type.Visible = false; }
             else { this.tsl_type.Visible = true; }
 
-            JYBH = bt.BianHao;
-            DQDH = bt.DangHao;
-            NetSetIsOk = bt.ISOK;
+            _tempCode = bt.Code;
+            _tempTong = bt.Tong;
+            IsSetTong = bt.ISOK;
             if (bt.ISOK)
             {
                 ShowRealTimeSurveillance();
@@ -136,7 +139,7 @@ namespace text.doors
         private void ShowDetectionSet()
         {
             this.pl_showItem.Controls.Clear();
-            DetectionSet ds = new DetectionSet(_DQWD, _DQYL, JYBH, DQDH);
+            DetectionSet ds = new DetectionSet(_temperature, _temppressure, _tempCode, _tempTong);
             ds.deleBottomTypeEvent += new DetectionSet.deleBottomType(SelectDangHao);
             ds.GetDangHaoTrigger();
             ds.TopLevel = false;
@@ -149,7 +152,7 @@ namespace text.doors
         /// </summary>
         private void ShowRealTimeSurveillance()
         {
-            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, JYBH, DQDH);
+            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, _tempCode, _tempTong);
             this.pl_showItem.Controls.Clear();
             rts.TopLevel = false;
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,14 +162,12 @@ namespace text.doors
 
         private void GetRegister()
         {
-            _DQWD = tcpClient.GetWDXS(ref IsSeccess);
+            _temperature = tcpClient.GetWDXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取温度异常"); return;
             }
-
-
-            _DQYL = tcpClient.GetDQYLXS(ref IsSeccess);
+            _temppressure = tcpClient.GetDQYLXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取大气压力异常"); return;
@@ -261,32 +262,24 @@ namespace text.doors
         //监控
         private void tsb_RealTimeSurveillance_Click(object sender, EventArgs e)
         {
-            if (NetSetIsOk)
-            {
+            if (IsSetTong)
                 ShowRealTimeSurveillance();
-            }
             else
-            {
                 MessageBox.Show("请先检测设定。");
-            }
         }
 
         private void tsm_surveillance_Click(object sender, EventArgs e)
         {
-            if (NetSetIsOk)
-            {
+            if (IsSetTong)
                 ShowRealTimeSurveillance();
-            }
             else
-            {
                 MessageBox.Show("请先检测设定。");
-            }
         }
 
         //检测设定
         private void tsb_DetectionSet_Click(object sender, EventArgs e)
         {
-            NetSetIsOk = false;
+            IsSetTong = false;
             ShowDetectionSet();
         }
 
@@ -338,9 +331,9 @@ namespace text.doors
 
         private void tsb_生成报告_Click(object sender, EventArgs e)
         {
-            if (NetSetIsOk)
+            if (IsSetTong)
             {
-                ExportReport ep = new ExportReport(JYBH);
+                ExportReport ep = new ExportReport(_tempCode);
                 ep.Show();
                 ep.TopMost = true;
             }
@@ -379,7 +372,6 @@ namespace text.doors
         private void btn_z_Click(object sender, EventArgs e)
         {
             var res = tcpClient.SendZYF();
-
             if (!res)
             {
                 MessageBox.Show("设置正压阀异常");
@@ -428,9 +420,9 @@ namespace text.doors
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            if (NetSetIsOk)
+            if (IsSetTong)
             {
-                ComplexAssessment ca = new ComplexAssessment(JYBH);
+                ComplexAssessment ca = new ComplexAssessment(_tempCode);
                 if (DefaultBase.IsOpenComplexAssessment)
                 {
                     ca.Show();
@@ -443,9 +435,9 @@ namespace text.doors
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (NetSetIsOk)
+            if (IsSetTong)
             {
-                pic pic = new pic(JYBH);
+                pic pic = new pic(_tempCode);
                 pic.Show();
                 pic.TopMost = true;
             }

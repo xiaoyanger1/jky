@@ -26,9 +26,9 @@ namespace text.doors.Detection
     {
         private TCPClient tcpConnection;
         //检验编号
-        private string _Detect_Code = "";
+        private string _tempCode = "";
         //当前樘号
-        private string _Current_TangH = "";
+        private string _tempTong = "";
 
         /// <summary>
         /// 气密数据载体
@@ -37,7 +37,7 @@ namespace text.doors.Detection
         /// <summary>
         /// 当前选项卡状态
         /// </summary>
-        private PublicEnum.SystemItem? enum_DetectBtn = PublicEnum.SystemItem.Airtight;
+        private PublicEnum.SystemItem? systemItem = PublicEnum.SystemItem.Airtight;
 
         /// <summary>
         /// 气密数据位置
@@ -62,12 +62,12 @@ namespace text.doors.Detection
 
         public DateTime dtnow { get; set; }
 
-        public RealTimeSurveillance(TCPClient tcpClient, string detect_Code, string current_TangH)
+        public RealTimeSurveillance(TCPClient tcpClient, string tempCode, string tempTong)
         {
             InitializeComponent();
             this.tcpConnection = tcpClient;
-            this._Detect_Code = detect_Code;
-            this._Current_TangH = current_TangH;
+            this._tempCode = tempCode;
+            this._tempTong = tempTong;
             pressure = new Pressure();
             Init();
         }
@@ -86,8 +86,8 @@ namespace text.doors.Detection
         /// </summary>
         private void BindYL()
         {
-            lbl_title.Text = string.Format("门窗气密性能检测  第{0}号 {1}", this._Detect_Code, this._Current_TangH);
-            lbl_smjc.Text = string.Format("门窗水密性能检测  第{0}号 {1}", this._Detect_Code, this._Current_TangH);
+            lbl_title.Text = string.Format("门窗气密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
+            lbl_smjc.Text = string.Format("门窗水密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
         }
 
         #region 数据绑定
@@ -155,12 +155,12 @@ namespace text.doors.Detection
         /// </summary>
         private void BindWindSpeed()
         {
-            Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_Detect_Code);
+            Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
 
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
             {
-                var qm = dt_Settings.dt_qm_Info.FindAll(t => t.info_DangH == _Current_TangH && string.IsNullOrWhiteSpace(t.qm_j_f_zd100) == false).OrderBy(t => t.info_DangH);
+                var qm = dt_Settings.dt_qm_Info.FindAll(t => t.info_DangH == _tempTong && string.IsNullOrWhiteSpace(t.qm_j_f_zd100) == false).OrderBy(t => t.info_DangH);
                 //是否首次加载
                 if (IsFirst && (qm != null && qm.Count() > 0))
                 {
@@ -200,7 +200,7 @@ namespace text.doors.Detection
                     pressureList = pressure.GetPressure();
                 }
                 //水密
-                var sm = dt_Settings.dt_sm_Info.FindAll(t => t.info_DangH == _Current_TangH);
+                var sm = dt_Settings.dt_sm_Info.FindAll(t => t.info_DangH == _tempTong);
                 if (sm != null && sm.Count() > 0)
                 {
                     var checkDesc = sm[0].sm_PaDesc;
@@ -428,12 +428,12 @@ namespace text.doors.Detection
 
         private void AnimateSeries(Steema.TeeChart.TChart chart, int yl)
         {
-            if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
+            if (systemItem == PublicEnum.SystemItem.Airtight)
             {
                 this.qm_Line.Add(DateTime.Now, yl);
                 this.tChart_qm.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
             }
-            else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
+            else if (systemItem == PublicEnum.SystemItem.Watertight)
             {
                 this.sm_Line.Add(DateTime.Now, yl);
                 this.tChart_sm.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
@@ -515,11 +515,11 @@ namespace text.doors.Detection
                     MessageBox.Show("获取大气压力异常"); return;
                 }
 
-                if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
+                if (systemItem == PublicEnum.SystemItem.Airtight)
                 {
                     AnimateSeries(this.tChart_qm, value);
                 }
-                else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
+                else if (systemItem == PublicEnum.SystemItem.Watertight)
                 {
                     AnimateSeries(this.tChart_sm, value);
                 }
@@ -934,8 +934,8 @@ namespace text.doors.Detection
             for (int i = 0; i < 2; i++)
             {
                 var desc = this.dgv_levelIndex.Rows[i].Cells["Quantity"].Value.ToString();
-                model.info_DangH = _Current_TangH;
-                model.dt_Code = _Detect_Code;
+                model.info_DangH = _tempTong;
+                model.dt_Code = _tempCode;
                 if (desc == "单位缝长")
                 {
                     model.qm_Z_FC = this.dgv_levelIndex.Rows[i].Cells["PressureZ"].Value.ToString();
@@ -1014,7 +1014,7 @@ namespace text.doors.Detection
             double KaiQiFengChang = 0;
             double ZongMianJi = 0;
 
-            DataTable dt = new DAL_dt_Settings().Getdt_SettingsByCode(_Detect_Code);
+            DataTable dt = new DAL_dt_Settings().Getdt_SettingsByCode(_tempCode);
 
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -1064,7 +1064,7 @@ namespace text.doors.Detection
             {
                 if (tcpConnection.IsTCPLink)
                 {
-                    if (enum_DetectBtn == PublicEnum.SystemItem.Airtight)
+                    if (systemItem == PublicEnum.SystemItem.Airtight)
                     {
                         if (airtightPropertyTest == null) { return; }
 
@@ -1135,7 +1135,7 @@ namespace text.doors.Detection
                             }
                         }
                     }
-                    else if (enum_DetectBtn == PublicEnum.SystemItem.Watertight)
+                    else if (systemItem == PublicEnum.SystemItem.Watertight)
                     {
                         if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
                         {
@@ -1208,13 +1208,13 @@ namespace text.doors.Detection
 
             if (tc.TabPages[index].Text == "气密监控")
             {
-                enum_DetectBtn = PublicEnum.SystemItem.Airtight;
+                systemItem = PublicEnum.SystemItem.Airtight;
 
                 QMchartInit();
             }
             else if (tc.TabPages[index].Text == "水密监控")
             {
-                enum_DetectBtn = PublicEnum.SystemItem.Watertight;
+                systemItem = PublicEnum.SystemItem.Watertight;
                 SMchartInit();
 
             }
@@ -1269,7 +1269,6 @@ namespace text.doors.Detection
         #region 水密性能检测按钮事件
         private void btn_yb_Click(object sender, EventArgs e)
         {
-
             double yl = tcpConnection.GetSMYBSDYL(ref IsSeccess, "SMYB");
             if (!IsSeccess)
             {
@@ -1338,13 +1337,7 @@ namespace text.doors.Detection
             }
 
             tim_upNext.Enabled = false;
-            //double yl = tcpConnection.GetSMYBSDYL(ref IsSeccess, "YCJY");
-            //if (!IsSeccess)
-            //{
-            //    MessageBox.Show("读取设定值异常");
-            //}
-
-
+           
             var value = int.Parse(txt_ycjy.Text);
             var res = tcpConnection.SendSMYCJY(value);
             if (!res)
@@ -1670,8 +1663,8 @@ namespace text.doors.Detection
                 return;
             }
             Model_dt_sm_Info model = new Model_dt_sm_Info();
-            model.dt_Code = _Detect_Code;
-            model.info_DangH = _Current_TangH;
+            model.dt_Code = _tempCode;
+            model.info_DangH = _tempTong;
             model.sm_Pa = CheckValue.ToString();
             model.sm_PaDesc = CheckPosition + "," + CheckProblem;
             model.sm_Remark = txt_desc.Text;
