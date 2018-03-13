@@ -452,56 +452,51 @@ namespace text.doors.Detection
         /// <param name="e"></param>
         private void tim_qm_Tick(object sender, EventArgs e)
         {
-            try
+            if (tcpConnection.IsTCPLink)
             {
-                if (tcpConnection.IsTCPLink)
+                var value = int.Parse(tcpConnection.GetCYXS(ref IsSeccess).ToString());
+                if (!IsSeccess)
                 {
-                    var value = int.Parse(tcpConnection.GetCYXS(ref IsSeccess).ToString());
+                    MessageBox.Show("获取大气压力异常");
+                    return;
+                }
+                //气密水密
+                lbl_dqyl.Text = value.ToString();
+                lbldqyl.Text = value.ToString();
+
+                //读取设定值
+                if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
+                {
+                    double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                     if (!IsSeccess)
                     {
-                        MessageBox.Show("获取大气压力异常"); return;
+                        MessageBox.Show("读取设定值异常");
+                        return;
                     }
-                    //气密水密
-                    lbl_dqyl.Text = value.ToString();
-                    lbldqyl.Text = value.ToString();
+                    lbl_setYL.Text = yl.ToString();
+                }
+                else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
+                {
+                    double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYKS");
+                    if (!IsSeccess)
+                    {
+                        MessageBox.Show("读取设定值异常");
+                        return;
+                    }
+                    lbl_setYL.Text = "-" + yl.ToString();
+                }
+                else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.Stop)
+                {
+                    lbl_setYL.Text = "0";
+                }
 
-                    //读取设定值
-                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
-                    {
-                        double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYKS");
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("读取设定值异常");
-                            return;
-                        }
-                        lbl_setYL.Text = yl.ToString();
-                    }
-                    else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
-                    {
-                        double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYKS");
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("读取设定值异常");
-                            return;
-                        }
-                        lbl_setYL.Text = "-" + yl.ToString();
-                    }
-                    else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.Stop)
-                    {
-                        lbl_setYL.Text = "0";
-                    }
-
-                    if (IsStart)
-                    {
-                        if (this.tim_Top10.Enabled == false)
-                            SetCurrType(value);
-                    }
+                if (IsStart)
+                {
+                    if (this.tim_Top10.Enabled == false)
+                        SetCurrType(value);
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("读取差压", ex.Message);
-            }
+
         }
 
         private void tim_PainPic_Tick(object sender, EventArgs e)
@@ -1337,7 +1332,7 @@ namespace text.doors.Detection
             }
 
             tim_upNext.Enabled = false;
-           
+
             var value = int.Parse(txt_ycjy.Text);
             var res = tcpConnection.SendSMYCJY(value);
             if (!res)
