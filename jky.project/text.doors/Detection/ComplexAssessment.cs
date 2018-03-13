@@ -52,7 +52,6 @@ namespace text.doors.Detection
             {
                 return false;
             }
-            return true;
         }
 
         /// <summary>
@@ -236,7 +235,7 @@ namespace text.doors.Detection
                     qmValue = qmValue / dt.Rows.Count;
                 }
             }
-            return GetSMLevel(qmValue);
+            return Formula.GetWaterTightLevel(qmValue);
 
         }
 
@@ -276,10 +275,10 @@ namespace text.doors.Detection
         public int GetQM_MaxLevel(double qm_z_FC, double qm_f_FC, double qm_z_MJ, double qm_f_MJ)
         {
             int level_z_FJ = 0, level_f_FJ = 0, level_z_MJ = 0, level_f_MJ = 0;
-            level_z_FJ = GetFCLevel(qm_z_FC);
-            level_f_FJ = GetFCLevel(qm_f_FC);
-            level_z_MJ = GetMJLevel(qm_z_MJ);
-            level_f_MJ = GetMJLevel(qm_f_MJ);
+            level_z_FJ = Formula.GetStitchLengthLevel(qm_z_FC);
+            level_f_FJ = Formula.GetStitchLengthLevel(qm_f_FC);
+            level_z_MJ = Formula.GetAreaLevel(qm_z_MJ);
+            level_f_MJ = Formula.GetAreaLevel(qm_f_MJ);
 
             int[] arr = { level_z_FJ, level_f_FJ, level_z_MJ, level_f_MJ };
             ArrayList list = new ArrayList(arr);
@@ -287,123 +286,7 @@ namespace text.doors.Detection
             return Convert.ToInt32(list[0]);
         }
 
-        /// <summary>
-        /// 获取缝长分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetFCLevel(double value)
-        {
-            int res = 0;
-            if (4 >= value && value > 3.5)
-            {
-                res = 1;
-            }
-            else if (3.5 >= value && value > 3.0)
-            {
-                res = 2;
-            }
-            else if (3.0 >= value && value > 2.5)
-            {
-                res = 3;
-            }
-            else if (2.5 >= value && value > 2.0)
-            {
-                res = 4;
-            }
-            else if (2.0 >= value && value > 1.5)
-            {
-                res = 5;
-            }
-            else if (1.5 >= value && value > 1.0)
-            {
-                res = 6;
-            }
-            else if (1.0 >= value && value > 0.5)
-            {
-                res = 7;
-            }
-            else if (value <= 0.5)
-            {
-                res = 8;
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// 获取面积分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetMJLevel(double value)
-        {
-            int res = 0;
-            if (12 >= value && value > 10.5)
-            {
-                res = 1;
-            }
-            else if (10.5 >= value && value > 9.0)
-            {
-                res = 2;
-            }
-            else if (9.0 >= value && value > 7.5)
-            {
-                res = 3;
-            }
-            else if (7.5 >= value && value > 6.0)
-            {
-                res = 4;
-            }
-            else if (6.0 >= value && value > 4.5)
-            {
-                res = 5;
-            }
-            else if (4.5 >= value && value > 3.0)
-            {
-                res = 6;
-            }
-            else if (3.0 >= value && value > 1.5)
-            {
-                res = 7;
-            }
-            else if (value <= 1.5)
-            {
-                res = 8;
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// 获取水密分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetSMLevel(int value)
-        {
-            int res = 0;
-            if (value >= 100 && value < 150)
-            {
-                res = 1;
-            }
-            else if (value >= 150 && value < 250)
-            {
-                res = 2;
-            }
-            else if (value >= 250 && value < 350)
-            {
-                res = 3;
-            }
-            else if (value >= 300 && value < 500)
-            {
-                res = 4;
-            }
-            else if (value >= 500 && value < 700)
-            {
-                res = 5;
-            }
-            else if (value >= 700)
-            {
-                res = 6;
-            }
-            return res;
-        }
+      
         #endregion
 
         private void btn_audit_Click(object sender, EventArgs e)

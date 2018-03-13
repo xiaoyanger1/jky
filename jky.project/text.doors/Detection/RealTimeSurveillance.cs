@@ -197,7 +197,6 @@ namespace text.doors.Detection
                 }
                 else
                 {
-                    //gv_list.Enabled = true;
                     pressureList = pressure.GetPressure();
                 }
                 //水密

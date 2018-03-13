@@ -254,31 +254,17 @@ namespace text.doors.Common
             double res = 0;
             lock (_MASTER)
             {
-                //try
-                //{
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.差压显示);
 
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = double.Parse(holding_register[0].ToString()) / 100;
 
                 if (int.Parse(holding_register[0].ToString()) > 1100)
-                {
                     res = -(65535 - int.Parse(holding_register[0].ToString()));
-                }
                 else
-                {
                     res = int.Parse(holding_register[0].ToString());
-                }
 
                 res = Formula.GetValues(PublicEnum.DemarcateType.enum_差压传感器, float.Parse(res.ToString()));
-                //}
-                //catch (Exception ex)
-                //{
-                //    IsOpen = false;
-                //    IsSuccess = false;
-                //    Log.Error("ExportReport.Eexport", "message:读取差压显示" + ex.Message);
-                //}
-
                 IsSuccess = true;
             }
             return int.Parse(Math.Round(res, 0).ToString());
@@ -739,8 +725,6 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压100TimeStart);
-                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    //res = bool.Parse(readCoils_z[0].ToString());
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -768,8 +752,6 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压150TimeStart);
-                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    //res = bool.Parse(readCoils_z[0].ToString());
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -798,8 +780,6 @@ namespace text.doors.Common
                 try
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压_100TimeStart);
-                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    //res = bool.Parse(readCoils_z[0].ToString());
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;

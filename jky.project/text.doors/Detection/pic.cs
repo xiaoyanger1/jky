@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -79,7 +80,7 @@ namespace text.doors.Detection
                     pE.Frames.Add(BitmapFrame.Create(bitmapSource));
                     string picName = GetImagePath() + "\\" + _code + DateTime.Now.ToString("MMddhhmm") + ".jpg";
 
-                    Program.ImagesName = picName;
+                    DefaultBase.ImagesName = picName;
                     if (File.Exists(picName))
                     {
                         File.Delete(picName);

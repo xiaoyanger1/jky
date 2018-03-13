@@ -93,8 +93,8 @@ namespace text.doors.Detection
                 {
                     if (fileName == "门窗检验报告.doc")
                     {
-                        if (!string.IsNullOrWhiteSpace(Program.ImagesName))
-                            InsertPtctureToExcel(saveExcelUrl, Program.ImagesName);
+                        if (!string.IsNullOrWhiteSpace(DefaultBase.ImagesName))
+                            InsertPtctureToExcel(saveExcelUrl, DefaultBase.ImagesName);
                     }
                     label3.Visible = false;
 
@@ -160,11 +160,9 @@ namespace text.doors.Detection
                     inlineShape.Width = 500;
                     inlineShape.Height = 300;
                     doc.Save();
-
                 }
                 else
                 {
-
                     doc.Close(ref Nothing, ref Nothing, ref Nothing);
                 }
             }
@@ -180,7 +178,6 @@ namespace text.doors.Detection
         int index = 0;
         private void loading()
         {
-
             while (true)
             {
                 Thread.Sleep(1000);

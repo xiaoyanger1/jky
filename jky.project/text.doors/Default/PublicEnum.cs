@@ -42,7 +42,7 @@ namespace text.doors.Default
 
 
         /// <summary>
-        /// 水密
+        /// 水密性能检测
         /// </summary>
         public enum WaterTightPropertyTest
         {

@@ -43,11 +43,7 @@ namespace text.doors
             //    Application.Exit();
             //}
         }
-
-
-        public static string ImagesName = "";
-
-
+        
         #region  确保程序只运行一个实例
 
         /// <summary>

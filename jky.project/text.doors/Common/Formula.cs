@@ -143,8 +143,7 @@ namespace text.doors.Common
 
         #endregion
 
-
-
+        
         #region  计算流量
         /// <summary>
         /// 计算流量
@@ -164,6 +163,122 @@ namespace text.doors.Common
         }
         #endregion
 
+        /// <summary>
+        /// 获取缝长分级
+        /// </summary>
+        /// <returns></returns>
+        public static int GetStitchLengthLevel(double value)
+        {
+            int res = 0;
+            if (4 >= value && value > 3.5)
+            {
+                res = 1;
+            }
+            else if (3.5 >= value && value > 3.0)
+            {
+                res = 2;
+            }
+            else if (3.0 >= value && value > 2.5)
+            {
+                res = 3;
+            }
+            else if (2.5 >= value && value > 2.0)
+            {
+                res = 4;
+            }
+            else if (2.0 >= value && value > 1.5)
+            {
+                res = 5;
+            }
+            else if (1.5 >= value && value > 1.0)
+            {
+                res = 6;
+            }
+            else if (1.0 >= value && value > 0.5)
+            {
+                res = 7;
+            }
+            else if (value <= 0.5)
+            {
+                res = 8;
+            }
+            return res;
+        }
 
+        /// <summary>
+        /// 获取面积分级
+        /// </summary>
+        /// <returns></returns>
+        public static int GetAreaLevel(double value)
+        {
+            int res = 0;
+            if (12 >= value && value > 10.5)
+            {
+                res = 1;
+            }
+            else if (10.5 >= value && value > 9.0)
+            {
+                res = 2;
+            }
+            else if (9.0 >= value && value > 7.5)
+            {
+                res = 3;
+            }
+            else if (7.5 >= value && value > 6.0)
+            {
+                res = 4;
+            }
+            else if (6.0 >= value && value > 4.5)
+            {
+                res = 5;
+            }
+            else if (4.5 >= value && value > 3.0)
+            {
+                res = 6;
+            }
+            else if (3.0 >= value && value > 1.5)
+            {
+                res = 7;
+            }
+            else if (value <= 1.5)
+            {
+                res = 8;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 获取水密分级
+        /// </summary>
+        /// <returns></returns>
+        public static int GetWaterTightLevel(int value)
+        {
+            int res = 0;
+            if (value >= 100 && value < 150)
+            {
+                res = 1;
+            }
+            else if (value >= 150 && value < 250)
+            {
+                res = 2;
+            }
+            else if (value >= 250 && value < 350)
+            {
+                res = 3;
+            }
+            else if (value >= 300 && value < 500)
+            {
+                res = 4;
+            }
+            else if (value >= 500 && value < 700)
+            {
+                res = 5;
+            }
+            else if (value >= 700)
+            {
+                res = 6;
+            }
+            return res;
+        }
     }
 }

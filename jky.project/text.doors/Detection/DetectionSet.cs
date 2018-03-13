@@ -82,12 +82,6 @@ namespace text.doors.Detection
         private void Init()
         {
             BindInfoText();
-
-            //this.btn_select.Enabled = false;
-            //this.btn_delete.Enabled = false;
-            //this.btn_Ok.Enabled = false;
-
-
             BindDangQianDangHao();
         }
         private void SelectDangHao(object sender, text.doors.Detection.Select_Code.TransmitEventArgs e)

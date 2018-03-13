@@ -18,6 +18,12 @@ namespace text.doors.Default
         /// </summary>
         public static bool IsOpenComplexAssessment { get; set; }
 
+
+        /// <summary>
+        /// 导入图片名称
+        /// </summary>
+        public static string ImagesName = "";
+
         /// <summary>
         /// 气密、水密等级字典
         /// </summary>

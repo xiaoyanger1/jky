@@ -269,11 +269,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\about - 底板.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="acroread.ico" />
-    <None Include="Resources\001mWx81gy6GMANTOqr07&amp;690.gif" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Young.Core\Young.Core.csproj">
