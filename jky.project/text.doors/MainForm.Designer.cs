@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ssp_button = new System.Windows.Forms.StatusStrip();
             this.tsl_code = new System.Windows.Forms.ToolStripStatusLabel();
@@ -88,7 +87,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_gyZero = new System.Windows.Forms.Button();
             this.pl_showItem = new System.Windows.Forms.Panel();
-            this.yf_time = new System.Windows.Forms.Timer(this.components);
             this.ssp_button.SuspendLayout();
             this.pl_top.SuspendLayout();
             this.ts_pic.SuspendLayout();
@@ -649,11 +647,6 @@
             this.pl_showItem.Size = new System.Drawing.Size(731, 478);
             this.pl_showItem.TabIndex = 9;
             // 
-            // yf_time
-            // 
-            this.yf_time.Interval = 500;
-            this.yf_time.Tick += new System.EventHandler(this.yf_time_Tick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -744,7 +737,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_sensorSet;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripStatusLabel tssl_SetCode;
-        private System.Windows.Forms.Timer yf_time;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripStatusLabel tcp_type;

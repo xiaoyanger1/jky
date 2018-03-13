@@ -102,7 +102,9 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\TcpConnection.cs" />
+    <Compile Include="Common\JkyException.cs" />
+    <Compile Include="Common\LAN.cs" />
+    <Compile Include="Common\TCPClient.cs" />
     <Compile Include="Common\Formula.cs" />
     <Compile Include="Default\DefaultBase.cs" />
     <Compile Include="Detection\pic.cs">

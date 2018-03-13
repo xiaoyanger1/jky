@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using text.doors.Common;
 
 namespace text.doors
 {
@@ -29,7 +30,9 @@ namespace text.doors
                 Form Login = new Login();
                 Login.ShowDialog();//显示登陆窗体  
                 if (Login.DialogResult == DialogResult.OK)
-                    Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口  
+                {
+                    Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口
+                }
                 else return;
             }
             else
@@ -43,7 +46,7 @@ namespace text.doors
             //    Application.Exit();
             //}
         }
-        
+
         #region  确保程序只运行一个实例
 
         /// <summary>
@@ -90,6 +93,6 @@ namespace text.doors
         private static extern bool SetForegroundWindow(System.IntPtr hWnd);
 
         #endregion
-        
+
     }
 }

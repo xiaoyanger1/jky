@@ -1,116 +1,28 @@
-﻿
-using Modbus.Device;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using text.doors.Default;
 using Young.Core.Common;
 
-namespace text.doors.Common
+namespace text.doors.Modbus.IService
 {
-    public class TcpConnection
+    public class SendCommand : ISendCommand
     {
 
-        [DllImport("WININET", CharSet = CharSet.Auto)]
-        private static extern bool InternetGetConnectedState(ref InternetConnectionState lpdwFlags, int dwReserved);
-
-        public TcpClient tcpClient;
-        public ModbusIpMaster _MASTER;
-      
-        private ushort _StartAddress = 0;
         private ushort _NumOfPoints = 1;
         private byte _SlaveID = 1;
-
-
-
-        /// <summary>
-        /// 是否打开
-        /// </summary>
-        public bool IsOpen = false;
-
-        /// <summary>
-        /// 是否连接
-        /// </summary>
-        public bool IsCommon = false;
-
-
-
-        public void OpenTcpConnection()
-        {
-            Connect();
-        }
-
-        /// <summary>
-        /// 检测网络状态
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckInternet()
-        {
-            InternetConnectionState flag = InternetConnectionState.INTERNET_CONNECTION_LAN;
-            return InternetGetConnectedState(ref flag, 0);
-        }
-        enum InternetConnectionState : int
-        {
-            INTERNET_CONNECTION_MODEM = 0x1,  //调制解调器
-            INTERNET_CONNECTION_LAN = 0x2, //局域网
-            INTERNET_CONNECTION_PROXY = 0x4, //代理
-            INTERNET_RAS_INSTALLED = 0x10, //？
-            INTERNET_CONNECTION_OFFLINE = 0x20, // 通道？
-            INTERNET_CONNECTION_CONFIGURED = 0x40//？
-        }
-
-        /// <summary>
-        /// 打开TCP服务
-        /// </summary>
-        /// <returns></returns>
-        public void Connect()
-        {
-            if (_MASTER != null)
-                _MASTER.Dispose();
-            if (tcpClient != null)
-                tcpClient.Close();
-            IsCommon = CheckInternet();
-            if (IsCommon)
-            {
-                try
-                {
-                    tcpClient = new TcpClient();
-                    //开始一个对远程主机连接的异步请求
-                    IAsyncResult asyncResult = tcpClient.BeginConnect(DefaultBase.IPAddress, DefaultBase.TCPPort, null, null);
-                    asyncResult.AsyncWaitHandle.WaitOne(500, true);
-                    if (!asyncResult.IsCompleted)
-                    {
-                        tcpClient.Close();
-                        Log.Error("ExportReport.Eexport", "message:无法连接从端");
-                        IsOpen = false;
-                    }
-                    //由TCP客户端创建Modbus TCP的主
-                    _MASTER = ModbusIpMaster.CreateIp(tcpClient);
-                    _MASTER.Transport.Retries = 0;   //不必调试
-                    _MASTER.Transport.ReadTimeout = 1500;//读取超时
-                    IsOpen = true;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("ExportReport.Eexport", "message:tcp打开失败" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-                    IsOpen = false;
-                }
-            }
-        }
 
         /// <summary>
         /// 设置高压标0
         /// </summary>
-        public void SendGYBD(ref bool IsSuccess, bool logon = false)
+        public bool SendGYBD(bool logon = false)
         {
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.高压标0_交替型按钮);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.高压标0_交替型按钮);
                 bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
                 if (readCoils[0])
                     _MASTER.WriteSingleCoil(_StartAddress, false);
@@ -121,13 +33,13 @@ namespace text.doors.Common
                         _MASTER.WriteSingleCoil(_StartAddress, true);
                     }
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                IsOpen = false;
-                IsSuccess = false;
+                IsTCPLink = false;
+                return false;
             }
-            IsSuccess = true;
         }
 
         /// <summary>
@@ -137,7 +49,7 @@ namespace text.doors.Common
         {
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速标0_交替型按钮);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速标0_交替型按钮);
                 bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
                 if (readCoils[0])
                     _MASTER.WriteSingleCoil(_StartAddress, false);
@@ -151,7 +63,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
-                IsOpen = false;
+                IsTCPLink = false;
                 IsSuccess = false;
             }
             IsSuccess = true;
@@ -167,7 +79,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.温度显示);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.温度显示);
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
@@ -176,7 +88,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     // Log.Error("ExportReport.Eexport", "message:获取温度显示" + ex.Message);
                 }
 
@@ -194,7 +106,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.大气压力显示);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.大气压力显示);
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
@@ -203,7 +115,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     //  Log.Error("ExportReport.Eexport", "message:获取大气压力" + ex.Message);
                 }
 
@@ -223,7 +135,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速显示);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速显示);
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
@@ -232,7 +144,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取风速显示" + ex.Message);
 
                     MessageBox.Show("获取风速异常", "获取风速异常",
@@ -260,7 +172,7 @@ namespace text.doors.Common
             double res = 0;
             lock (_MASTER)
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.差压显示);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.差压显示);
 
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = double.Parse(holding_register[0].ToString()) / 100;
@@ -283,12 +195,12 @@ namespace text.doors.Common
         {
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风机控制);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风机控制);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
             }
             catch (Exception ex)
             {
-                IsSuccess = false; IsOpen = false;
+                IsSuccess = false; IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:设置风机控制" + ex.Message);
             }
             IsSuccess = true;
@@ -305,7 +217,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压阀);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压阀);
                     _MASTER.WriteSingleCoil(_StartAddress, false);
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压阀);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
@@ -313,7 +225,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:设置正压阀" + ex.Message);
                 }
             }
@@ -330,7 +242,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压阀);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压阀);
                     _MASTER.WriteSingleCoil(_StartAddress, false);
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压阀);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
@@ -338,7 +250,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:设置负压阀" + ex.Message);
                 }
             }
@@ -355,7 +267,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压阀);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压阀);
                     bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
                     z = bool.Parse(readCoils_z[0].ToString());
 
@@ -366,7 +278,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:读取正负压阀" + ex.Message);
                 }
             }
@@ -391,7 +303,7 @@ namespace text.doors.Common
                     return;
                 }
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
 
@@ -399,7 +311,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:设置正压预备" + ex.Message);
             }
             IsSuccess = true;
@@ -414,14 +326,14 @@ namespace text.doors.Common
             int res = 0;
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备结束);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备结束);
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = int.Parse(holding_register[0].ToString());
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:读取正压预备结束" + ex.Message);
             }
             IsSuccess = true;
@@ -440,14 +352,14 @@ namespace text.doors.Common
                 {
                     return;
                 }
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压开始);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压开始);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:发送正压开始" + ex.Message);
             }
             IsSuccess = true;
@@ -463,14 +375,14 @@ namespace text.doors.Common
             double res = 0;
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压开始结束);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压开始结束);
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = double.Parse(holding_register[0].ToString());
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:读取正压开始结束" + ex.Message);
             }
             IsSuccess = true;
@@ -491,7 +403,7 @@ namespace text.doors.Common
                     return;
                 }
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压预备);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压预备);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
 
@@ -499,7 +411,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:发送负压预备" + ex.Message);
             }
             IsSuccess = true;
@@ -516,14 +428,14 @@ namespace text.doors.Common
                 {
                     return;
                 }
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压开始);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压开始);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:发送负压开始" + ex.Message);
             }
             IsSuccess = true;
@@ -541,14 +453,14 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压预备结束);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压预备结束);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = int.Parse(holding_register[0].ToString());
                 }
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:读取正压预备结束" + ex.Message);
                 }
                 IsSuccess = true;
@@ -565,7 +477,7 @@ namespace text.doors.Common
             double res = 0;
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压开始结束);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压开始结束);
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = double.Parse(holding_register[0].ToString());
                 Log.Info("", res.ToString());
@@ -573,7 +485,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:读取正压开始结束" + ex.Message);
             }
             IsSuccess = true;
@@ -592,6 +504,7 @@ namespace text.doors.Common
             {
                 try
                 {
+                    ushort _StartAddress = 0;
                     if (type == "ZYYB")
                     {
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备_设定值);
@@ -616,7 +529,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取正压预备时，设定压力值" + ex.Message);
                 }
 
@@ -637,7 +550,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压100TimeStart);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压100TimeStart);
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
                     //res = bool.Parse(readCoils_z[0].ToString());
@@ -655,7 +568,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取正压100Pa是否开始计时" + ex.Message);
                 }
             }
@@ -672,9 +585,8 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压150TimeStart);
-                    //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
-                    //res = bool.Parse(readCoils_z[0].ToString());
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压150TimeStart);
+
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -684,7 +596,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取正压150Pa是否开始计时" + ex.Message);
                 }
             }
@@ -701,7 +613,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压_100TimeStart);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压_100TimeStart);
                     //bool[] readCoils_z = _MASTER.ReadCoils(_StartAddress, _NumOfPoints);
                     //res = bool.Parse(readCoils_z[0].ToString());
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
@@ -713,7 +625,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取降压100Pa是否开始计时" + ex.Message);
                 }
             }
@@ -730,7 +642,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压100TimeStart);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压100TimeStart);
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -740,7 +652,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取负压100Pa是否开始计时" + ex.Message);
                 }
             }
@@ -757,7 +669,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压150TimeStart);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压150TimeStart);
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -766,7 +678,7 @@ namespace text.doors.Common
                 }
                 catch (Exception ex)
                 {
-                    IsOpen = false;
+                    IsTCPLink = false;
                     IsSuccess = false;
                     Log.Error("ExportReport.Eexport", "message:获取负压150Pa是否开始计时" + ex.Message);
 
@@ -785,7 +697,7 @@ namespace text.doors.Common
             {
                 try
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压_100TimeStart);
+                    ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压_100TimeStart);
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (Convert.ToInt32(t[0]) > 20)
                         return true;
@@ -795,7 +707,7 @@ namespace text.doors.Common
                 catch (Exception ex)
                 {
                     IsSuccess = false;
-                    IsOpen = false;
+                    IsTCPLink = false;
                     Log.Error("ExportReport.Eexport", "message:获取负压降100Pa是否开始计时" + ex.Message);
                 }
             }
@@ -817,7 +729,7 @@ namespace text.doors.Common
                     return;
                 }
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密性预备加压);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密性预备加压);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
 
@@ -825,7 +737,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:水密性预备加压" + ex.Message);
 
             }
@@ -842,14 +754,14 @@ namespace text.doors.Common
             int res = 0;
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备结束);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备结束);
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = int.Parse(holding_register[0].ToString());
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:水密预备结束" + ex.Message);
             }
             IsSuccess = true;
@@ -866,6 +778,7 @@ namespace text.doors.Common
             int res = 0;
             try
             {
+                ushort _StartAddress = 0;
                 if (type == "SMYB")
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备_设定值);
@@ -889,7 +802,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:读取水密预备设定压力" + ex.Message);
             }
             IsSuccess = true;
@@ -909,14 +822,14 @@ namespace text.doors.Common
                     return;
                 }
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密性开始);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密性开始);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:水密性开始" + ex.Message);
             }
             IsSuccess = true;
@@ -929,14 +842,14 @@ namespace text.doors.Common
         {
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.下一级);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.下一级);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
                 _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:下一级" + ex.Message);
             }
             IsSuccess = true;
@@ -953,7 +866,7 @@ namespace text.doors.Common
             {
                 SendZYF(ref IsSuccess);
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.以此加压数值);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.以此加压数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.以此加压);
@@ -964,7 +877,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:设置水密依次加压" + ex.Message);
             }
             IsSuccess = true;
@@ -978,14 +891,14 @@ namespace text.doors.Common
         {
             try
             {
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.急停);
+                ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.急停);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
             }
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:急停" + ex.Message);
                 MessageBox.Show("急停异常", "急停",
                                          MessageBoxButtons.OKCancel,
@@ -1006,12 +919,13 @@ namespace text.doors.Common
         {
             try
             {
-                if (IsOpen == false)
+                if (IsTCPLink == false)
                 {
-                    Connect();
+                    TcpOpen();
                 }
                 else
                 {
+                    ushort _StartAddress = 0;
                     if (type == "P")
                     {
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand.P);
@@ -1031,7 +945,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:设置Pid" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
             }
 
@@ -1046,12 +960,14 @@ namespace text.doors.Common
             int res = 0;
             try
             {
-                if (IsOpen == false)
+                if (IsTCPLink == false)
                 {
-                    Connect();
+                    TcpOpen();
                 }
                 else
                 {
+                    ushort _StartAddress = 0;
+
                     if (type == "P")
                     {
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand.P);
@@ -1072,7 +988,7 @@ namespace text.doors.Common
             catch (Exception ex)
             {
                 IsSuccess = false;
-                IsOpen = false;
+                IsTCPLink = false;
                 Log.Error("ExportReport.Eexport", "message:读取Pid" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
             }
             IsSuccess = true;

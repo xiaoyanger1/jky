@@ -16,8 +16,8 @@ namespace text.doors.Detection
 {
     public partial class SensorSet : Form
     {
-        private TcpConnection _tcpConnection;
-        public SensorSet(TcpConnection tcpConnection)
+        private TCPClient _tcpConnection;
+        public SensorSet(TCPClient tcpConnection)
         {
             InitializeComponent();
             CreateViewItem();

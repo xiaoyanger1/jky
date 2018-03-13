@@ -18,7 +18,6 @@ namespace text.doors.Default
         /// </summary>
         public static bool IsOpenComplexAssessment { get; set; }
 
-
         /// <summary>
         /// 导入图片名称
         /// </summary>

@@ -13,22 +13,21 @@ namespace text.doors.Detection
 {
     public partial class PIDManager : Form
     {
-        private TcpConnection tcpConnection;
-        public PIDManager(TcpConnection tcpConnection)
+        private TCPClient tcpClient;
+        public PIDManager(TCPClient tcpConnection)
         {
-
             InitializeComponent();
-            this.tcpConnection = tcpConnection;
+            this.tcpClient = tcpConnection;
             Init();
         }
         private void Init()
         {
-            if (tcpConnection.IsOpen)
+            if (tcpClient.IsTCPLink)
             {
                 bool IsSuccess = false;
-                var P = tcpConnection.GetPID(ref IsSuccess, "P");
-                var I = tcpConnection.GetPID(ref IsSuccess, "I");
-                var D = tcpConnection.GetPID(ref IsSuccess, "D");
+                var P = tcpClient.GetPID("P", ref IsSuccess);
+                var I = tcpClient.GetPID("I", ref IsSuccess);
+                var D = tcpClient.GetPID("D", ref IsSuccess);
 
                 txthp.Text = P.ToString();
                 txthi.Text = I.ToString();
@@ -43,68 +42,34 @@ namespace text.doors.Detection
 
         private void btnhp_Click(object sender, EventArgs e)
         {
-            try
+            double P = int.Parse(txthp.Text);
+            var res = tcpClient.SendPid("P", P);
+            if (!res)
             {
-                if (tcpConnection.IsOpen)
-                {
-                    bool IsSuccess = false;
-                    double P = int.Parse(txthp.Text);
-                    tcpConnection.SendPid(ref IsSuccess, "P", P);
-                }
-                else
-                {
-                    MessageBox.Show("连接未打开暂时不能设置PID");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("P设置异常");
+                MessageBox.Show("连接未打开暂时不能设置PID");
             }
 
         }
 
         private void btnhi_Click(object sender, EventArgs e)
         {
-            try
+            double I = int.Parse(txthi.Text);
+            var res = tcpClient.SendPid("I", I);
+            if (!res)
             {
-                if (tcpConnection.IsOpen)
-                {
-                    bool IsSuccess = false;
-                    double I = int.Parse(txthi.Text);
-
-                    tcpConnection.SendPid(ref IsSuccess, "I", I);
-                }
-                else
-                {
-                    MessageBox.Show("连接未打开暂时不能设置PID");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("I设置异常");
+                MessageBox.Show("连接未打开暂时不能设置PID");
             }
         }
 
         private void btnhd_Click(object sender, EventArgs e)
         {
-            try
+            double D = int.Parse(btnhd.Text);
+            var res = tcpClient.SendPid("D", D);
+            if (!res)
             {
-                if (tcpConnection.IsOpen)
-                {
-                    bool IsSuccess = false;
-                    double D = int.Parse(btnhd.Text);
+                MessageBox.Show("连接未打开暂时不能设置PID");
+            }
 
-                    tcpConnection.SendPid(ref IsSuccess, "D", D);
-                }
-                else
-                {
-                    MessageBox.Show("连接未打开暂时不能设置PID");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("D设置异常");
-            }
         }
     }
 }
