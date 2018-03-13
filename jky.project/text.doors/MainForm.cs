@@ -56,7 +56,6 @@ namespace text.doors
         public MainForm()
         {
             InitializeComponent();
-            //comboBox1.Text = "单扇开启";
             tcpConnection.OpenTcpConnection();
             if (tcpConnection.IsOpen)
             {

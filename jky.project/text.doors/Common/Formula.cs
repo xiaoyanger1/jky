@@ -15,7 +15,6 @@ namespace text.doors.Common
 {
     public class Formula
     {
-
         #region   y=kx+b
         /// <summary>
         /// 获取标定后值
@@ -143,7 +142,6 @@ namespace text.doors.Common
 
         #endregion
 
-        
         #region  计算流量
         /// <summary>
         /// 计算流量
@@ -163,6 +161,7 @@ namespace text.doors.Common
         }
         #endregion
 
+        #region 等级划分
         /// <summary>
         /// 获取缝长分级
         /// </summary>
@@ -280,5 +279,7 @@ namespace text.doors.Common
             }
             return res;
         }
+
+        #endregion
     }
 }

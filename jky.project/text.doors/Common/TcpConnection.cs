@@ -21,19 +21,25 @@ namespace text.doors.Common
 
         public TcpClient tcpClient;
         public ModbusIpMaster _MASTER;
+      
+        private ushort _StartAddress = 0;
+        private ushort _NumOfPoints = 1;
+        private byte _SlaveID = 1;
+
+
+
         /// <summary>
         /// 是否打开
         /// </summary>
         public bool IsOpen = false;
 
-        private ushort _StartAddress = 0;
-        private ushort _NumOfPoints = 1;
-        private byte _SlaveID = 1;
-
         /// <summary>
         /// 是否连接
         /// </summary>
         public bool IsCommon = false;
+
+
+
         public void OpenTcpConnection()
         {
             Connect();
