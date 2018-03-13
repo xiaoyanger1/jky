@@ -39,24 +39,24 @@ namespace text.doors.Detection
             string code = btn_JianYanBianHao.Text;
             if (string.IsNullOrWhiteSpace(cb_DangQianDangHao.Text))
             {
-                MessageBox.Show("请设置樘号！", "请设置樘号！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请设置樘号！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(code))
             {
-                MessageBox.Show("请设置当前编号！", "请设置当前编号！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请设置当前编号！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
             DAL_dt_Settings dal = new DAL_dt_Settings();
-          
+
 
             var setting = GetSettings();
             var info = Getdt_Info(setting.dt_Code);
             if (dal.AddSettings(setting, info))
             {
-                MessageBox.Show("设定完成！", "设定完成！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 //获取樘号
                 deleBottomTypeEvent(GetBottomType(true));
 
@@ -87,7 +87,7 @@ namespace text.doors.Detection
         private void SelectDangHao(object sender, text.doors.Detection.Select_Code.TransmitEventArgs e)
         {
             _tempCode = e.Code;
-            _tempTong = e.DangHao;
+            _tempTong = e.Tong;
             Init();
         }
 
@@ -101,12 +101,7 @@ namespace text.doors.Detection
         private void btn_delete_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("您是否删除", " 永久性删除",
-                               MessageBoxButtons.OKCancel,
-                               MessageBoxIcon.Warning,
-                               MessageBoxDefaultButton.Button2,
-                              MessageBoxOptions.ServiceNotification
-                              );
+            MessageBox.Show("您是否删除", " 永久性删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
 
             if (new DAL_dt_Info().delete_dt_Info(btn_JianYanBianHao.Text))
             {
@@ -180,7 +175,8 @@ namespace text.doors.Detection
             if (string.IsNullOrEmpty(btn_GuiGeShuLiang.Text))
             {
                 btn_GuiGeShuLiang.Text = "3";
-            } if (_temppressure != 0 && _temperature != 0)
+            }
+            if (_temppressure != 0 && _temperature != 0)
             {
                 btn_DaQiYaLi.Text = _temppressure.ToString();
                 btn_DangQianWenDu.Text = _temperature.ToString();
@@ -256,12 +252,13 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrEmpty(btn_JianYanBianHao.Text))
             {
-                MessageBox.Show("请输入编号");
+                MessageBox.Show("请输入编号！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
             var arr = btn_JianYanBianHao.Text.Split('-');
             if (arr.Length == 1)
             {
-                MessageBox.Show("编号格式有误，请输入如d-1格式");
+                MessageBox.Show("编号格式有误，请输入如d-1格式！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             btn_JianYanBianHao.Text = arr[0] + "-" + (int.Parse(arr[1]) + 1).ToString();
@@ -288,7 +285,7 @@ namespace text.doors.Detection
             }
             catch (Exception ex)
             {
-                MessageBox.Show("规格数量请输入数字");
+                MessageBox.Show("规格数量请输入数字", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
         private void btn_GuiGeShuLiang_KeyUp(object sender, KeyEventArgs e)
@@ -298,20 +295,20 @@ namespace text.doors.Detection
             {
                 if (int.Parse(btn_GuiGeShuLiang.Text) > 3)
                 {
-                    MessageBox.Show("最大只能输入三樘");
+                    MessageBox.Show("最大只能输入三樘", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     btn_GuiGeShuLiang.Text = "";
                     return;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("最大只能输入三樘");
+                MessageBox.Show("最大只能输入三樘", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(btn_GuiGeShuLiang.Text))
             {
-                MessageBox.Show("请填写规格数量");
+                MessageBox.Show("请填写规格数量", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             BindDangQianDangHao();

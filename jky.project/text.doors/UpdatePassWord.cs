@@ -24,12 +24,12 @@ namespace text.doors
             string userName = "administrator";
             if (string.IsNullOrWhiteSpace(txt_oldPassWord.Text))
             {
-                MessageBox.Show("设置密码", "请输入原始密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请输入原始密码", "设置密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             if (string.IsNullOrWhiteSpace(txt_NewPassWord.Text))
             {
-                MessageBox.Show("设置密码", "请输入新密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请输入新密码", "设置密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             string sql = "select User_PassWord from User where User_Name='" + userName + "'";
@@ -53,12 +53,12 @@ namespace text.doors
                 }
                 else
                 {
-                    MessageBox.Show("设置密码", "原始密码输入错误", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show("原始密码输入错误", "设置密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
             else
             {
-                MessageBox.Show("设置密码", "暂未找到用户，请联系系统管理员", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("暂未找到用户，请联系系统管理员", "设置密码", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
     }

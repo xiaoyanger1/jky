@@ -162,7 +162,6 @@ namespace text.doors.Common
                 //Log.Error("GetWDXS:获取温度显示", ex);
                 IsSuccess = false;
             }
-
             return res;
         }
 

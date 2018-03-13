@@ -23,19 +23,12 @@ namespace text.doors.Detection
         {
             this.Close();
         }
-
-
-
+        
         private void btn_Ok_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txt_Code.Text))
             {
-                MessageBox.Show("请输入编号", " 请输入编号",
-                             MessageBoxButtons.OKCancel,
-                             MessageBoxIcon.Information,
-                             MessageBoxDefaultButton.Button1,
-                            MessageBoxOptions.ServiceNotification
-                            );
+                MessageBox.Show("请输入编号", " 警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -43,12 +36,7 @@ namespace text.doors.Detection
 
             if (dt == null)
             {
-                MessageBox.Show("暂未查询此编号内容", " 暂未查询此编号内容",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning,
-                            MessageBoxDefaultButton.Button1,
-                           MessageBoxOptions.ServiceNotification
-                           );
+                MessageBox.Show("暂未查询此编号内容", " 警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -64,17 +52,17 @@ namespace text.doors.Detection
         public event TransmitHandler Transmit;
         public class TransmitEventArgs : System.EventArgs
         {
-            private string _Code;
-            private string _DangHao;
+            private string _code;
+            private string _tong;
 
-            public TransmitEventArgs(string code, string dangHao)
+            public TransmitEventArgs(string code, string tong)
             {
-                this._Code = code;
-                this._DangHao = dangHao;
+                this._code = code;
+                this._tong = tong;
 
             }
-            public string Code { get { return _Code; } }
-            public string DangHao { get { return _DangHao; } }
+            public string Code { get { return _code; } }
+            public string Tong { get { return _tong; } }
         }
 
     }

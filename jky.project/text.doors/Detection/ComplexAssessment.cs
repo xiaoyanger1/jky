@@ -43,7 +43,7 @@ namespace text.doors.Detection
             var ischeck = GetItem(jyxm);
             if (ischeck == false)
             {
-                MessageBox.Show("未设置检测项");
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 this.Hide();
                 DefaultBase.IsOpenComplexAssessment = false;
                 return;
@@ -52,14 +52,14 @@ namespace text.doors.Detection
             DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
             if (dt == null)
             {
-                MessageBox.Show("未检测完成，请完成检测");
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
             con = int.Parse(dtSettings.Rows[0]["GuiGeShuLiang"].ToString());
             if (con > dt.Rows.Count)
             {
-                MessageBox.Show("未检测完成，请完成" + con + "樘检测");
+                MessageBox.Show("未检测完成，请完成" + con + "樘检测", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 this.Hide();
                 DefaultBase.IsOpenComplexAssessment = false;
                 return;

@@ -52,7 +52,7 @@ namespace text.doors.Detection
             VideoCaptureDevice videoSource = new VideoCaptureDevice(videoDevices[tscbxCameras.SelectedIndex].MonikerString);
             videoSource.DesiredFrameSize = new System.Drawing.Size(250, 150);
             videoSource.DesiredFrameRate = 1;
-            videoSource.VideoResolution = videoSource.VideoCapabilities[1]; 
+            videoSource.VideoResolution = videoSource.VideoCapabilities[1];
             videoSourcePlayer.VideoSource = videoSource;
             videoSourcePlayer.Width = 500;
             videoSourcePlayer.Height = 300;
@@ -89,20 +89,19 @@ namespace text.doors.Detection
                     {
                         pE.Save(stream);
                     }
-                    MessageBox.Show("照片保存至PersonImg文件夹下");
+                    MessageBox.Show("照片保存至PersonImg文件夹下！", "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     //拍照完成后关摄像头并刷新同时关窗体
                     if (videoSourcePlayer != null && videoSourcePlayer.IsRunning)
                     {
                         videoSourcePlayer.SignalToStop();
                         videoSourcePlayer.WaitForStop();
                     }
-
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("摄像头异常：" + ex.Message);
+                MessageBox.Show("摄像头异常！" + ex.Message, "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 

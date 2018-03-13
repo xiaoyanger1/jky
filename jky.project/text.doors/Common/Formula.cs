@@ -161,6 +161,39 @@ namespace text.doors.Common
         }
         #endregion
 
+        #region 
+        /// <summary>
+        /// 获取分级指标缝长和面积
+        /// </summary>
+        /// <param name="zd">升压总的</param>
+        /// <param name="fj">升压附加</param>
+        /// <param name="_zd">降压总的</param>
+        /// <param name="_fj">降压附加</param>
+        /// 
+        ///  <param name="kPa">大气压力</param>
+        ///   <param name="tempTemperature">当前温度</param>
+        ///    <param name="stitchLength">开启逢长</param>
+        ///     <param name="sumArea">总面积</param>
+        public static double GetIndexStitchLengthAndArea(double zd, double fj, double _zd, double _fj, bool isFC,double kPa,double tempTemperature,double stitchLength,double sumArea)
+        {
+            double res = 0;
+            //流量数值（正压100升总的 +正压100降总的）/2 -（正压100升附加 +正压100降附加）/2 
+            var Q = (zd + _zd) / 2 - (fj + _fj) / 2;
+            
+            var qMin = 293 / 101.3 * (kPa / (273 + tempTemperature)) * Q;
+
+            if (isFC)
+            {
+                res = qMin / stitchLength / 4.65;
+            }
+            else
+            {
+                res = qMin / sumArea / 4.65;
+            }
+            return res;
+        }
+        #endregion
+
         #region 等级划分
         /// <summary>
         /// 获取缝长分级

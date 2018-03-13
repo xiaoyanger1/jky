@@ -24,7 +24,7 @@ namespace text.doors.Detection
 {
     public partial class RealTimeSurveillance : Form
     {
-        private TCPClient tcpConnection;
+        private TCPClient _tcpClient;
         //检验编号
         private string _tempCode = "";
         //当前樘号
@@ -59,13 +59,15 @@ namespace text.doors.Detection
         /// </summary>
         private bool IsSeccess = false;
 
+        private bool IsFirst = true;
+
 
         public DateTime dtnow { get; set; }
 
         public RealTimeSurveillance(TCPClient tcpClient, string tempCode, string tempTong)
         {
             InitializeComponent();
-            this.tcpConnection = tcpClient;
+            this._tcpClient = tcpClient;
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             pressure = new Pressure();
@@ -74,17 +76,17 @@ namespace text.doors.Detection
 
         private void Init()
         {
-            BindWindSpeed();
+            BindWindSpeedBase();
             BindLevelIndex();
-            BindFlow();
-            BindYL();
+            BindFlowBase();
+            BindSetPressure();
             QMchartInit();
         }
 
         /// <summary>
         /// 绑定设定压力
         /// </summary>
-        private void BindYL()
+        private void BindSetPressure()
         {
             lbl_title.Text = string.Format("门窗气密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
             lbl_smjc.Text = string.Format("门窗水密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
@@ -96,7 +98,7 @@ namespace text.doors.Detection
         /// 获取流量数据
         /// </summary>
         /// <returns></returns>
-        public List<Pressure> GetLiuLiang()
+        public List<Pressure> GetPressureFlow()
         {
             List<Pressure> pressureList = new List<Pressure>();
             Formula slopeCompute = new Formula();
@@ -116,9 +118,9 @@ namespace text.doors.Detection
         /// <summary>
         /// 绑定流量
         /// </summary>
-        private void BindFlow()
+        private void BindFlowBase()
         {
-            dgv_ll.DataSource = GetLiuLiang();
+            dgv_ll.DataSource = GetPressureFlow();
 
             dgv_ll.Height = 115;
             dgv_ll.RowHeadersVisible = false;
@@ -148,12 +150,12 @@ namespace text.doors.Detection
         }
 
 
-        private bool IsFirst = true;
+
 
         /// <summary>
         /// 绑定风速
         /// </summary>
-        private void BindWindSpeed()
+        private void BindWindSpeedBase()
         {
             Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
 
@@ -207,7 +209,6 @@ namespace text.doors.Detection
                     var sm_pa = sm[0].sm_Pa;
                     var remark = sm[0].sm_Remark;
 
-
                     var flish = "";
                     var two = "";
                     string[] temp = null;
@@ -249,7 +250,6 @@ namespace text.doors.Detection
                             flish = temp[0];
                             two = temp[1];
                         }
-
 
                         if (sm_pa == "0")
                         {
@@ -372,7 +372,7 @@ namespace text.doors.Detection
         /// </summary>
         private void BindLevelIndex()
         {
-            GetFJZB();
+            GetDatabaseLevelIndex();
             dgv_levelIndex.DataSource = GetLevelIndex();
             dgv_levelIndex.Height = 69;
             dgv_levelIndex.RowHeadersVisible = false;
@@ -452,9 +452,9 @@ namespace text.doors.Detection
         /// <param name="e"></param>
         private void tim_qm_Tick(object sender, EventArgs e)
         {
-            if (tcpConnection.IsTCPLink)
+            if (_tcpClient.IsTCPLink)
             {
-                var value = int.Parse(tcpConnection.GetCYXS(ref IsSeccess).ToString());
+                var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
                 if (!IsSeccess)
                 {
                     MessageBox.Show("获取大气压力异常");
@@ -467,7 +467,7 @@ namespace text.doors.Detection
                 //读取设定值
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
                 {
-                    double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYKS");
+                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("读取设定值异常");
@@ -477,7 +477,7 @@ namespace text.doors.Detection
                 }
                 else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
                 {
-                    double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYKS");
+                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("读取设定值异常");
@@ -501,9 +501,9 @@ namespace text.doors.Detection
 
         private void tim_PainPic_Tick(object sender, EventArgs e)
         {
-            if (tcpConnection.IsTCPLink)
+            if (_tcpClient.IsTCPLink)
             {
-                var c = tcpConnection.GetCYXS(ref IsSeccess);
+                var c = _tcpClient.GetCYXS(ref IsSeccess);
                 int value = int.Parse(c.ToString());
                 if (!IsSeccess)
                 {
@@ -526,7 +526,7 @@ namespace text.doors.Detection
         {
             gv_list.Enabled = true;
 
-            var cyvalue = tcpConnection.GetCYXS(ref IsSeccess);
+            var cyvalue = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("获取大气压力异常"); return;
@@ -566,7 +566,7 @@ namespace text.doors.Detection
 
 
             //获取风速
-            var fsvalue = tcpConnection.GetFSXS(ref IsSeccess);
+            var fsvalue = _tcpClient.GetFSXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("获取风速异常"); return;
@@ -642,7 +642,7 @@ namespace text.doors.Detection
         private void SetCurrType(int value)
         {
 
-            bool start = tcpConnection.Get_Z_S100TimeStart();
+            bool start = _tcpClient.Get_Z_S100TimeStart();
 
             if (start && Z_S_100Stop)
             {
@@ -651,7 +651,7 @@ namespace text.doors.Detection
                 Z_S_100Stop = false;
             }
 
-            start = tcpConnection.Get_Z_S150PaTimeStart();
+            start = _tcpClient.Get_Z_S150PaTimeStart();
 
             if (start && Z_S_150Stop)
             {
@@ -660,7 +660,7 @@ namespace text.doors.Detection
                 Z_S_150Stop = false;
             }
 
-            start = tcpConnection.Get_Z_J100PaTimeStart();
+            start = _tcpClient.Get_Z_J100PaTimeStart();
 
             if (start && Z_J_100Stop)
             {
@@ -671,7 +671,7 @@ namespace text.doors.Detection
             }
 
             //负压
-            start = tcpConnection.Get_F_S100PaTimeStart();
+            start = _tcpClient.Get_F_S100PaTimeStart();
 
             if (start && F_S_100Stop)
             {
@@ -680,7 +680,7 @@ namespace text.doors.Detection
                 F_S_100Stop = false;
             }
 
-            start = tcpConnection.Get_F_S150PaTimeStart();
+            start = _tcpClient.Get_F_S150PaTimeStart();
 
             if (start && F_S_150Stop)
             {
@@ -688,7 +688,7 @@ namespace text.doors.Detection
                 tim_Top10.Enabled = true;
                 F_S_150Stop = false;
             }
-            start = tcpConnection.Get_F_J100PaTimeStart();
+            start = _tcpClient.Get_F_J100PaTimeStart();
 
             if (start && F_J_100Stop)
             {
@@ -714,22 +714,27 @@ namespace text.doors.Detection
 
         private void btn_zyyb_Click(object sender, EventArgs e)
         {
+            if (!_tcpClient.IsTCPLink)
+            {
+                MessageBox.Show("未连接服务器", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
 
-            double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYYB");
+            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYYB");
             if (!IsSeccess)
             {
-                MessageBox.Show("读取设定值异常");
+                MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
             lbl_setYL.Text = yl.ToString();
-
 
             IsYB = true;
             DisableBtnType();
 
-            var res = tcpConnection.SetZYYB();
+            var res = _tcpClient.SetZYYB();
             if (!res)
             {
-                MessageBox.Show("正压预备异常");
+                MessageBox.Show("正压预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -741,9 +746,9 @@ namespace text.doors.Detection
         /// </summary>
         private void Stop()
         {
-            var res = tcpConnection.Stop();
+            var res = _tcpClient.Stop();
             if (!res)
-                MessageBox.Show("急停异常");
+                MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         /// <summary>
@@ -755,10 +760,10 @@ namespace text.doors.Detection
         {
             IsFirst = false;
 
-            double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "ZYKS");
+            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
             if (!IsSeccess)
             {
-                MessageBox.Show("读取设定值异常");
+                MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -781,13 +786,12 @@ namespace text.doors.Detection
                 new Pressure().ClearZ_Z();
             }
 
-            tcpConnection.SendZYKS(ref IsSeccess);
+            _tcpClient.SendZYKS(ref IsSeccess);
             if (!IsSeccess)
             {
-                MessageBox.Show("正压开始异常");
+                MessageBox.Show("正压开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
-
 
             lbl_setYL.Text = yl.ToString();
 
@@ -796,11 +800,10 @@ namespace text.doors.Detection
 
         private void btn_fyyb_Click(object sender, EventArgs e)
         {
-
-            double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYYB");
+            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYYB");
             if (!IsSeccess)
             {
-                MessageBox.Show("读取设定值异常");
+                MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             lbl_setYL.Text = "-" + yl.ToString();
@@ -808,10 +811,10 @@ namespace text.doors.Detection
 
             IsYB = true;
             DisableBtnType();
-            var res = tcpConnection.SendFYYB();
+            var res = _tcpClient.SendFYYB();
             if (!res)
             {
-                MessageBox.Show("负压预备异常");
+                MessageBox.Show("负压预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -850,10 +853,10 @@ namespace text.doors.Detection
         {
 
             IsFirst = false;
-            double yl = tcpConnection.GetZYYBYLZ(ref IsSeccess, "FYKS");
+            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
             if (!IsSeccess)
             {
-                MessageBox.Show("读取设定值异常");
+                MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             lbl_setYL.Text = "-" + yl.ToString();
@@ -876,10 +879,10 @@ namespace text.doors.Detection
             {
                 new Pressure().ClearF_Z();
             }
-            var res = tcpConnection.SendFYKS();
+            var res = _tcpClient.SendFYKS();
             if (!res)
             {
-                MessageBox.Show("负压开始异常");
+                MessageBox.Show("负压开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -907,8 +910,8 @@ namespace text.doors.Detection
 
         private void btn_sjcl_Click(object sender, EventArgs e)
         {
-            BindFlow();
-            GetFJZB();
+            BindFlowBase();
+            GetDatabaseLevelIndex();
             BindLevelIndex();
             if (AddQMResult())
             {
@@ -978,58 +981,29 @@ namespace text.doors.Detection
         /// <param name="fFc">负压缝长</param>
         /// <param name="zMj">正压面积</param>
         /// <param name="fMj">负压面积</param>
-        private void GetFJZB()
+        private void GetDatabaseLevelIndex()
         {
-            var lil = GetLiuLiang();
-
-            zFc = GetZBFjAndMj(lil[0].Pressure_Z_Z, lil[0].Pressure_Z, lil[2].Pressure_Z_Z, lil[2].Pressure_Z, true);
-
-            fFc = GetZBFjAndMj(lil[0].Pressure_F_Z, lil[0].Pressure_F, lil[2].Pressure_F_Z, lil[2].Pressure_F, true);
-
-            zMj = GetZBFjAndMj(lil[0].Pressure_Z_Z, lil[0].Pressure_Z, lil[2].Pressure_Z_Z, lil[2].Pressure_Z, false);
-
-            fMj = GetZBFjAndMj(lil[0].Pressure_F_Z, lil[0].Pressure_F, lil[2].Pressure_F_Z, lil[2].Pressure_F, false);
-        }
-
-        /// <summary>
-        /// 获取分级指标缝长和面积
-        /// </summary>
-        /// <param name="zd">升压总的</param>
-        /// <param name="fj">升压附加</param>
-        /// <param name="_zd">降压总的</param>
-        /// <param name="_fj">降压附加</param>
-        private double GetZBFjAndMj(double zd, double fj, double _zd, double _fj, bool isFC)
-        {
-            double res = 0;
-            //流量数值（正压100升总的 +正压100降总的）/2 -（正压100升附加 +正压100降附加）/2 
-            var Q = (zd + _zd) / 2 - (fj + _fj) / 2;
-
-            double DQYL = 0;
-            double WD = 0;
-            double KaiQiFengChang = 0;
-            double ZongMianJi = 0;
+            double kPa = 0;
+            double tempTemperature = 0;
+            double stitchLength = 0;
+            double sumArea = 0;
 
             DataTable dt = new DAL_dt_Settings().Getdt_SettingsByCode(_tempCode);
-
             if (dt != null && dt.Rows.Count > 0)
             {
-                DQYL = double.Parse(dt.Rows[0]["DaQiYaLi"].ToString());
-                WD = double.Parse(dt.Rows[0]["DangQianWenDu"].ToString());
-                KaiQiFengChang = double.Parse(dt.Rows[0]["KaiQiFengChang"].ToString());
-                ZongMianJi = double.Parse(dt.Rows[0]["ZongMianJi"].ToString());
+                kPa = double.Parse(dt.Rows[0]["DaQiYaLi"].ToString());
+                tempTemperature = double.Parse(dt.Rows[0]["DangQianWenDu"].ToString());
+                stitchLength = double.Parse(dt.Rows[0]["KaiQiFengChang"].ToString());
+                sumArea = double.Parse(dt.Rows[0]["ZongMianJi"].ToString());
             }
+            var pressureFlow = GetPressureFlow();
+            zFc = Formula.GetIndexStitchLengthAndArea(pressureFlow[0].Pressure_Z_Z, pressureFlow[0].Pressure_Z, pressureFlow[2].Pressure_Z_Z, pressureFlow[2].Pressure_Z, true, kPa, tempTemperature, stitchLength, sumArea);
 
-            var qMin = 293 / 101.3 * (DQYL / (273 + WD)) * Q;
+            fFc = Formula.GetIndexStitchLengthAndArea(pressureFlow[0].Pressure_F_Z, pressureFlow[0].Pressure_F, pressureFlow[2].Pressure_F_Z, pressureFlow[2].Pressure_F, true, kPa, tempTemperature, stitchLength, sumArea);
 
-            if (isFC)
-            {
-                res = qMin / KaiQiFengChang / 4.65;
-            }
-            else
-            {
-                res = qMin / ZongMianJi / 4.65;
-            }
-            return res;
+            zMj = Formula.GetIndexStitchLengthAndArea(pressureFlow[0].Pressure_Z_Z, pressureFlow[0].Pressure_Z, pressureFlow[2].Pressure_Z_Z, pressureFlow[2].Pressure_Z, false, kPa, tempTemperature, stitchLength, sumArea);
+
+            fMj = Formula.GetIndexStitchLengthAndArea(pressureFlow[0].Pressure_F_Z, pressureFlow[0].Pressure_F, pressureFlow[2].Pressure_F_Z, pressureFlow[2].Pressure_F, false, kPa, tempTemperature, stitchLength, sumArea);
         }
 
         private void btn_tc_Click(object sender, EventArgs e)
@@ -1043,8 +1017,8 @@ namespace text.doors.Detection
             this.btn_zyks.Enabled = true;
             this.tim_Top10.Enabled = false;
             lbl_setYL.Text = "0";
-            BindWindSpeed();
-            BindFlow();
+            BindWindSpeedBase();
+            BindFlowBase();
             airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
         }
 
@@ -1055,136 +1029,137 @@ namespace text.doors.Detection
         /// <param name="e"></param>
         private void tim_getType_Tick(object sender, EventArgs e)
         {
-            try
+
+            if (_tcpClient.IsTCPLink)
             {
-                if (tcpConnection.IsTCPLink)
+                if (systemItem == PublicEnum.SystemItem.Airtight)
                 {
-                    if (systemItem == PublicEnum.SystemItem.Airtight)
+                    if (airtightPropertyTest == null) { return; }
+
+                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZReady)
                     {
-                        if (airtightPropertyTest == null) { return; }
+                        int value = _tcpClient.GetZYYBJS(ref IsSeccess);
 
-                        if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZReady)
+                        if (!IsSeccess)
                         {
-                            int value = tcpConnection.GetZYYBJS(ref IsSeccess);
-
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("正压预备结束状态异常");
-                            }
-                            if (value == 3)
-                            {
-                                airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                                lbl_setYL.Text = "0";
-                                OpenBtnType();
-                            }
+                            MessageBox.Show("正压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
                         }
-                        if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
+                        if (value == 3)
                         {
-                            double value = tcpConnection.GetZYKSJS(ref IsSeccess);
-
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("正压开始结束状态异常");
-                            }
-                            if (value >= 15)
-                            {
-                                airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                                IsStart = false;
-                                Thread.Sleep(1000);
-                                lbl_setYL.Text = "0";
-                                OpenBtnType();
-                            }
-                        }
-
-                        if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FReady)
-                        {
-                            int value = tcpConnection.GetFYYBJS(ref IsSeccess);
-
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("负压预备结束状态异常");
-                            }
-                            if (value == 3)
-                            {
-                                airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                                lbl_setYL.Text = "0";
-                                OpenBtnType();
-                            }
-                        }
-
-                        if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
-                        {
-                            double value = tcpConnection.GetFYKSJS(ref IsSeccess);
-
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("负压开始结束状态异常");
-                            }
-                            if (value >= 15)
-                            {
-                                waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
-                                IsStart = false;
-                                Thread.Sleep(1000);
-                                lbl_setYL.Text = "0";
-                                OpenBtnType();
-                            }
+                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                            lbl_setYL.Text = "0";
+                            OpenBtnType();
                         }
                     }
-                    else if (systemItem == PublicEnum.SystemItem.Watertight)
+                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
                     {
-                        if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
+                        double value = _tcpClient.GetZYKSJS(ref IsSeccess);
+
+                        if (!IsSeccess)
                         {
-                            int value = tcpConnection.GetSMYBJS(ref IsSeccess);
-
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("水密预备结束状态异常");
-                            }
-                            if (value == 3)
-                            {
-                                waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
-                                lbl_sdyl.Text = "0";
-
-                                this.btn_yb.Enabled = true;
-                                this.btn_ks.Enabled = true;
-                                this.btn_xyj.Enabled = true;
-                                this.btn_xyj.Enabled = true;
-                            }
+                            MessageBox.Show("正压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
                         }
-
-                        if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
+                        if (value >= 15)
                         {
-                            int value = tcpConnection.GetSMYBJS(ref IsSeccess);
+                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                            IsStart = false;
+                            Thread.Sleep(1000);
+                            lbl_setYL.Text = "0";
+                            OpenBtnType();
+                        }
+                    }
 
-                            if (!IsSeccess)
-                            {
-                                MessageBox.Show("依次加压结束状态异常");
-                            }
-                            if (value == 3)
-                            {
-                                waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
-                                lbl_sdyl.Text = "0";
+                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FReady)
+                    {
+                        int value = _tcpClient.GetFYYBJS(ref IsSeccess);
 
-                                this.btn_ycjy.Enabled = true;
-                            }
+                        if (!IsSeccess)
+                        {
+                            MessageBox.Show("负压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
+                        }
+                        if (value == 3)
+                        {
+                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                            lbl_setYL.Text = "0";
+                            OpenBtnType();
+                        }
+                    }
+
+                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
+                    {
+                        double value = _tcpClient.GetFYKSJS(ref IsSeccess);
+
+                        if (!IsSeccess)
+                        {
+                            MessageBox.Show("负压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
+                        }
+                        if (value >= 15)
+                        {
+                            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+                            IsStart = false;
+                            Thread.Sleep(1000);
+                            lbl_setYL.Text = "0";
+                            OpenBtnType();
+                        }
+                    }
+                }
+                else if (systemItem == PublicEnum.SystemItem.Watertight)
+                {
+                    if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
+                    {
+                        int value = _tcpClient.GetSMYBJS(ref IsSeccess);
+
+                        if (!IsSeccess)
+                        {
+                            MessageBox.Show("水密预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
+                        }
+                        if (value == 3)
+                        {
+                            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+                            lbl_sdyl.Text = "0";
+
+                            this.btn_yb.Enabled = true;
+                            this.btn_ks.Enabled = true;
+                            this.btn_xyj.Enabled = true;
+                            this.btn_xyj.Enabled = true;
+                        }
+                    }
+
+                    if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
+                    {
+                        int value = _tcpClient.GetSMYBJS(ref IsSeccess);
+
+                        if (!IsSeccess)
+                        {
+                            MessageBox.Show("依次加压结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                            return;
+                        }
+                        if (value == 3)
+                        {
+                            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+                            lbl_sdyl.Text = "0";
+
+                            this.btn_ycjy.Enabled = true;
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("读取状态异常", ex.Message);
-            }
+
         }
 
         private void gv_list_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (tcpConnection.IsTCPLink)
+                if (_tcpClient.IsTCPLink)
                 {
-                    BindWindSpeed();
-                    BindFlow();
+                    BindWindSpeedBase();
+                    BindFlowBase();
                 }
             }
             catch (Exception ex)
@@ -1238,10 +1213,10 @@ namespace text.doors.Detection
                 return;
             }
 
-            var res = tcpConnection.SendSMXXYJ();
+            var res = _tcpClient.SendSMXXYJ();
             if (!res)
             {
-                MessageBox.Show("水密性下一级");
+                MessageBox.Show("设置水密性下一级异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Next;
         }
@@ -1258,13 +1233,13 @@ namespace text.doors.Detection
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindFlow();
+            BindFlowBase();
         }
 
         #region 水密性能检测按钮事件
         private void btn_yb_Click(object sender, EventArgs e)
         {
-            double yl = tcpConnection.GetSMYBSDYL(ref IsSeccess, "SMYB");
+            double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, "SMYB");
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常");
@@ -1276,10 +1251,10 @@ namespace text.doors.Detection
             this.btn_xyj.Enabled = false;
             this.btn_xyj.Enabled = false;
 
-            var res = tcpConnection.SetSMYB();
+            var res = _tcpClient.SetSMYB();
             if (!res)
             {
-                MessageBox.Show("水密预备异常");
+                MessageBox.Show("水密预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Ready;
@@ -1292,10 +1267,10 @@ namespace text.doors.Detection
             this.btn_xyj.Enabled = true;
             tim_upNext.Enabled = true;
             this.btn_yb.Enabled = false;
-            var res = tcpConnection.SendSMXKS();
+            var res = _tcpClient.SendSMXKS();
             if (!res)
             {
-                MessageBox.Show("水密开始异常");
+                MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
@@ -1334,10 +1309,10 @@ namespace text.doors.Detection
             tim_upNext.Enabled = false;
 
             var value = int.Parse(txt_ycjy.Text);
-            var res = tcpConnection.SendSMYCJY(value);
+            var res = _tcpClient.SendSMYCJY(value);
             if (!res)
             {
-                MessageBox.Show("设置水密依次加压异常");
+                MessageBox.Show("设置水密依次加压异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             lbl_sdyl.Text = value.ToString();
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.CycleLoading;
@@ -1352,7 +1327,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            if (tcpConnection.IsTCPLink)
+            if (_tcpClient.IsTCPLink)
             {
                 string TEMP = "";
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
@@ -1364,11 +1339,11 @@ namespace text.doors.Detection
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Next)
                     TEMP = "XYJ";
 
-                double yl = tcpConnection.GetSMYBSDYL(ref IsSeccess, TEMP);
+                double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, TEMP);
 
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("读取设定值异常");
+                    MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
                 lbl_sdyl.Text = yl.ToString();
             }
@@ -1396,7 +1371,7 @@ namespace text.doors.Detection
 
             if (string.IsNullOrWhiteSpace(cbb_1_0Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_0Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1415,7 +1390,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_100Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_100Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1438,7 +1413,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_150Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_150Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1460,7 +1435,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_200Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_200Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1482,7 +1457,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_250Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_250Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1504,7 +1479,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_300Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_300Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1526,7 +1501,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_350Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_350Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1548,7 +1523,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_400Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_400Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1570,7 +1545,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_500Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_500Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1592,7 +1567,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_600Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_600Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1614,7 +1589,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(cbb_1_700Pa.Text))
             {
-                MessageBox.Show("请选择位置");
+                MessageBox.Show("请选择位置", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 cbb_2_700Pa.Text = "";
                 CheckProblem = "";
                 CheckPosition = "";
@@ -1641,7 +1616,7 @@ namespace text.doors.Detection
             }
             catch (Exception ex)
             {
-                MessageBox.Show("请输入数字");
+                MessageBox.Show("请输入数字", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -1654,7 +1629,7 @@ namespace text.doors.Detection
         {
             if (string.IsNullOrWhiteSpace(CheckPosition) || string.IsNullOrWhiteSpace(CheckProblem))
             {
-                MessageBox.Show("选择失去焦点，请重新选择检测记录！");
+                MessageBox.Show("选择失去焦点，请重新选择检测记录！", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             Model_dt_sm_Info model = new Model_dt_sm_Info();

@@ -33,12 +33,7 @@ namespace text.doors.Detection
         {
             if (cm_Report.SelectedIndex == 0)
             {
-                MessageBox.Show("请选择模板！", "请选择模板！",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1,
-                           MessageBoxOptions.ServiceNotification
-                           );
+                MessageBox.Show("请选择模板！", "请选择模板！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -74,7 +69,7 @@ namespace text.doors.Detection
 
                 if (settings == null)
                 {
-                    MessageBox.Show("未查询到相关编号");
+                    MessageBox.Show("未查询到相关编号!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
 
@@ -98,19 +93,14 @@ namespace text.doors.Detection
                     }
                     label3.Visible = false;
 
-                    MessageBox.Show("导出成功", "导出成功",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.None,
-                             MessageBoxDefaultButton.Button1,
-                            MessageBoxOptions.ServiceNotification
-                            );
+                    MessageBox.Show("导出成功", "导出成功", MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     this.Hide();
                 }
             }
             catch (Exception ex)
             {
                 Log.Error("ExportReport.Eexport", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-                MessageBox.Show("数据出现问题，导出失败！");
+                MessageBox.Show("数据出现问题，导出失败!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 this.Close();
             }
         }
@@ -170,37 +160,11 @@ namespace text.doors.Detection
             {
             }
             finally
-            {//word文档中不存在该书签，关闭文档
+            {
+                //word文档中不存在该书签，关闭文档
                 doc.Close(ref Nothing, ref Nothing, ref Nothing);
             }
         }
-
-        int index = 0;
-        private void loading()
-        {
-            while (true)
-            {
-                Thread.Sleep(1000);
-                if (index == 3)
-                {
-                    index = 0;
-                }
-                if (index == 0)
-                {
-                    label3.Text = "下载中.";
-                }
-                else if (index == 1)
-                {
-                    label3.Text = "下载中..";
-                }
-                else if (index == 2)
-                {
-                    label3.Text = "下载中...";
-                }
-                index++;
-            }
-        }
-
 
         /// <summary>
         /// 获取门窗检测报告文档

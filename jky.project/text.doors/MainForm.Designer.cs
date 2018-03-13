@@ -87,6 +87,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_gyZero = new System.Windows.Forms.Button();
             this.pl_showItem = new System.Windows.Forms.Panel();
+            this.tsl_tcpclient = new System.Windows.Forms.ToolStripStatusLabel();
             this.ssp_button.SuspendLayout();
             this.pl_top.SuspendLayout();
             this.ts_pic.SuspendLayout();
@@ -104,7 +105,8 @@
             this.tssl_SetCode,
             this.tsl_type,
             this.tsl_user,
-            this.tcp_type});
+            this.tcp_type,
+            this.tsl_tcpclient});
             this.ssp_button.Location = new System.Drawing.Point(0, 539);
             this.ssp_button.Name = "ssp_button";
             this.ssp_button.Size = new System.Drawing.Size(927, 22);
@@ -125,14 +127,14 @@
             // 
             // tsl_type
             // 
-            this.tsl_type.Margin = new System.Windows.Forms.Padding(150, 3, 0, 2);
+            this.tsl_type.Margin = new System.Windows.Forms.Padding(50, 3, 0, 2);
             this.tsl_type.Name = "tsl_type";
             this.tsl_type.Size = new System.Drawing.Size(116, 17);
             this.tsl_type.Text = "正在进行新检测设定";
             // 
             // tsl_user
             // 
-            this.tsl_user.Margin = new System.Windows.Forms.Padding(150, 3, 0, 2);
+            this.tsl_user.Margin = new System.Windows.Forms.Padding(50, 3, 0, 2);
             this.tsl_user.Name = "tsl_user";
             this.tsl_user.Size = new System.Drawing.Size(147, 17);
             this.tsl_user.Text = "当前用户：Administrator";
@@ -140,7 +142,7 @@
             // tcp_type
             // 
             this.tcp_type.ForeColor = System.Drawing.Color.Red;
-            this.tcp_type.Margin = new System.Windows.Forms.Padding(50, 3, 0, 2);
+            this.tcp_type.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
             this.tcp_type.Name = "tcp_type";
             this.tcp_type.Size = new System.Drawing.Size(92, 17);
             this.tcp_type.Text = "网络连接：断开";
@@ -647,6 +649,14 @@
             this.pl_showItem.Size = new System.Drawing.Size(731, 478);
             this.pl_showItem.TabIndex = 9;
             // 
+            // tsl_tcpclient
+            // 
+            this.tsl_tcpclient.ForeColor = System.Drawing.Color.Red;
+            this.tsl_tcpclient.Margin = new System.Windows.Forms.Padding(150, 3, 30, 2);
+            this.tsl_tcpclient.Name = "tsl_tcpclient";
+            this.tsl_tcpclient.Size = new System.Drawing.Size(104, 17);
+            this.tsl_tcpclient.Text = "服务器连接：成功";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -743,6 +753,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-
+        private System.Windows.Forms.ToolStripStatusLabel tsl_tcpclient;
     }
 }
