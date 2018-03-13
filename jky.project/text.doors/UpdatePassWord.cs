@@ -24,6 +24,7 @@ namespace text.doors
             string userName = "administrator";
             if (string.IsNullOrWhiteSpace(txt_oldPassWord.Text))
             {
+
                 MessageBox.Show("请输入原始密码:");
                 return;
             }

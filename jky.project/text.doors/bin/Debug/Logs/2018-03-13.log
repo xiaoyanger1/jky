@@ -14,3 +14,571 @@ StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
    在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
    在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
    在 text.doors.Common.TcpConnection.Connect() 位置 F:\jky\jky.project\text.doors\Common\TcpConnection.cs:行号 94
+2018-03-13 15:03:49.231 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:49.291 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:51.010 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:51.032 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:52.035 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:52.045 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:53.048 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:53.058 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:54.059 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:54.072 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:55.076 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:55.090 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:56.093 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:56.118 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:57.121 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:57.139 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:58.141 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:58.154 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:03:59.156 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:03:59.169 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:00.172 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:00.183 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:01.187 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:01.201 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:02.204 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:02.225 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:03.231 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:03.243 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:04.245 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:04.254 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:05.258 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:05.270 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:06.272 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:06.281 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:07.283 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:07.315 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:08.319 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:08.330 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:09.332 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:09.341 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:10.350 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:10.366 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:11.369 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:11.381 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:12.386 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:12.414 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:13.416 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:13.426 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:14.429 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:14.441 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:15.451 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:15.473 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:16.478 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:16.487 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:17.490 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:17.499 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:18.502 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:18.514 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:19.519 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:19.530 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:20.533 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:20.545 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:21.548 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:21.557 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:22.560 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:22.569 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:23.571 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:23.591 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:24.594 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:24.608 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:25.611 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:25.620 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:26.622 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:26.637 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:27.640 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:27.649 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:28.653 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:28.673 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:29.676 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:29.688 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:30.691 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:30.714 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:31.718 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:31.728 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:32.730 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:32.742 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:33.746 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:33.772 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:34.775 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:34.785 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:35.788 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:35.797 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:36.801 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:36.811 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:37.813 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:37.822 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:38.833 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:38.843 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:39.846 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:39.857 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:04:40.860 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:04:40.871 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:05:50.379 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:05:52.461 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:05:53.466 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:05:53.491 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:05:55.025 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:05:57.271 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:17.202 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:17.231 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:18.234 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:18.250 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:19.252 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:19.261 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:20.264 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:20.285 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:21.288 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:21.300 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:06:22.303 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:06:22.317 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:43.625 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:43.667 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:44.671 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:44.693 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:45.696 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:45.706 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:46.743 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:46.753 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:47.759 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:47.786 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:08:48.793 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:08:48.856 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:11:52.366 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:11:52.462 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:11:53.483 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:11:53.495 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:11:54.498 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:11:54.516 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:11:55.519 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:11:55.531 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50
+2018-03-13 15:11:56.534 ERROR ExportReport.Eexport: message:无法连接从端
+2018-03-13 15:11:56.547 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
+对象名:“System.Net.Sockets.TcpClient”。
+source:System
+StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
+   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
+   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
+   在 text.doors.Common.TCPClient.TcpOpen() 位置 F:\jky\jky.project\text.doors\Common\TCPClient.cs:行号 50

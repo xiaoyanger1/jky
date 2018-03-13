@@ -52,7 +52,7 @@ namespace text.doors
             DataTable dt = SQLiteHelper.ExecuteDataRow(sql).Table;
             if (dt == null || dt.Rows.Count == 0)
             {
-                MessageBox.Show("账户出现问题，请联系管理员！");
+                MessageBox.Show("账户", "账户出现问题，请联系管理员！", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
 

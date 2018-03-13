@@ -59,27 +59,16 @@ namespace text.doors
         public MainForm()
         {
             InitializeComponent();
+
             ExamineLAN();
             OpenTcp();
-            //tcpClient.TcpOpen();
-            //if (tcpClient.IsTCPLink)
-            //{
+
             //隐藏打开按钮
             tsb_open.Visible = false;
             tcpClient.SendGYBD(true);
 
             GetRegister();
             ShowDetectionSet();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("通信连接异常", "Tcp打开失败",
-            //            MessageBoxButtons.OKCancel,
-            //            MessageBoxIcon.Information,
-            //            MessageBoxDefaultButton.Button1,
-            //           MessageBoxOptions.ServiceNotification
-            //           );
-            //}
         }
 
 
@@ -162,39 +151,47 @@ namespace text.doors
 
         private void GetRegister()
         {
-            _temperature = tcpClient.GetWDXS(ref IsSeccess);
-            if (!IsSeccess)
+            if (tcpClient.IsTCPLink)
             {
-                MessageBox.Show("读取温度异常"); return;
-            }
-            _temppressure = tcpClient.GetDQYLXS(ref IsSeccess);
-            if (!IsSeccess)
-            {
-                MessageBox.Show("读取大气压力异常"); return;
-            }
+                _temperature = tcpClient.GetWDXS(ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "温度异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                _temppressure = tcpClient.GetDQYLXS(ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "大气压力异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
 
-            lbl_fscgq.Text = tcpClient.GetFSXS(ref IsSeccess).ToString();
-            if (!IsSeccess)
-            {
-                MessageBox.Show("读取风速异常"); return;
-            }
-            lbl_cycgq.Text = tcpClient.GetCYXS(ref IsSeccess).ToString();
-            if (!IsSeccess)
-            {
-                MessageBox.Show("读取差压异常"); return;
-            }
+                lbl_fscgq.Text = tcpClient.GetFSXS(ref IsSeccess).ToString();
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "风速异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                lbl_cycgq.Text = tcpClient.GetCYXS(ref IsSeccess).ToString();
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "差压异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
 
-            lbl_wdcgq.Text = tcpClient.GetWDXS(ref IsSeccess).ToString();
-            if (!IsSeccess)
-            {
-                MessageBox.Show("读取温度异常"); return;
+                lbl_wdcgq.Text = tcpClient.GetWDXS(ref IsSeccess).ToString();
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "温度异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                lbl_dqylcgq.Text = tcpClient.GetDQYLXS(ref IsSeccess).ToString();
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取数据", "大气压力异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+                selectZFYFType();
             }
-            lbl_dqylcgq.Text = tcpClient.GetDQYLXS(ref IsSeccess).ToString();
-            if (!IsSeccess)
-            {
-                MessageBox.Show("读取大气压力异常"); return;
-            }
-            selectZFYFType();
         }
 
         /// <summary>
@@ -208,7 +205,7 @@ namespace text.doors
             var res = tcpClient.GetZFYF(ref z, ref f);
             if (!res)
             {
-                MessageBox.Show("读取压阀状态异常");
+                MessageBox.Show("检测状态", "压阀状态异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             if (z)
                 btn_z.BackColor = Color.Green;
@@ -233,7 +230,7 @@ namespace text.doors
 
             if (!res)
             {
-                MessageBox.Show("风机控制异常");
+                MessageBox.Show("风机", "风机控制异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -265,7 +262,7 @@ namespace text.doors
             if (IsSetTong)
                 ShowRealTimeSurveillance();
             else
-                MessageBox.Show("请先检测设定。");
+                MessageBox.Show("检测", "请先检测设定", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void tsm_surveillance_Click(object sender, EventArgs e)
@@ -273,7 +270,7 @@ namespace text.doors
             if (IsSetTong)
                 ShowRealTimeSurveillance();
             else
-                MessageBox.Show("请先检测设定。");
+                MessageBox.Show("检测", "请先检测设定", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         //检测设定
@@ -338,7 +335,7 @@ namespace text.doors
                 ep.TopMost = true;
             }
             else
-                MessageBox.Show("请先检测设定。");
+                MessageBox.Show("检测", "请先检测设定", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         /// <summary>
@@ -349,10 +346,9 @@ namespace text.doors
 
         private void btn_gyZero_Click(object sender, EventArgs e)
         {
-
             if (!tcpClient.SendGYBD())
             {
-                MessageBox.Show("高压归零异常");
+                MessageBox.Show("设置", "高压归零异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
         /// <summary>
@@ -365,7 +361,7 @@ namespace text.doors
             var res = tcpClient.SendFSGL();
             if (!res)
             {
-                MessageBox.Show("风速归零异常");
+                MessageBox.Show("设置", "风速归零异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -374,9 +370,9 @@ namespace text.doors
             var res = tcpClient.SendZYF();
             if (!res)
             {
-                MessageBox.Show("设置正压阀异常");
+                MessageBox.Show("设置", "正压阀异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
-            Thread.Sleep(3 * 1000);
+            Thread.Sleep(3000);
             selectZFYFType();
         }
 
@@ -386,10 +382,10 @@ namespace text.doors
 
             if (!res)
             {
-                MessageBox.Show("设置负压阀异常");
+                MessageBox.Show("设置", "负压阀异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
-            Thread.Sleep(3 * 1000);
+            Thread.Sleep(3000);
 
             selectZFYFType();
         }
@@ -402,7 +398,7 @@ namespace text.doors
 
             if (!res)
             {
-                MessageBox.Show("风机控制异常");
+                MessageBox.Show("控制", "风机控制异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -430,7 +426,7 @@ namespace text.doors
                 }
             }
             else
-                MessageBox.Show("请先检测设定。");
+                MessageBox.Show("检测", "请先检测设定", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -442,7 +438,7 @@ namespace text.doors
                 pic.TopMost = true;
             }
             else
-                MessageBox.Show("请先检测设定。");
+                MessageBox.Show("检测", "请先检测设定", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
