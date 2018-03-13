@@ -17,19 +17,19 @@ namespace text.doors.Detection
     public partial class DetectionSet : Form
     {
         //当前温度
-        public double _DQWD { set; get; }
+        public double _temperature { set; get; }
         //当前压力
-        public double _DQYL { set; get; }
+        public double _temppressure { set; get; }
 
-        private string CurrCode = "";
-        private string CurrDangH = "";
+        private string _tempCode = "";
+        private string _tempTong = "";
 
-        public DetectionSet(double dqwd, double dqyl, string JYBH, string DQDH)
+        public DetectionSet(double temperature, double temppressure, string tempCode, string tempTong)
         {
-            this._DQWD = dqwd;
-            this._DQYL = dqyl;
-            this.CurrCode = JYBH;
-            this.CurrDangH = DQDH;
+            this._temperature = temperature;
+            this._temppressure = temppressure;
+            this._tempCode = tempCode;
+            this._tempTong = tempTong;
             InitializeComponent();
             Init();
         }
@@ -53,8 +53,8 @@ namespace text.doors.Detection
           
 
             var setting = GetSettings();
-            var Info = Getdt_Info(setting.dt_Code);
-            if (dal.AddSettings(setting, Info))
+            var info = Getdt_Info(setting.dt_Code);
+            if (dal.AddSettings(setting, info))
             {
                 MessageBox.Show("设定完成！", "设定完成！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 //获取樘号
@@ -86,8 +86,8 @@ namespace text.doors.Detection
         }
         private void SelectDangHao(object sender, text.doors.Detection.Select_Code.TransmitEventArgs e)
         {
-            CurrCode = e.Code;
-            CurrDangH = e.DangHao;
+            _tempCode = e.Code;
+            _tempTong = e.DangHao;
             Init();
         }
 
@@ -110,7 +110,7 @@ namespace text.doors.Detection
 
             if (new DAL_dt_Info().delete_dt_Info(btn_JianYanBianHao.Text))
             {
-                CurrCode = "";
+                _tempCode = "";
                 Init();
             }
         }
@@ -125,7 +125,7 @@ namespace text.doors.Detection
         /// </summary>
         private void BindInfoText()
         {
-            DataTable dt = new DAL_dt_Settings().Getdt_SettingsByCode(CurrCode);
+            DataTable dt = new DAL_dt_Settings().Getdt_SettingsByCode(_tempCode);
             if (dt != null)
             {
                 btn_WeiTuoBianHao.Text = dt.Rows[0]["WeiTuoBianHao"].ToString();
@@ -171,8 +171,8 @@ namespace text.doors.Detection
                 btn_XingCaiBiHou.Text = dt.Rows[0]["XingCaiBiHou"].ToString();
                 btn_XingCaiShengChanChang.Text = dt.Rows[0]["XingCaiShengChanChang"].ToString();
 
-                CurrCode = dt.Rows[0]["dt_Code"].ToString();
-                CurrDangH = dt.Rows[0]["info_DangH"].ToString();
+                _tempCode = dt.Rows[0]["dt_Code"].ToString();
+                _tempTong = dt.Rows[0]["info_DangH"].ToString();
                 cb_DangQianDangHao.Text = dt.Rows[0]["info_DangH"].ToString();
                 btn_JianYanBianHao.Text = dt.Rows[0]["dt_Code"].ToString();
             }
@@ -180,10 +180,10 @@ namespace text.doors.Detection
             if (string.IsNullOrEmpty(btn_GuiGeShuLiang.Text))
             {
                 btn_GuiGeShuLiang.Text = "3";
-            } if (_DQYL != 0 && _DQWD != 0)
+            } if (_temppressure != 0 && _temperature != 0)
             {
-                btn_DaQiYaLi.Text = _DQYL.ToString();
-                btn_DangQianWenDu.Text = _DQWD.ToString();
+                btn_DaQiYaLi.Text = _temppressure.ToString();
+                btn_DangQianWenDu.Text = _temperature.ToString();
             }
         }
 
@@ -334,20 +334,20 @@ namespace text.doors.Detection
         /// </summary>
         public class BottomType
         {
-            private string _BianHao;
-            private string _DangHao;
-            private bool _ISOK;
+            private string _code;
+            private string _tong;
+            private bool _isok;
 
-            public BottomType(string dangHao, string bianHao, bool isOK)
+            public BottomType(string code, string tong, bool isOK)
             {
-                this._BianHao = bianHao;
-                this._DangHao = dangHao;
-                this._ISOK = isOK;
+                this._code = tong;
+                this._tong = code;
+                this._isok = isOK;
 
             }
-            public string BianHao { get { return _BianHao; } }
-            public string DangHao { get { return _DangHao; } }
-            public bool ISOK { get { return _ISOK; } }
+            public string BianHao { get { return _code; } }
+            public string DangHao { get { return _tong; } }
+            public bool ISOK { get { return _isok; } }
         }
         #endregion
 

@@ -26,7 +26,7 @@ namespace text.doors
     public partial class MainForm : Form
     {
 
-        private static TCPClient tcpConnection = new TCPClient();
+        private static TCPClient tcpClient = new TCPClient();
         /// <summary>
         /// 操作状态
         /// </summary>
@@ -56,31 +56,27 @@ namespace text.doors
         public MainForm()
         {
             InitializeComponent();
-
             ExamineLAN();
+            OpenTcp();
+            //tcpClient.TcpOpen();
+            //if (tcpClient.IsTCPLink)
+            //{
+            //隐藏打开按钮
+            tsb_open.Visible = false;
+            tcpClient.SendGYBD(true);
 
-            tcpConnection.TcpOpen();
-            if (tcpConnection.IsTCPLink)
-            {
-                //隐藏打开按钮
-                tsb_open.Visible = false;
-                tcpConnection.SendGYBD(true);
-
-                GetRegister();
-                ShowDetectionSet();
-
-                Thread thread = new Thread(OpenTcp);
-                thread.Start();
-            }
-            else
-            {
-                MessageBox.Show("通信连接异常", "Tcp打开失败",
-                        MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Information,
-                        MessageBoxDefaultButton.Button1,
-                       MessageBoxOptions.ServiceNotification
-                       );
-            }
+            GetRegister();
+            ShowDetectionSet();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("通信连接异常", "Tcp打开失败",
+            //            MessageBoxButtons.OKCancel,
+            //            MessageBoxIcon.Information,
+            //            MessageBoxDefaultButton.Button1,
+            //           MessageBoxOptions.ServiceNotification
+            //           );
+            //}
         }
 
 
@@ -100,18 +96,22 @@ namespace text.doors
             thread.Start();
         }
 
-
-
-
-        private void OpenTcp()
+        public void OpenTcp()
         {
-            while (true)
+            Thread thread = new Thread(new ThreadStart(() =>
             {
-                if (tcpConnection.IsTCPLink == false)
+                while (true)
                 {
-                    tcpConnection.TcpOpen();
+                    if (!tcpClient.IsTCPLink)
+                    {
+                        tcpClient.TcpOpen();
+                        Thread.Sleep(500);
+                    }
+                    else
+                        Thread.Sleep(1000);
                 }
-            }
+            }));
+            thread.Start();
         }
 
         private void SelectDangHao(text.doors.Detection.DetectionSet.BottomType bt)
@@ -149,7 +149,7 @@ namespace text.doors
         /// </summary>
         private void ShowRealTimeSurveillance()
         {
-            RealTimeSurveillance rts = new RealTimeSurveillance(tcpConnection, JYBH, DQDH);
+            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, JYBH, DQDH);
             this.pl_showItem.Controls.Clear();
             rts.TopLevel = false;
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,36 +159,36 @@ namespace text.doors
 
         private void GetRegister()
         {
-            _DQWD = tcpConnection.GetWDXS(ref IsSeccess);
+            _DQWD = tcpClient.GetWDXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取温度异常"); return;
             }
 
 
-            _DQYL = tcpConnection.GetDQYLXS(ref IsSeccess);
+            _DQYL = tcpClient.GetDQYLXS(ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取大气压力异常"); return;
             }
 
-            lbl_fscgq.Text = tcpConnection.GetFSXS(ref IsSeccess).ToString();
+            lbl_fscgq.Text = tcpClient.GetFSXS(ref IsSeccess).ToString();
             if (!IsSeccess)
             {
                 MessageBox.Show("读取风速异常"); return;
             }
-            lbl_cycgq.Text = tcpConnection.GetCYXS(ref IsSeccess).ToString();
+            lbl_cycgq.Text = tcpClient.GetCYXS(ref IsSeccess).ToString();
             if (!IsSeccess)
             {
                 MessageBox.Show("读取差压异常"); return;
             }
 
-            lbl_wdcgq.Text = tcpConnection.GetWDXS(ref IsSeccess).ToString();
+            lbl_wdcgq.Text = tcpClient.GetWDXS(ref IsSeccess).ToString();
             if (!IsSeccess)
             {
                 MessageBox.Show("读取温度异常"); return;
             }
-            lbl_dqylcgq.Text = tcpConnection.GetDQYLXS(ref IsSeccess).ToString();
+            lbl_dqylcgq.Text = tcpClient.GetDQYLXS(ref IsSeccess).ToString();
             if (!IsSeccess)
             {
                 MessageBox.Show("读取大气压力异常"); return;
@@ -204,7 +204,7 @@ namespace text.doors
             bool z = false;
             bool f = false;
 
-            var res = tcpConnection.GetZFYF(ref z, ref f);
+            var res = tcpClient.GetZFYF(ref z, ref f);
             if (!res)
             {
                 MessageBox.Show("读取压阀状态异常");
@@ -228,7 +228,7 @@ namespace text.doors
 
             double value = (hsb_WindControl.Value * 0.01) * 80;
 
-            var res = tcpConnection.SendFJKZ(value);
+            var res = tcpClient.SendFJKZ(value);
 
             if (!res)
             {
@@ -331,7 +331,7 @@ namespace text.doors
 
         private void tsm_sensorSet_Click(object sender, EventArgs e)
         {
-            SensorSet ss = new SensorSet(tcpConnection);
+            SensorSet ss = new SensorSet(tcpClient);
             ss.Show();
             ss.TopMost = true;
         }
@@ -357,7 +357,7 @@ namespace text.doors
         private void btn_gyZero_Click(object sender, EventArgs e)
         {
 
-            if (!tcpConnection.SendGYBD())
+            if (!tcpClient.SendGYBD())
             {
                 MessageBox.Show("高压归零异常");
             }
@@ -369,7 +369,7 @@ namespace text.doors
         /// <param name="e"></param>
         private void btn_fsgl_Click(object sender, EventArgs e)
         {
-            var res = tcpConnection.SendFSGL();
+            var res = tcpClient.SendFSGL();
             if (!res)
             {
                 MessageBox.Show("风速归零异常");
@@ -378,7 +378,7 @@ namespace text.doors
 
         private void btn_z_Click(object sender, EventArgs e)
         {
-            var res = tcpConnection.SendZYF();
+            var res = tcpClient.SendZYF();
 
             if (!res)
             {
@@ -390,7 +390,7 @@ namespace text.doors
 
         private void btn_f_Click(object sender, EventArgs e)
         {
-            var res = tcpConnection.SendFYF();
+            var res = tcpClient.SendFYF();
 
             if (!res)
             {
@@ -406,7 +406,7 @@ namespace text.doors
         {
             //0-50HZ滚动条 标示0-4000值
             double value = double.Parse(txt_hz.Text) * 80;
-            var res = tcpConnection.SendFJKZ(value);
+            var res = tcpClient.SendFJKZ(value);
 
             if (!res)
             {

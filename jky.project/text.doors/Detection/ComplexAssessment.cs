@@ -18,7 +18,7 @@ namespace text.doors.Detection
 {
     public partial class ComplexAssessment : Form
     {
-        public string code = "";
+        public string _code = "";
         public int con = 0;
         /// <summary>
         /// 检验项目
@@ -27,40 +27,17 @@ namespace text.doors.Detection
         public ComplexAssessment(string code)
         {
             InitializeComponent();
-            this.code = code;
+            this._code = code;
             InitResult();
         }
 
-        private bool GetItem(string jyxm)
-        {
-            if (jyxm == "气密性能检测")
-            {
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能检测;
-                return true;
-            }
-            else if (jyxm == "水密性能检测")
-            {
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_水密性能检测;
-                return true;
-            }
-            else if (jyxm == "气密性能及水密性能检测")
-            {
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         /// <summary>
         /// 绑定检测结果
         /// </summary>
         private void InitResult()
         {
-
-            DataTable dtSettings = new DAL_dt_Settings().Getdt_SettingsByCode(code);
+            DataTable dtSettings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
 
             var jyxm = dtSettings.Rows[0]["JianYanXiangMu"].ToString();
             var ischeck = GetItem(jyxm);
@@ -72,7 +49,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, DetectionItemEnum);
+            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
             if (dt == null)
             {
                 MessageBox.Show("未检测完成，请完成检测");
@@ -83,7 +60,6 @@ namespace text.doors.Detection
             if (con > dt.Rows.Count)
             {
                 MessageBox.Show("未检测完成，请完成" + con + "樘检测");
-
                 this.Hide();
                 DefaultBase.IsOpenComplexAssessment = false;
                 return;
@@ -176,6 +152,20 @@ namespace text.doors.Detection
             DefaultBase.IsOpenComplexAssessment = true;
         }
 
+        private bool GetItem(string jyxm)
+        {
+            if (jyxm == "气密性能检测")
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能检测;
+            else if (jyxm == "水密性能检测")
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_水密性能检测;
+            else if (jyxm == "气密性能及水密性能检测")
+                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
+            else
+                return false;
+
+            return true;
+        }
+
 
 
         /// <summary>
@@ -219,7 +209,8 @@ namespace text.doors.Detection
                         {
                             if (item.Value == (intermediatelevel + 2))
                             {
-                                max = item.Key; break;
+                                max = item.Key;
+                                break;
                             }
                         }
                     }
@@ -286,12 +277,11 @@ namespace text.doors.Detection
             return Convert.ToInt32(list[0]);
         }
 
-      
+
         #endregion
 
         private void btn_audit_Click(object sender, EventArgs e)
         {
-
             #region 修改监测数据
             List<Model_dt_qm_Info> qmList = new List<Model_dt_qm_Info>();
 
@@ -300,7 +290,7 @@ namespace text.doors.Detection
                 for (int i = 0; i < con; i++)
                 {
                     Model_dt_qm_Info model = new Model_dt_qm_Info();
-                    model.dt_Code = code;
+                    model.dt_Code = _code;
                     if (i == 0)
                     {
                         model.info_DangH = groupBox1.Text;
@@ -338,7 +328,7 @@ namespace text.doors.Detection
                 for (int i = 0; i < con; i++)
                 {
                     Model_dt_sm_Info model = new Model_dt_sm_Info();
-                    model.dt_Code = code;
+                    model.dt_Code = _code;
                     if (i == 0)
                     {
                         model.info_DangH = groupBox1.Text;
@@ -373,7 +363,7 @@ namespace text.doors.Detection
             #region 获取设置后的樘号信息 --   判定
             InitResult();
 
-            DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(code);
+            DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
             if (settings != null && settings.Rows.Count > 0)
             {
                 txt_sjz1.Text = settings.Rows[0]["ShuiMiSheJiZhi"].ToString();
@@ -382,58 +372,38 @@ namespace text.doors.Detection
                 txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
                 txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
             }
-            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(code, DetectionItemEnum);
+            DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
             if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 txt_dj1.Text = Get_QMLevel(dt).ToString();
                 if (qm_z_FC >= double.Parse(txt_sjz2.Text))
-                {
                     txt_jg2.Text = "合格";
-                }
                 else
-                {
                     txt_jg2.Text = "不合格";
-                }
 
                 if (qm_f_FC >= double.Parse(txt_sjz3.Text))
-                {
                     txt_jg3.Text = "合格";
-                }
                 else
-                {
                     txt_jg3.Text = "不合格";
-                }
 
                 if (qm_z_MJ >= double.Parse(txt_sjz4.Text))
-                {
                     txt_jg4.Text = "合格";
-                }
                 else
-                {
                     txt_jg4.Text = "不合格";
-                }
 
                 if (qm_f_MJ <= double.Parse(txt_sjz4.Text))
-                {
                     txt_jg5.Text = "合格";
-                }
                 else
-                {
                     txt_jg5.Text = "不合格";
-                }
             }
             if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
                 txt_dj2.Text = Get_SMLevel(dt).ToString();
 
                 if (sm_value >= int.Parse(txt_sjz1.Text))
-                {
                     txt_jg1.Text = "合格";
-                }
                 else
-                {
                     txt_jg1.Text = "不合格";
-                }
             }
 
             #endregion
@@ -443,7 +413,7 @@ namespace text.doors.Detection
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ExportReport er = new ExportReport(code);
+            ExportReport er = new ExportReport(_code);
             er.Show();
         }
     }

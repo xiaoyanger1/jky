@@ -79,6 +79,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendGYBD(bool logon = false)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.高压标0_交替型按钮);
@@ -104,7 +106,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendFSGL(bool logon = false)
         {
-
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -138,6 +141,12 @@ namespace text.doors.Common
             double res = 0;
             try
             {
+                if (!IsTCPLink)
+                {
+                    IsSuccess = false;
+                    return res;
+                }
+
                 lock (_MASTER)
                 {
                     ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.温度显示);
@@ -165,6 +174,11 @@ namespace text.doors.Common
             double res = 0;
             try
             {
+                if (!IsTCPLink)
+                {
+                    IsSuccess = false;
+                    return res;
+                }
                 lock (_MASTER)
                 {
                     ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.大气压力显示);
@@ -189,6 +203,12 @@ namespace text.doors.Common
         public double GetFSXS(ref bool IsSuccess)
         {
             double res = 0;
+
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
                 lock (_MASTER)
@@ -223,6 +243,11 @@ namespace text.doors.Common
         public int GetCYXS(ref bool IsSuccess)
         {
             double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return 0;
+            }
             try
             {
                 lock (_MASTER)
@@ -253,6 +278,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendFJKZ(double value)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -275,6 +302,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendZYF()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -298,6 +327,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendFYF()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -321,6 +352,8 @@ namespace text.doors.Common
         /// </summary>
         public bool GetZFYF(ref bool z, ref bool f)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -350,6 +383,8 @@ namespace text.doors.Common
         /// <param name="IsSuccess"></param>
         public bool SetZYYB()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendZYF();
@@ -375,6 +410,11 @@ namespace text.doors.Common
         public int GetZYYBJS(ref bool IsSuccess)
         {
             int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压预备结束);
@@ -396,6 +436,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendZYKS(ref bool IsSuccess)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendZYF();
@@ -423,6 +465,11 @@ namespace text.doors.Common
         public double GetZYKSJS(ref bool IsSuccess)
         {
             double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正压开始结束);
@@ -444,6 +491,8 @@ namespace text.doors.Common
         /// <param name="IsSuccess"></param>
         public bool SendFYYB()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendFYF();
@@ -469,6 +518,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendFYKS()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendFYF();
@@ -496,20 +547,26 @@ namespace text.doors.Common
         public int GetFYYBJS(ref bool IsSuccess)
         {
             int res = 0;
-            lock (_MASTER)
+            if (!IsTCPLink)
             {
-                try
+                IsSuccess = false;
+                return res;
+            }
+
+            try
+            {
+                lock (_MASTER)
                 {
                     ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压预备结束);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = int.Parse(holding_register[0].ToString());
                     IsSuccess = true;
                 }
-                catch (Exception ex)
-                {
-                    IsSuccess = false;
-                    // Log.Error("ExportReport.Eexport", "message:读取正压预备结束" + ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                IsSuccess = false;
+                // Log.Error("ExportReport.Eexport", "message:读取正压预备结束" + ex.Message);
             }
             return res;
         }
@@ -521,6 +578,11 @@ namespace text.doors.Common
         public double GetFYKSJS(ref bool IsSuccess)
         {
             double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压开始结束);
@@ -545,9 +607,15 @@ namespace text.doors.Common
         public double GetZYYBYLZ(ref bool IsSuccess, string type)
         {
             double res = 0;
-            lock (_MASTER)
+            if (!IsTCPLink)
             {
-                try
+                IsSuccess = false;
+                return res;
+            }
+
+            try
+            {
+                lock (_MASTER)
                 {
                     ushort _StartAddress = 0;
                     if (type == "ZYYB")
@@ -570,13 +638,12 @@ namespace text.doors.Common
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString())).ToString());
                     IsSuccess = true;
-
                 }
-                catch (Exception ex)
-                {
-                    IsSuccess = false;
-                    Log.Error("ExportReport.Eexport", "message:获取正压预备时，设定压力值" + ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                IsSuccess = false;
+                Log.Error("ExportReport.Eexport", "message:获取正压预备时，设定压力值" + ex.Message);
             }
             return res;
         }
@@ -588,6 +655,8 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_Z_S100TimeStart()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -613,6 +682,8 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_Z_S150PaTimeStart()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -637,6 +708,8 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_Z_J100PaTimeStart()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -661,9 +734,12 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_F_S100PaTimeStart()
         {
-            lock (_MASTER)
+            if (!IsTCPLink)
+                return false;
+
+            try
             {
-                try
+                lock (_MASTER)
                 {
                     ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负压100TimeStart);
                     ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
@@ -672,12 +748,12 @@ namespace text.doors.Common
                     else
                         return false;
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    Log.Error("ExportReport.Eexport", "message:获取负压100Pa是否开始计时" + ex.Message);
-                    return false;
-                }
+                Log.Error("ExportReport.Eexport", "message:获取负压100Pa是否开始计时" + ex.Message);
+                return false;
             }
         }
 
@@ -686,6 +762,8 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_F_S150PaTimeStart()
         {
+            if (!IsTCPLink)
+                return false;
 
             try
             {
@@ -712,6 +790,8 @@ namespace text.doors.Common
         /// </summary>
         public bool Get_F_J100PaTimeStart()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 lock (_MASTER)
@@ -738,6 +818,8 @@ namespace text.doors.Common
         /// <param name="IsSuccess"></param>
         public bool SetSMYB()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendZYF();
@@ -764,6 +846,11 @@ namespace text.doors.Common
         public int GetSMYBJS(ref bool IsSuccess)
         {
             int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备结束);
@@ -787,6 +874,12 @@ namespace text.doors.Common
         public int GetSMYBSDYL(ref bool IsSuccess, string type)
         {
             int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+
             try
             {
                 ushort _StartAddress = 0;
@@ -824,6 +917,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendSMXKS()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendZYF();
@@ -847,6 +942,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendSMXXYJ()
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.下一级);
@@ -868,6 +965,8 @@ namespace text.doors.Common
         /// </summary>
         public bool SendSMYCJY(double value)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
                 var res = SendZYF();
@@ -898,6 +997,9 @@ namespace text.doors.Common
         /// </summary>
         public bool Stop()
         {
+            if (!IsTCPLink)
+                return false;
+
             try
             {
                 ushort _StartAddress = BFMCommand.GetCommandDict(BFMCommand.急停);
@@ -925,11 +1027,10 @@ namespace text.doors.Common
         /// <param name="IsSuccess"></param>
         public bool SendPid(string type, double value)
         {
+            if (!IsTCPLink)
+                return false;
             try
             {
-                if (IsTCPLink == false)
-                    TcpOpen();
-
                 ushort _StartAddress = 0;
                 if (type == "P")
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.P);
@@ -955,11 +1056,13 @@ namespace text.doors.Common
         public int GetPID(string type, ref bool IsSuccess)
         {
             int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
             try
             {
-                if (IsTCPLink == false)
-                    TcpOpen();
-
                 ushort _StartAddress = 0;
                 if (type == "P")
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.P);
