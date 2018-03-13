@@ -43,7 +43,12 @@ namespace text.doors.Detection
 
             if (dt == null)
             {
-                MessageBox.Show("暂未查询此编号内容！");
+                MessageBox.Show("暂未查询此编号内容", " 暂未查询此编号内容",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1,
+                           MessageBoxOptions.ServiceNotification
+                           );
                 return;
             }
 

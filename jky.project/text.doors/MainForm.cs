@@ -190,14 +190,14 @@ namespace text.doors
                 {
                     MessageBox.Show("获取数据", "大气压力异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
-                selectZFYFType();
+                GetPRVs();
             }
         }
 
         /// <summary>
         /// 检测正负压阀状态
         /// </summary>
-        private void selectZFYFType()
+        private void GetPRVs()
         {
             bool z = false;
             bool f = false;
@@ -373,7 +373,7 @@ namespace text.doors
                 MessageBox.Show("设置", "正压阀异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             Thread.Sleep(3000);
-            selectZFYFType();
+            GetPRVs();
         }
 
         private void btn_f_Click(object sender, EventArgs e)
@@ -387,7 +387,7 @@ namespace text.doors
 
             Thread.Sleep(3000);
 
-            selectZFYFType();
+            GetPRVs();
         }
 
         private void btn_OkFj_Click(object sender, EventArgs e)
