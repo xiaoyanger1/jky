@@ -40,6 +40,7 @@ namespace text.doors.Common
                         tcpClient.Close();
                         IsTCPLink = false;
                         Logger.Info("连接tcp:IP" + DefaultBase.IPAddress + ",port:" + DefaultBase.TCPPort);
+                        return;
                     }
                     //由TCP客户端创建Modbus TCP的主
                     _MASTER = ModbusIpMaster.CreateIp(tcpClient);
