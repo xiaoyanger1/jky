@@ -1,8 +1,0 @@
-2016-12-20 22:21:10.250 ERROR ExportReport.Eexport: message:无法连接从端
-2016-12-20 22:21:11.057 ERROR ExportReport.Eexport: message:tcp打开失败无法访问已释放的对象。
-对象名:“System.Net.Sockets.TcpClient”。
-source:System
-StackTrace:   在 System.Net.Sockets.TcpClient.GetStream()
-   在 Modbus.IO.TcpClientAdapter.set_ReadTimeout(Int32 value)
-   在 Modbus.IO.ModbusTransport.set_ReadTimeout(Int32 value)
-   在 SysDetection.Common.TcpConnection.Connect() 位置 f:\建科院\建筑围护结构热工性能采集处理系统\Code\SysDetection\SysDetection\Common\TcpConnection1.cs:行号 92

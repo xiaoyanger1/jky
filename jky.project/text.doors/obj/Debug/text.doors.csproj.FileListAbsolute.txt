@@ -35,9 +35,6 @@ F:\jky\jky.project\text.doors\obj\Debug\text.doors.MainForm.resources
 F:\jky\jky.project\text.doors\obj\Debug\text.doors.Properties.Resources.resources
 F:\jky\jky.project\text.doors\obj\Debug\text.doors.UpdatePassWord.resources
 F:\jky\jky.project\text.doors\obj\Debug\text.doors.csproj.GenerateResource.Cache
-F:\jky\jky.project\text.doors\bin\Debug\门窗现场两性检测.exe.config
-F:\jky\jky.project\text.doors\bin\Debug\门窗现场两性检测.exe
-F:\jky\jky.project\text.doors\bin\Debug\门窗现场两性检测.pdb
 F:\jky\jky.project\text.doors\bin\Debug\log4net.dll
 F:\jky\jky.project\text.doors\bin\Debug\Microsoft.Office.Interop.Word.dll
 F:\jky\jky.project\text.doors\bin\Debug\System.Data.SQLite.DLL
@@ -48,7 +45,11 @@ F:\jky\jky.project\text.doors\bin\Debug\ICSharpCode.SharpZipLib.dll
 F:\jky\jky.project\text.doors\bin\Debug\NPOI.OpenXmlFormats.dll
 F:\jky\jky.project\text.doors\bin\Debug\NPOI.OpenXml4Net.dll
 F:\jky\jky.project\text.doors\bin\Debug\NPOI.xml
-F:\jky\jky.project\text.doors\obj\Debug\门窗现场两性检测.exe
-F:\jky\jky.project\text.doors\obj\Debug\门窗现场两性检测.pdb
 F:\jky\jky.project\text.doors\bin\Debug\Young.Core.dll
 F:\jky\jky.project\text.doors\bin\Debug\Young.Core.pdb
+F:\jky\jky.project\text.doors\bin\Debug\门窗现场三性检测.exe.config
+F:\jky\jky.project\text.doors\bin\Debug\门窗现场三性检测.exe
+F:\jky\jky.project\text.doors\bin\Debug\门窗现场三性检测.pdb
+F:\jky\jky.project\text.doors\bin\Debug\log4net.xml
+F:\jky\jky.project\text.doors\obj\Debug\门窗现场三性检测.exe
+F:\jky\jky.project\text.doors\obj\Debug\门窗现场三性检测.pdb

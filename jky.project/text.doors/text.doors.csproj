@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>text.doors</RootNamespace>
-    <AssemblyName>门窗现场两性检测</AssemblyName>
+    <AssemblyName>门窗现场三性检测</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -56,8 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>dll\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -102,7 +103,6 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\JkyException.cs" />
     <Compile Include="Common\LAN.cs" />
     <Compile Include="Common\TCPClient.cs" />
     <Compile Include="Common\Formula.cs" />
@@ -244,6 +244,8 @@
     <EmbeddedResource Include="UpdatePassWord.resx">
       <DependentUpon>UpdatePassWord.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Configurations\Log4Net.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

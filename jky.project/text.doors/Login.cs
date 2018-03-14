@@ -15,6 +15,7 @@ namespace text.doors
 {
     public partial class Login : Form
     {
+        public static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         public Login()
         {
             InitializeComponent();
@@ -22,14 +23,14 @@ namespace text.doors
         }
 
 
-        private string UserName = "administrator";
+        private string administrator = "administrator";
         private void Init()
         {
             //WindowsIdentity identity = WindowsIdentity.GetCurrent();
             //WindowsPrincipal principal = new WindowsPrincipal(identity);
             //if (principal.IsInRole(WindowsBuiltInRole.Administrator))
             //{
-            txt_userID.Text = UserName;
+            txt_userID.Text = administrator;
             this.txt_passWord.Focus();
             //}
             //else
@@ -48,11 +49,13 @@ namespace text.doors
                 return;
             }
 
-            string sql = "select * from  User where User_Name='" + UserName + "'";
+            string sql = "select * from  User where User_Name='" + administrator + "'";
             DataTable dt = SQLiteHelper.ExecuteDataRow(sql).Table;
             if (dt == null || dt.Rows.Count == 0)
             {
                 MessageBox.Show("账户出现问题，请联系管理员", "账户", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                Logger.Error("登录:未发现" + administrator + "账户");
+                return;
             }
 
 
