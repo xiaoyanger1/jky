@@ -121,7 +121,6 @@ namespace Young.Core.Data
             } 
             catch ( Exception ex )
             {
-                Log.Error("Security._DESEncrypt()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
                 throw new Exception( "在文件加密的时候出现错误！错误提示：  " + ex.Message );
             }
         }
@@ -148,7 +147,7 @@ namespace Young.Core.Data
             }
             catch( Exception ex )
             {
-                Log.Error("Security._DESDecrypt()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+                throw new Exception("在文件解密的时候出现错误！错误提示：  " + ex.Message);
             }
             return string.Empty;
         } 

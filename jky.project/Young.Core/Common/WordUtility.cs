@@ -9,6 +9,7 @@ namespace Young.Core.Common
 {
     public class WordUtility
     {
+
         private object tempFile = null;
         private object saveFile = null;
         private static Word._Document wDoc = null;  //word文档
@@ -70,7 +71,6 @@ namespace Young.Core.Common
             }
             catch (Exception ex)
             {
-                Log.Error("WordUtility.GenerateWord()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
                 MessageUtil.ShowError("生成失败");
                 return false;
             }
@@ -128,7 +128,6 @@ namespace Young.Core.Common
             }
             catch (Exception ex)
             {
-                Log.Error("WordUtility.GenerateWordByBookmarks()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
                 MessageUtil.ShowError("生成失败");
                 return false;
             }

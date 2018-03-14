@@ -32,23 +32,23 @@ namespace Young.Core.Data
         public static int _CreateDB(string dbPath)
         {
             int res = 0;
-            try
+            //try
+            //{
+            SQLiteConnection.CreateFile(dbPath);  // 创建数据文件
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false"))
             {
-                SQLiteConnection.CreateFile(dbPath);  // 创建数据文件
-                using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false"))
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
-                    connection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(connection))
-                    {
-                        command.CommandText = _CreateTableSQL();
-                        res = command.ExecuteNonQuery();
-                    }
+                    command.CommandText = _CreateTableSQL();
+                    res = command.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("SQLiteDBHelper.CreateDB()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error("SQLiteDBHelper.CreateDB()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            //}
             return res;
         }
 
@@ -63,37 +63,37 @@ namespace Young.Core.Data
         /// <param name="sql">要执行的增删改的SQL语句</param>
         /// <param name="parameters">执行增删改语句所需要的参数，参数必须以它们在SQL语句中的顺序为准</param>
         /// <returns></returns>
-        public static int ExecuteNonQuery(string sqlLinkString,string sql, SQLiteParameter[] parameters)
+        public static int ExecuteNonQuery(string sqlLinkString, string sql, SQLiteParameter[] parameters)
         {
             int affectedRows = 0;
 
-            try
+            //try
+            //{
+            using (SQLiteConnection connection = new SQLiteConnection(sqlLinkString))
             {
-                using (SQLiteConnection connection = new SQLiteConnection(sqlLinkString))
+                connection.Open();
+                using (DbTransaction transaction = connection.BeginTransaction())
                 {
-                    connection.Open();
-                    using (DbTransaction transaction = connection.BeginTransaction())
+                    using (SQLiteCommand command = new SQLiteCommand(connection))
                     {
-                        using (SQLiteCommand command = new SQLiteCommand(connection))
+                        command.CommandText = sql;
+
+                        if (parameters != null)
                         {
-                            command.CommandText = sql;
-
-                            if (parameters != null)
-                            {
-                                command.Parameters.AddRange(parameters);
-                            }
-
-                            affectedRows = command.ExecuteNonQuery();
+                            command.Parameters.AddRange(parameters);
                         }
-                        transaction.Commit();
+
+                        affectedRows = command.ExecuteNonQuery();
                     }
+                    transaction.Commit();
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("SQLiteDBHelper.ExecuteNonQuery()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-            }
-            
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error("SQLiteDBHelper.ExecuteNonQuery()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            //}
+
             return affectedRows;
         }
 
@@ -111,24 +111,24 @@ namespace Young.Core.Data
         public static DataTable ExecuteDataTable(string sqlLinkString, string sql, SQLiteParameter[] parameters)
         {
             DataTable data = new DataTable();
-            try
+            //try
+            //{
+            using (SQLiteConnection connection = new SQLiteConnection(sqlLinkString))
             {
-                using (SQLiteConnection connection = new SQLiteConnection(sqlLinkString))
+                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, connection))
                 {
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, connection))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
-                        {
-                            adapter.SelectCommand.Parameters.AddRange(parameters);
-                        }
-                        adapter.Fill(data);
+                        adapter.SelectCommand.Parameters.AddRange(parameters);
                     }
+                    adapter.Fill(data);
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("SQLiteDBHelper.ExecuteDataTable()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error("SQLiteDBHelper.ExecuteDataTable()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            //}
             return data;
         }
 
@@ -143,27 +143,27 @@ namespace Young.Core.Data
         public Object ExecuteScalar(string sql, SQLiteParameter[] parameters)
         {
             DataTable data = new DataTable();
-            try
+            //try
+            //{
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
-                        {
-                            command.Parameters.AddRange(parameters);
-                        }
-                        SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
-
-                        adapter.Fill(data);
-                        adapter.Dispose();
+                        command.Parameters.AddRange(parameters);
                     }
+                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
+
+                    adapter.Fill(data);
+                    adapter.Dispose();
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Error("SQLiteDBHelper.ExecuteScalar()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error("SQLiteDBHelper.ExecuteScalar()", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+            //}
             return data;
         }
 
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS Admin(
 insert into Admin(username,password) values('Administrator','123456')
 
 ";
-        
+
         }
 
     }
