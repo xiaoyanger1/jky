@@ -15,6 +15,7 @@ namespace text.doors.Detection
 {
     public partial class SystemManager : Form
     {
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         public SystemManager()
         {
             InitializeComponent();
@@ -24,37 +25,50 @@ namespace text.doors.Detection
         private void Init()
         {
             string sql = "select * from  dt_BaseSet";
-            DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
-            if (dr != null)
+            try
             {
-                DataTable dt = dr.Table;
-                txt_IP.Text = dt.Rows[0]["IP"].ToString();
-                txt_prot.Text = dt.Rows[0]["PROT"].ToString();
-                txt_mm.Text = dt.Rows[0]["D"].ToString();
+                DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
+                if (dr != null)
+                {
+                    DataTable dt = dr.Table;
+                    txt_IP.Text = dt.Rows[0]["IP"].ToString();
+                    txt_prot.Text = dt.Rows[0]["PROT"].ToString();
+                    txt_mm.Text = dt.Rows[0]["D"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
             }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-
-            var res = MessageUtil.ConfirmYesNo("设置完成后，请重启系统");
-            if (res)
+            try
             {
-                var sql = "delete from dt_BaseSet ";
-                SQLiteHelper.ExecuteNonQuery(sql);
+                var res = MessageUtil.ConfirmYesNo("设置完成后，请重启系统");
+                if (res)
+                {
+                    var sql = "delete from dt_BaseSet ";
+                    SQLiteHelper.ExecuteNonQuery(sql);
 
-                sql = string.Format(@"insert into dt_BaseSet (IP,PROT,D) 
+                    sql = string.Format(@"insert into dt_BaseSet (IP,PROT,D) 
                 values('{0}','{1}','{2}')", txt_IP.Text, txt_prot.Text, txt_mm.Text);
-                if (SQLiteHelper.ExecuteNonQuery(sql) == 0)
-                {
-                    MessageBox.Show("存储", "保存失败！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    if (SQLiteHelper.ExecuteNonQuery(sql) == 0)
+                    {
+                        MessageBox.Show("存储", "保存失败！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    }
+                    else
+                    {
+                        System.Environment.Exit(0);
+                    }
                 }
-                else
-                {
-                    System.Environment.Exit(0);
-                }
+                else { this.Hide(); }
             }
-            else { this.Hide(); }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
         }
     }
 }

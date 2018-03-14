@@ -24,6 +24,7 @@ namespace text.doors.Detection
 {
     public partial class RealTimeSurveillance : Form
     {
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         private TCPClient _tcpClient;
         //检验编号
         private string _tempCode = "";
@@ -457,7 +458,7 @@ namespace text.doors.Detection
                 var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常");
+                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
                 //气密水密
@@ -470,7 +471,7 @@ namespace text.doors.Detection
                     double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                     if (!IsSeccess)
                     {
-                        MessageBox.Show("读取设定值异常");
+                        MessageBox.Show("获取正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                         return;
                     }
                     lbl_setYL.Text = yl.ToString();
@@ -480,7 +481,7 @@ namespace text.doors.Detection
                     double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
                     if (!IsSeccess)
                     {
-                        MessageBox.Show("读取设定值异常");
+                        MessageBox.Show("获取负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                         return;
                     }
                     lbl_setYL.Text = "-" + yl.ToString();
@@ -507,7 +508,8 @@ namespace text.doors.Detection
                 int value = int.Parse(c.ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常"); return;
+                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
                 }
 
                 if (systemItem == PublicEnum.SystemItem.Airtight)
@@ -529,7 +531,8 @@ namespace text.doors.Detection
             var cyvalue = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
             {
-                MessageBox.Show("获取大气压力异常"); return;
+                MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
 
             index++;
@@ -569,7 +572,8 @@ namespace text.doors.Detection
             var fsvalue = _tcpClient.GetFSXS(ref IsSeccess);
             if (!IsSeccess)
             {
-                MessageBox.Show("获取风速异常"); return;
+                MessageBox.Show("获取风速异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
 
             if (rdb_fjstl.Checked)
@@ -1164,7 +1168,7 @@ namespace text.doors.Detection
             }
             catch (Exception ex)
             {
-                Log.Error("写入表格数据异常", ex.Message);
+                Logger.Error(ex);
             }
         }
 
@@ -1242,7 +1246,8 @@ namespace text.doors.Detection
             double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, "SMYB");
             if (!IsSeccess)
             {
-                MessageBox.Show("读取设定值异常");
+                MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
             lbl_sdyl.Text = yl.ToString();
 
@@ -1255,6 +1260,7 @@ namespace text.doors.Detection
             if (!res)
             {
                 MessageBox.Show("水密预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
 
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Ready;

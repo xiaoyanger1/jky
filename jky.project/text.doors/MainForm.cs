@@ -26,11 +26,12 @@ namespace text.doors
     public partial class MainForm : Form
     {
         private static TCPClient tcpClient = new TCPClient();
-      
+        public static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
+
         /// <summary>
         /// 确定是否设置樘号
         /// </summary>
-        bool IsSetTong = false;
+        private bool IsSetTong = false;
 
         /// <summary>
         /// 当前温度
@@ -290,7 +291,7 @@ namespace text.doors
             }
             catch (Exception ex)
             {
-                Log.Error("", ex.Message);
+                Logger.Error(ex);
             }
         }
 
@@ -391,29 +392,26 @@ namespace text.doors
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
-            {
-                ComplexAssessment ca = new ComplexAssessment(_tempCode);
-                if (DefaultBase.IsOpenComplexAssessment)
-                {
-                    ca.Show();
-                    ca.TopMost = true;
-                }
-            }
-            else
+            if (!IsSetTong)
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
+            ComplexAssessment ca = new ComplexAssessment(_tempCode);
+            if (DefaultBase.IsOpenComplexAssessment)
+            {
+                ca.Show();
+                ca.TopMost = true;
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-            {
-                pic pic = new pic(_tempCode);
-                pic.Show();
-                pic.TopMost = true;
-            }
-            else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
+            pic pic = new pic(_tempCode);
+            pic.Show();
+            pic.TopMost = true;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)

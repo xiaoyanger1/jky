@@ -39,9 +39,5 @@ namespace text.doors.dal
             sb.AppendFormat("delete from dt_sm_Info where dt_Code ='{0}';", code);
             return SQLiteHelper.ExecuteNonQuery(sb.ToString()) > 0 ? true : false;
         }
-
-
-
-
     }
 }

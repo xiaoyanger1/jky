@@ -10,8 +10,11 @@ using Young.Core.SQLite;
 
 namespace text.doors.Service
 {
+
     public class DAL_Demarcate_Dict
     {
+        public static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
+
         private static List<Calibrating_Dict> DemarcateList = GetCalibrating_Dict();
         //<summary>
         //温度传感器
@@ -52,7 +55,7 @@ namespace text.doors.Service
         //<summary>
         //风速传感器
         //</summary>
-       public static List<Calibrating_Dict> _windSpeedDict = null;
+        public static List<Calibrating_Dict> _windSpeedDict = null;
         public static List<Calibrating_Dict> windSpeedDict
         {
             get
@@ -85,31 +88,37 @@ namespace text.doors.Service
             }
         }
 
-        
+
         private static List<Calibrating_Dict> GetCalibrating_Dict()
         {
             List<Calibrating_Dict> list = new List<Calibrating_Dict>();
-            string sql = string.Format("select * from Demarcate_Dict");
-
-            DataTable dt = SQLiteHelper.ExecuteDataset(sql).Tables[0];
-
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                Calibrating_Dict model = new Calibrating_Dict();
-                if (!string.IsNullOrWhiteSpace(dr["Enum"].ToString()))
-                {
-                    model.Enum = dr["Enum"].ToString();
-                }
-                if (!string.IsNullOrWhiteSpace(dr["D_Key"].ToString()))
-                {
-                    model.x = float.Parse(dr["D_Key"].ToString());
-                }
-                if (!string.IsNullOrWhiteSpace(dr["D_Value"].ToString()))
-                {
-                    model.y = float.Parse(dr["D_Value"].ToString());
-                }
+                string sql = string.Format("select * from Demarcate_Dict");
 
-                list.Add(model);
+                DataTable dt = SQLiteHelper.ExecuteDataset(sql).Tables[0];
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Calibrating_Dict model = new Calibrating_Dict();
+                    if (!string.IsNullOrWhiteSpace(dr["Enum"].ToString()))
+                    {
+                        model.Enum = dr["Enum"].ToString();
+                    }
+                    if (!string.IsNullOrWhiteSpace(dr["D_Key"].ToString()))
+                    {
+                        model.x = float.Parse(dr["D_Key"].ToString());
+                    }
+                    if (!string.IsNullOrWhiteSpace(dr["D_Value"].ToString()))
+                    {
+                        model.y = float.Parse(dr["D_Value"].ToString());
+                    }
+                    list.Add(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
             }
             return list;
         }

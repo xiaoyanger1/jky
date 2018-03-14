@@ -42,16 +42,9 @@ namespace text.doors.Default
             get
             {
                 var res = 502;
-                try
-                {
-                    var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
-                    if (dt != null)
-                        res = int.Parse(dt.Rows[0]["PROT"].ToString());
-                }
-                catch (Exception ex)
-                {
-                    return res;
-                }
+                var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
+                if (dt != null)
+                    res = int.Parse(dt.Rows[0]["PROT"].ToString());
                 return res;
             }
         }
@@ -63,16 +56,10 @@ namespace text.doors.Default
             get
             {
                 var res = "192.168.2.5";
-                try
-                {
-                    var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
-                    if (dt != null)
-                        res = dt.Rows[0]["IP"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    return res;
-                }
+
+                var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
+                if (dt != null)
+                    res = dt.Rows[0]["IP"].ToString();
                 return res;
             }
         }
@@ -85,16 +72,9 @@ namespace text.doors.Default
             get
             {
                 var res = 0.08;
-                try
-                {
-                    var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
-                    if (dt != null)
-                        res = Convert.ToDouble(dt.Rows[0]["D"].ToString());
-                }
-                catch (Exception ex)
-                {
-                    return res;
-                }
+                var dt = new DAL_dt_BaseSet().GetSystemBaseSet();
+                if (dt != null)
+                    res = Convert.ToDouble(dt.Rows[0]["D"].ToString());
                 return res;
             }
         }

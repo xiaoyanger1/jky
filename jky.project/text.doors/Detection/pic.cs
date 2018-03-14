@@ -17,6 +17,7 @@ namespace text.doors.Detection
 {
     public partial class pic : Form
     {
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         private string _code = "";
         private FilterInfoCollection videoDevices;
         private VideoCaptureDevice videoSource;
@@ -102,6 +103,7 @@ namespace text.doors.Detection
             catch (Exception ex)
             {
                 MessageBox.Show("摄像头异常！" + ex.Message, "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                Logger.Error(ex);
             }
         }
 

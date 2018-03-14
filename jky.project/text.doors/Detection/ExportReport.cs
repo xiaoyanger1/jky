@@ -15,11 +15,12 @@ namespace text.doors.Detection
 {
     public partial class ExportReport : Form
     {
-        private string _CurrCode = "";
+        private string _tempCode = "";
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         public ExportReport(string code)
         {
             InitializeComponent();
-            this._CurrCode = code;
+            this._tempCode = code;
             cm_Report.SelectedIndex = 0;
         }
 
@@ -61,11 +62,11 @@ namespace text.doors.Detection
 
                 string[] name = fileName.Split('.');
 
-                string _name = name[0] + "_" + _CurrCode + "." + name[1];
+                string _name = name[0] + "_" + _tempCode + "." + name[1];
 
                 var saveExcelUrl = path.SelectedPath + "\\" + _name;
 
-                Model_dt_Settings settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_CurrCode);
+                Model_dt_Settings settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
 
                 if (settings == null)
                 {
@@ -99,7 +100,7 @@ namespace text.doors.Detection
             }
             catch (Exception ex)
             {
-                Log.Error("ExportReport.Eexport", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+                Logger.Error(ex);
                 MessageBox.Show("数据出现问题，导出失败!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 this.Close();
             }
@@ -260,58 +261,66 @@ namespace text.doors.Detection
         {
 
             int qmValue = 0;
-            if (settings != null && settings.dt_qm_Info.Count > 0)
+            try
             {
-                if (settings.dt_sm_Info.Count == 3)
+
+                if (settings != null && settings.dt_qm_Info.Count > 0)
                 {
-                    List<int> list = new List<int>() { int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[1].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[2].sm_Pa.ToString()) };
-                    list.Sort();
-
-                    int min = list[0], intermediate = list[1], max = list[2];
-                    //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
-                    //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
-                    //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
-
-                    //if ((maxlevel - intermediatelevel) > 2)
-                    //{
-                    //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
-                    //}
-
-                    //todo update
-                    int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
-                    int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
-                    int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
-
-                    if ((maxlevel - intermediatelevel) > 2)
+                    if (settings.dt_sm_Info.Count == 3)
                     {
+                        List<int> list = new List<int>() { int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[1].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[2].sm_Pa.ToString()) };
+                        list.Sort();
 
-                        foreach (var item in DefaultBase.AirtightLevel)
+                        int min = list[0], intermediate = list[1], max = list[2];
+                        //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
+                        //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                        //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
+
+                        //if ((maxlevel - intermediatelevel) > 2)
+                        //{
+                        //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                        //}
+
+                        //todo update
+                        int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                        int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                        int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+
+                        if ((maxlevel - intermediatelevel) > 2)
                         {
-                            if (item.Value == (intermediatelevel + 2))
+
+                            foreach (var item in DefaultBase.AirtightLevel)
                             {
-                                max = item.Key; break;
+                                if (item.Value == (intermediatelevel + 2))
+                                {
+                                    max = item.Key; break;
+                                }
                             }
                         }
+
+
+                        qmValue = (min + intermediate + max) / 3;
                     }
-
-
-                    qmValue = (min + intermediate + max) / 3;
-                }
-                else
-                {
-                    for (int i = 0; i < settings.dt_sm_Info.Count; i++)
+                    else
                     {
-                        if (string.IsNullOrWhiteSpace(settings.dt_sm_Info[0].sm_Pa))
+                        for (int i = 0; i < settings.dt_sm_Info.Count; i++)
                         {
-                            qmValue = 0;
-                            break;
+                            if (string.IsNullOrWhiteSpace(settings.dt_sm_Info[0].sm_Pa))
+                            {
+                                qmValue = 0;
+                                break;
+                            }
+                            qmValue += int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString());
                         }
-                        qmValue += int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString());
+                        qmValue = qmValue / settings.dt_sm_Info.Count;
                     }
-                    qmValue = qmValue / settings.dt_sm_Info.Count;
                 }
             }
-            return GetSMLevel(qmValue);
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
+            return Formula.GetWaterTightLevel(qmValue);
         }
 
         /// <summary>
@@ -323,53 +332,60 @@ namespace text.doors.Detection
         {
 
             int qmValue = 0;
-            if (settings != null && settings.dt_qm_Info.Count > 0)
+            try
             {
-                if (settings.dt_sm_Info.Count == 3)
+                if (settings != null && settings.dt_qm_Info.Count > 0)
                 {
-                    List<int> list = new List<int>() { int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[1].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[2].sm_Pa.ToString()) };
-                    list.Sort();
-
-                    int min = list[0], intermediate = list[1], max = list[2];
-
-                    //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
-                    //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
-                    //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
-
-                    //if ((maxlevel - intermediatelevel) > 2)
-                    //{
-                    //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
-                    //}
-                    //todo update
-                    int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
-                    int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
-                    int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
-
-                    if ((maxlevel - intermediatelevel) > 2)
+                    if (settings.dt_sm_Info.Count == 3)
                     {
-                        foreach (var item in DefaultBase.AirtightLevel)
+                        List<int> list = new List<int>() { int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[1].sm_Pa.ToString()), int.Parse(settings.dt_sm_Info[2].sm_Pa.ToString()) };
+                        list.Sort();
+
+                        int min = list[0], intermediate = list[1], max = list[2];
+
+                        //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
+                        //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                        //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
+
+                        //if ((maxlevel - intermediatelevel) > 2)
+                        //{
+                        //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                        //}
+                        //todo update
+                        int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                        int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                        int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+
+                        if ((maxlevel - intermediatelevel) > 2)
                         {
-                            if (item.Value == (intermediatelevel + 2))
+                            foreach (var item in DefaultBase.AirtightLevel)
                             {
-                                max = item.Key; break;
+                                if (item.Value == (intermediatelevel + 2))
+                                {
+                                    max = item.Key; break;
+                                }
                             }
                         }
+                        qmValue = (min + intermediate + max) / 3;
                     }
-                    qmValue = (min + intermediate + max) / 3;
-                }
-                else
-                {
-                    for (int i = 0; i < settings.dt_sm_Info.Count; i++)
+                    else
                     {
-                        if (string.IsNullOrWhiteSpace(settings.dt_sm_Info[0].sm_Pa))
+                        for (int i = 0; i < settings.dt_sm_Info.Count; i++)
                         {
-                            qmValue = 0;
-                            break;
+                            if (string.IsNullOrWhiteSpace(settings.dt_sm_Info[0].sm_Pa))
+                            {
+                                qmValue = 0;
+                                break;
+                            }
+                            qmValue += int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString());
                         }
-                        qmValue += int.Parse(settings.dt_sm_Info[0].sm_Pa.ToString());
+                        qmValue = qmValue / settings.dt_sm_Info.Count;
                     }
-                    qmValue = qmValue / settings.dt_sm_Info.Count;
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
             }
             return qmValue;
         }
@@ -409,134 +425,17 @@ namespace text.doors.Detection
         public int GetQM_MaxLevel(double qm_z_FC, double qm_f_FC, double qm_z_MJ, double qm_f_MJ)
         {
             int level_z_FJ = 0, level_f_FJ = 0, level_z_MJ = 0, level_f_MJ = 0;
-            level_z_FJ = GetFCLevel(qm_z_FC);
-            level_f_FJ = GetFCLevel(qm_f_FC);
-            level_z_MJ = GetMJLevel(qm_z_MJ);
-            level_f_MJ = GetMJLevel(qm_f_MJ);
+            level_z_FJ = Formula.GetStitchLengthLevel(qm_z_FC);
+            level_f_FJ = Formula.GetStitchLengthLevel(qm_f_FC);
+            level_z_MJ = Formula.GetAreaLevel(qm_z_MJ);
+            level_f_MJ = Formula.GetAreaLevel(qm_f_MJ);
 
             int[] arr = { level_z_FJ, level_f_FJ, level_z_MJ, level_f_MJ };
             ArrayList list = new ArrayList(arr);
             list.Sort();
             return Convert.ToInt32(list[0]);
         }
-
-        /// <summary>
-        /// 获取缝长分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetFCLevel(double value)
-        {
-            int res = 0;
-            if (4 >= value && value > 3.5)
-            {
-                res = 1;
-            }
-            else if (3.5 >= value && value > 3.0)
-            {
-                res = 2;
-            }
-            else if (3.0 >= value && value > 2.5)
-            {
-                res = 3;
-            }
-            else if (2.5 >= value && value > 2.0)
-            {
-                res = 4;
-            }
-            else if (2.0 >= value && value > 1.5)
-            {
-                res = 5;
-            }
-            else if (1.5 >= value && value > 1.0)
-            {
-                res = 6;
-            }
-            else if (1.0 >= value && value > 0.5)
-            {
-                res = 7;
-            }
-            else if (value <= 0.5)
-            {
-                res = 8;
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// 获取面积分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetMJLevel(double value)
-        {
-            int res = 0;
-            if (12 >= value && value > 10.5)
-            {
-                res = 1;
-            }
-            else if (10.5 >= value && value > 9.0)
-            {
-                res = 2;
-            }
-            else if (9.0 >= value && value > 7.5)
-            {
-                res = 3;
-            }
-            else if (7.5 >= value && value > 6.0)
-            {
-                res = 4;
-            }
-            else if (6.0 >= value && value > 4.5)
-            {
-                res = 5;
-            }
-            else if (4.5 >= value && value > 3.0)
-            {
-                res = 6;
-            }
-            else if (3.0 >= value && value > 1.5)
-            {
-                res = 7;
-            }
-            else if (value <= 1.5)
-            {
-                res = 8;
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// 获取水密分级
-        /// </summary>
-        /// <returns></returns>
-        public int GetSMLevel(int value)
-        {
-            int res = 0;
-            if (value >= 100 && value < 150)
-            {
-                res = 1;
-            }
-            else if (value >= 150 && value < 250)
-            {
-                res = 2;
-            }
-            else if (value >= 250 && value < 350)
-            {
-                res = 3;
-            }
-            else if (value >= 300 && value < 500)
-            {
-                res = 4;
-            }
-            else if (value >= 500 && value < 700)
-            {
-                res = 5;
-            }
-            else if (value >= 700)
-            {
-                res = 6;
-            }
-            return res;
-        }
+        
         #endregion
 
         #region 获取检测报告文档
