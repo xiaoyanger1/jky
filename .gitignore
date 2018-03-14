@@ -245,5 +245,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-bin
-obj
+/bin
+/obj
