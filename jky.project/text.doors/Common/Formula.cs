@@ -154,7 +154,7 @@ namespace text.doors.Common
         }
         #endregion
 
-        #region 
+        #region 获取分级指标缝长和面积
         /// <summary>
         /// 获取分级指标缝长和面积
         /// </summary>
