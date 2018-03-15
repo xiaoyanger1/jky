@@ -35,7 +35,7 @@ namespace text.doors.dal
         }
 
         /// <summary>
-        /// 添加气密信息
+        /// 更新气密信息
         /// </summary>
         /// <param name="mode"></param>
         public bool Update_qm_Info(Model_dt_qm_Info model)

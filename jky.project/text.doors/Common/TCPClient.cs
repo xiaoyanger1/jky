@@ -1212,7 +1212,7 @@ namespace text.doors.Common
         /// <summary>
         /// 发送正压开始
         /// </summary>
-        public bool SendKFYZYKS(ref bool IsSuccess)
+        public bool SendKFYZYKS()
         {
             if (!IsTCPLink)
                 return false;

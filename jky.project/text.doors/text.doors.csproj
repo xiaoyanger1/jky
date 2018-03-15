@@ -132,12 +132,16 @@
       <DependentUpon>WindPressureDetection.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Calibrating_Dict.cs" />
+    <Compile Include="Model\DataBase\Model_dt_kfy_Info.cs" />
     <Compile Include="Model\Pressure.cs" />
     <Compile Include="Default\BFMCommand.cs" />
     <Compile Include="Default\PublicEnum.cs" />
+    <Compile Include="Model\WindPressureDGV.cs" />
+    <Compile Include="Service\Class1.cs" />
     <Compile Include="Service\DAL_Demarcate_Dict.cs" />
     <Compile Include="Service\DAL_dt_BaseSet.cs" />
     <Compile Include="Service\DAL_dt_Info.cs" />
+    <Compile Include="Service\DAL_dt_kfy_Info.cs" />
     <Compile Include="Service\DAL_dt_qm_Info.cs" />
     <Compile Include="Service\DAL_dt_Settings.cs" />
     <Compile Include="Detection\ComplexAssessment.cs">
@@ -287,7 +291,9 @@
       <Name>Young.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sql\dt_kfy_Info_sql.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
