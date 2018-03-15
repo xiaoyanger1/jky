@@ -111,7 +111,10 @@
             "风速传感器      米/秒",
             "差压传感器      高 帕",
             "温度传感器      ℃",
-            "大气压力传感器 KPa"});
+            "大气压力传感器 KPa",
+            "位移传感器1      mm",
+            "位移传感器2      mm",
+            "位移传感器3      mm"});
             this.cbb_type.Location = new System.Drawing.Point(118, 23);
             this.cbb_type.Name = "cbb_type";
             this.cbb_type.Size = new System.Drawing.Size(122, 20);

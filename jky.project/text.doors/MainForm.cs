@@ -163,7 +163,6 @@ namespace text.doors
                 var windSpeed = tcpClient.GetFSXS(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
 
-
                 var diffPress = tcpClient.GetCYXS(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
 
@@ -171,6 +170,19 @@ namespace text.doors
                 lbl_dqylcgq.Text = temppressure.ToString();
                 lbl_fscgq.Text = windSpeed.ToString();
                 lbl_cycgq.Text = diffPress.ToString();
+
+
+                //抗风压
+                var displace1 = tcpClient.GetDisplace1(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+                var displace2 = tcpClient.GetDisplace2(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+                var displace3 = tcpClient.GetDisplace3(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+
+                lbl_Displace1.Text = displace1.ToString();
+                lbl_Displace2.Text = displace2.ToString();
+                lbl_Displace3.Text = displace3.ToString();
 
                 #endregion
 
@@ -232,21 +244,10 @@ namespace text.doors
             this.tsb_fewer.Visible = true;
         }
 
-        //监控
-        private void tsb_RealTimeSurveillance_Click(object sender, EventArgs e)
-        {
-            if (IsSetTong)
-                ShowRealTimeSurveillance();
-            else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-        }
 
         private void tsm_surveillance_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
-                ShowRealTimeSurveillance();
-            else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
         }
 
         //检测设定
@@ -421,5 +422,66 @@ namespace text.doors
             sm.TopMost = true;
         }
 
+        private void 水密监控ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+                ShowRealTimeSurveillance();
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void 气密监控ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+                ShowRealTimeSurveillance();
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void 抗风压监控ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+            {
+                ShowWindPressure();
+            }
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void tsb_watertight_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+                ShowRealTimeSurveillance();
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void tsbwatertight_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+                ShowRealTimeSurveillance();
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void tsb_WindPressure_Click(object sender, EventArgs e)
+        {
+            if (IsSetTong)
+            {
+                ShowWindPressure();
+            }
+            else
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        private void ShowWindPressure()
+        {
+            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong);
+            this.pl_showItem.Controls.Clear();
+            rts.TopLevel = false;
+            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            rts.Parent = this.pl_showItem;
+            rts.Show();
+        }
     }
 }

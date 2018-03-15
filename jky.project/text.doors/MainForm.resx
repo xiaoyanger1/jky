@@ -174,7 +174,35 @@
         QatQnTbdfXFvuX9PGs0vZgFEiZ/U7/cAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="tsb_RealTimeSurveillance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tsbwatertight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHMSURBVFhH7ZPtT1JhGIf5f/rQv+PW2vyQq+XaWPODy83R
+        2lpu2ZhazhwaEpuvyY4IKHk8GB584YgQEgh1RIphg5BcL7Ps6sD4mMkHWbWe3+f7fn7Xnt2XSeRX6XCs
+        SpaZMFZfHPvqG1zbefzJIureRyL5LySK30iXf/C6AplDSH04If7+GO3dZ4J6pTZb3XGGdAb8Ce7ManQ4
+        glL9+d+n3SZLBgDnDvA0yLUh+WyIdpti0DYJYFimXnN6/jjA1aGlpgFcGfSfDXDZ6m7aDVy6P9fAIV5s
+        udDa6+L6Qw+do0vcnVTpc2sM+2M4A0mmQxmk8B6erRy+7RzeSA731j6uDZ1JNY0j8Ko2W93pmQ7RNbbM
+        jUEvrQ9mqb5dbzk9t5wvsEyo3HNt0ueNYlOSTKzrzMfyKLslNvePiB98NX7gO8aHkD0CvXJCunTMTuET
+        WrZMMFVgMZrlWSiF/XmEAUmlZ1zGYvf9A0coAISGQkNhgdBQaCg0FAB/hYbm0ZVzBzA/CTSooZG2/kXJ
+        PKLQPb5GrzvKYzmFQ9WZ0d4y//LAKCixnD4kYBAomQrybpmFRJG5WIGpcK42W92xemLcntrgplHe9sjb
+        WPl/FpPpJ2AxoRHVVLDbAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="tsb_watertight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHMSURBVFhH7ZPtT1JhGIf5f/rQv+PW2vyQq+XaWPODy83R
+        2lpu2ZhazhwaEpuvyY4IKHk8GB584YgQEgh1RIphg5BcL7Ps6sD4mMkHWbWe3+f7fn7Xnt2XSeRX6XCs
+        SpaZMFZfHPvqG1zbefzJIureRyL5LySK30iXf/C6AplDSH04If7+GO3dZ4J6pTZb3XGGdAb8Ce7ManQ4
+        glL9+d+n3SZLBgDnDvA0yLUh+WyIdpti0DYJYFimXnN6/jjA1aGlpgFcGfSfDXDZ6m7aDVy6P9fAIV5s
+        udDa6+L6Qw+do0vcnVTpc2sM+2M4A0mmQxmk8B6erRy+7RzeSA731j6uDZ1JNY0j8Ko2W93pmQ7RNbbM
+        jUEvrQ9mqb5dbzk9t5wvsEyo3HNt0ueNYlOSTKzrzMfyKLslNvePiB98NX7gO8aHkD0CvXJCunTMTuET
+        WrZMMFVgMZrlWSiF/XmEAUmlZ1zGYvf9A0coAISGQkNhgdBQaCg0FAB/hYbm0ZVzBzA/CTSooZG2/kXJ
+        PKLQPb5GrzvKYzmFQ9WZ0d4y//LAKCixnD4kYBAomQrybpmFRJG5WIGpcK42W92xemLcntrgplHe9sjb
+        WPl/FpPpJ2AxoRHVVLDbAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="tsb_WindPressure.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHMSURBVFhH7ZPtT1JhGIf5f/rQv+PW2vyQq+XaWPODy83R

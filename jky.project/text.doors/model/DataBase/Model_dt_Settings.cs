@@ -16,7 +16,7 @@ namespace text.doors.Model.DataBase
         }
 
         public string dt_Code { get; set; }//编号
-        public string dt_Create { get; set; }
+        public DateTime dt_Create { get; set; }
         public string WeiTuoBianHao { get; set; } //委托编号
         public string WeiTuoDanWei { get; set; }  // 委托单位
         public string WeiTuoRen { get; set; }  // 委托人
@@ -59,6 +59,14 @@ namespace text.doors.Model.DataBase
         public string XingCaiGuiGe { get; set; } // 型材规格
         public string XingCaiBiHou { get; set; }// 型材壁厚
         public string XingCaiShengChanChang { get; set; } // 型材生产厂
+
+
+        public string GanJianChangDu { get; set; }//杆件长度
+        public string KangFengYaDengJiSheJiZhi { get; set; }//抗风压等级设计值
+        public string KangFengYaSheJiZhi { get; set; }//抗风压设计值
+        public string DanShanDanSuoDian { get; set; }//单扇单锁点
+
+
 
         public List<Model_dt_Info> dt_InfoList { get; set; }
         public List<Model_dt_qm_Info> dt_qm_Info { get; set; }

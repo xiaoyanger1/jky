@@ -103,6 +103,13 @@ namespace text.doors.Default
         public const string D = "D2103";
 
 
+        public const string 位移1 = "";
+
+        public const string 位移2 = "";
+
+        public const string 位移3 = "";
+
+
         private static int m_10_Min = 0;//M命令十进制最小值
         private static int m_16_Min = 2048;//M命令十六进制最小值
         private static int d_10_Min = 0;//D命令十进制最小值

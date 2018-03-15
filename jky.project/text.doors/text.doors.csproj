@@ -125,6 +125,12 @@
     <Compile Include="Detection\SystemManager.Designer.cs">
       <DependentUpon>SystemManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Detection\WindPressureDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Detection\WindPressureDetection.Designer.cs">
+      <DependentUpon>WindPressureDetection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Calibrating_Dict.cs" />
     <Compile Include="Model\Pressure.cs" />
     <Compile Include="Default\BFMCommand.cs" />
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Detection\SystemManager.resx">
       <DependentUpon>SystemManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Detection\WindPressureDetection.resx">
+      <DependentUpon>WindPressureDetection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

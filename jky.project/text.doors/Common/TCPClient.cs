@@ -1052,5 +1052,105 @@ namespace text.doors.Common
             }
             return res;
         }
+
+        /// <summary>
+        /// 获取位移传感器1
+        /// </summary>
+        public double GetDisplace1(ref bool IsSuccess)
+        {
+            double res = 0;
+            try
+            {
+                if (!IsTCPLink)
+                {
+                    IsSuccess = false;
+                    return res;
+                }
+                lock (_MASTER)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移1);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    //todo:位移标定
+                }
+                IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                IsSuccess = false;
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// 获取位移传感器2
+        /// </summary>
+        public double GetDisplace2(ref bool IsSuccess)
+        {
+            double res = 0;
+            try
+            {
+                if (!IsTCPLink)
+                {
+                    IsSuccess = false;
+                    return res;
+                }
+                lock (_MASTER)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移2);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    //todo:位移标定
+                }
+                IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                IsSuccess = false;
+            }
+
+            return res;
+        }
+
+
+        /// <summary>
+        /// 获取位移传感器3
+        /// </summary>
+        public double GetDisplace3(ref bool IsSuccess)
+        {
+            double res = 0;
+            try
+            {
+                if (!IsTCPLink)
+                {
+                    IsSuccess = false;
+                    return res;
+                }
+                lock (_MASTER)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移3);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    //todo:位移标定
+                }
+                IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                IsSuccess = false;
+            }
+
+            return res;
+        }
+
+
     }
+
 }

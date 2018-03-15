@@ -53,3 +53,4 @@ F:\jky\jky.project\text.doors\bin\Debug\门窗现场三性检测.pdb
 F:\jky\jky.project\text.doors\bin\Debug\log4net.xml
 F:\jky\jky.project\text.doors\obj\Debug\门窗现场三性检测.exe
 F:\jky\jky.project\text.doors\obj\Debug\门窗现场三性检测.pdb
+F:\jky\jky.project\text.doors\obj\Debug\text.doors.Detection.WindPressureDetection.resources

@@ -137,6 +137,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_JianYanBianHao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_kangfengyashejizhi = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.txt_ganjianchadu = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txt_KangFengyadengjishejizhi = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.cbb_danshandansuodian = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.检验参数设置.SuspendLayout();
             this.SuspendLayout();
@@ -147,12 +155,20 @@
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(948, 598);
+            this.tabControl1.Size = new System.Drawing.Size(948, 631);
             this.tabControl1.TabIndex = 4;
             // 
             // 检验参数设置
             // 
             this.检验参数设置.BackColor = System.Drawing.Color.White;
+            this.检验参数设置.Controls.Add(this.cbb_danshandansuodian);
+            this.检验参数设置.Controls.Add(this.label61);
+            this.检验参数设置.Controls.Add(this.txt_KangFengyadengjishejizhi);
+            this.检验参数设置.Controls.Add(this.label54);
+            this.检验参数设置.Controls.Add(this.txt_ganjianchadu);
+            this.检验参数设置.Controls.Add(this.label60);
+            this.检验参数设置.Controls.Add(this.txt_kangfengyashejizhi);
+            this.检验参数设置.Controls.Add(this.label59);
             this.检验参数设置.Controls.Add(this.label19);
             this.检验参数设置.Controls.Add(this.label13);
             this.检验参数设置.Controls.Add(this.label53);
@@ -263,7 +279,7 @@
             this.检验参数设置.Location = new System.Drawing.Point(4, 22);
             this.检验参数设置.Name = "检验参数设置";
             this.检验参数设置.Padding = new System.Windows.Forms.Padding(3);
-            this.检验参数设置.Size = new System.Drawing.Size(940, 572);
+            this.检验参数设置.Size = new System.Drawing.Size(940, 605);
             this.检验参数设置.TabIndex = 0;
             this.检验参数设置.Text = "检验参数设置";
             // 
@@ -271,7 +287,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(266, 377);
+            this.label19.Location = new System.Drawing.Point(266, 432);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(72, 16);
             this.label19.TabIndex = 209;
@@ -291,7 +307,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label53.Location = new System.Drawing.Point(265, 432);
+            this.label53.Location = new System.Drawing.Point(265, 487);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(80, 16);
             this.label53.TabIndex = 207;
@@ -301,7 +317,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label39.Location = new System.Drawing.Point(265, 403);
+            this.label39.Location = new System.Drawing.Point(265, 458);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(80, 16);
             this.label39.TabIndex = 206;
@@ -377,7 +393,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label33.Location = new System.Drawing.Point(266, 354);
+            this.label33.Location = new System.Drawing.Point(266, 409);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(72, 16);
             this.label33.TabIndex = 194;
@@ -401,14 +417,14 @@
             "JGJ/T 177-2009",
             "JGJ/T 132-2009",
             "JGT211-2007"});
-            this.cb_JianYanYiJu.Location = new System.Drawing.Point(129, 464);
+            this.cb_JianYanYiJu.Location = new System.Drawing.Point(129, 519);
             this.cb_JianYanYiJu.Name = "cb_JianYanYiJu";
-            this.cb_JianYanYiJu.Size = new System.Drawing.Size(488, 20);
+            this.cb_JianYanYiJu.Size = new System.Drawing.Size(494, 20);
             this.cb_JianYanYiJu.TabIndex = 190;
             // 
             // btn_Ok
             // 
-            this.btn_Ok.Location = new System.Drawing.Point(850, 504);
+            this.btn_Ok.Location = new System.Drawing.Point(851, 557);
             this.btn_Ok.Name = "btn_Ok";
             this.btn_Ok.Size = new System.Drawing.Size(66, 36);
             this.btn_Ok.TabIndex = 103;
@@ -418,7 +434,7 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(778, 504);
+            this.btn_delete.Location = new System.Drawing.Point(779, 557);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(66, 36);
             this.btn_delete.TabIndex = 99;
@@ -429,14 +445,14 @@
             // comboBox6
             // 
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(212, 464);
+            this.comboBox6.Location = new System.Drawing.Point(212, 519);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(380, 20);
             this.comboBox6.TabIndex = 180;
             // 
             // btn_select
             // 
-            this.btn_select.Location = new System.Drawing.Point(695, 504);
+            this.btn_select.Location = new System.Drawing.Point(696, 557);
             this.btn_select.Name = "btn_select";
             this.btn_select.Size = new System.Drawing.Size(74, 36);
             this.btn_select.TabIndex = 101;
@@ -463,7 +479,7 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(627, 504);
+            this.btn_add.Location = new System.Drawing.Point(628, 557);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(64, 36);
             this.btn_add.TabIndex = 102;
@@ -532,9 +548,13 @@
             // 
             this.cb_JianYanXiangMu.FormattingEnabled = true;
             this.cb_JianYanXiangMu.Items.AddRange(new object[] {
+            "气密、水密、抗风压性能检测",
             "气密性能检测",
             "水密性能检测",
-            "气密性能及水密性能检测"});
+            "抗风压性能检测",
+            "气密性能及水密性能检测",
+            "气密性能及抗风压性能检测",
+            "水密性能及抗风压性能检测"});
             this.cb_JianYanXiangMu.Location = new System.Drawing.Point(444, 105);
             this.cb_JianYanXiangMu.Name = "cb_JianYanXiangMu";
             this.cb_JianYanXiangMu.Size = new System.Drawing.Size(174, 20);
@@ -555,7 +575,7 @@
             // cb_DangQianDangHao
             // 
             this.cb_DangQianDangHao.FormattingEnabled = true;
-            this.cb_DangQianDangHao.Location = new System.Drawing.Point(129, 298);
+            this.cb_DangQianDangHao.Location = new System.Drawing.Point(129, 324);
             this.cb_DangQianDangHao.Name = "cb_DangQianDangHao";
             this.cb_DangQianDangHao.Size = new System.Drawing.Size(209, 20);
             this.cb_DangQianDangHao.TabIndex = 184;
@@ -791,7 +811,7 @@
             // 
             // btn_QiMiFuYaDanWeiMianJiSheJiZhi
             // 
-            this.btn_QiMiFuYaDanWeiMianJiSheJiZhi.Location = new System.Drawing.Point(215, 431);
+            this.btn_QiMiFuYaDanWeiMianJiSheJiZhi.Location = new System.Drawing.Point(215, 486);
             this.btn_QiMiFuYaDanWeiMianJiSheJiZhi.Name = "btn_QiMiFuYaDanWeiMianJiSheJiZhi";
             this.btn_QiMiFuYaDanWeiMianJiSheJiZhi.Size = new System.Drawing.Size(45, 21);
             this.btn_QiMiFuYaDanWeiMianJiSheJiZhi.TabIndex = 153;
@@ -800,7 +820,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(58, 436);
+            this.label20.Location = new System.Drawing.Point(58, 491);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(161, 12);
             this.label20.TabIndex = 152;
@@ -808,7 +828,7 @@
             // 
             // btn_QiMiZhengYaDanWeiMianJiSheJiZhi
             // 
-            this.btn_QiMiZhengYaDanWeiMianJiSheJiZhi.Location = new System.Drawing.Point(215, 404);
+            this.btn_QiMiZhengYaDanWeiMianJiSheJiZhi.Location = new System.Drawing.Point(215, 459);
             this.btn_QiMiZhengYaDanWeiMianJiSheJiZhi.Name = "btn_QiMiZhengYaDanWeiMianJiSheJiZhi";
             this.btn_QiMiZhengYaDanWeiMianJiSheJiZhi.Size = new System.Drawing.Size(45, 21);
             this.btn_QiMiZhengYaDanWeiMianJiSheJiZhi.TabIndex = 151;
@@ -817,7 +837,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(58, 409);
+            this.label21.Location = new System.Drawing.Point(58, 464);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(161, 12);
             this.label21.TabIndex = 150;
@@ -842,7 +862,7 @@
             // 
             // btn_ZhengYaQiMiDengJiSheJiZhi
             // 
-            this.btn_ZhengYaQiMiDengJiSheJiZhi.Location = new System.Drawing.Point(506, 349);
+            this.btn_ZhengYaQiMiDengJiSheJiZhi.Location = new System.Drawing.Point(506, 348);
             this.btn_ZhengYaQiMiDengJiSheJiZhi.Name = "btn_ZhengYaQiMiDengJiSheJiZhi";
             this.btn_ZhengYaQiMiDengJiSheJiZhi.Size = new System.Drawing.Size(112, 21);
             this.btn_ZhengYaQiMiDengJiSheJiZhi.TabIndex = 147;
@@ -851,7 +871,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(373, 352);
+            this.label23.Location = new System.Drawing.Point(373, 354);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(135, 12);
             this.label23.TabIndex = 146;
@@ -1007,7 +1027,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(58, 467);
+            this.label18.Location = new System.Drawing.Point(58, 522);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(70, 12);
             this.label18.TabIndex = 129;
@@ -1015,7 +1035,7 @@
             // 
             // btn_ShuiMiSheJiZhi
             // 
-            this.btn_ShuiMiSheJiZhi.Location = new System.Drawing.Point(447, 402);
+            this.btn_ShuiMiSheJiZhi.Location = new System.Drawing.Point(450, 402);
             this.btn_ShuiMiSheJiZhi.Name = "btn_ShuiMiSheJiZhi";
             this.btn_ShuiMiSheJiZhi.Size = new System.Drawing.Size(148, 21);
             this.btn_ShuiMiSheJiZhi.TabIndex = 128;
@@ -1032,7 +1052,7 @@
             // 
             // btn_QiMiFuYaDanWeiFengChangSheJiZhi
             // 
-            this.btn_QiMiFuYaDanWeiFengChangSheJiZhi.Location = new System.Drawing.Point(215, 376);
+            this.btn_QiMiFuYaDanWeiFengChangSheJiZhi.Location = new System.Drawing.Point(215, 431);
             this.btn_QiMiFuYaDanWeiFengChangSheJiZhi.Name = "btn_QiMiFuYaDanWeiFengChangSheJiZhi";
             this.btn_QiMiFuYaDanWeiFengChangSheJiZhi.Size = new System.Drawing.Size(45, 21);
             this.btn_QiMiFuYaDanWeiFengChangSheJiZhi.TabIndex = 126;
@@ -1041,7 +1061,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(58, 381);
+            this.label16.Location = new System.Drawing.Point(58, 436);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(161, 12);
             this.label16.TabIndex = 125;
@@ -1049,7 +1069,7 @@
             // 
             // btn_QiMiZhengYaDanWeiFengChangSheJiZhi
             // 
-            this.btn_QiMiZhengYaDanWeiFengChangSheJiZhi.Location = new System.Drawing.Point(215, 349);
+            this.btn_QiMiZhengYaDanWeiFengChangSheJiZhi.Location = new System.Drawing.Point(215, 404);
             this.btn_QiMiZhengYaDanWeiFengChangSheJiZhi.Name = "btn_QiMiZhengYaDanWeiFengChangSheJiZhi";
             this.btn_QiMiZhengYaDanWeiFengChangSheJiZhi.Size = new System.Drawing.Size(45, 21);
             this.btn_QiMiZhengYaDanWeiFengChangSheJiZhi.TabIndex = 124;
@@ -1058,7 +1078,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(58, 354);
+            this.label15.Location = new System.Drawing.Point(58, 409);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(161, 12);
             this.label15.TabIndex = 123;
@@ -1066,7 +1086,7 @@
             // 
             // btn_ShuiMiDengJiSheJiZhi
             // 
-            this.btn_ShuiMiDengJiSheJiZhi.Location = new System.Drawing.Point(173, 322);
+            this.btn_ShuiMiDengJiSheJiZhi.Location = new System.Drawing.Point(173, 379);
             this.btn_ShuiMiDengJiSheJiZhi.Name = "btn_ShuiMiDengJiSheJiZhi";
             this.btn_ShuiMiDengJiSheJiZhi.Size = new System.Drawing.Size(165, 21);
             this.btn_ShuiMiDengJiSheJiZhi.TabIndex = 122;
@@ -1075,7 +1095,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(58, 327);
+            this.label14.Location = new System.Drawing.Point(58, 384);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(109, 12);
             this.label14.TabIndex = 121;
@@ -1085,7 +1105,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(58, 300);
+            this.label12.Location = new System.Drawing.Point(58, 326);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(70, 12);
             this.label12.TabIndex = 120;
@@ -1256,11 +1276,83 @@
             this.label1.TabIndex = 97;
             this.label1.Text = "检验编号：";
             // 
+            // txt_kangfengyashejizhi
+            // 
+            this.txt_kangfengyashejizhi.Location = new System.Drawing.Point(506, 431);
+            this.txt_kangfengyashejizhi.Name = "txt_kangfengyashejizhi";
+            this.txt_kangfengyashejizhi.Size = new System.Drawing.Size(117, 21);
+            this.txt_kangfengyashejizhi.TabIndex = 211;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label59.Location = new System.Drawing.Point(373, 436);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(96, 12);
+            this.label59.TabIndex = 210;
+            this.label59.Text = "抗风压设计值：";
+            // 
+            // txt_ganjianchadu
+            // 
+            this.txt_ganjianchadu.Location = new System.Drawing.Point(129, 293);
+            this.txt_ganjianchadu.Name = "txt_ganjianchadu";
+            this.txt_ganjianchadu.Size = new System.Drawing.Size(205, 21);
+            this.txt_ganjianchadu.TabIndex = 213;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label60.Location = new System.Drawing.Point(58, 298);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(70, 12);
+            this.label60.TabIndex = 212;
+            this.label60.Text = "杆件长度：";
+            // 
+            // txt_KangFengyadengjishejizhi
+            // 
+            this.txt_KangFengyadengjishejizhi.Location = new System.Drawing.Point(173, 352);
+            this.txt_KangFengyadengjishejizhi.Name = "txt_KangFengyadengjishejizhi";
+            this.txt_KangFengyadengjishejizhi.Size = new System.Drawing.Size(165, 21);
+            this.txt_KangFengyadengjishejizhi.TabIndex = 215;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label54.Location = new System.Drawing.Point(58, 357);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(122, 12);
+            this.label54.TabIndex = 214;
+            this.label54.Text = "抗风压等级设计值：";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label61.Location = new System.Drawing.Point(647, 379);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(83, 12);
+            this.label61.TabIndex = 216;
+            this.label61.Text = "单扇单锁点：";
+            // 
+            // cbb_danshandansuodian
+            // 
+            this.cbb_danshandansuodian.FormattingEnabled = true;
+            this.cbb_danshandansuodian.Items.AddRange(new object[] {
+            "是",
+            "否"});
+            this.cbb_danshandansuodian.Location = new System.Drawing.Point(755, 376);
+            this.cbb_danshandansuodian.Name = "cbb_danshandansuodian";
+            this.cbb_danshandansuodian.Size = new System.Drawing.Size(174, 20);
+            this.cbb_danshandansuodian.TabIndex = 217;
+            // 
             // DetectionSet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(950, 600);
+            this.ClientSize = new System.Drawing.Size(951, 641);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -1385,6 +1477,13 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label19;
-
+        private System.Windows.Forms.TextBox txt_KangFengyadengjishejizhi;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox txt_ganjianchadu;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox txt_kangfengyashejizhi;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.ComboBox cbb_danshandansuodian;
+        private System.Windows.Forms.Label label61;
     }
 }

@@ -38,6 +38,13 @@ namespace text.doors.Detection
         private void btn_Ok_Click(object sender, EventArgs e)
         {
             string code = btn_JianYanBianHao.Text;
+
+            if (string.IsNullOrWhiteSpace(btn_GuiGeShuLiang.Text))
+            {
+                MessageBox.Show("请输入规格数量！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(cb_DangQianDangHao.Text))
             {
                 MessageBox.Show("请设置樘号！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -53,20 +60,28 @@ namespace text.doors.Detection
             DAL_dt_Settings dal = new DAL_dt_Settings();
 
 
-            var setting = GetSettings();
-            var info = Getdt_Info(setting.dt_Code);
-            if (dal.AddSettings(setting, info))
+            try
             {
-                MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                //获取樘号
-                deleBottomTypeEvent(GetBottomType(true));
+                var setting = GetSettings();
+                var info = Getdt_Info(setting.dt_Code);
+                if (dal.AddSettings(setting, info))
+                {
+                    MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //获取樘号
+                    deleBottomTypeEvent(GetBottomType(true));
 
-                this.btn_add.Enabled = true;
-                this.btn_select.Enabled = true;
-                this.btn_delete.Enabled = true;
-                this.btn_Ok.Enabled = true;
+                    this.btn_add.Enabled = true;
+                    this.btn_select.Enabled = true;
+                    this.btn_delete.Enabled = true;
+                    this.btn_Ok.Enabled = true;
 
-                this.Close();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("添加异常！", "异常", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                Logger.Error(ex);
             }
         }
 
@@ -169,6 +184,11 @@ namespace text.doors.Detection
                     btn_XingCaiBiHou.Text = dt.Rows[0]["XingCaiBiHou"].ToString();
                     btn_XingCaiShengChanChang.Text = dt.Rows[0]["XingCaiShengChanChang"].ToString();
 
+                    txt_ganjianchadu.Text = dt.Rows[0]["GanJianChangDu"].ToString();
+                    txt_KangFengyadengjishejizhi.Text = dt.Rows[0]["KangFengYaDengJiSheJiZhi"].ToString();
+                    txt_kangfengyashejizhi.Text = dt.Rows[0]["KangFengYaSheJiZhi"].ToString();
+                    cbb_danshandansuodian.Text = dt.Rows[0]["DanShanDanSuoDian"].ToString();
+
                     _tempCode = dt.Rows[0]["dt_Code"].ToString();
                     _tempTong = dt.Rows[0]["info_DangH"].ToString();
                     cb_DangQianDangHao.Text = dt.Rows[0]["info_DangH"].ToString();
@@ -196,7 +216,7 @@ namespace text.doors.Detection
         private Model_dt_Settings GetSettings()
         {
             Model_dt_Settings model = new Model_dt_Settings();
-            model.dt_Create = DateTime.Now.ToString();
+            model.dt_Create = DateTime.Now;
             model.dt_Code = this.btn_JianYanBianHao.Text;
             model.WeiTuoBianHao = this.btn_WeiTuoBianHao.Text;
             model.WeiTuoDanWei = this.btn_WeiTuoDanWei.Text;
@@ -240,6 +260,10 @@ namespace text.doors.Detection
             model.XingCaiGuiGe = this.btn_XingCaiGuiGe.Text;
             model.XingCaiBiHou = this.btn_XingCaiBiHou.Text;
             model.XingCaiShengChanChang = this.btn_XingCaiShengChanChang.Text;
+            model.GanJianChangDu = this.txt_ganjianchadu.Text;
+            model.KangFengYaDengJiSheJiZhi = this.txt_KangFengyadengjishejizhi.Text;
+            model.KangFengYaSheJiZhi = this.txt_kangfengyashejizhi.Text;
+            model.DanShanDanSuoDian = this.cbb_danshandansuodian.Text;
             return model;
         }
 

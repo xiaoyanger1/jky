@@ -57,7 +57,8 @@ namespace text.doors.Detection
             if (name == "差压传感器      高 帕")
             {
                 res = _tcpConnection.GetCYXS(ref IsSuccess);
-            } if (name == "温度传感器      ℃")
+            }
+            if (name == "温度传感器      ℃")
             {
                 res = _tcpConnection.GetWDXS(ref IsSuccess);
             }
@@ -65,6 +66,19 @@ namespace text.doors.Detection
             {
                 res = _tcpConnection.GetDQYLXS(ref IsSuccess);
             }
+            if (name == "位移传感器1      mm")
+            {
+                res = _tcpConnection.GetDisplace1(ref IsSuccess);
+            }
+            if (name == "位移传感器2      mm")
+            {
+                res = _tcpConnection.GetDisplace2(ref IsSuccess);
+            }
+            if (name == "位移传感器3      mm")
+            {
+                res = _tcpConnection.GetDisplace3(ref IsSuccess);
+            }
+
             lvi.Text = res.ToString();
             lvi.SubItems.Add(DateTime.Now.ToString("HH:mm:ss"));
 
@@ -174,7 +188,8 @@ namespace text.doors.Detection
             if (name == "差压传感器      高 帕")
             {
                 enum_Demarcate = PublicEnum.DemarcateType.enum_差压传感器;
-            } if (name == "温度传感器      ℃")
+            }
+            if (name == "温度传感器      ℃")
             {
                 enum_Demarcate = PublicEnum.DemarcateType.enum_温度传感器;
             }
@@ -182,6 +197,19 @@ namespace text.doors.Detection
             {
                 enum_Demarcate = PublicEnum.DemarcateType.enum_大气压力传感器;
             }
+            if (name == "位移传感器1      mm")
+            {
+                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器1;
+            }
+            if (name == "位移传感器2      mm")
+            {
+                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器2;
+            }
+            if (name == "位移传感器3      mm")
+            {
+                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器3;
+            }
+
             return enum_Demarcate;
         }
 

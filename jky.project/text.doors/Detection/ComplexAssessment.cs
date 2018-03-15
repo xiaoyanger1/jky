@@ -280,6 +280,8 @@ namespace text.doors.Detection
             return GetQM_MaxLevel(qm_z_FC, qm_f_FC, qm_z_MJ, qm_f_MJ);
         }
 
+       
+
 
         /// <summary>
         /// 获取气密最大等级

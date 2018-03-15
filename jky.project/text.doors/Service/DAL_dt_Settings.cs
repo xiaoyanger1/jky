@@ -70,13 +70,17 @@ namespace text.doors.dal
                                         XingCaiBiHou ,
                                         XingCaiShengChanChang,
                                         dt_Code,
-                                        dt_Create
+                                        dt_Create,
+                                        GanJianChangDu,
+                                        KangFengYaDengJiSheJiZhi,
+                                        KangFengYaSheJiZhi,
+                                        DanShanDanSuoDian
                                         )
                                         VALUES
                                         (
                                         '{0}','{1}','{2}' ,'{3}','{4}' , '{5}' , '{6}','{7}' ,'{8}' ,'{9}' , '{10}','{11}'  ,  '{12}' ,'{13}' ,'{14}' ,'{15}'  ,'{16}' ,'{17}','{18}' , '{19}' ,
                                         '{20}' , '{21}' ,'{22}' ,'{23}','{24}' ,'{25}' ,'{26}' ,'{27}','{28}' , '{29}' ,'{30}','{31}' ,'{32}','{33}','{34}' ,'{35}' ,'{36}' ,'{37}' ,'{38}' ,
-                                        '{39}' ,'{40}' ,'{41}','{42}','{43}')",
+                                        '{39}' ,'{40}' ,'{41}','{42}',datetime('now'),'{43}','{44}','{45}','{46}')",
                                         model.WeiTuoBianHao,
                                         model.WeiTuoDanWei,
                                         model.WeiTuoRen,
@@ -120,7 +124,11 @@ namespace text.doors.dal
                                         model.XingCaiBiHou,
                                         model.XingCaiShengChanChang,
                                         model.dt_Code,
-                                        model.dt_Create);
+                                        model.GanJianChangDu,
+                                        model.KangFengYaDengJiSheJiZhi,
+                                        model.KangFengYaSheJiZhi,
+                                        model.DanShanDanSuoDian
+                                        );
             res = SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
             #endregion
             res = new DAL_dt_Info().Adddt_dt_Info(info, model.dt_Code);
@@ -146,7 +154,7 @@ namespace text.doors.dal
             string sql = "";
             if (string.IsNullOrWhiteSpace(code))
             {
-                sql = @"select t.*,t1.info_DangH from (select * from dt_Settings order by  date(replace(dt_Create,'/','-')) desc,time(replace(dt_Create,'/','-')) desc   LIMIT(1) ) t
+                sql = @"select t.*,t1.info_DangH from (select * from dt_Settings order by  dt_Create desc  LIMIT(1) ) t
                         join dt_Info  t1 on t.dt_Code = t1.dt_Code
                         where t1.Is_Check = 1";
             }
@@ -242,7 +250,11 @@ from dt_Settings  t
                     dt_Settings.XingCaiBiHou = dt.Rows[i]["XingCaiBiHou"].ToString();
                     dt_Settings.XingCaiShengChanChang = dt.Rows[i]["XingCaiShengChanChang"].ToString();
                     dt_Settings.dt_Code = dt.Rows[i]["dt_Code"].ToString();
-                    dt_Settings.dt_Create = dt.Rows[i]["dt_Create"].ToString();
+                    dt_Settings.dt_Create = DateTime.Parse(dt.Rows[i]["dt_Create"].ToString());
+                    dt_Settings.GanJianChangDu = dt.Rows[i]["GanJianChangDu"].ToString();
+                    dt_Settings.KangFengYaDengJiSheJiZhi = dt.Rows[i]["KangFengYaDengJiSheJiZhi"].ToString();
+                    dt_Settings.KangFengYaSheJiZhi = dt.Rows[i]["KangFengYaSheJiZhi"].ToString();
+                    dt_Settings.DanShanDanSuoDian = dt.Rows[i]["DanShanDanSuoDian"].ToString();
                 }
 
                 dt_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
