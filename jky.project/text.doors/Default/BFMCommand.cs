@@ -54,8 +54,8 @@ namespace text.doors.Default
         public const string 负压开始 = "M53";
         public const string 水密性预备加压 = "M54";
         public const string 水密性开始 = "M45";
-        public const string 以此加压数值 = "D550";
-        public const string 以此加压 = "M46";
+        public const string 依次加压数值 = "D550";
+        public const string 依次加压 = "M46";
         public const string 结束 = "M40";
         public const string 下一级 = "M42";
         public const string 急停 = "M120";
@@ -104,10 +104,24 @@ namespace text.doors.Default
 
 
         public const string 位移1 = "";
-
         public const string 位移2 = "";
-
         public const string 位移3 = "";
+
+        public const string 风压正压预备 = "";
+        public const string 风压正压开始 = "";
+        public const string 风压负压预备 = "";
+        public const string 风压负压开始 = "";
+        public const string 位移置零 = "";
+
+        public const string 反复数值 = "";
+        public const string 正反复 = "";
+        public const string 负反复 = "";
+
+        public const string 安全数值 = "";
+        public const string 正安全 = "";
+        public const string 负安全= "";
+
+
 
 
         private static int m_10_Min = 0;//M命令十进制最小值

@@ -952,10 +952,10 @@ namespace text.doors.Common
                 if (!res)
                     return false;
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.以此加压数值);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.依次加压数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.以此加压);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.依次加压);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
                 return true;
@@ -1117,6 +1117,7 @@ namespace text.doors.Common
             return res;
         }
 
+        #region 风压
 
         /// <summary>
         /// 获取位移传感器3
@@ -1136,8 +1137,8 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移3);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                     //todo:位移标定
+                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                 }
                 IsSuccess = true;
             }
@@ -1149,6 +1150,269 @@ namespace text.doors.Common
 
             return res;
         }
+
+        /// <summary>
+        /// 设置位移归零
+        /// </summary>
+        public bool SendWYGL(bool logon = false)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                lock (_MASTER)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移置零);
+                    bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (readCoils[0])
+                        _MASTER.WriteSingleCoil(_StartAddress, false);
+                    else
+                    {
+                        if (logon == false)
+                        {
+                            _MASTER.WriteSingleCoil(_StartAddress, true);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 设置抗风压正压预备
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public bool SetKFYZYYB()
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                    return false;
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压正压预备);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 发送正压开始
+        /// </summary>
+        public bool SendKFYZYKS(ref bool IsSuccess)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                {
+                    return false;
+                }
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压正压开始);
+                _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
+                _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 发送抗风压负压预备
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public bool SendKFYFYYB()
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendFYF();
+                if (!res)
+                {
+                    return false;
+                }
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压负压预备);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// 发送抗风压负压开始
+        /// </summary>
+        public bool SendKFYFYKS()
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendFYF();
+                if (!res)
+                {
+                    return false;
+                }
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压负压开始);
+                _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
+                _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// 设置正反复
+        /// </summary>
+        public bool SendZFF(double value)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                    return false;
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.反复数值);
+                _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+        }
+        /// <summary>
+        /// 设置负反复
+        /// </summary>
+        public bool SendFFF(double value)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                    return false;
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.反复数值);
+                _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+
+        }
+
+
+        /// <summary>
+        /// 设置正安全
+        /// </summary>
+        public bool SendZAQ(double value)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                    return false;
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.安全数值);
+                _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+        }
+        /// <summary>
+        /// 设置负安全
+        /// </summary>
+        public bool SendFAQ(double value)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                var res = SendZYF();
+                if (!res)
+                    return false;
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.安全数值);
+                _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
+
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全);
+                _MASTER.WriteSingleCoil(_StartAddress, false);
+                _MASTER.WriteSingleCoil(_StartAddress, true);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+
+        }
+
+
+
+        #endregion
+
+
+
 
 
     }
