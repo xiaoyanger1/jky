@@ -718,7 +718,7 @@ namespace text.doors.Detection
             model.sm_Remark = txt_desc.Text;
             if (new DAL_dt_sm_Info().Add(model))
             {
-                MessageBox.Show("处理成功");
+                MessageBox.Show("处理成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
         #endregion

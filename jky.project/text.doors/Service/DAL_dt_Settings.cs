@@ -134,9 +134,8 @@ namespace text.doors.dal
             #region 添加实验樘号记录
             if (res)
             {
-                string infoSql = "select *from dt_Info where info_DangH = '" + tong + "' and dt_Code='" + model.dt_Code + "'";
-                var row = SQLiteHelper.ExecuteNonQuery(sql);
-                if (row == 0)
+                var table = SQLiteHelper.ExecuteDataRow("select * from dt_Info where info_DangH = '" + tong + "' and dt_Code = '" + model.dt_Code + "'").Table;
+                if (table == null || table.Rows.Count == 0)
                 {
                     sql = string.Format("insert into dt_Info (info_DangH,info_Create,dt_Code,Airtight,Watertight,WindPressure) values('{0}',datetime('now'),'{1}',0,0,0)", tong, model.dt_Code);
                     return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
@@ -158,14 +157,13 @@ namespace text.doors.dal
             if (string.IsNullOrWhiteSpace(code))
             {
                 sql = @"select t.*,t1.info_DangH from (select * from dt_Settings order by  dt_Create desc  LIMIT(1) ) t
-                        join dt_Info  t1 on t.dt_Code = t1.dt_Code
-                        where t1.Is_Check = 1";
+                        join dt_Info  t1 on t.dt_Code = t1.dt_Code";
             }
             else
             {
                 sql = @"select t.*,t1.info_DangH from dt_Settings  t
                             join dt_Info  t1 on t.dt_Code = t1.dt_Code
-                            where t.dt_Code ='" + code + "' and t1.Is_Check = 1 ";
+                            where t.dt_Code ='" + code + "'";
             }
             DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
             if (dr == null)

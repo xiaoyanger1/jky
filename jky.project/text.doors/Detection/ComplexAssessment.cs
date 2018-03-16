@@ -435,7 +435,7 @@ namespace text.doors.Detection
                 }
 
                 #endregion
-                MessageBox.Show("生成成功");
+                MessageBox.Show("生成成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             catch (Exception ex)
             {

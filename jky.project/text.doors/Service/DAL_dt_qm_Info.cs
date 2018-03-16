@@ -90,20 +90,20 @@ namespace text.doors.dal
             return dr.Table;
         }
 
-        public void AddSM_QM(List<Model_dt_qm_Info> qmModel, List<Model_dt_sm_Info> smModel, PublicEnum.DetectionItem? enum_DetectionItem)
+        public void AddSM_QM(List<Model_dt_qm_Info> qm, List<Model_dt_sm_Info> sm, PublicEnum.DetectionItem? enum_DetectionItem)
         {
             if (enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
-                for (int i = 0; i < qmModel.Count; i++)
+                for (int i = 0; i < qm.Count; i++)
                 {
-                    Update_qm_Info(qmModel[i]);
+                    Update_qm_Info(qm[i]);
                 }
             }
             if (enum_DetectionItem == PublicEnum.DetectionItem.enum_水密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
-                for (int i = 0; i < qmModel.Count; i++)
+                for (int i = 0; i < sm.Count; i++)
                 {
-                    new DAL_dt_sm_Info().Add(smModel[i]);
+                    new DAL_dt_sm_Info().Add(sm[i]);
                 }
             }
         }
