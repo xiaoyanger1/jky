@@ -16,14 +16,15 @@ namespace text.doors.Model.DataBase
         /// 当前樘号
         /// </summary>
         public string info_DangH { get; set; }
-        /// <summary>
-        /// 是否选中
-        /// </summary>
-        public int Is_Check { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
         public string info_Create { get; set; }
+
+        public int Airtight { get; set; }
+
+        public int Watertight { get; set; }
+        public int WindPressure { get; set; }
     }
 }

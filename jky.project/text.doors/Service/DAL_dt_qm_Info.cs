@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using text.doors.Default;
 using Young.Core.SQLite;
+using text.doors.Service;
 
 namespace text.doors.dal
 {
@@ -17,21 +18,24 @@ namespace text.doors.dal
         /// 添加气密信息
         /// </summary>
         /// <param name="mode"></param>
-        public bool Add_qm_Info(Model_dt_qm_Info model)
+        public bool Add(Model_dt_qm_Info model)
         {
-            string sql = "";
-            sql = "delete from dt_qm_Info where dt_Code='" + model.dt_Code + "' and info_DangH = '" + model.info_DangH + "'";
-            SQLiteHelper.ExecuteNonQuery(sql);
+            //删除结果
+            SQLiteHelper.ExecuteNonQuery("delete from dt_qm_Info where dt_Code='" + model.dt_Code + "' and info_DangH = '" + model.info_DangH + "'");
 
-            sql = string.Format(@"insert into dt_qm_Info (dt_Code,info_DangH,qm_Z_FC,qm_F_FC,qm_Z_MJ,qm_F_MJ,
+            var sql = string.Format(@"insert into dt_qm_Info (dt_Code,info_DangH,qm_Z_FC,qm_F_FC,qm_Z_MJ,qm_F_MJ,
                 qm_s_z_fj100,qm_s_z_fj150,qm_j_z_fj100,qm_s_z_zd100,qm_s_z_zd150,qm_j_z_zd100,qm_s_f_fj100,qm_s_f_fj150,qm_j_f_fj100,qm_s_f_zd100,qm_s_f_zd150,qm_j_f_zd100	) 
                 values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}')",
-                model.dt_Code, model.info_DangH, model.qm_Z_FC, model.qm_F_FC, model.qm_Z_MJ, model.qm_F_MJ,
-                model.qm_s_z_fj100, model.qm_s_z_fj150, model.qm_j_z_fj100, model.qm_s_z_zd100, model.qm_s_z_zd150, model.qm_j_z_zd100, model.qm_s_f_fj100,
-                model.qm_s_f_fj150, model.qm_j_f_fj100, model.qm_s_f_zd100, model.qm_s_f_zd150, model.qm_j_f_zd100
-                );
-            return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
-
+                 model.dt_Code, model.info_DangH, model.qm_Z_FC, model.qm_F_FC, model.qm_Z_MJ, model.qm_F_MJ,
+                 model.qm_s_z_fj100, model.qm_s_z_fj150, model.qm_j_z_fj100, model.qm_s_z_zd100, model.qm_s_z_zd150, model.qm_j_z_zd100, model.qm_s_f_fj100,
+                 model.qm_s_f_fj150, model.qm_j_f_fj100, model.qm_s_f_zd100, model.qm_s_f_zd150, model.qm_j_f_zd100
+                 );
+            var res = SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
+            if (res)
+            {
+                new DAL_dt_Info().UpdateTestType(model.dt_Code, model.info_DangH, PublicEnum.SystemItem.Airtight, 1);
+            }
+            return true;
         }
 
         /// <summary>
@@ -40,7 +44,6 @@ namespace text.doors.dal
         /// <param name="mode"></param>
         public bool Update_qm_Info(Model_dt_qm_Info model)
         {
-
             string sql = string.Format(@"update dt_qm_Info  set 
                 qm_Z_FC	='{0}',
                 qm_F_FC	='{1}',
@@ -51,25 +54,6 @@ namespace text.doors.dal
             return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
 
         }
-
-
-
-
-        /// <summary>
-        /// 添加水密信息
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public bool Adddt_sm_Info(Model_dt_sm_Info model)
-        {
-            string sql = "";
-            sql = "delete from dt_sm_Info where dt_Code='" + model.dt_Code + "' and info_DangH = '" + model.info_DangH + "'";
-            SQLiteHelper.ExecuteNonQuery(sql);
-
-            sql = string.Format("insert into dt_sm_Info (dt_Code,info_DangH,sm_PaDesc,sm_Pa,sm_Remark) values('{0}','{1}','{2}','{3}','{4}')", model.dt_Code, model.info_DangH, model.sm_PaDesc, model.sm_Pa, model.sm_Remark);
-            return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
-        }
-
 
         /// <summary>
         /// 根据编号获取本次检测信息
@@ -119,7 +103,7 @@ namespace text.doors.dal
             {
                 for (int i = 0; i < qmModel.Count; i++)
                 {
-                    Adddt_sm_Info(smModel[i]);
+                    new DAL_dt_sm_Info().Add(smModel[i]);
                 }
             }
         }

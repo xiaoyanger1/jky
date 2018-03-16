@@ -23,9 +23,18 @@ namespace text.doors.Default
         /// </summary>
         public enum SystemItem
         {
-            Watertight,//水密
-            Airtight,//气密
-            AirPressure //风压
+            /// <summary>
+            /// 水密
+            /// </summary>
+            Watertight,
+            /// <summary>
+            /// 气密
+            /// </summary>
+            Airtight,
+            /// <summary>
+            /// 风压
+            /// </summary>
+            AirPressure
         }
 
         /// <summary>

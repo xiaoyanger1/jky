@@ -16,10 +16,9 @@ namespace text.doors.dal
         /// <summary>
         /// 添加基本编号设置
         /// </summary>
-        public bool AddSettings(Model_dt_Settings model, Model_dt_Info info)
+        public bool Add(Model_dt_Settings model, string tong)
         {
             var res = false;
-
             string delsql = "delete from dt_Settings where dt_Code='" + model.dt_Code + "'";
             SQLiteHelper.ExecuteNonQuery(delsql);
 
@@ -131,17 +130,21 @@ namespace text.doors.dal
                                         );
             res = SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
             #endregion
-            res = new DAL_dt_Info().Adddt_dt_Info(info, model.dt_Code);
-            return res;
-        }
 
-        /// <summary>
-        /// 删除设置
-        /// </summary>
-        public bool Delete_Settings(string code)
-        {
-            string sql = "delete from  dt_Settings where dt_Code=" + code + "";
-            return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
+            #region 添加实验樘号记录
+            if (res)
+            {
+                string infoSql = "select *from dt_Info where info_DangH = '" + tong + "' and dt_Code='" + model.dt_Code + "'";
+                var row = SQLiteHelper.ExecuteNonQuery(sql);
+                if (row == 0)
+                {
+                    sql = string.Format("insert into dt_Info (info_DangH,info_Create,dt_Code,Airtight,Watertight,WindPressure) values('{0}',datetime('now'),'{1}',0,0,0)", tong, model.dt_Code);
+                    return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
+                }
+            }
+            #endregion
+
+            return true;
         }
 
         /// <summary>
@@ -160,7 +163,6 @@ namespace text.doors.dal
             }
             else
             {
-
                 sql = @"select t.*,t1.info_DangH from dt_Settings  t
                             join dt_Info  t1 on t.dt_Code = t1.dt_Code
                             where t.dt_Code ='" + code + "' and t1.Is_Check = 1 ";
@@ -186,8 +188,6 @@ from dt_Settings  t
                             left join dt_qm_Info t2  on t2.dt_Code = t1.dt_Code and t1.info_DangH = t2.info_DangH 
                             left join dt_sm_Info t3  on t3.dt_Code = t1.dt_Code and t1.info_DangH = t3.info_DangH 
                             where t.dt_Code ='" + code + "'";
-
-
 
             DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
             if (dr == null)
@@ -281,8 +281,6 @@ from dt_Settings  t
                 dt_qm_Info.qm_s_f_zd100 = dt.Rows[i]["qm_s_f_zd100"].ToString();
                 dt_qm_Info.qm_s_f_zd150 = dt.Rows[i]["qm_s_f_zd150"].ToString();
                 dt_qm_Info.qm_j_f_zd100 = dt.Rows[i]["qm_j_f_zd100"].ToString();
-
-
 
                 dt_qm_InfoList.Add(dt_qm_Info);
 

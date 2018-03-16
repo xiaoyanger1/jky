@@ -149,7 +149,6 @@
     <Compile Include="Default\BFMCommand.cs" />
     <Compile Include="Default\PublicEnum.cs" />
     <Compile Include="Model\WindPressureDGV.cs" />
-    <Compile Include="Service\Class1.cs" />
     <Compile Include="Service\DAL_Demarcate_Dict.cs" />
     <Compile Include="Service\DAL_dt_BaseSet.cs" />
     <Compile Include="Service\DAL_dt_Info.cs" />
@@ -192,6 +191,7 @@
     <Compile Include="Detection\SensorSet.Designer.cs">
       <DependentUpon>SensorSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\DAL_dt_sm_Info.cs" />
     <Compile Include="User\Login.cs">
       <SubType>Form</SubType>
     </Compile>

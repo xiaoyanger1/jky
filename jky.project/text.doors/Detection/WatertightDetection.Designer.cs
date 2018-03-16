@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WatertightDetection));
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
             this.page_watertight = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -445,6 +446,7 @@
             this.txt_ycjy.Name = "txt_ycjy";
             this.txt_ycjy.Size = new System.Drawing.Size(52, 21);
             this.txt_ycjy.TabIndex = 0;
+            this.txt_ycjy.Text = "0";
             // 
             // groupBox6
             // 
@@ -1119,6 +1121,7 @@
             this.txt_zgfy.Name = "txt_zgfy";
             this.txt_zgfy.Size = new System.Drawing.Size(42, 21);
             this.txt_zgfy.TabIndex = 0;
+            this.txt_zgfy.Text = "0";
             this.txt_zgfy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_zgfy_KeyPress);
             // 
             // tim_PainPic

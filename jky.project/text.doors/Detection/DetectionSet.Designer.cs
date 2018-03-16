@@ -30,6 +30,14 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.检验参数设置 = new System.Windows.Forms.TabPage();
+            this.cbb_danshandansuodian = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.txt_KangFengyadengjishejizhi = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txt_ganjianchadu = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txt_kangfengyashejizhi = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -137,14 +145,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_JianYanBianHao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_kangfengyashejizhi = new System.Windows.Forms.TextBox();
-            this.label59 = new System.Windows.Forms.Label();
-            this.txt_ganjianchadu = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.txt_KangFengyadengjishejizhi = new System.Windows.Forms.TextBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.cbb_danshandansuodian = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.检验参数设置.SuspendLayout();
             this.SuspendLayout();
@@ -282,6 +282,78 @@
             this.检验参数设置.Size = new System.Drawing.Size(940, 605);
             this.检验参数设置.TabIndex = 0;
             this.检验参数设置.Text = "检验参数设置";
+            // 
+            // cbb_danshandansuodian
+            // 
+            this.cbb_danshandansuodian.FormattingEnabled = true;
+            this.cbb_danshandansuodian.Items.AddRange(new object[] {
+            "是",
+            "否"});
+            this.cbb_danshandansuodian.Location = new System.Drawing.Point(755, 376);
+            this.cbb_danshandansuodian.Name = "cbb_danshandansuodian";
+            this.cbb_danshandansuodian.Size = new System.Drawing.Size(174, 20);
+            this.cbb_danshandansuodian.TabIndex = 217;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label61.Location = new System.Drawing.Point(647, 379);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(83, 12);
+            this.label61.TabIndex = 216;
+            this.label61.Text = "单扇单锁点：";
+            // 
+            // txt_KangFengyadengjishejizhi
+            // 
+            this.txt_KangFengyadengjishejizhi.Location = new System.Drawing.Point(173, 352);
+            this.txt_KangFengyadengjishejizhi.Name = "txt_KangFengyadengjishejizhi";
+            this.txt_KangFengyadengjishejizhi.Size = new System.Drawing.Size(165, 21);
+            this.txt_KangFengyadengjishejizhi.TabIndex = 215;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label54.Location = new System.Drawing.Point(58, 357);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(122, 12);
+            this.label54.TabIndex = 214;
+            this.label54.Text = "抗风压等级设计值：";
+            // 
+            // txt_ganjianchadu
+            // 
+            this.txt_ganjianchadu.Location = new System.Drawing.Point(129, 293);
+            this.txt_ganjianchadu.Name = "txt_ganjianchadu";
+            this.txt_ganjianchadu.Size = new System.Drawing.Size(205, 21);
+            this.txt_ganjianchadu.TabIndex = 213;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label60.Location = new System.Drawing.Point(58, 298);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(70, 12);
+            this.label60.TabIndex = 212;
+            this.label60.Text = "杆件长度：";
+            // 
+            // txt_kangfengyashejizhi
+            // 
+            this.txt_kangfengyashejizhi.Location = new System.Drawing.Point(506, 431);
+            this.txt_kangfengyashejizhi.Name = "txt_kangfengyashejizhi";
+            this.txt_kangfengyashejizhi.Size = new System.Drawing.Size(117, 21);
+            this.txt_kangfengyashejizhi.TabIndex = 211;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label59.Location = new System.Drawing.Point(373, 436);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(96, 12);
+            this.label59.TabIndex = 210;
+            this.label59.Text = "抗风压设计值：";
             // 
             // label19
             // 
@@ -1275,78 +1347,6 @@
             this.label1.Size = new System.Drawing.Size(70, 12);
             this.label1.TabIndex = 97;
             this.label1.Text = "检验编号：";
-            // 
-            // txt_kangfengyashejizhi
-            // 
-            this.txt_kangfengyashejizhi.Location = new System.Drawing.Point(506, 431);
-            this.txt_kangfengyashejizhi.Name = "txt_kangfengyashejizhi";
-            this.txt_kangfengyashejizhi.Size = new System.Drawing.Size(117, 21);
-            this.txt_kangfengyashejizhi.TabIndex = 211;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label59.Location = new System.Drawing.Point(373, 436);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(96, 12);
-            this.label59.TabIndex = 210;
-            this.label59.Text = "抗风压设计值：";
-            // 
-            // txt_ganjianchadu
-            // 
-            this.txt_ganjianchadu.Location = new System.Drawing.Point(129, 293);
-            this.txt_ganjianchadu.Name = "txt_ganjianchadu";
-            this.txt_ganjianchadu.Size = new System.Drawing.Size(205, 21);
-            this.txt_ganjianchadu.TabIndex = 213;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label60.Location = new System.Drawing.Point(58, 298);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(70, 12);
-            this.label60.TabIndex = 212;
-            this.label60.Text = "杆件长度：";
-            // 
-            // txt_KangFengyadengjishejizhi
-            // 
-            this.txt_KangFengyadengjishejizhi.Location = new System.Drawing.Point(173, 352);
-            this.txt_KangFengyadengjishejizhi.Name = "txt_KangFengyadengjishejizhi";
-            this.txt_KangFengyadengjishejizhi.Size = new System.Drawing.Size(165, 21);
-            this.txt_KangFengyadengjishejizhi.TabIndex = 215;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label54.Location = new System.Drawing.Point(58, 357);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(122, 12);
-            this.label54.TabIndex = 214;
-            this.label54.Text = "抗风压等级设计值：";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label61.Location = new System.Drawing.Point(647, 379);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(83, 12);
-            this.label61.TabIndex = 216;
-            this.label61.Text = "单扇单锁点：";
-            // 
-            // cbb_danshandansuodian
-            // 
-            this.cbb_danshandansuodian.FormattingEnabled = true;
-            this.cbb_danshandansuodian.Items.AddRange(new object[] {
-            "是",
-            "否"});
-            this.cbb_danshandansuodian.Location = new System.Drawing.Point(755, 376);
-            this.cbb_danshandansuodian.Name = "cbb_danshandansuodian";
-            this.cbb_danshandansuodian.Size = new System.Drawing.Size(174, 20);
-            this.cbb_danshandansuodian.TabIndex = 217;
             // 
             // DetectionSet
             // 

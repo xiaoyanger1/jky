@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using Young.Core.Common;
 using text.doors.Model.DataBase;
 using text.doors.Default;
+using text.doors.Service;
 
 namespace text.doors.Detection
 {
@@ -986,7 +987,7 @@ namespace text.doors.Detection
                     model.qm_j_f_zd100 = this.dgv_WindSpeed.Rows[i].Cells["Pressure_F_Z"].Value.ToString();
                 }
             }
-            return dal.Add_qm_Info(model);
+            return dal.Add(model);
         }
 
 
@@ -1656,7 +1657,7 @@ namespace text.doors.Detection
             model.sm_Pa = CheckValue.ToString();
             model.sm_PaDesc = CheckPosition + "," + CheckProblem;
             model.sm_Remark = txt_desc.Text;
-            if (new DAL_dt_qm_Info().Adddt_sm_Info(model))
+            if (new DAL_dt_sm_Info().Add(model))
             {
                 MessageBox.Show("处理成功");
             }

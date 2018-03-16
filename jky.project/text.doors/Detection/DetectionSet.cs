@@ -58,13 +58,11 @@ namespace text.doors.Detection
             }
 
             DAL_dt_Settings dal = new DAL_dt_Settings();
-
-
             try
             {
                 var setting = GetSettings();
-                var info = Getdt_Info(setting.dt_Code);
-                if (dal.AddSettings(setting, info))
+                var tong = this.cb_DangQianDangHao.Text;
+                if (dal.Add(setting, tong))
                 {
                     MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     //获取樘号
@@ -193,6 +191,11 @@ namespace text.doors.Detection
                     _tempTong = dt.Rows[0]["info_DangH"].ToString();
                     cb_DangQianDangHao.Text = dt.Rows[0]["info_DangH"].ToString();
                     btn_JianYanBianHao.Text = dt.Rows[0]["dt_Code"].ToString();
+                    this.cb_JianYanXiangMu.Enabled = false;
+                }
+                else
+                {
+                    btn_JianYanBianHao.Text = DateTime.Now.ToString("yyyyMMdd") + "-01";
                 }
 
                 if (string.IsNullOrEmpty(btn_GuiGeShuLiang.Text))
@@ -266,18 +269,7 @@ namespace text.doors.Detection
             model.DanShanDanSuoDian = this.cbb_danshandansuodian.Text;
             return model;
         }
-
-
-        private Model_dt_Info Getdt_Info(string code)
-        {
-            Model_dt_Info model = new Model_dt_Info();
-            model.info_DangH = this.cb_DangQianDangHao.Text;
-            model.dt_Code = code;
-            model.Is_Check = 1;
-            model.info_Create = DateTime.Now.ToString();
-            return model;
-        }
-
+        
         #endregion
 
 
@@ -295,7 +287,7 @@ namespace text.doors.Detection
                 return;
             }
             btn_JianYanBianHao.Text = arr[0] + "-" + (int.Parse(arr[1]) + 1).ToString();
-
+            this.cb_JianYanXiangMu.Enabled = true;
             this.btn_add.Enabled = false;
             this.btn_select.Enabled = false;
             this.btn_delete.Enabled = false;

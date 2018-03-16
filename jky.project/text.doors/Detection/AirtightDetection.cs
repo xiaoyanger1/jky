@@ -815,7 +815,7 @@ namespace text.doors.Detection
                     model.qm_j_f_zd100 = this.dgv_WindSpeed.Rows[i].Cells["Pressure_F_Z"].Value.ToString();
                 }
             }
-            return dal.Add_qm_Info(model);
+            return dal.Add(model);
         }
 
 
