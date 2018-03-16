@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RealTimeSurveillance));
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
-            this.气密监控 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.page_airtight = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tChart_qm = new Steema.TeeChart.TChart();
             this.chart_cms_click = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.导出图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qm_Line = new Steema.TeeChart.Styles.FastLine();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl_dqyl = new System.Windows.Forms.Label();
             this.lbl_setYL = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.rdb_fjstl = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgv_levelIndex = new System.Windows.Forms.DataGridView();
-            this.水密监控 = new System.Windows.Forms.TabPage();
+            this.page_watertight = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lbldqyl = new System.Windows.Forms.Label();
             this.lbl_sdyl = new System.Windows.Forms.Label();
@@ -126,9 +126,9 @@
             this.gv_list = new System.Windows.Forms.Timer(this.components);
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
             this.tim_upNext = new System.Windows.Forms.Timer(this.components);
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tc_RealTimeSurveillance.SuspendLayout();
-            this.气密监控.SuspendLayout();
+            this.page_airtight.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.chart_cms_click.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -139,7 +139,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_levelIndex)).BeginInit();
-            this.水密监控.SuspendLayout();
+            this.page_watertight.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.chart_cms_sm_click.SuspendLayout();
@@ -147,13 +147,12 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tc_RealTimeSurveillance
             // 
-            this.tc_RealTimeSurveillance.Controls.Add(this.气密监控);
-            this.tc_RealTimeSurveillance.Controls.Add(this.水密监控);
+            this.tc_RealTimeSurveillance.Controls.Add(this.page_airtight);
+            this.tc_RealTimeSurveillance.Controls.Add(this.page_watertight);
             this.tc_RealTimeSurveillance.ItemSize = new System.Drawing.Size(120, 26);
             this.tc_RealTimeSurveillance.Location = new System.Drawing.Point(0, 0);
             this.tc_RealTimeSurveillance.Name = "tc_RealTimeSurveillance";
@@ -162,33 +161,33 @@
             this.tc_RealTimeSurveillance.TabIndex = 0;
             this.tc_RealTimeSurveillance.SelectedIndexChanged += new System.EventHandler(this.tc_RealTimeSurveillance_SelectedIndexChanged);
             // 
-            // 气密监控
+            // page_airtight
             // 
-            this.气密监控.BackColor = System.Drawing.Color.White;
-            this.气密监控.Controls.Add(this.groupBox9);
-            this.气密监控.Controls.Add(this.button1);
-            this.气密监控.Controls.Add(this.groupBox1);
-            this.气密监控.Controls.Add(this.tabControl1);
-            this.气密监控.Controls.Add(this.btn_sjcl);
-            this.气密监控.Controls.Add(this.btn_tc);
-            this.气密监控.Controls.Add(this.groupBox3);
-            this.气密监控.Controls.Add(this.groupBox2);
-            this.气密监控.Location = new System.Drawing.Point(4, 30);
-            this.气密监控.Name = "气密监控";
-            this.气密监控.Padding = new System.Windows.Forms.Padding(3);
-            this.气密监控.Size = new System.Drawing.Size(1143, 587);
-            this.气密监控.TabIndex = 0;
-            this.气密监控.Text = "气密监控";
+            this.page_airtight.BackColor = System.Drawing.Color.White;
+            this.page_airtight.Controls.Add(this.groupBox9);
+            this.page_airtight.Controls.Add(this.button1);
+            this.page_airtight.Controls.Add(this.groupBox1);
+            this.page_airtight.Controls.Add(this.tabControl1);
+            this.page_airtight.Controls.Add(this.btn_sjcl);
+            this.page_airtight.Controls.Add(this.btn_tc);
+            this.page_airtight.Controls.Add(this.groupBox3);
+            this.page_airtight.Controls.Add(this.groupBox2);
+            this.page_airtight.Location = new System.Drawing.Point(4, 30);
+            this.page_airtight.Name = "page_airtight";
+            this.page_airtight.Padding = new System.Windows.Forms.Padding(3);
+            this.page_airtight.Size = new System.Drawing.Size(1143, 587);
+            this.page_airtight.TabIndex = 0;
+            this.page_airtight.Text = "气密监控";
             // 
-            // button1
+            // groupBox9
             // 
-            this.button1.Location = new System.Drawing.Point(1052, 526);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "退出";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox9.Controls.Add(this.tChart_qm);
+            this.groupBox9.Location = new System.Drawing.Point(9, 122);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(853, 437);
+            this.groupBox9.TabIndex = 20;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "检测";
             // 
             // tChart_qm
             // 
@@ -277,6 +276,16 @@
             // 
             // 
             this.qm_Line.YValues.DataMember = "Y";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1052, 526);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "退出";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -514,21 +523,21 @@
             this.dgv_levelIndex.Size = new System.Drawing.Size(259, 86);
             this.dgv_levelIndex.TabIndex = 0;
             // 
-            // 水密监控
+            // page_watertight
             // 
-            this.水密监控.BackColor = System.Drawing.Color.White;
-            this.水密监控.Controls.Add(this.groupBox10);
-            this.水密监控.Controls.Add(this.groupBox8);
-            this.水密监控.Controls.Add(this.groupBox4);
-            this.水密监控.Controls.Add(this.groupBox5);
-            this.水密监控.Controls.Add(this.groupBox6);
-            this.水密监控.Controls.Add(this.groupBox7);
-            this.水密监控.Location = new System.Drawing.Point(4, 30);
-            this.水密监控.Name = "水密监控";
-            this.水密监控.Padding = new System.Windows.Forms.Padding(3);
-            this.水密监控.Size = new System.Drawing.Size(1143, 587);
-            this.水密监控.TabIndex = 1;
-            this.水密监控.Text = "水密监控";
+            this.page_watertight.BackColor = System.Drawing.Color.White;
+            this.page_watertight.Controls.Add(this.groupBox10);
+            this.page_watertight.Controls.Add(this.groupBox8);
+            this.page_watertight.Controls.Add(this.groupBox4);
+            this.page_watertight.Controls.Add(this.groupBox5);
+            this.page_watertight.Controls.Add(this.groupBox6);
+            this.page_watertight.Controls.Add(this.groupBox7);
+            this.page_watertight.Location = new System.Drawing.Point(4, 30);
+            this.page_watertight.Name = "page_watertight";
+            this.page_watertight.Padding = new System.Windows.Forms.Padding(3);
+            this.page_watertight.Size = new System.Drawing.Size(1143, 587);
+            this.page_watertight.TabIndex = 1;
+            this.page_watertight.Text = "水密监控";
             // 
             // groupBox10
             // 
@@ -1551,16 +1560,6 @@
             this.tim_upNext.Interval = 2000;
             this.tim_upNext.Tick += new System.EventHandler(this.tim_upNext_Tick);
             // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.tChart_qm);
-            this.groupBox9.Location = new System.Drawing.Point(9, 122);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(853, 437);
-            this.groupBox9.TabIndex = 20;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "检测";
-            // 
             // RealTimeSurveillance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1571,7 +1570,8 @@
             this.Name = "RealTimeSurveillance";
             this.Text = "RealTimeSurveillance";
             this.tc_RealTimeSurveillance.ResumeLayout(false);
-            this.气密监控.ResumeLayout(false);
+            this.page_airtight.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
             this.chart_cms_click.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1584,7 +1584,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_levelIndex)).EndInit();
-            this.水密监控.ResumeLayout(false);
+            this.page_watertight.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1596,7 +1596,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1604,8 +1603,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl tc_RealTimeSurveillance;
-        private System.Windows.Forms.TabPage 气密监控;
-        private System.Windows.Forms.TabPage 水密监控;
+        private System.Windows.Forms.TabPage page_airtight;
+        private System.Windows.Forms.TabPage page_watertight;
         private System.Windows.Forms.Button btn_tc;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton rdb_zdstl;

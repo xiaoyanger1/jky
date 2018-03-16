@@ -111,7 +111,7 @@ namespace text.doors
             IsSetTong = bt.ISOK;
             if (bt.ISOK)
             {
-                ShowRealTimeSurveillance();
+                ShowRealTimeSurveillance(1);
             }
         }
 
@@ -132,9 +132,9 @@ namespace text.doors
         /// <summary>
         /// 检测监控
         /// </summary>
-        private void ShowRealTimeSurveillance()
+        private void ShowRealTimeSurveillance(int type)
         {
-            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, _tempCode, _tempTong);
+            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, _tempCode, _tempTong, type);
             this.pl_showItem.Controls.Clear();
             rts.TopLevel = false;
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -199,7 +199,7 @@ namespace text.doors
             var res = tcpClient.GetZFYF(ref z, ref f);
             if (!res)
             {
-                MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             btn_z.BackColor = z ? Color.Green : Color.Transparent;
             btn_f.BackColor = f ? Color.Green : Color.Transparent;
@@ -218,7 +218,7 @@ namespace text.doors
 
             if (!res)
             {
-                MessageBox.Show("风机控制异常,请确认服务器连接是否成功!", "风机", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("风机控制异常,请确认服务器连接是否成功!", "风机", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -312,7 +312,7 @@ namespace text.doors
                 ep.TopMost = true;
             }
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace text.doors
         {
             if (!tcpClient.SendGYBD())
             {
-                MessageBox.Show("高压归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("高压归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
         /// <summary>
@@ -338,7 +338,7 @@ namespace text.doors
             var res = tcpClient.SendFSGL();
             if (!res)
             {
-                MessageBox.Show("风速归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("风速归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -347,7 +347,7 @@ namespace text.doors
             var res = tcpClient.SendZYF();
             if (!res)
             {
-                MessageBox.Show("正压阀异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("正压阀异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
             Thread.Sleep(3000);
@@ -359,7 +359,7 @@ namespace text.doors
             var res = tcpClient.SendFYF();
             if (!res)
             {
-                MessageBox.Show("负压阀异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("负压阀异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -375,7 +375,7 @@ namespace text.doors
 
             if (!res)
             {
-                MessageBox.Show("风机控制异常,请确认服务器连接是否成功!", "控制", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("风机控制异常,请确认服务器连接是否成功!", "控制", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
@@ -394,7 +394,7 @@ namespace text.doors
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             if (!IsSetTong)
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
             ComplexAssessment ca = new ComplexAssessment(_tempCode);
             if (DefaultBase.IsOpenComplexAssessment)
@@ -408,7 +408,7 @@ namespace text.doors
         private void button1_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
             pic pic = new pic(_tempCode);
             pic.Show();
@@ -425,17 +425,17 @@ namespace text.doors
         private void 水密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance();
+                ShowRealTimeSurveillance(2);
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void 气密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance();
+                ShowRealTimeSurveillance(1);
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void 抗风压监控ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -445,23 +445,23 @@ namespace text.doors
                 ShowWindPressure();
             }
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void tsb_watertight_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance();
+                ShowRealTimeSurveillance(1);
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void tsbwatertight_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance();
+                ShowRealTimeSurveillance(2);
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void tsb_WindPressure_Click(object sender, EventArgs e)
@@ -471,7 +471,7 @@ namespace text.doors
                 ShowWindPressure();
             }
             else
-                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
         private void ShowWindPressure()

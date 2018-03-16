@@ -65,12 +65,24 @@ namespace text.doors.Detection
 
         public DateTime dtnow { get; set; }
 
-        public RealTimeSurveillance(TCPClient tcpClient, string tempCode, string tempTong)
+        public RealTimeSurveillance(TCPClient tcpClient, string tempCode, string tempTong, int type = 1)
         {
             InitializeComponent();
             this._tcpClient = tcpClient;
             this._tempCode = tempCode;
             this._tempTong = tempTong;
+
+            //if (type == 1)
+            //{
+            //    tc_RealTimeSurveillance.TabPages["page_airtight"].Hide();
+            //    tc_RealTimeSurveillance.TabPages["page_watertight"].Show();
+            //}
+            //else if (type == 2)
+            //{
+            //    tc_RealTimeSurveillance.TabPages["page_watertight"].Hide();
+            //    tc_RealTimeSurveillance.TabPages["page_airtight"].Show();
+            //}
+            
             pressure = new Pressure();
             Init();
         }
