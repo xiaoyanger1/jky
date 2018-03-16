@@ -111,7 +111,7 @@ namespace text.doors
             IsSetTong = bt.ISOK;
             if (bt.ISOK)
             {
-                ShowRealTimeSurveillance(1);
+                ShowAirtightDetection();
             }
         }
 
@@ -141,6 +141,44 @@ namespace text.doors
             rts.Parent = this.pl_showItem;
             rts.Show();
         }
+
+        /// <summary>
+        /// 水密监控
+        /// </summary>
+        private void ShowWatertightDetection()
+        {
+            WatertightDetection rts = new WatertightDetection(tcpClient, _tempCode, _tempTong);
+            this.pl_showItem.Controls.Clear();
+            rts.TopLevel = false;
+            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            rts.Parent = this.pl_showItem;
+            rts.Show();
+        }
+        /// <summary>
+        /// 气密监控
+        /// </summary>
+        private void ShowAirtightDetection()
+        {
+            AirtightDetection rts = new AirtightDetection(tcpClient, _tempCode, _tempTong);
+            this.pl_showItem.Controls.Clear();
+            rts.TopLevel = false;
+            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            rts.Parent = this.pl_showItem;
+            rts.Show();
+        }
+        /// <summary>
+        /// 抗风压
+        /// </summary>
+        private void ShowWindPressure()
+        {
+            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong);
+            this.pl_showItem.Controls.Clear();
+            rts.TopLevel = false;
+            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            rts.Parent = this.pl_showItem;
+            rts.Show();
+        }
+
 
         private void DataInit()
         {
@@ -425,7 +463,7 @@ namespace text.doors
         private void 水密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance(2);
+                ShowWatertightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
@@ -433,7 +471,7 @@ namespace text.doors
         private void 气密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance(1);
+                ShowAirtightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
@@ -451,7 +489,7 @@ namespace text.doors
         private void tsb_watertight_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance(1);
+                ShowAirtightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
@@ -459,7 +497,7 @@ namespace text.doors
         private void tsbwatertight_Click(object sender, EventArgs e)
         {
             if (IsSetTong)
-                ShowRealTimeSurveillance(2);
+                ShowWatertightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
@@ -474,14 +512,6 @@ namespace text.doors
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
-        private void ShowWindPressure()
-        {
-            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong);
-            this.pl_showItem.Controls.Clear();
-            rts.TopLevel = false;
-            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            rts.Parent = this.pl_showItem;
-            rts.Show();
-        }
+      
     }
 }

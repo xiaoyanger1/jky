@@ -97,6 +97,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Detection\AirtightDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Detection\AirtightDetection.Designer.cs">
+      <DependentUpon>AirtightDetection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Detection\WatertightDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Detection\WatertightDetection.Designer.cs">
+      <DependentUpon>WatertightDetection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Help\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +217,12 @@
     <Compile Include="User\UpdatePassWord.Designer.cs">
       <DependentUpon>UpdatePassWord.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Detection\AirtightDetection.resx">
+      <DependentUpon>AirtightDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Detection\WatertightDetection.resx">
+      <DependentUpon>WatertightDetection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Help\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
