@@ -88,7 +88,6 @@
             this.tc_RealTimeSurveillance.SelectedIndex = 0;
             this.tc_RealTimeSurveillance.Size = new System.Drawing.Size(1151, 621);
             this.tc_RealTimeSurveillance.TabIndex = 0;
-            this.tc_RealTimeSurveillance.SelectedIndexChanged += new System.EventHandler(this.tc_RealTimeSurveillance_SelectedIndexChanged);
             // 
             // page_airtight
             // 

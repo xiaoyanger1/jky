@@ -969,12 +969,7 @@ namespace text.doors.Detection
                 Logger.Error(ex);
             }
         }
-
-        private void tc_RealTimeSurveillance_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void Clear()
         {
             pressure = new Pressure();
