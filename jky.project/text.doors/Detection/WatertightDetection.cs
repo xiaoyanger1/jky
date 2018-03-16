@@ -52,7 +52,7 @@ namespace text.doors.Detection
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             Init();
-            
+
         }
 
         private void Init()
@@ -202,7 +202,7 @@ namespace text.doors.Detection
                             if (sm_pa == "700")
                                 sm_pa = "600";
                         }
-                      
+
                     }
                     txt_zgfy.Text = sm_pa;
                     txt_desc.Text = remark;
@@ -733,6 +733,20 @@ namespace text.doors.Detection
         private void export_image_sm_Click(object sender, EventArgs e)
         {
             this.tChart_sm.Export.ShowExportDialog();
+        }
+
+        private void tim_sm_Tick(object sender, EventArgs e)
+        {
+            if (_tcpClient.IsTCPLink)
+            {
+                var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                lbldqyl.Text = value.ToString();
+            }
         }
     }
 }

@@ -129,4 +129,7 @@
   <metadata name="tim_upNext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>330, 27</value>
   </metadata>
+  <metadata name="tim_sm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>625, 29</value>
+  </metadata>
 </root>

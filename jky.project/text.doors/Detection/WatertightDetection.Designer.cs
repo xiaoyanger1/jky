@@ -93,6 +93,7 @@
             this.txt_zgfy = new System.Windows.Forms.TextBox();
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
             this.tim_upNext = new System.Windows.Forms.Timer(this.components);
+            this.tim_sm = new System.Windows.Forms.Timer(this.components);
             this.tc_RealTimeSurveillance.SuspendLayout();
             this.page_watertight.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -1131,6 +1132,10 @@
             this.tim_upNext.Interval = 2000;
             this.tim_upNext.Tick += new System.EventHandler(this.tim_upNext_Tick);
             // 
+            // tim_sm
+            // 
+            this.tim_sm.Tick += new System.EventHandler(this.tim_sm_Tick);
+            // 
             // WatertightDetection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1223,5 +1228,6 @@
         private System.Windows.Forms.Timer tim_upNext;
         private System.Windows.Forms.ContextMenuStrip chart_cms_sm_click;
         private System.Windows.Forms.ToolStripMenuItem export_image_sm;
+        private System.Windows.Forms.Timer tim_sm;
     }
 }

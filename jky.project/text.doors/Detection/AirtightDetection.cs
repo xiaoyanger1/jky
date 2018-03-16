@@ -310,7 +310,6 @@ namespace text.doors.Detection
                     MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
-                //气密水密
                 lbl_dqyl.Text = value.ToString();
 
                 //读取设定值
