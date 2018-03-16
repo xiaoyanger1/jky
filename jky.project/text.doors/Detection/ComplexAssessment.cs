@@ -20,11 +20,7 @@ namespace text.doors.Detection
     {
         private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         public string _code = "";
-        public int con = 0;
-        /// <summary>
-        /// 检验项目
-        /// </summary>
-        public PublicEnum.DetectionItem? DetectionItemEnum = null;
+
         public ComplexAssessment(string code)
         {
             InitializeComponent();
@@ -40,11 +36,7 @@ namespace text.doors.Detection
         {
             try
             {
-                DataTable dtSettings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
-
-                var jyxm = dtSettings.Rows[0]["JianYanXiangMu"].ToString();
-                var ischeck = GetItem(jyxm);
-                if (ischeck == false)
+                if (!DefaultBase.IsSetTong)
                 {
                     MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     this.Hide();
@@ -52,21 +44,36 @@ namespace text.doors.Detection
                     return;
                 }
 
-                DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
-                if (dt == null)
-                {
-                    MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                    return;
-                }
+                var settings = new DAL_dt_qm_Info().GetInfoByCode(_code);
 
-                con = int.Parse(dtSettings.Rows[0]["GuiGeShuLiang"].ToString());
-                if (con > dt.Rows.Count)
+                string error = "";
+                if (!IsTestFinish(settings, ref error))
                 {
-                    MessageBox.Show("未检测完成，请完成" + con + "樘检测", "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show(error, "检测", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     this.Hide();
                     DefaultBase.IsOpenComplexAssessment = false;
                     return;
                 }
+
+
+                foreach (var item in settings.dt_qm_Info)
+                {
+
+                }
+
+                foreach (var item in settings.dt_sm_Info)
+                {
+
+                }
+
+                foreach (var item in settings.dt_kfy_Info)
+                {
+
+                }
+
+
+
+
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -161,20 +168,120 @@ namespace text.doors.Detection
             }
         }
 
-        private bool GetItem(string jyxm)
+        //是否测试完成
+        private bool IsTestFinish(Model_dt_Settings settings, ref string error)
         {
-            if (jyxm == "气密性能检测")
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能检测;
-            else if (jyxm == "水密性能检测")
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_水密性能检测;
-            else if (jyxm == "气密性能及水密性能检测")
-                DetectionItemEnum = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
-            else
+            var testItem = DefaultBase._TestItem;
+            var specCount = DefaultBase.base_SpecCount;
+            if (specCount != settings.dt_InfoList.Count)
+            {
+                error = "设置规格为" + specCount + "樘,当前完成" + settings.dt_InfoList.Count + "樘";
                 return false;
+            }
 
+            if (PublicEnum.DetectionItem.enum_抗风压性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.WindPressure == 0)
+                    {
+                        error = item.info_DangH + "未完成抗风压性能检测";
+                        return false;
+                    }
+                }
+            }
+
+            if (PublicEnum.DetectionItem.enum_气密性能及抗风压性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.WindPressure == 0 || item.Airtight == 0)
+                    {
+                        if (item.WindPressure == 0)
+                            error = item.info_DangH + "未完成抗风压性能检测";
+                        if (item.Airtight == 0)
+                            error = item.info_DangH + "未完成气密性能检测";
+
+                        return false;
+                    }
+                }
+            }
+            if (PublicEnum.DetectionItem.enum_气密性能及水密性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.Watertight == 0 || item.Airtight == 0)
+                    {
+                        if (item.Watertight == 0)
+                            error = item.info_DangH + "未完成气密性能检测";
+                        if (item.Airtight == 0)
+                            error = item.info_DangH + "未完成气密性能检测";
+
+                        return false;
+                    }
+                }
+            }
+            if (PublicEnum.DetectionItem.enum_气密性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.Watertight == 0)
+                    {
+                        if (item.Watertight == 0)
+                            error = item.info_DangH + "未完成气密性能检测";
+                        return false;
+                    }
+                }
+            }
+
+            if (PublicEnum.DetectionItem.enum_气密水密抗风压性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.WindPressure == 0 || item.Airtight == 0 || item.Watertight == 0)
+                    {
+                        if (item.Watertight == 0)
+                            error = item.info_DangH + "未完成水密性能检测";
+                        if (item.Airtight == 0)
+                            error = item.info_DangH + "未完成气密性能检测";
+                        if (item.WindPressure == 0)
+                            error = item.info_DangH + "未完成抗风压性能检测";
+
+                        return false;
+                    }
+                }
+            }
+            if (PublicEnum.DetectionItem.enum_水密性能及抗风压性能检测 == testItem)
+            {
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.WindPressure == 0 || item.Watertight == 0)
+                    {
+                        if (item.Watertight == 0)
+                            error = item.info_DangH + "未完成水密性能检测";
+                        if (item.WindPressure == 0)
+                            error = item.info_DangH + "未完成抗风压性能检测";
+
+                        return false;
+                    }
+                }
+            }
+            if (PublicEnum.DetectionItem.enum_水密性能检测 == testItem)
+            {
+
+                foreach (var item in settings.dt_InfoList)
+                {
+                    if (item.Watertight == 0)
+                    {
+                        if (item.Watertight == 0)
+                            error = item.info_DangH + "未完成水密性能检测";
+
+                        return false;
+                    }
+                }
+            }
             return true;
         }
-
 
 
         /// <summary>
@@ -280,7 +387,7 @@ namespace text.doors.Detection
             return GetQM_MaxLevel(qm_z_FC, qm_f_FC, qm_z_MJ, qm_f_MJ);
         }
 
-       
+
 
 
         /// <summary>

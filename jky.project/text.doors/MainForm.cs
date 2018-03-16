@@ -28,10 +28,6 @@ namespace text.doors
         private static TCPClient tcpClient = new TCPClient();
         public static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
 
-        /// <summary>
-        /// 确定是否设置樘号
-        /// </summary>
-        private bool IsSetTong = false;
 
         /// <summary>
         /// 当前温度
@@ -108,7 +104,7 @@ namespace text.doors
 
             _tempCode = bt.Code;
             _tempTong = bt.Tong;
-            IsSetTong = bt.ISOK;
+            DefaultBase.IsSetTong = bt.ISOK;
             if (bt.ISOK)
             {
                 ShowAirtightDetection();
@@ -291,7 +287,7 @@ namespace text.doors
         //检测设定
         private void tsb_DetectionSet_Click(object sender, EventArgs e)
         {
-            IsSetTong = false;
+            DefaultBase.IsSetTong = false;
             ShowDetectionSet();
         }
 
@@ -343,7 +339,7 @@ namespace text.doors
 
         private void tsb_生成报告_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
             {
                 ExportReport ep = new ExportReport(_tempCode);
                 ep.Show();
@@ -445,7 +441,7 @@ namespace text.doors
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
             pic pic = new pic(_tempCode);
@@ -462,7 +458,7 @@ namespace text.doors
 
         private void 水密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
                 ShowWatertightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -470,7 +466,7 @@ namespace text.doors
 
         private void 气密监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
                 ShowAirtightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -478,7 +474,7 @@ namespace text.doors
 
         private void 抗风压监控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
             {
                 ShowWindPressure();
             }
@@ -488,7 +484,7 @@ namespace text.doors
 
         private void tsb_watertight_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
                 ShowAirtightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -496,7 +492,7 @@ namespace text.doors
 
         private void tsbwatertight_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
                 ShowWatertightDetection();
             else
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -504,7 +500,7 @@ namespace text.doors
 
         private void tsb_WindPressure_Click(object sender, EventArgs e)
         {
-            if (IsSetTong)
+            if (DefaultBase.IsSetTong)
             {
                 ShowWindPressure();
             }
@@ -512,6 +508,6 @@ namespace text.doors
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
-      
+
     }
 }

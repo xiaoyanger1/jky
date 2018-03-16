@@ -19,6 +19,54 @@ namespace text.doors.Default
         public static bool IsOpenComplexAssessment { get; set; }
 
         /// <summary>
+        /// 当前设置测试的项目
+        /// </summary>
+        public static string base_TestItem = "";
+        /// <summary>
+        /// 规格数量
+        /// </summary>
+        public static int base_SpecCount = 0;
+        /// <summary>
+        /// 确定是否设置樘号
+        /// </summary>
+        public static bool IsSetTong = false;
+
+
+        public static PublicEnum.DetectionItem? _TestItem
+        {
+            get
+            {
+                #region
+                PublicEnum.DetectionItem? res = null;
+                switch (base_TestItem)
+                {
+                    case "气密性能检测":
+                        res = PublicEnum.DetectionItem.enum_气密性能检测;
+                        break;
+                    case "水密性能检测":
+                        res = PublicEnum.DetectionItem.enum_水密性能检测;
+                        break;
+                    case "抗风压性能检测":
+                        res = PublicEnum.DetectionItem.enum_抗风压性能检测;
+                        break;
+                    case "气密性能及水密性能检测":
+                        res = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
+                        break;
+                    case "气密、水密、抗风压性能检测":
+                        res = PublicEnum.DetectionItem.enum_气密水密抗风压性能检测;
+                        break;
+                    case "气密性能及抗风压性能检测":
+                        res = PublicEnum.DetectionItem.enum_气密性能及抗风压性能检测;
+                        break;
+                    case "水密性能及抗风压性能检测":
+                        res = PublicEnum.DetectionItem.enum_水密性能及抗风压性能检测;
+                        break;
+                }
+                #endregion
+                return res;
+            }
+        }
+        /// <summary>
         /// 导入图片名称
         /// </summary>
         public static string ImagesName = "";

@@ -134,7 +134,7 @@ namespace text.doors.dal
             #region 添加实验樘号记录
             if (res)
             {
-                var table = SQLiteHelper.ExecuteDataRow("select * from dt_Info where info_DangH = '" + tong + "' and dt_Code = '" + model.dt_Code + "'").Table;
+                var table = SQLiteHelper.ExecuteDataRow("select * from dt_Info where info_DangH = '" + tong + "' and dt_Code = '" + model.dt_Code + "'")?.Table;
                 if (table == null || table.Rows.Count == 0)
                 {
                     sql = string.Format("insert into dt_Info (info_DangH,info_Create,dt_Code,Airtight,Watertight,WindPressure) values('{0}',datetime('now'),'{1}',0,0,0)", tong, model.dt_Code);

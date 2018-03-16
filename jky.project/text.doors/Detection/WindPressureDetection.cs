@@ -257,7 +257,7 @@ namespace text.doors.Detection
         {
             if (AddKfyInfo())
             {
-                MessageBox.Show("数据处理完成");
+                MessageBox.Show("处理成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 

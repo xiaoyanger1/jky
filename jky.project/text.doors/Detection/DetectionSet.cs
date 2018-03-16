@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using text.doors.Model.DataBase;
+using text.doors.Default;
 
 namespace text.doors.Detection
 {
@@ -67,12 +68,12 @@ namespace text.doors.Detection
                     MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     //获取樘号
                     deleBottomTypeEvent(GetBottomType(true));
-
+                    DefaultBase.base_SpecCount = btn_GuiGeShuLiang.Text;
+                    DefaultBase.base_TestItem = cb_JianYanXiangMu.Text;
                     this.btn_add.Enabled = true;
                     this.btn_select.Enabled = true;
                     this.btn_delete.Enabled = true;
                     this.btn_Ok.Enabled = true;
-
                     this.Close();
                 }
             }
@@ -192,6 +193,7 @@ namespace text.doors.Detection
                     cb_DangQianDangHao.Text = dt.Rows[0]["info_DangH"].ToString();
                     btn_JianYanBianHao.Text = dt.Rows[0]["dt_Code"].ToString();
                     this.cb_JianYanXiangMu.Enabled = false;
+                    this.btn_GuiGeShuLiang.Enabled = false;
                 }
                 else
                 {
@@ -269,7 +271,7 @@ namespace text.doors.Detection
             model.DanShanDanSuoDian = this.cbb_danshandansuodian.Text;
             return model;
         }
-        
+
         #endregion
 
 
@@ -288,6 +290,7 @@ namespace text.doors.Detection
             }
             btn_JianYanBianHao.Text = arr[0] + "-" + (int.Parse(arr[1]) + 1).ToString();
             this.cb_JianYanXiangMu.Enabled = true;
+            this.btn_GuiGeShuLiang.Enabled = true;
             this.btn_add.Enabled = false;
             this.btn_select.Enabled = false;
             this.btn_delete.Enabled = false;

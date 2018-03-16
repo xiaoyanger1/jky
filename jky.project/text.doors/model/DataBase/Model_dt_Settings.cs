@@ -13,6 +13,7 @@ namespace text.doors.Model.DataBase
             dt_InfoList = new List<Model_dt_Info> ();
             dt_qm_Info = new List<Model_dt_qm_Info> ();
             dt_sm_Info = new List<Model_dt_sm_Info> ();
+            dt_kfy_Info = new List<Model_dt_kfy_Info>();
         }
 
         public string dt_Code { get; set; }//编号
@@ -71,6 +72,8 @@ namespace text.doors.Model.DataBase
         public List<Model_dt_Info> dt_InfoList { get; set; }
         public List<Model_dt_qm_Info> dt_qm_Info { get; set; }
         public List<Model_dt_sm_Info> dt_sm_Info { get; set; }
+
+        public List<Model_dt_kfy_Info> dt_kfy_Info { get; set; }
     }
 
 

@@ -932,7 +932,7 @@ namespace text.doors.Detection
             BindLevelIndex();
             if (AddQMResult())
             {
-                MessageBox.Show("处理完成");
+                MessageBox.Show("处理成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
         }
 
