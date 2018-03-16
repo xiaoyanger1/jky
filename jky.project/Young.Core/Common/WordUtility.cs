@@ -69,7 +69,7 @@ namespace Young.Core.Common
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 MessageUtil.ShowError("生成失败");
                 return false;
@@ -126,7 +126,7 @@ namespace Young.Core.Common
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 MessageUtil.ShowError("生成失败");
                 return false;

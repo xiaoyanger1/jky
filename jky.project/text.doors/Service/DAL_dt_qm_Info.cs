@@ -100,7 +100,7 @@ namespace text.doors.dal
         {
             Model_dt_Settings settings = new Model_dt_Settings();
 
-            var dt_Info = SQLiteHelper.ExecuteDataRow("select * from dt_Info where dt_Code='" + code + "'")?.Table;
+            var dt_Info = SQLiteHelper.ExecuteDataRow("select * from dt_Info where dt_Code='" + code + "'   order by  info_DangH")?.Table;
             if (dt_Info != null)
             {
                 List<Model_dt_Info> list = new List<Model_dt_Info>();
@@ -121,7 +121,7 @@ namespace text.doors.dal
                 if (list.Count > 0)
                     settings.dt_InfoList = list;
             }
-            var dt_qm_Info = SQLiteHelper.ExecuteDataRow("select * from dt_qm_Info where dt_Code='" + code + "'")?.Table;
+            var dt_qm_Info = SQLiteHelper.ExecuteDataRow("select * from dt_qm_Info where dt_Code='" + code + "' order by  info_DangH")?.Table;
             if (dt_qm_Info != null)
             {
                 List<Model_dt_qm_Info> list = new List<Model_dt_qm_Info>();
@@ -154,7 +154,7 @@ namespace text.doors.dal
                 if (list.Count > 0)
                     settings.dt_qm_Info = list;
             }
-            var dt_sm_Info = SQLiteHelper.ExecuteDataRow("select * from dt_sm_Info where dt_Code='" + code + "'")?.Table;
+            var dt_sm_Info = SQLiteHelper.ExecuteDataRow("select * from dt_sm_Info where dt_Code='" + code + "' order by  info_DangH")?.Table;
             if (dt_sm_Info != null)
             {
                 List<Model_dt_sm_Info> list = new List<Model_dt_sm_Info>();
@@ -174,7 +174,7 @@ namespace text.doors.dal
                     settings.dt_sm_Info = list;
 
             }
-            var dt_kfy_Info = SQLiteHelper.ExecuteDataRow("select * from dt_kfy_Info where dt_Code='" + code + "'")?.Table;
+            var dt_kfy_Info = SQLiteHelper.ExecuteDataRow("select * from dt_kfy_Info where dt_Code='" + code + "' order by  info_DangH")?.Table;
             if (dt_kfy_Info != null)
             {
                 List<Model_dt_kfy_Info> list = new List<Model_dt_kfy_Info>();

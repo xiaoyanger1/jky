@@ -427,7 +427,7 @@ namespace text.doors
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            if (!IsSetTong)
+            if (!DefaultBase.IsSetTong)
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
             ComplexAssessment ca = new ComplexAssessment(_tempCode);

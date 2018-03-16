@@ -149,7 +149,6 @@ namespace Young.Core.Data
             {
                 throw new Exception("在文件解密的时候出现错误！错误提示：  " + ex.Message);
             }
-            return string.Empty;
         } 
         #endregion
 

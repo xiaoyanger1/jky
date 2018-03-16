@@ -54,111 +54,145 @@ namespace text.doors.Detection
                     DefaultBase.IsOpenComplexAssessment = false;
                     return;
                 }
-
-
-                foreach (var item in settings.dt_qm_Info)
-                {
-
-                }
-
-                foreach (var item in settings.dt_sm_Info)
-                {
-
-                }
-
-                foreach (var item in settings.dt_kfy_Info)
-                {
-
-                }
-
-
-
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
+                
+                for (int i = 0; i < settings.dt_qm_Info.Count; i++)
                 {
                     if (i == 0)
                     {
-                        groupBox1.Text = dt.Rows[i]["info_DangH"].ToString();
-                        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
-                        {
-                            txt_1zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_1ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_1zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_1fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
-                        {
-                            lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_1fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                        {
-                            lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_1fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                            txt_1zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_1ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_1zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_1fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
+                        txt_1zfc.Text = settings.dt_qm_Info[i].qm_Z_FC;
+                        txt_1ffc.Text = settings.dt_qm_Info[i].qm_F_FC;
+                        txt_1zmj.Text = settings.dt_qm_Info[i].qm_Z_MJ;
+                        txt_1fmj.Text = settings.dt_qm_Info[i].qm_F_MJ;
                     }
-                    if (i == 1)
+                    else if (i == 1)
                     {
-                        groupBox2.Text = dt.Rows[i]["info_DangH"].ToString();
-                        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
-                        {
-                            txt_2zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_2ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_2zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_2fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
-                        {
-                            lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_2fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                        {
-                            lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_2fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                            txt_2zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_2ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_2zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_2fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
+                        txt_2zfc.Text = settings.dt_qm_Info[i].qm_Z_FC;
+                        txt_2ffc.Text = settings.dt_qm_Info[i].qm_F_FC;
+                        txt_2zmj.Text = settings.dt_qm_Info[i].qm_Z_MJ;
+                        txt_2fmj.Text = settings.dt_qm_Info[i].qm_F_MJ;
                     }
-                    if (i == 2)
+                    else if (i == 2)
                     {
-                        groupBox3.Text = dt.Rows[i]["info_DangH"].ToString();
-                        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
-                        {
-                            txt_3zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_3ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_3zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_3fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
-                        {
-                            lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_3fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                        }
-                        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                        {
-                            lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
-                            lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
-                            txt_3fy.Text = dt.Rows[i]["sm_Pa"].ToString();
-                            txt_3zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
-                            txt_3ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
-                            txt_3zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
-                            txt_3fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
-                        }
+                        txt_3zfc.Text = settings.dt_qm_Info[i].qm_Z_FC;
+                        txt_3ffc.Text = settings.dt_qm_Info[i].qm_F_FC;
+                        txt_3zmj.Text = settings.dt_qm_Info[i].qm_Z_MJ;
+                        txt_3fmj.Text = settings.dt_qm_Info[i].qm_F_MJ;
                     }
                 }
+
+                for (int i = 0; i < settings.dt_sm_Info.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        lbl_1desc.Text = settings.dt_sm_Info[i].sm_Remark;
+                        lbl_1resdesc.Text = settings.dt_sm_Info[i].sm_PaDesc;
+                        txt_1fy.Text = settings.dt_sm_Info[i].sm_Pa;
+                    }
+                    else if (i == 1)
+                    {
+                        lbl_2desc.Text = settings.dt_sm_Info[i].sm_Remark;
+                        lbl_2resdesc.Text = settings.dt_sm_Info[i].sm_PaDesc;
+                        txt_2fy.Text = settings.dt_sm_Info[i].sm_Pa;
+                    }
+                    else if (i == 2)
+                    {
+                        lbl_3desc.Text = settings.dt_sm_Info[i].sm_Remark;
+                        lbl_3resdesc.Text = settings.dt_sm_Info[i].sm_PaDesc;
+                        txt_3fy.Text = settings.dt_sm_Info[i].sm_Pa;
+                    }
+                }
+                for (int i = 0; i < settings.dt_kfy_Info.Count; i++)
+                {
+                }
+                
+                #region
+
+
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    if (i == 0)
+                //    {
+                //        groupBox1.Text = dt.Rows[i]["info_DangH"].ToString();
+                //        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
+                //        {
+                //            txt_1zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_1ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_1zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_1fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
+                //        {
+                //            lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_1fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+                //        {
+                //            lbl_1desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_1resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_1fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //            txt_1zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_1ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_1zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_1fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //    }
+                //    if (i == 1)
+                //    {
+                //        groupBox2.Text = dt.Rows[i]["info_DangH"].ToString();
+                //        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
+                //        {
+                //            txt_2zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_2ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_2zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_2fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
+                //        {
+                //            lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_2fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+                //        {
+                //            lbl_2desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_2resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_2fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //            txt_2zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_2ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_2zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_2fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //    }
+                //    if (i == 2)
+                //    {
+                //        groupBox3.Text = dt.Rows[i]["info_DangH"].ToString();
+                //        if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测)
+                //        {
+                //            txt_3zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_3ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_3zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_3fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测)
+                //        {
+                //            lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_3fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //        }
+                //        else if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+                //        {
+                //            lbl_3desc.Text = dt.Rows[i]["sm_Remark"].ToString();
+                //            lbl_3resdesc.Text = dt.Rows[i]["sm_PaDesc"].ToString();
+                //            txt_3fy.Text = dt.Rows[i]["sm_Pa"].ToString();
+                //            txt_3zfc.Text = dt.Rows[i]["qm_Z_FC"].ToString();
+                //            txt_3ffc.Text = dt.Rows[i]["qm_F_FC"].ToString();
+                //            txt_3zmj.Text = dt.Rows[i]["qm_Z_MJ"].ToString();
+                //            txt_3fmj.Text = dt.Rows[i]["qm_F_MJ"].ToString();
+                //        }
+                //    }
+                //}
+                #endregion
                 DefaultBase.IsOpenComplexAssessment = true;
             }
             catch (Exception ex)
@@ -415,140 +449,140 @@ namespace text.doors.Detection
 
         private void btn_audit_Click(object sender, EventArgs e)
         {
-            #region 修改监测数据
-            List<Model_dt_qm_Info> qmList = new List<Model_dt_qm_Info>();
+            //#region 修改监测数据
+            ////List<Model_dt_qm_Info> qmList = new List<Model_dt_qm_Info>();
 
-            try
-            {
-                if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                {
-                    for (int i = 0; i < con; i++)
-                    {
-                        Model_dt_qm_Info model = new Model_dt_qm_Info();
-                        model.dt_Code = _code;
-                        if (i == 0)
-                        {
-                            model.info_DangH = groupBox1.Text;
-                            model.qm_Z_FC = txt_1zfc.Text;
-                            model.qm_F_FC = txt_1ffc.Text;
-                            model.qm_Z_MJ = txt_1zmj.Text;
-                            model.qm_F_MJ = txt_1fmj.Text;
-                            qmList.Add(model);
-                        }
-                        if (i == 1)
-                        {
-                            model.info_DangH = groupBox2.Text;
-                            model.qm_Z_FC = txt_2zfc.Text;
-                            model.qm_F_FC = txt_2ffc.Text;
-                            model.qm_Z_MJ = txt_2zmj.Text;
-                            model.qm_F_MJ = txt_2fmj.Text;
-                            qmList.Add(model);
-                        }
-                        if (i == 2)
-                        {
-                            model.info_DangH = groupBox3.Text;
-                            model.qm_Z_FC = txt_3zfc.Text;
-                            model.qm_F_FC = txt_3ffc.Text;
-                            model.qm_Z_MJ = txt_3zmj.Text;
-                            model.qm_F_MJ = txt_3fmj.Text;
-                            qmList.Add(model);
-                        }
-                    }
-                }
+            //try
+            //{
+            //    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+            //    {
+            //        for (int i = 0; i < con; i++)
+            //        {
+            //            Model_dt_qm_Info model = new Model_dt_qm_Info();
+            //            model.dt_Code = _code;
+            //            if (i == 0)
+            //            {
+            //                model.info_DangH = groupBox1.Text;
+            //                model.qm_Z_FC = txt_1zfc.Text;
+            //                model.qm_F_FC = txt_1ffc.Text;
+            //                model.qm_Z_MJ = txt_1zmj.Text;
+            //                model.qm_F_MJ = txt_1fmj.Text;
+            //                qmList.Add(model);
+            //            }
+            //            if (i == 1)
+            //            {
+            //                model.info_DangH = groupBox2.Text;
+            //                model.qm_Z_FC = txt_2zfc.Text;
+            //                model.qm_F_FC = txt_2ffc.Text;
+            //                model.qm_Z_MJ = txt_2zmj.Text;
+            //                model.qm_F_MJ = txt_2fmj.Text;
+            //                qmList.Add(model);
+            //            }
+            //            if (i == 2)
+            //            {
+            //                model.info_DangH = groupBox3.Text;
+            //                model.qm_Z_FC = txt_3zfc.Text;
+            //                model.qm_F_FC = txt_3ffc.Text;
+            //                model.qm_Z_MJ = txt_3zmj.Text;
+            //                model.qm_F_MJ = txt_3fmj.Text;
+            //                qmList.Add(model);
+            //            }
+            //        }
+            //    }
 
 
-                List<Model_dt_sm_Info> smList = new List<Model_dt_sm_Info>();
-                if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                {
-                    for (int i = 0; i < con; i++)
-                    {
-                        Model_dt_sm_Info model = new Model_dt_sm_Info();
-                        model.dt_Code = _code;
-                        if (i == 0)
-                        {
-                            model.info_DangH = groupBox1.Text;
-                            model.sm_Pa = txt_1fy.Text;
-                            model.sm_PaDesc = lbl_1resdesc.Text;
-                            model.sm_Remark = lbl_1desc.Text;
-                            smList.Add(model);
-                        }
-                        if (i == 1)
-                        {
-                            model.info_DangH = groupBox2.Text;
-                            model.sm_Pa = txt_2fy.Text;
-                            model.sm_PaDesc = lbl_2resdesc.Text;
-                            model.sm_Remark = lbl_2desc.Text;
-                            smList.Add(model);
-                        }
-                        if (i == 2)
-                        {
-                            model.info_DangH = groupBox3.Text;
-                            model.sm_Pa = txt_3fy.Text;
-                            model.sm_PaDesc = lbl_3resdesc.Text;
-                            model.sm_Remark = lbl_3desc.Text;
-                            smList.Add(model);
-                        }
-                    }
-                }
+            //    List<Model_dt_sm_Info> smList = new List<Model_dt_sm_Info>();
+            //    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+            //    {
+            //        for (int i = 0; i < con; i++)
+            //        {
+            //            Model_dt_sm_Info model = new Model_dt_sm_Info();
+            //            model.dt_Code = _code;
+            //            if (i == 0)
+            //            {
+            //                model.info_DangH = groupBox1.Text;
+            //                model.sm_Pa = txt_1fy.Text;
+            //                model.sm_PaDesc = lbl_1resdesc.Text;
+            //                model.sm_Remark = lbl_1desc.Text;
+            //                smList.Add(model);
+            //            }
+            //            if (i == 1)
+            //            {
+            //                model.info_DangH = groupBox2.Text;
+            //                model.sm_Pa = txt_2fy.Text;
+            //                model.sm_PaDesc = lbl_2resdesc.Text;
+            //                model.sm_Remark = lbl_2desc.Text;
+            //                smList.Add(model);
+            //            }
+            //            if (i == 2)
+            //            {
+            //                model.info_DangH = groupBox3.Text;
+            //                model.sm_Pa = txt_3fy.Text;
+            //                model.sm_PaDesc = lbl_3resdesc.Text;
+            //                model.sm_Remark = lbl_3desc.Text;
+            //                smList.Add(model);
+            //            }
+            //        }
+            //    }
 
-                new DAL_dt_qm_Info().AddSM_QM(qmList, smList, DetectionItemEnum);
+            //    new DAL_dt_qm_Info().AddSM_QM(qmList, smList, DetectionItemEnum);
 
-                #endregion
+            //    #endregion
 
-                #region 获取设置后的樘号信息 --   判定
-                InitResult();
+            //    #region 获取设置后的樘号信息 --   判定
+            //    InitResult();
 
-                DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
-                if (settings != null && settings.Rows.Count > 0)
-                {
-                    txt_sjz1.Text = settings.Rows[0]["ShuiMiSheJiZhi"].ToString();
-                    txt_sjz2.Text = settings.Rows[0]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
-                    txt_sjz3.Text = settings.Rows[0]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
-                    txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
-                    txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
-                }
-                DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
-                if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                {
-                    txt_dj1.Text = Get_QMLevel(dt).ToString();
-                    if (qm_z_FC >= double.Parse(txt_sjz2.Text))
-                        txt_jg2.Text = "合格";
-                    else
-                        txt_jg2.Text = "不合格";
+            //    DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
+            //    if (settings != null && settings.Rows.Count > 0)
+            //    {
+            //        txt_sjz1.Text = settings.Rows[0]["ShuiMiSheJiZhi"].ToString();
+            //        txt_sjz2.Text = settings.Rows[0]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
+            //        txt_sjz3.Text = settings.Rows[0]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
+            //        txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
+            //        txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
+            //    }
+            //    DataTable dt = new DAL_dt_qm_Info().GetInfoByCode(_code, DetectionItemEnum);
+            //    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+            //    {
+            //        txt_dj1.Text = Get_QMLevel(dt).ToString();
+            //        if (qm_z_FC >= double.Parse(txt_sjz2.Text))
+            //            txt_jg2.Text = "合格";
+            //        else
+            //            txt_jg2.Text = "不合格";
 
-                    if (qm_f_FC >= double.Parse(txt_sjz3.Text))
-                        txt_jg3.Text = "合格";
-                    else
-                        txt_jg3.Text = "不合格";
+            //        if (qm_f_FC >= double.Parse(txt_sjz3.Text))
+            //            txt_jg3.Text = "合格";
+            //        else
+            //            txt_jg3.Text = "不合格";
 
-                    if (qm_z_MJ >= double.Parse(txt_sjz4.Text))
-                        txt_jg4.Text = "合格";
-                    else
-                        txt_jg4.Text = "不合格";
+            //        if (qm_z_MJ >= double.Parse(txt_sjz4.Text))
+            //            txt_jg4.Text = "合格";
+            //        else
+            //            txt_jg4.Text = "不合格";
 
-                    if (qm_f_MJ <= double.Parse(txt_sjz4.Text))
-                        txt_jg5.Text = "合格";
-                    else
-                        txt_jg5.Text = "不合格";
-                }
-                if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
-                {
-                    txt_dj2.Text = Get_SMLevel(dt).ToString();
+            //        if (qm_f_MJ <= double.Parse(txt_sjz4.Text))
+            //            txt_jg5.Text = "合格";
+            //        else
+            //            txt_jg5.Text = "不合格";
+            //    }
+            //    if (DetectionItemEnum == PublicEnum.DetectionItem.enum_水密性能检测 || DetectionItemEnum == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
+            //    {
+            //        txt_dj2.Text = Get_SMLevel(dt).ToString();
 
-                    if (sm_value >= int.Parse(txt_sjz1.Text))
-                        txt_jg1.Text = "合格";
-                    else
-                        txt_jg1.Text = "不合格";
-                }
+            //        if (sm_value >= int.Parse(txt_sjz1.Text))
+            //            txt_jg1.Text = "合格";
+            //        else
+            //            txt_jg1.Text = "不合格";
+            //    }
 
-                #endregion
-                MessageBox.Show("生成成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Logger.Error(ex);
-            }
+            //    #endregion
+            //    MessageBox.Show("生成成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    Logger.Error(ex);
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)

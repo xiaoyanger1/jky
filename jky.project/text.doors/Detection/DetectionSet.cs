@@ -68,7 +68,7 @@ namespace text.doors.Detection
                     MessageBox.Show("设定完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     //获取樘号
                     deleBottomTypeEvent(GetBottomType(true));
-                    DefaultBase.base_SpecCount = btn_GuiGeShuLiang.Text;
+                    DefaultBase.base_SpecCount = int.Parse(btn_GuiGeShuLiang.Text);
                     DefaultBase.base_TestItem = cb_JianYanXiangMu.Text;
                     this.btn_add.Enabled = true;
                     this.btn_select.Enabled = true;
@@ -329,7 +329,7 @@ namespace text.doors.Detection
                     return;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("最大只能输入三樘", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;

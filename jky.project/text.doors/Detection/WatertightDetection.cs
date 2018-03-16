@@ -692,7 +692,7 @@ namespace text.doors.Detection
                 int zgfy = int.Parse(txt_zgfy.Text);
                 CheckValue = zgfy;
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("请输入数字", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
