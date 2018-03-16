@@ -259,7 +259,7 @@ namespace text.doors.Detection
         {
             if (e.Button == MouseButtons.Right)
             {
-                this.chart_cms_qm_click.Show(MousePosition.X, MousePosition.Y);
+                this.chart_cms_sm_click.Show(MousePosition.X, MousePosition.Y);
             }
         }
 
