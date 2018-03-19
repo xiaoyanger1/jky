@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using text.doors.Default;
 using text.doors.Model;
+using text.doors.Model.DataBase;
 using text.doors.Service;
 
+using System.Linq;
 namespace text.doors.Common
 {
     public class Formula
@@ -167,12 +170,12 @@ namespace text.doors.Common
         ///   <param name="tempTemperature">当前温度</param>
         ///    <param name="stitchLength">开启逢长</param>
         ///     <param name="sumArea">总面积</param>
-        public static double GetIndexStitchLengthAndArea(double zd, double fj, double _zd, double _fj, bool isFC,double kPa,double tempTemperature,double stitchLength,double sumArea)
+        public static double GetIndexStitchLengthAndArea(double zd, double fj, double _zd, double _fj, bool isFC, double kPa, double tempTemperature, double stitchLength, double sumArea)
         {
             double res = 0;
             //流量数值（正压100升总的 +正压100降总的）/2 -（正压100升附加 +正压100降附加）/2 
             var Q = (zd + _zd) / 2 - (fj + _fj) / 2;
-            
+
             var qMin = 293 / 101.3 * (kPa / (273 + tempTemperature)) * Q;
 
             if (isFC)
@@ -188,11 +191,159 @@ namespace text.doors.Common
         #endregion
 
         #region 等级划分
+
+
+
+        /// <summary>
+        /// 获取水密等级
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public int GetWaterTightLevel(List<Model_dt_sm_Info> waterTight)
+        {
+            int value = 0;
+            if (waterTight == null || waterTight.Count == 0)
+                return value;
+
+            if (waterTight.Count == 3)
+            {
+                List<int> list = new List<int>();
+                waterTight.ForEach(t => list.Add(Convert.ToInt32(t.sm_Pa)));
+                list.Sort();
+
+                int min = list[0];
+                int intermediate = list[1];
+                int max = list[2];
+                //int minlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == min).level,
+                //    intermediatelevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                //    maxlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == max).level;
+                //todo  update
+                int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+
+                if ((maxlevel - intermediatelevel) > 2)
+                {
+                    //todo update
+                    foreach (var item in DefaultBase.AirtightLevel)
+                    {
+                        if (item.Value == (intermediatelevel + 2))
+                        {
+                            max = item.Key; break;
+                        }
+                    }
+                }
+
+                value = (min + intermediate + max) / 3;
+            }
+            else
+            {
+                foreach (var item in waterTight)
+                    value += int.Parse(item.sm_Pa);
+
+                value = value / waterTight.Count;
+            }
+            return Formula.GetWaterTightLevel(value);
+        }
+
+
+
+        /// <summary>
+        /// 获取水密压力
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public int GetWaterTightPressure(List<Model_dt_sm_Info> list)
+        {
+            int value = 0;
+
+            if (list == null || list.Count == 0)
+                return value;
+
+            if (list.Count == 3)
+            {
+                List<int> pas = new List<int>();
+                list.ForEach(t => pas.Add(int.Parse(t.sm_Pa)));
+                list.Sort();
+
+                int min = pas[0];
+                int intermediate = pas[1];
+                int max = pas[2];
+
+                //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
+                //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
+                //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
+
+                //if ((maxlevel - intermediatelevel) > 2)
+                //{
+                //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
+                //}
+                //todo update
+                int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
+                int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
+                int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+
+                if ((maxlevel - intermediatelevel) > 2)
+                {
+                    foreach (var item in DefaultBase.AirtightLevel)
+                    {
+                        if (item.Value == (intermediatelevel + 2))
+                        {
+                            max = item.Key; break;
+                        }
+                    }
+                }
+                value = (min + intermediate + max) / 3;
+            }
+            else
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(list[i].sm_Pa))
+                    {
+                        value = 0;
+                        break;
+                    }
+                    value += int.Parse(list[i].sm_Pa.ToString());
+                }
+                value = value / list.Count;
+            }
+
+
+            return value;
+        }
+
+        /// <summary>
+        /// 气密计算  获取不标准的等级
+        /// 范式 气密正负缝长平均值等级 与 气密正负压缝长平均值等级 最大的最次
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public int GetAirTightLevel(List<Model_dt_qm_Info> airTight)
+        {
+            if (airTight == null || airTight.Count == 0)
+                return 0;
+
+            double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
+            double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
+            double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
+            double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
+
+            List<int> level = new List<int>();
+            level.Add(Formula.GetStitchLengthLevel(zFc));
+            level.Add(Formula.GetStitchLengthLevel(fFc));
+            level.Add(Formula.GetStitchLengthLevel(zMj));
+            level.Add(Formula.GetStitchLengthLevel(fMj));
+            level.Sort();
+
+            return level[0];
+        }
+
         /// <summary>
         /// 获取缝长分级
         /// </summary>
         /// <returns></returns>
-        public static int GetStitchLengthLevel(double value)
+        private static int GetStitchLengthLevel(double value)
         {
             int res = 0;
             if (4 >= value && value > 3.5)
@@ -234,7 +385,7 @@ namespace text.doors.Common
         /// 获取面积分级
         /// </summary>
         /// <returns></returns>
-        public static int GetAreaLevel(double value)
+        private static int GetAreaLevel(double value)
         {
             int res = 0;
             if (12 >= value && value > 10.5)
@@ -276,7 +427,7 @@ namespace text.doors.Common
         /// 获取水密分级
         /// </summary>
         /// <returns></returns>
-        public static int GetWaterTightLevel(int value)
+        private static int GetWaterTightLevel(int value)
         {
             int res = 0;
             if (value >= 100 && value < 150)

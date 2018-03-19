@@ -39,23 +39,6 @@ namespace text.doors.dal
         }
 
         /// <summary>
-        /// 更新气密信息
-        /// </summary>
-        /// <param name="mode"></param>
-        public bool Update_qm_Info(Model_dt_qm_Info model)
-        {
-            string sql = string.Format(@"update dt_qm_Info  set 
-                qm_Z_FC	='{0}',
-                qm_F_FC	='{1}',
-                qm_Z_MJ	='{2}',
-                qm_F_MJ	='{3}'
- where dt_Code = '{4}' and info_DangH='{5}'
-                ", model.qm_Z_FC, model.qm_F_FC, model.qm_Z_MJ, model.qm_F_MJ, model.dt_Code, model.info_DangH);
-            return SQLiteHelper.ExecuteNonQuery(sql) > 0 ? true : false;
-
-        }
-
-        /// <summary>
         /// 根据编号获取本次检测信息
         /// </summary>
         /// <param name="code"></param>
@@ -276,21 +259,39 @@ namespace text.doors.dal
         {
             if (enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
-                for (int i = 0; i < qm.Count; i++)
-                {
-                    Update_qm_Info(qm[i]);
-                }
+
             }
             if (enum_DetectionItem == PublicEnum.DetectionItem.enum_水密性能检测 || enum_DetectionItem == PublicEnum.DetectionItem.enum_气密性能及水密性能检测)
             {
-                DAL_dt_sm_Info dal = new DAL_dt_sm_Info();
-                for (int i = 0; i < sm.Count; i++)
-                {
-                    dal.Add(sm[i]);
-                }
+
             }
         }
 
 
+        public void UpdateResult(Model_dt_Settings settings)
+        {
+            if (settings.dt_sm_Info != null && settings.dt_sm_Info.Count > 0)
+            {
+                var sql = "";
+                foreach (var item in settings.dt_sm_Info)
+                {
+                    sql += $"update  dt_sm_Info set sm_PaDesc = '{item.sm_PaDesc}', sm_Pa='{item.sm_Pa}', sm_Remark='{item.sm_Remark}' where dt_Code ='{item.dt_Code}' and info_DangH='{item.info_DangH}'    ";
+                }
+                SQLiteHelper.ExecuteNonQuery(sql);
+            }
+            if (settings.dt_qm_Info != null && settings.dt_qm_Info.Count > 0)
+            {
+                string sql = "";
+                foreach (var item in settings.dt_qm_Info)
+                {
+                    sql += $"update dt_qm_Info  set qm_Z_FC	='{item.qm_Z_FC}',qm_F_FC ='{item.qm_F_FC}',qm_Z_MJ	='{item.qm_Z_MJ}',qm_F_MJ	='{item.qm_F_MJ}' where dt_Code = '{item.dt_Code}' and info_DangH='{item.info_DangH}' ;   ";
+                }
+                SQLiteHelper.ExecuteNonQuery(sql);
+            }
+            if (settings.dt_kfy_Info != null && settings.dt_kfy_Info.Count > 0)
+            {
+                //todo:抗风压
+            }
+        }
     }
 }
