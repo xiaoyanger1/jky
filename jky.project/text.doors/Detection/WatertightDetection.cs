@@ -59,7 +59,7 @@ namespace text.doors.Detection
         private void Init()
         {
             Initial();
-            CurrentTong();
+            Title();
             SMchartInit();
         }
         #region 数据绑定
@@ -215,7 +215,7 @@ namespace text.doors.Detection
         /// <summary>
         /// 绑定设定压力
         /// </summary>
-        private void CurrentTong()
+        private void Title()
         {
             lbl_smjc.Text = string.Format("门窗水密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
         }
