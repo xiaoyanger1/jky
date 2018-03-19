@@ -31,7 +31,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            this._settings = new DAL_dt_qm_Info().GetInfoByCode(_code);
+            this._settings = new DAL_dt_Settings().GetInfoByCode(_code);
 
             InitResult();
         }

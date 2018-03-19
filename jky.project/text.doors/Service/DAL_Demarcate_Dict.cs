@@ -84,7 +84,60 @@ namespace text.doors.Service
             }
             set
             {
-                _temperatureDict = value;
+                _kPaDict = value;
+            }
+        }
+
+        //<summary>
+        //位移传感器1
+        //</summary>
+        public static List<Calibrating_Dict> _displacement1Dict = null;
+        public static List<Calibrating_Dict> displacement1Dict
+        {
+            get
+            {
+                if (_displacement1Dict == null)
+                    displacement1Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_位移传感器1.ToString()).OrderBy(t => t.x).ToList();
+                return _displacement1Dict;
+            }
+            set
+            {
+                _displacement1Dict = value;
+            }
+        }
+        //<summary>
+        //位移传感器2
+        //</summary>
+        public static List<Calibrating_Dict> _displacement2Dict = null;
+        public static List<Calibrating_Dict> displacement2Dict
+        {
+            get
+            {
+                if (_displacement2Dict == null)
+                    displacement2Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_位移传感器2.ToString()).OrderBy(t => t.x).ToList();
+                return _displacement2Dict;
+            }
+            set
+            {
+                _displacement2Dict = value;
+            }
+        }
+
+        //<summary>
+        //位移传感器3
+        //</summary>
+        public static List<Calibrating_Dict> _displacement3Dict = null;
+        public static List<Calibrating_Dict> displacement3Dict
+        {
+            get
+            {
+                if (_displacement3Dict == null)
+                    displacement3Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.enum_位移传感器2.ToString()).OrderBy(t => t.x).ToList();
+                return _displacement3Dict;
+            }
+            set
+            {
+                _displacement3Dict = value;
             }
         }
 

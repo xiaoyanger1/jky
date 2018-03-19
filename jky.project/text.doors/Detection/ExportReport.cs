@@ -71,8 +71,10 @@ namespace text.doors.Detection
 
                 var saveExcelUrl = path.SelectedPath + "\\" + _name;
 
-                Model_dt_Settings settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
-
+                //todo
+                // Model_dt_Settings settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
+                Model_dt_Settings settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
+                
                 if (settings == null)
                 {
                     MessageBox.Show("未查询到相关编号!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);

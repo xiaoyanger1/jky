@@ -69,8 +69,9 @@ namespace text.doors.Detection
         /// </summary>
         private void Initial()
         {
-            Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
-
+            //todo
+            // Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
+            Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
             {

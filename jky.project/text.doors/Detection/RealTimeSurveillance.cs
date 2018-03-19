@@ -83,7 +83,7 @@ namespace text.doors.Detection
             //    tc_RealTimeSurveillance.TabPages["page_watertight"].Hide();
             //    tc_RealTimeSurveillance.TabPages["page_airtight"].Show();
             //}
-            
+
             pressure = new Pressure();
             Init();
         }
@@ -171,8 +171,9 @@ namespace text.doors.Detection
         /// </summary>
         private void BindWindSpeedBase()
         {
-            Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
-
+            //todo
+           // Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
+            Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
             {
@@ -1633,7 +1634,7 @@ namespace text.doors.Detection
                 int zgfy = int.Parse(txt_zgfy.Text);
                 CheckValue = zgfy;
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("请输入数字", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
