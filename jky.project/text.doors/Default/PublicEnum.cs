@@ -65,35 +65,32 @@ namespace text.doors.Default
         /// <summary>
         /// 标定
         /// </summary>
-        /// //todo:修改
         public enum DemarcateType
         {
-            enum_风速传感器,
-            enum_差压传感器,
-            enum_温度传感器,
-            enum_大气压力传感器,
-            enum_位移传感器1,
-            enum_位移传感器2,
-            enum_位移传感器3
+            风速传感器,
+            差压传感器,
+            温度传感器,
+            大气压力传感器,
+            位移传感器1,
+            位移传感器2,
+            位移传感器3
         }
 
         /// <summary>
         /// 检测项
         /// </summary>
-        //todo:需要调整
-
         public enum DetectionItem
         {
             //enum_气密性能检测,
             //enum_水密性能检测,
             //enum_气密性能及水密性能检测
-            enum_气密水密抗风压性能检测,
-            enum_气密性能检测,
-            enum_水密性能检测,
-            enum_抗风压性能检测,
-            enum_气密性能及水密性能检测,
-            enum_气密性能及抗风压性能检测,
-            enum_水密性能及抗风压性能检测
+            气密水密抗风压性能检测,
+            气密性能检测,
+            水密性能检测,
+            抗风压性能检测,
+            气密性能及水密性能检测,
+            气密性能及抗风压性能检测,
+            水密性能及抗风压性能检测
         }
 
     }

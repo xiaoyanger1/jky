@@ -41,25 +41,25 @@ namespace text.doors.Default
                 switch (base_TestItem)
                 {
                     case "气密性能检测":
-                        res = PublicEnum.DetectionItem.enum_气密性能检测;
+                        res = PublicEnum.DetectionItem.气密性能检测;
                         break;
                     case "水密性能检测":
-                        res = PublicEnum.DetectionItem.enum_水密性能检测;
+                        res = PublicEnum.DetectionItem.水密性能检测;
                         break;
                     case "抗风压性能检测":
-                        res = PublicEnum.DetectionItem.enum_抗风压性能检测;
+                        res = PublicEnum.DetectionItem.抗风压性能检测;
                         break;
                     case "气密性能及水密性能检测":
-                        res = PublicEnum.DetectionItem.enum_气密性能及水密性能检测;
+                        res = PublicEnum.DetectionItem.气密性能及水密性能检测;
                         break;
                     case "气密、水密、抗风压性能检测":
-                        res = PublicEnum.DetectionItem.enum_气密水密抗风压性能检测;
+                        res = PublicEnum.DetectionItem.气密水密抗风压性能检测;
                         break;
                     case "气密性能及抗风压性能检测":
-                        res = PublicEnum.DetectionItem.enum_气密性能及抗风压性能检测;
+                        res = PublicEnum.DetectionItem.气密性能及抗风压性能检测;
                         break;
                     case "水密性能及抗风压性能检测":
-                        res = PublicEnum.DetectionItem.enum_水密性能及抗风压性能检测;
+                        res = PublicEnum.DetectionItem.水密性能及抗风压性能检测;
                         break;
                 }
                 #endregion

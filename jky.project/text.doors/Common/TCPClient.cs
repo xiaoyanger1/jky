@@ -142,7 +142,7 @@ namespace text.doors.Common
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_温度传感器, float.Parse(res.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.温度传感器, float.Parse(res.ToString()));
                     IsSuccess = true;
                 }
             }
@@ -172,7 +172,7 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.大气压力显示);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.大气压力传感器, float.Parse(res.ToString()));
                 }
                 IsSuccess = true;
             }
@@ -204,7 +204,7 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速显示);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     var f = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_风速传感器, float.Parse(f.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.风速传感器, float.Parse(f.ToString()));
                     IsSuccess = true;
                 }
             }
@@ -243,7 +243,7 @@ namespace text.doors.Common
                     else
                         f = int.Parse(holding_register[0].ToString());
 
-                    res = Formula.GetValues(PublicEnum.DemarcateType.enum_差压传感器, float.Parse(f.ToString()));
+                    res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
                     IsSuccess = true;
                 }
             }

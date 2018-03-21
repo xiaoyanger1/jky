@@ -88,19 +88,19 @@ namespace text.doors.Common
         /// <returns></returns>
         private static List<Calibrating_Dict> GetListByEnum(PublicEnum.DemarcateType enum_Demarcate)
         {
-            if (enum_Demarcate == PublicEnum.DemarcateType.enum_差压传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.差压传感器)
             {
                 return DAL_Demarcate_Dict.differentialPressureDict;
             }
-            if (enum_Demarcate == PublicEnum.DemarcateType.enum_大气压力传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.大气压力传感器)
             {
                 return DAL_Demarcate_Dict.kPaDict;
             }
-            if (enum_Demarcate == PublicEnum.DemarcateType.enum_风速传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.风速传感器)
             {
                 return DAL_Demarcate_Dict.windSpeedDict;
             }
-            if (enum_Demarcate == PublicEnum.DemarcateType.enum_温度传感器)
+            if (enum_Demarcate == PublicEnum.DemarcateType.温度传感器)
             {
                 return DAL_Demarcate_Dict.temperatureDict;
             }

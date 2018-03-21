@@ -183,31 +183,31 @@ namespace text.doors.Detection
 
             if (name == "风速传感器      米/秒")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_风速传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.风速传感器;
             }
             if (name == "差压传感器      高 帕")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_差压传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.差压传感器;
             }
             if (name == "温度传感器      ℃")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_温度传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.温度传感器;
             }
             if (name == "大气压力传感器 KPa")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_大气压力传感器;
+                enum_Demarcate = PublicEnum.DemarcateType.大气压力传感器;
             }
             if (name == "位移传感器1      mm")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器1;
+                enum_Demarcate = PublicEnum.DemarcateType.位移传感器1;
             }
             if (name == "位移传感器2      mm")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器2;
+                enum_Demarcate = PublicEnum.DemarcateType.位移传感器2;
             }
             if (name == "位移传感器3      mm")
             {
-                enum_Demarcate = PublicEnum.DemarcateType.enum_位移传感器3;
+                enum_Demarcate = PublicEnum.DemarcateType.位移传感器3;
             }
 
             return enum_Demarcate;

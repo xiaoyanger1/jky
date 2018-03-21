@@ -213,7 +213,7 @@ namespace text.doors.Detection
                 return false;
             }
 
-            if (PublicEnum.DetectionItem.enum_抗风压性能检测 == testItem)
+            if (PublicEnum.DetectionItem.抗风压性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -225,7 +225,7 @@ namespace text.doors.Detection
                 }
             }
 
-            if (PublicEnum.DetectionItem.enum_气密性能及抗风压性能检测 == testItem)
+            if (PublicEnum.DetectionItem.气密性能及抗风压性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -240,7 +240,7 @@ namespace text.doors.Detection
                     }
                 }
             }
-            if (PublicEnum.DetectionItem.enum_气密性能及水密性能检测 == testItem)
+            if (PublicEnum.DetectionItem.气密性能及水密性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -255,7 +255,7 @@ namespace text.doors.Detection
                     }
                 }
             }
-            if (PublicEnum.DetectionItem.enum_气密性能检测 == testItem)
+            if (PublicEnum.DetectionItem.气密性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -268,7 +268,7 @@ namespace text.doors.Detection
                 }
             }
 
-            if (PublicEnum.DetectionItem.enum_气密水密抗风压性能检测 == testItem)
+            if (PublicEnum.DetectionItem.气密水密抗风压性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -285,7 +285,7 @@ namespace text.doors.Detection
                     }
                 }
             }
-            if (PublicEnum.DetectionItem.enum_水密性能及抗风压性能检测 == testItem)
+            if (PublicEnum.DetectionItem.水密性能及抗风压性能检测 == testItem)
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
@@ -300,7 +300,7 @@ namespace text.doors.Detection
                     }
                 }
             }
-            if (PublicEnum.DetectionItem.enum_水密性能检测 == testItem)
+            if (PublicEnum.DetectionItem.水密性能检测 == testItem)
             {
 
                 foreach (var item in _settings.dt_InfoList)
