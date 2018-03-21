@@ -322,3 +322,5 @@
 	
 	# NVidia Nsight GPU debugger configuration file
 	*.nvuser
+	bin/
+	obj/
