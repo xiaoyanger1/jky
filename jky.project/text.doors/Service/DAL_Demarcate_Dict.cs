@@ -15,11 +15,19 @@ namespace text.doors.Service
     {
         public static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
 
-        private static List<Calibrating_Dict> DemarcateList = GetCalibrating_Dict();
+        private static List<Calibrating_Dict> DemarcateList = new List<Calibrating_Dict>();
+
+
+        public DAL_Demarcate_Dict()
+        {
+            DemarcateList = GetCalibrating_Dict();
+        }
+
+
         //<summary>
         //温度传感器
         //</summary>
-        public static List<Calibrating_Dict> _temperatureDict = null;
+        private static List<Calibrating_Dict> _temperatureDict = null;
         public static List<Calibrating_Dict> temperatureDict
         {
             get
@@ -37,7 +45,7 @@ namespace text.doors.Service
         //<summary>
         //差压传感器
         //</summary>
-        public static List<Calibrating_Dict> _differentialPressureDict = null;
+        private static List<Calibrating_Dict> _differentialPressureDict = null;
         public static List<Calibrating_Dict> differentialPressureDict
         {
             get
@@ -55,7 +63,7 @@ namespace text.doors.Service
         //<summary>
         //风速传感器
         //</summary>
-        public static List<Calibrating_Dict> _windSpeedDict = null;
+        private static List<Calibrating_Dict> _windSpeedDict = null;
         public static List<Calibrating_Dict> windSpeedDict
         {
             get
@@ -73,7 +81,7 @@ namespace text.doors.Service
         //<summary>
         //大气压力传感器
         //</summary>
-        public static List<Calibrating_Dict> _kPaDict = null;
+        private static List<Calibrating_Dict> _kPaDict = null;
         public static List<Calibrating_Dict> kPaDict
         {
             get
@@ -91,7 +99,7 @@ namespace text.doors.Service
         //<summary>
         //位移传感器1
         //</summary>
-        public static List<Calibrating_Dict> _displacement1Dict = null;
+        private static List<Calibrating_Dict> _displacement1Dict = null;
         public static List<Calibrating_Dict> displacement1Dict
         {
             get
@@ -108,7 +116,7 @@ namespace text.doors.Service
         //<summary>
         //位移传感器2
         //</summary>
-        public static List<Calibrating_Dict> _displacement2Dict = null;
+        private static List<Calibrating_Dict> _displacement2Dict = null;
         public static List<Calibrating_Dict> displacement2Dict
         {
             get
@@ -126,7 +134,7 @@ namespace text.doors.Service
         //<summary>
         //位移传感器3
         //</summary>
-        public static List<Calibrating_Dict> _displacement3Dict = null;
+        private static List<Calibrating_Dict> _displacement3Dict = null;
         public static List<Calibrating_Dict> displacement3Dict
         {
             get

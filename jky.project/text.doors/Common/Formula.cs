@@ -94,11 +94,11 @@ namespace text.doors.Common
             }
             if (enum_Demarcate == PublicEnum.DemarcateType.enum_大气压力传感器)
             {
-                return DAL_Demarcate_Dict._kPaDict;
+                return DAL_Demarcate_Dict.kPaDict;
             }
             if (enum_Demarcate == PublicEnum.DemarcateType.enum_风速传感器)
             {
-                return DAL_Demarcate_Dict._windSpeedDict;
+                return DAL_Demarcate_Dict.windSpeedDict;
             }
             if (enum_Demarcate == PublicEnum.DemarcateType.enum_温度传感器)
             {
