@@ -445,8 +445,8 @@ namespace text.doors
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
             TakePhotos takePhotos = new TakePhotos(_tempCode);
-            pic.Show();
-            pic.TopMost = true;
+            takePhotos.Show();
+            takePhotos.TopMost = true;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
