@@ -276,7 +276,6 @@
     <EmbeddedResource Include="User\UpdatePassWord.resx">
       <DependentUpon>UpdatePassWord.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Configurations\Log4Net.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
