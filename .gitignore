@@ -325,3 +325,4 @@
 	bin/
 	obj/
 jky.project/text.doors/bin/Debug/Logs/Exception_20180314.log
+*.log
