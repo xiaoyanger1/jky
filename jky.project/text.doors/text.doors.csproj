@@ -38,23 +38,23 @@
   <ItemGroup>
     <Reference Include="AForge, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\AForge.dll</HintPath>
+      <HintPath>bin\Debug\AForge.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Controls, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\AForge.Controls.dll</HintPath>
+      <HintPath>bin\Debug\AForge.Controls.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Imaging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\AForge.Imaging.dll</HintPath>
+      <HintPath>bin\Debug\AForge.Imaging.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\AForge.Video.dll</HintPath>
+      <HintPath>bin\Debug\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video.DirectShow, Version=2.0.0.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\AForge.Video.DirectShow.dll</HintPath>
+      <HintPath>bin\Debug\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -66,12 +66,12 @@
       <HintPath>..\dll\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
     <Reference Include="nmodbuspc">
-      <HintPath>..\dll\nmodbuspc.dll</HintPath>
+      <HintPath>C:\Users\z_young\Desktop\demo\dll\nmodbuspc.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RegDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\RegDLL.dll</HintPath>
+      <HintPath>bin\Debug\RegDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -91,10 +91,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TeeChart, Version=4.1.2010.8046, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\TeeChart.dll</HintPath>
-    </Reference>
     <Reference Include="TeeChart1">
       <HintPath>dll\TeeChart.dll</HintPath>
     </Reference>
