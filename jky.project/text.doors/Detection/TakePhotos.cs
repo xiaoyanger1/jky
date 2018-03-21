@@ -15,13 +15,13 @@ using text.doors.Default;
 
 namespace text.doors.Detection
 {
-    public partial class pic : Form
+    public partial class TakePhotos : Form
     {
         private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         private string _code = "";
         private FilterInfoCollection videoDevices;
         private VideoCaptureDevice videoSource;
-        public pic(string code)
+        public TakePhotos(string code)
         {
             _code = code;
             InitializeComponent();

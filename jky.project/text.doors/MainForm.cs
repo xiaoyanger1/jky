@@ -444,7 +444,7 @@ namespace text.doors
             if (DefaultBase.IsSetTong)
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
 
-            pic pic = new pic(_tempCode);
+            TakePhotos takePhotos = new TakePhotos(_tempCode);
             pic.Show();
             pic.TopMost = true;
         }

@@ -412,12 +412,10 @@ namespace text.doors.Detection
                         var airTight = _settings.dt_qm_Info;
                         txt_dj1.Text = formula.GetAirTightLevel(airTight).ToString();
 
-
                         double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
                         double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
                         double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
                         double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
-
 
                         if (zFc >= double.Parse(txt_sjz2.Text))
                             txt_jg2.Text = "合格";
@@ -439,8 +437,7 @@ namespace text.doors.Detection
                         else
                             txt_jg5.Text = "不合格";
                     }
-
-
+                    
                     if (_settings.dt_sm_Info != null && _settings.dt_sm_Info.Count > 0)
                     {
                         txt_dj2.Text = formula.GetWaterTightLevel(_settings.dt_sm_Info).ToString();

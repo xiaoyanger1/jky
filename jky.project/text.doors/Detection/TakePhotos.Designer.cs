@@ -1,6 +1,6 @@
 ﻿namespace text.doors.Detection
 {
-    partial class pic
+    partial class TakePhotos
     {
         /// <summary>
         /// Required designer variable.

@@ -119,11 +119,11 @@
     <Compile Include="Common\TCPClient.cs" />
     <Compile Include="Common\Formula.cs" />
     <Compile Include="Default\DefaultBase.cs" />
-    <Compile Include="Detection\pic.cs">
+    <Compile Include="Detection\TakePhotos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Detection\pic.Designer.cs">
-      <DependentUpon>pic.cs</DependentUpon>
+    <Compile Include="Detection\TakePhotos.Designer.cs">
+      <DependentUpon>TakePhotos.cs</DependentUpon>
     </Compile>
     <Compile Include="Detection\PIDManager.cs">
       <SubType>Form</SubType>
@@ -236,8 +236,8 @@
     <EmbeddedResource Include="Detection\ExportReport.resx">
       <DependentUpon>ExportReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Detection\pic.resx">
-      <DependentUpon>pic.cs</DependentUpon>
+    <EmbeddedResource Include="Detection\TakePhotos.resx">
+      <DependentUpon>TakePhotos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Detection\PIDManager.resx">
       <DependentUpon>PIDManager.cs</DependentUpon>
