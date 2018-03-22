@@ -57,6 +57,7 @@ namespace text.doors.Detection
                 {
                     if (i == 0)
                     {
+                        groupBox1.Text = _settings.dt_qm_Info[i].info_DangH;
                         txt_1zfc.Text = _settings.dt_qm_Info[i].qm_Z_FC;
                         txt_1ffc.Text = _settings.dt_qm_Info[i].qm_F_FC;
                         txt_1zmj.Text = _settings.dt_qm_Info[i].qm_Z_MJ;
@@ -64,6 +65,7 @@ namespace text.doors.Detection
                     }
                     else if (i == 1)
                     {
+                        groupBox2.Text = _settings.dt_qm_Info[i].info_DangH;
                         txt_2zfc.Text = _settings.dt_qm_Info[i].qm_Z_FC;
                         txt_2ffc.Text = _settings.dt_qm_Info[i].qm_F_FC;
                         txt_2zmj.Text = _settings.dt_qm_Info[i].qm_Z_MJ;
@@ -71,6 +73,7 @@ namespace text.doors.Detection
                     }
                     else if (i == 2)
                     {
+                        groupBox3.Text = _settings.dt_qm_Info[i].info_DangH;
                         txt_3zfc.Text = _settings.dt_qm_Info[i].qm_Z_FC;
                         txt_3ffc.Text = _settings.dt_qm_Info[i].qm_F_FC;
                         txt_3zmj.Text = _settings.dt_qm_Info[i].qm_Z_MJ;
@@ -82,18 +85,21 @@ namespace text.doors.Detection
                 {
                     if (i == 0)
                     {
+                        groupBox1.Text = _settings.dt_qm_Info[i].info_DangH;
                         lbl_1desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_1resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_1fy.Text = _settings.dt_sm_Info[i].sm_Pa;
                     }
                     else if (i == 1)
                     {
+                        groupBox2.Text = _settings.dt_qm_Info[i].info_DangH;
                         lbl_2desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_2resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_2fy.Text = _settings.dt_sm_Info[i].sm_Pa;
                     }
                     else if (i == 2)
                     {
+                        groupBox3.Text = _settings.dt_qm_Info[i].info_DangH;
                         lbl_3desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_3resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_3fy.Text = _settings.dt_sm_Info[i].sm_Pa;
@@ -339,6 +345,7 @@ namespace text.doors.Detection
                         setting.info_DangH = groupBox1.Text;
                         if (i == 0)
                         {
+                            setting.info_DangH = groupBox1.Text;
                             setting.qm_Z_FC = txt_1zfc.Text;
                             setting.qm_F_FC = txt_1ffc.Text;
                             setting.qm_Z_MJ = txt_1zmj.Text;
@@ -371,18 +378,21 @@ namespace text.doors.Detection
                         setting.info_DangH = groupBox1.Text;
                         if (i == 0)
                         {
+                            setting.info_DangH = groupBox1.Text;
                             setting.sm_Pa = txt_1fy.Text;
                             setting.sm_PaDesc = lbl_1resdesc.Text;
                             setting.sm_Remark = lbl_1desc.Text;
                         }
                         if (i == 1)
                         {
+                            setting.info_DangH = groupBox2.Text;
                             setting.sm_Pa = txt_2fy.Text;
                             setting.sm_PaDesc = lbl_2resdesc.Text;
                             setting.sm_Remark = lbl_2desc.Text;
                         }
                         if (i == 2)
                         {
+                            setting.info_DangH = groupBox3.Text;
                             setting.sm_Pa = txt_3fy.Text;
                             setting.sm_PaDesc = lbl_3resdesc.Text;
                             setting.sm_Remark = lbl_3desc.Text;

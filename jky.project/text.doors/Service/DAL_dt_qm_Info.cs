@@ -47,7 +47,7 @@ namespace text.doors.dal
                 var sql = "";
                 foreach (var item in settings.dt_sm_Info)
                 {
-                    sql += $"update  dt_sm_Info set sm_PaDesc = '{item.sm_PaDesc}', sm_Pa='{item.sm_Pa}', sm_Remark='{item.sm_Remark}' where dt_Code ='{item.dt_Code}' and info_DangH='{item.info_DangH}'    ";
+                    sql += $"update  dt_sm_Info set sm_PaDesc = '{item.sm_PaDesc}', sm_Pa='{item.sm_Pa}', sm_Remark='{item.sm_Remark}' where dt_Code ='{item.dt_Code}' and info_DangH='{item.info_DangH}';    ";
                 }
                 SQLiteHelper.ExecuteNonQuery(sql);
             }

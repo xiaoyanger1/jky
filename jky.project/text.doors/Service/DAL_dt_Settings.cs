@@ -308,6 +308,55 @@ namespace text.doors.dal
             var dt_Info = SQLiteHelper.ExecuteDataRow("select * from dt_Info where dt_Code='" + code + "'   order by  info_DangH")?.Table;
             if (dt_Info != null)
             {
+                settings.WeiTuoBianHao = dt_Info.Rows[0]["WeiTuoBianHao"].ToString();
+                settings.WeiTuoDanWei = dt_Info.Rows[0]["WeiTuoDanWei"].ToString();
+                settings.WeiTuoRen = dt_Info.Rows[0]["WeiTuoRen"].ToString();
+                settings.YangPinMingCheng = dt_Info.Rows[0]["YangPinMingCheng"].ToString();
+                settings.CaiYangFangShi = dt_Info.Rows[0]["CaiYangFangShi"].ToString();
+                settings.JianYanXiangMu = dt_Info.Rows[0]["JianYanXiangMu"].ToString();
+                settings.GuiGeXingHao = dt_Info.Rows[0]["GuiGeXingHao"].ToString();
+                settings.GuiGeShuLiang = dt_Info.Rows[0]["GuiGeShuLiang"].ToString();
+                settings.JianYanRiQi = dt_Info.Rows[0]["JianYanRiQi"].ToString();
+                settings.KaiQiFangShi = dt_Info.Rows[0]["KaiQiFangShi"].ToString();
+                settings.DaQiYaLi = dt_Info.Rows[0]["DaQiYaLi"].ToString();
+                settings.BoLiPinZhong = dt_Info.Rows[0]["BoLiPinZhong"].ToString();
+                settings.DangQianWenDu = dt_Info.Rows[0]["DangQianWenDu"].ToString();
+                settings.BoLiHouDu = dt_Info.Rows[0]["BoLiHouDu"].ToString();
+                settings.ZongMianJi = dt_Info.Rows[0]["ZongMianJi"].ToString();
+                settings.ZuiDaBoLi = dt_Info.Rows[0]["ZuiDaBoLi"].ToString();
+                settings.KaiQiFengChang = dt_Info.Rows[0]["KaiQiFengChang"].ToString();
+                settings.BoLiMiFeng = dt_Info.Rows[0]["BoLiMiFeng"].ToString();
+                settings.XiangQianFangShi = dt_Info.Rows[0]["XiangQianFangShi"].ToString();
+                settings.ShuiMiDengJiSheJiZhi = dt_Info.Rows[0]["ShuiMiDengJiSheJiZhi"].ToString();
+                settings.KuangShanMiFang = dt_Info.Rows[0]["KuangShanMiFang"].ToString();
+                settings.QiMiZhengYaDanWeiFengChangSheJiZhi = dt_Info.Rows[0]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
+                settings.ZhengYaQiMiDengJiSheJiZhi = dt_Info.Rows[0]["ZhengYaQiMiDengJiSheJiZhi"].ToString();
+                settings.QiMiFuYaDanWeiFengChangSheJiZhi = dt_Info.Rows[0]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
+                settings.FuYaQiMiDengJiSheJiZhi = dt_Info.Rows[0]["FuYaQiMiDengJiSheJiZhi"].ToString();
+                settings.ShuiMiSheJiZhi = dt_Info.Rows[0]["ShuiMiSheJiZhi"].ToString();
+                settings.QiMiZhengYaDanWeiMianJiSheJiZhi = dt_Info.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
+                settings.QiMiFuYaDanWeiMianJiSheJiZhi = dt_Info.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
+                settings.JianYanYiJu = dt_Info.Rows[0]["JianYanYiJu"].ToString();
+                settings.GongChengMingCheng = dt_Info.Rows[0]["GongChengMingCheng"].ToString();
+                settings.GongChengDiDian = dt_Info.Rows[0]["GongChengDiDian"].ToString();
+                settings.ShengChanDanWei = dt_Info.Rows[0]["ShengChanDanWei"].ToString();
+                settings.JianLiDanWei = dt_Info.Rows[0]["JianLiDanWei"].ToString();
+                settings.JianZhengRen = dt_Info.Rows[0]["JianZhengRen"].ToString();
+                settings.JianZhengHao = dt_Info.Rows[0]["JianZhengHao"].ToString();
+                settings.ShiGongDanWei = dt_Info.Rows[0]["ShiGongDanWei"].ToString();
+                settings.WuJinJianZhuangKuang = dt_Info.Rows[0]["WuJinJianZhuangKuang"].ToString();
+                settings.SuLiaoChuangChenJinChiCun = dt_Info.Rows[0]["SuLiaoChuangChenJinChiCun"].ToString();
+                settings.ShiFouJiaLuoSi = dt_Info.Rows[0]["ShiFouJiaLuoSi"].ToString();
+                settings.XingCaiGuiGe = dt_Info.Rows[0]["XingCaiGuiGe"].ToString();
+                settings.XingCaiBiHou = dt_Info.Rows[0]["XingCaiBiHou"].ToString();
+                settings.XingCaiShengChanChang = dt_Info.Rows[0]["XingCaiShengChanChang"].ToString();
+                settings.GanJianChangDu = dt_Info.Rows[0]["GanJianChangDu"].ToString();
+                settings.KangFengYaDengJiSheJiZhi = dt_Info.Rows[0]["KangFengYaDengJiSheJiZhi"].ToString();
+                settings.KangFengYaSheJiZhi = dt_Info.Rows[0]["KangFengYaSheJiZhi"].ToString();
+                settings.DanShanDanSuoDian = dt_Info.Rows[0]["DanShanDanSuoDian"].ToString();
+                settings.dt_Code = dt_Info.Rows[0]["dt_Code"].ToString();
+                
+
                 List<Model_dt_Info> list = new List<Model_dt_Info>();
                 foreach (DataRow item in dt_Info.Rows)
                 {

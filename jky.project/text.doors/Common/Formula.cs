@@ -218,9 +218,9 @@ namespace text.doors.Common
                 //    intermediatelevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
                 //    maxlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == max).level;
                 //todo  update
-                int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
-                int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
-                int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+                int minlevel = DefaultBase.AirtightLevel.Where(t => t.Value == min).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == min).FirstOrDefault().Key : 0;
+                int intermediatelevel = DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).FirstOrDefault().Key : 0;
+                int maxlevel = DefaultBase.AirtightLevel.Where(t => t.Value == max).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == max).FirstOrDefault().Key : 0;
 
                 if ((maxlevel - intermediatelevel) > 2)
                 {
@@ -264,7 +264,7 @@ namespace text.doors.Common
             {
                 List<int> pas = new List<int>();
                 list.ForEach(t => pas.Add(int.Parse(t.sm_Pa)));
-                list.Sort();
+                pas.Sort();
 
                 int min = pas[0];
                 int intermediate = pas[1];
@@ -278,10 +278,11 @@ namespace text.doors.Common
                 //{
                 //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
                 //}
+
                 //todo update
-                int minlevel = DefaultBase.AirtightLevel.ContainsKey(min) ? DefaultBase.AirtightLevel[min] : 0;
-                int intermediatelevel = DefaultBase.AirtightLevel.ContainsKey(intermediate) ? DefaultBase.AirtightLevel[intermediate] : 0;
-                int maxlevel = DefaultBase.AirtightLevel.ContainsKey(max) ? DefaultBase.AirtightLevel[max] : 0;
+                int minlevel = DefaultBase.AirtightLevel.Where(t => t.Value == min).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == min).FirstOrDefault().Key : 0;
+                int intermediatelevel = DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).FirstOrDefault().Key : 0;
+                int maxlevel = DefaultBase.AirtightLevel.Where(t => t.Value == max).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == max).FirstOrDefault().Key : 0;
 
                 if ((maxlevel - intermediatelevel) > 2)
                 {
