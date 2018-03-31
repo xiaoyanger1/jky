@@ -355,9 +355,7 @@ namespace text.doors.dal
             settings.DanShanDanSuoDian = dt_settings.Rows[0]["DanShanDanSuoDian"].ToString();
             settings.dt_Code = dt_settings.Rows[0]["dt_Code"].ToString();
 
-
             
-
             var dt_Info = SQLiteHelper.ExecuteDataRow("select * from dt_Info where dt_Code='" + code + "'   order by  info_DangH")?.Table;
             if (dt_Info != null)
             {

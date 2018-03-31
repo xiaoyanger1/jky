@@ -14,7 +14,6 @@ F:\jky\jky.project\Young.Core\bin\Debug\Young.Core.dll
 F:\jky\jky.project\Young.Core\bin\Debug\Young.Core.pdb
 F:\jky\jky.project\Young.Core\bin\Debug\ICSharpCode.SharpZipLib.dll
 F:\jky\jky.project\Young.Core\bin\Debug\log4net.dll
-F:\jky\jky.project\Young.Core\bin\Debug\Microsoft.Office.Interop.Word.dll
 F:\jky\jky.project\Young.Core\bin\Debug\NPOI.dll
 F:\jky\jky.project\Young.Core\bin\Debug\NPOI.OOXML.dll
 F:\jky\jky.project\Young.Core\bin\Debug\NPOI.OpenXml4Net.dll
@@ -24,4 +23,3 @@ F:\jky\jky.project\Young.Core\bin\Debug\log4net.xml
 F:\jky\jky.project\Young.Core\bin\Debug\NPOI.xml
 F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.dll
 F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.pdb
-F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.csprojResolveAssemblyReference.cache
