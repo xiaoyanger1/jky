@@ -1482,7 +1482,7 @@ namespace text.doors.Common
         }
         
         /// <summary>
-        /// 风压按钮状态
+        /// 读取风压按钮状态
         /// </summary>
         /// <param name="IsSuccess"></param>
         public int ReadFYBtnType(string commandStr,ref bool IsSuccess)
