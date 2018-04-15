@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ssp_button = new System.Windows.Forms.StatusStrip();
             this.tsl_code = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,10 +43,11 @@
             this.tsb_open = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_DetectionSet = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_watertight = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbwatertight = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsb_watertight = new System.Windows.Forms.ToolStripButton();
             this.tsb_WindPressure = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_生成报告 = new System.Windows.Forms.ToolStripButton();
@@ -55,8 +57,8 @@
             this.检测ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tms_DetectionSet = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.水密监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.气密监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.水密监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.抗风压监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.检测结论ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +68,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsm_UpdatePassWord = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_close = new System.Windows.Forms.ToolStripMenuItem();
+            this.pID设定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pl_set = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_f = new System.Windows.Forms.Button();
@@ -100,7 +103,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_gyZero = new System.Windows.Forms.Button();
             this.pl_showItem = new System.Windows.Forms.Panel();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ssp_button.SuspendLayout();
             this.pl_top.SuspendLayout();
             this.ts_pic.SuspendLayout();
@@ -237,6 +240,21 @@
             this.tsb_DetectionSet.Text = "检测设定";
             this.tsb_DetectionSet.Click += new System.EventHandler(this.tsb_DetectionSet_Click);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 36);
+            // 
+            // tsb_watertight
+            // 
+            this.tsb_watertight.Image = ((System.Drawing.Image)(resources.GetObject("tsb_watertight.Image")));
+            this.tsb_watertight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsb_watertight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_watertight.Name = "tsb_watertight";
+            this.tsb_watertight.Size = new System.Drawing.Size(92, 33);
+            this.tsb_watertight.Text = "气密检测";
+            this.tsb_watertight.Click += new System.EventHandler(this.tsb_watertight_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -256,16 +274,6 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 36);
-            // 
-            // tsb_watertight
-            // 
-            this.tsb_watertight.Image = ((System.Drawing.Image)(resources.GetObject("tsb_watertight.Image")));
-            this.tsb_watertight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsb_watertight.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_watertight.Name = "tsb_watertight";
-            this.tsb_watertight.Size = new System.Drawing.Size(92, 33);
-            this.tsb_watertight.Text = "气密检测";
-            this.tsb_watertight.Click += new System.EventHandler(this.tsb_watertight_Click);
             // 
             // tsb_WindPressure
             // 
@@ -334,33 +342,33 @@
             // tms_DetectionSet
             // 
             this.tms_DetectionSet.Name = "tms_DetectionSet";
-            this.tms_DetectionSet.Size = new System.Drawing.Size(152, 22);
+            this.tms_DetectionSet.Size = new System.Drawing.Size(136, 22);
             this.tms_DetectionSet.Text = "检测设定";
             this.tms_DetectionSet.Click += new System.EventHandler(this.tms_DetectionSet_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // 水密监控ToolStripMenuItem
-            // 
-            this.水密监控ToolStripMenuItem.Name = "水密监控ToolStripMenuItem";
-            this.水密监控ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.水密监控ToolStripMenuItem.Text = "水密监控";
-            this.水密监控ToolStripMenuItem.Click += new System.EventHandler(this.水密监控ToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
             // 
             // 气密监控ToolStripMenuItem
             // 
             this.气密监控ToolStripMenuItem.Name = "气密监控ToolStripMenuItem";
-            this.气密监控ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.气密监控ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.气密监控ToolStripMenuItem.Text = "气密监控";
             this.气密监控ToolStripMenuItem.Click += new System.EventHandler(this.气密监控ToolStripMenuItem_Click);
+            // 
+            // 水密监控ToolStripMenuItem
+            // 
+            this.水密监控ToolStripMenuItem.Name = "水密监控ToolStripMenuItem";
+            this.水密监控ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.水密监控ToolStripMenuItem.Text = "水密监控";
+            this.水密监控ToolStripMenuItem.Click += new System.EventHandler(this.水密监控ToolStripMenuItem_Click);
             // 
             // 抗风压监控ToolStripMenuItem
             // 
             this.抗风压监控ToolStripMenuItem.Name = "抗风压监控ToolStripMenuItem";
-            this.抗风压监控ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.抗风压监控ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.抗风压监控ToolStripMenuItem.Text = "抗风压监控";
             this.抗风压监控ToolStripMenuItem.Click += new System.EventHandler(this.抗风压监控ToolStripMenuItem_Click);
             // 
@@ -386,7 +394,8 @@
             this.toolStripMenuItem3,
             this.toolStripSeparator4,
             this.tsm_UpdatePassWord,
-            this.tsm_close});
+            this.tsm_close,
+            this.pID设定ToolStripMenuItem});
             this.系统设置ToolStripMenuItem.Name = "系统设置ToolStripMenuItem";
             this.系统设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.系统设置ToolStripMenuItem.Text = "系统设置";
@@ -423,6 +432,13 @@
             this.tsm_close.Size = new System.Drawing.Size(136, 22);
             this.tsm_close.Text = "关闭系统";
             this.tsm_close.Click += new System.EventHandler(this.tsm_close_Click);
+            // 
+            // pID设定ToolStripMenuItem
+            // 
+            this.pID设定ToolStripMenuItem.Name = "pID设定ToolStripMenuItem";
+            this.pID设定ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.pID设定ToolStripMenuItem.Text = "PID设定";
+            this.pID设定ToolStripMenuItem.Click += new System.EventHandler(this.pID设定ToolStripMenuItem_Click);
             // 
             // pl_set
             // 
@@ -779,10 +795,11 @@
             this.pl_showItem.Size = new System.Drawing.Size(731, 626);
             this.pl_showItem.TabIndex = 9;
             // 
-            // toolStripSeparator8
+            // timer1
             // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 36);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 
@@ -893,5 +910,7 @@
         private System.Windows.Forms.ToolStripButton tsb_WindPressure;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem pID设定ToolStripMenuItem;
     }
 }

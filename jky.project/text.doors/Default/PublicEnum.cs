@@ -62,6 +62,18 @@ namespace text.doors.Default
             Stop //停止
         }
 
+
+        /// <summary>
+        /// 风压性能检测
+        /// </summary>
+        public enum WindPressureTest
+        {
+            ZReady,//正压预备
+            ZStart,//正压开始
+            FReady,//负压预备
+            FStart,//负压开始
+        }
+
         /// <summary>
         /// 标定
         /// </summary>

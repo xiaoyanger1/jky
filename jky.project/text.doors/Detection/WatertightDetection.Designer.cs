@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WatertightDetection));
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
             this.page_watertight = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -1137,6 +1136,7 @@
             // 
             // tim_sm
             // 
+            this.tim_sm.Enabled = true;
             this.tim_sm.Tick += new System.EventHandler(this.tim_sm_Tick);
             // 
             // WatertightDetection

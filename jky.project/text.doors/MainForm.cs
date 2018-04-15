@@ -55,6 +55,9 @@ namespace text.doors
             ExamineLAN();
             OpenTcp();
 
+            //设置高压标零
+            var pressureZero = tcpClient.SendGYBD(true);
+
             DataInit();
             ShowDetectionSet();
         }
@@ -185,9 +188,7 @@ namespace text.doors
             {
                 #region 获取面板显示
                 var IsSeccess = false;
-                //设置高压标零
-                var pressureZero = tcpClient.SendGYBD(true);
-
+               
                 var temperature = _temperature = tcpClient.GetWDXS(ref IsSeccess);
                 if (!IsSeccess) return;
 
@@ -508,6 +509,18 @@ namespace text.doors
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (tcpClient.IsTCPLink)
+            {
+                DataInit();
+            }
+        }
 
+        private void pID设定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PIDManager p = new PIDManager(tcpClient);
+            p.Show();
+        }
     }
 }

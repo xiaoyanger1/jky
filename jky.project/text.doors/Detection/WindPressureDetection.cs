@@ -25,6 +25,11 @@ namespace text.doors.Detection
         private string _tempTong = "";
         public DateTime dtnow { get; set; }
 
+        /// <summary>
+        /// 抗风压数据位置
+        /// </summary>
+        private PublicEnum.WindPressureTest? windPressureTest = null;
+
         public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong)
         {
             InitializeComponent();
@@ -34,6 +39,7 @@ namespace text.doors.Detection
 
             BindData();
             BindSetPressure();
+            FYchartInit();
         }
         /// <summary>
         /// 绑定设定压力
@@ -49,7 +55,7 @@ namespace text.doors.Detection
         private void FYchartInit()
         {
             dtnow = DateTime.Now;
-            fy_Line.GetVertAxis.SetMinMax(-300, 300);
+            qm_Line.GetVertAxis.SetMinMax(-5000, 5000);
         }
 
 
@@ -184,13 +190,12 @@ namespace text.doors.Detection
 
         private void AnimateSeries(Steema.TeeChart.TChart chart, int yl)
         {
-            this.fy_Line.Add(DateTime.Now, yl);
-            this.tChart_fy.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
+            this.qm_Line.Add(DateTime.Now, yl);
+            this.tChart_qm.Axes.Bottom.SetMinMax(dtnow, DateTime.Now.AddSeconds(20));
         }
 
         private void tim_PainPic_Tick(object sender, EventArgs e)
         {
-
             if (_tcpClient.IsTCPLink)
             {
                 var IsSeccess = false;
@@ -198,10 +203,10 @@ namespace text.doors.Detection
                 int value = int.Parse(c.ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
-                AnimateSeries(this.tChart_fy, value);
+                AnimateSeries(this.tChart_qm, value);
             }
         }
 
@@ -215,6 +220,7 @@ namespace text.doors.Detection
                     MessageBox.Show("正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
+            windPressureTest = PublicEnum.WindPressureTest.ZReady;
         }
 
         private void btn_zyks_Click(object sender, EventArgs e)
@@ -227,6 +233,8 @@ namespace text.doors.Detection
                     MessageBox.Show("正压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
+
+            windPressureTest = PublicEnum.WindPressureTest.ZStart;
         }
 
         private void btn_fyyb_Click(object sender, EventArgs e)
@@ -239,6 +247,7 @@ namespace text.doors.Detection
                     MessageBox.Show("负压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
+            windPressureTest = PublicEnum.WindPressureTest.FReady;
         }
 
         private void btn_fyks_Click(object sender, EventArgs e)
@@ -251,6 +260,7 @@ namespace text.doors.Detection
                     MessageBox.Show("负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
+            windPressureTest = PublicEnum.WindPressureTest.FStart;
         }
 
         private void btn_datahandle_Click(object sender, EventArgs e)
@@ -436,6 +446,73 @@ namespace text.doors.Detection
         private void dgv_WindPressure_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
 
+        }
+
+        private void btn_wygl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tim_wyData_Tick(object sender, EventArgs e)
+        {
+            if (_tcpClient.IsTCPLink)
+            {
+                var IsSeccess = true;
+                //抗风压
+                var displace1 = _tcpClient.GetDisplace1(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+                var displace2 = _tcpClient.GetDisplace2(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+                var displace3 = _tcpClient.GetDisplace3(ref IsSeccess).ToString();
+                if (!IsSeccess) return;
+
+                txt_wy1.Text = displace1.ToString();
+                txt_wy2.Text = displace2.ToString();
+                txt_wy3.Text = displace3.ToString();
+            }
+        }
+
+        private void tim_fy_Tick(object sender, EventArgs e)
+        {
+            var IsSeccess = true;
+            if (_tcpClient.IsTCPLink)
+            {
+                var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                lbl_dqyl.Text = value.ToString();
+
+                //读取设定值
+                if (windPressureTest == PublicEnum.WindPressureTest.ZStart)
+                {
+                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
+                    if (!IsSeccess)
+                    {
+                        MessageBox.Show("获取正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
+                    }
+                    lbl_setYL.Text = yl.ToString();
+                }
+                else if (windPressureTest == PublicEnum.WindPressureTest.FStart)
+                {
+                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
+                    if (!IsSeccess)
+                    {
+                        MessageBox.Show("获取负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
+                    }
+                    lbl_setYL.Text = "-" + yl.ToString();
+                }
+              
+                //if (IsStart)
+                //{
+                //    if (this.tim_Top10.Enabled == false)
+                //        SetCurrType(value);
+                //}
+            }
         }
     }
 }

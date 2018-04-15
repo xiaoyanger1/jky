@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tChart_qm = new Steema.TeeChart.TChart();
+            this.qm_Line = new Steema.TeeChart.Styles.FastLine();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -83,10 +88,7 @@
             this.btn_zyyb = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rdb_DWDD3 = new System.Windows.Forms.RadioButton();
-            this.rdb_DWDD2 = new System.Windows.Forms.RadioButton();
             this.rdb_DWDD1 = new System.Windows.Forms.RadioButton();
-            this.tChart_fy = new Steema.TeeChart.TChart();
-            this.fy_Line = new Steema.TeeChart.Styles.FastLine();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl_dqyl = new System.Windows.Forms.Label();
             this.lbl_setYL = new System.Windows.Forms.Label();
@@ -94,8 +96,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lbl_title = new System.Windows.Forms.Label();
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
+            this.tim_wyData = new System.Windows.Forms.Timer(this.components);
+            this.tim_fy = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_WindPressure)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -111,12 +116,14 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1119, 742);
+            this.tabControl1.Size = new System.Drawing.Size(1119, 776);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.tChart_qm);
+            this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.dgv_WindPressure);
             this.tabPage1.Controls.Add(this.button11);
@@ -127,14 +134,113 @@
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.tChart_fy);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1111, 716);
+            this.tabPage1.Size = new System.Drawing.Size(1111, 750);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "抗风压检测";
+            // 
+            // tChart_qm
+            // 
+            // 
+            // 
+            // 
+            this.tChart_qm.Aspect.ZOffset = 0D;
+            this.tChart_qm.BackColor = System.Drawing.Color.White;
+            this.tChart_qm.Cursor = System.Windows.Forms.Cursors.Default;
+            // 
+            // 
+            // 
+            this.tChart_qm.Header.Lines = new string[] {
+        "抗风压检测"};
+            this.tChart_qm.Location = new System.Drawing.Point(28, 66);
+            this.tChart_qm.Name = "tChart_qm";
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart_qm.Panel.Brush.Color = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.tChart_qm.Panel.Brush.Gradient.Visible = false;
+            this.tChart_qm.Panel.MarginLeft = 0D;
+            this.tChart_qm.Panel.MarginRight = 2D;
+            this.tChart_qm.Panel.MarginTop = 0D;
+            this.tChart_qm.Series.Add(this.qm_Line);
+            this.tChart_qm.Size = new System.Drawing.Size(832, 294);
+            this.tChart_qm.TabIndex = 52;
+            // 
+            // qm_Line
+            // 
+            this.qm_Line.Color = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(102)))), ((int)(((byte)(163)))));
+            this.qm_Line.ColorEach = false;
+            this.qm_Line.Cursor = System.Windows.Forms.Cursors.Cross;
+            // 
+            // 
+            // 
+            this.qm_Line.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(102)))), ((int)(((byte)(163)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.qm_Line.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
+            this.qm_Line.Marks.Callout.ArrowHeadSize = 8;
+            // 
+            // 
+            // 
+            this.qm_Line.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
+            this.qm_Line.Marks.Callout.Distance = 0;
+            this.qm_Line.Marks.Callout.Draw3D = false;
+            this.qm_Line.Marks.Callout.Length = 10;
+            this.qm_Line.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
+            this.qm_Line.ShowInLegend = false;
+            this.qm_Line.Title = "fastLine1";
+            this.qm_Line.TreatNulls = Steema.TeeChart.Styles.TreatNullsStyle.Ignore;
+            // 
+            // 
+            // 
+            this.qm_Line.XValues.DataMember = "X";
+            this.qm_Line.XValues.DateTime = true;
+            this.qm_Line.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            // 
+            // 
+            // 
+            this.qm_Line.YValues.DataMember = "Y";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.textBox1);
+            this.groupBox7.Controls.Add(this.label26);
+            this.groupBox7.Location = new System.Drawing.Point(897, 66);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(200, 39);
+            this.groupBox7.TabIndex = 29;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "X/L";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(77, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(61, 21);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.Text = "300";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(33, 17);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(29, 12);
+            this.label26.TabIndex = 29;
+            this.label26.Text = "X/L:";
             // 
             // groupBox6
             // 
@@ -145,7 +251,7 @@
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Location = new System.Drawing.Point(19, 532);
+            this.groupBox6.Location = new System.Drawing.Point(19, 583);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(851, 159);
             this.groupBox6.TabIndex = 51;
@@ -220,16 +326,16 @@
             this.dgv_WindPressure.AllowUserToResizeColumns = false;
             this.dgv_WindPressure.AllowUserToResizeRows = false;
             this.dgv_WindPressure.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_WindPressure.Location = new System.Drawing.Point(55, 308);
+            this.dgv_WindPressure.Location = new System.Drawing.Point(56, 366);
             this.dgv_WindPressure.Name = "dgv_WindPressure";
             this.dgv_WindPressure.RowTemplate.Height = 23;
-            this.dgv_WindPressure.Size = new System.Drawing.Size(799, 215);
+            this.dgv_WindPressure.Size = new System.Drawing.Size(804, 215);
             this.dgv_WindPressure.TabIndex = 43;
             this.dgv_WindPressure.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_WindPressure_CellPainting);
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(897, 669);
+            this.button11.Location = new System.Drawing.Point(897, 708);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(84, 30);
             this.button11.TabIndex = 41;
@@ -238,7 +344,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(1015, 669);
+            this.button12.Location = new System.Drawing.Point(1015, 708);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(81, 30);
             this.button12.TabIndex = 42;
@@ -248,7 +354,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(894, 493);
+            this.label18.Location = new System.Drawing.Point(894, 532);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(89, 12);
             this.label18.TabIndex = 26;
@@ -256,7 +362,7 @@
             // 
             // txt_desc
             // 
-            this.txt_desc.Location = new System.Drawing.Point(896, 511);
+            this.txt_desc.Location = new System.Drawing.Point(896, 550);
             this.txt_desc.Multiline = true;
             this.txt_desc.Name = "txt_desc";
             this.txt_desc.Size = new System.Drawing.Size(200, 146);
@@ -272,7 +378,7 @@
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Location = new System.Drawing.Point(896, 404);
+            this.groupBox5.Location = new System.Drawing.Point(896, 439);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(200, 81);
             this.groupBox5.TabIndex = 24;
@@ -361,7 +467,7 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.txt_f_p2);
             this.groupBox4.Controls.Add(this.txt_p2);
-            this.groupBox4.Location = new System.Drawing.Point(896, 310);
+            this.groupBox4.Location = new System.Drawing.Point(896, 342);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(200, 84);
             this.groupBox4.TabIndex = 23;
@@ -460,7 +566,7 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.btn_zyks);
             this.groupBox3.Controls.Add(this.btn_zyyb);
-            this.groupBox3.Location = new System.Drawing.Point(896, 90);
+            this.groupBox3.Location = new System.Drawing.Point(896, 116);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 214);
             this.groupBox3.TabIndex = 22;
@@ -499,6 +605,7 @@
             this.btn_wygl.TabIndex = 5;
             this.btn_wygl.Text = "位移归零";
             this.btn_wygl.UseVisualStyleBackColor = true;
+            this.btn_wygl.Click += new System.EventHandler(this.btn_wygl_Click);
             // 
             // label8
             // 
@@ -632,12 +739,11 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.rdb_DWDD3);
-            this.groupBox2.Controls.Add(this.rdb_DWDD2);
             this.groupBox2.Controls.Add(this.rdb_DWDD1);
             this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(896, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 60);
+            this.groupBox2.Size = new System.Drawing.Size(200, 47);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "单扇单锁点位移选择";
@@ -645,7 +751,7 @@
             // rdb_DWDD3
             // 
             this.rdb_DWDD3.AutoSize = true;
-            this.rdb_DWDD3.Location = new System.Drawing.Point(131, 25);
+            this.rdb_DWDD3.Location = new System.Drawing.Point(78, 25);
             this.rdb_DWDD3.Name = "rdb_DWDD3";
             this.rdb_DWDD3.Size = new System.Drawing.Size(53, 16);
             this.rdb_DWDD3.TabIndex = 22;
@@ -653,18 +759,6 @@
             this.rdb_DWDD3.Tag = "DWDD";
             this.rdb_DWDD3.Text = "位移3";
             this.rdb_DWDD3.UseVisualStyleBackColor = true;
-            // 
-            // rdb_DWDD2
-            // 
-            this.rdb_DWDD2.AutoSize = true;
-            this.rdb_DWDD2.Location = new System.Drawing.Point(72, 25);
-            this.rdb_DWDD2.Name = "rdb_DWDD2";
-            this.rdb_DWDD2.Size = new System.Drawing.Size(53, 16);
-            this.rdb_DWDD2.TabIndex = 22;
-            this.rdb_DWDD2.TabStop = true;
-            this.rdb_DWDD2.Tag = "DWDD";
-            this.rdb_DWDD2.Text = "位移2";
-            this.rdb_DWDD2.UseVisualStyleBackColor = true;
             // 
             // rdb_DWDD1
             // 
@@ -677,78 +771,6 @@
             this.rdb_DWDD1.Tag = "DWDD";
             this.rdb_DWDD1.Text = "位移1";
             this.rdb_DWDD1.UseVisualStyleBackColor = true;
-            // 
-            // tChart_fy
-            // 
-            // 
-            // 
-            // 
-            this.tChart_fy.Aspect.ZOffset = 0D;
-            this.tChart_fy.BackColor = System.Drawing.Color.White;
-            this.tChart_fy.Cursor = System.Windows.Forms.Cursors.Default;
-            // 
-            // 
-            // 
-            this.tChart_fy.Header.Lines = new string[] {
-        "抗风压检测"};
-            this.tChart_fy.Location = new System.Drawing.Point(18, 74);
-            this.tChart_fy.Name = "tChart_fy";
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.tChart_fy.Panel.Brush.Color = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.tChart_fy.Panel.Brush.Gradient.Visible = false;
-            this.tChart_fy.Panel.MarginLeft = 0D;
-            this.tChart_fy.Panel.MarginRight = 2D;
-            this.tChart_fy.Panel.MarginTop = 0D;
-            this.tChart_fy.Series.Add(this.fy_Line);
-            this.tChart_fy.Size = new System.Drawing.Size(850, 228);
-            this.tChart_fy.TabIndex = 20;
-            // 
-            // fy_Line
-            // 
-            this.fy_Line.Color = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(102)))), ((int)(((byte)(163)))));
-            this.fy_Line.ColorEach = false;
-            this.fy_Line.Cursor = System.Windows.Forms.Cursors.Cross;
-            // 
-            // 
-            // 
-            this.fy_Line.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(102)))), ((int)(((byte)(163)))));
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.fy_Line.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
-            this.fy_Line.Marks.Callout.ArrowHeadSize = 8;
-            // 
-            // 
-            // 
-            this.fy_Line.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
-            this.fy_Line.Marks.Callout.Distance = 0;
-            this.fy_Line.Marks.Callout.Draw3D = false;
-            this.fy_Line.Marks.Callout.Length = 10;
-            this.fy_Line.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
-            this.fy_Line.ShowInLegend = false;
-            this.fy_Line.Title = "fastLine1";
-            this.fy_Line.TreatNulls = Steema.TeeChart.Styles.TreatNullsStyle.Ignore;
-            // 
-            // 
-            // 
-            this.fy_Line.XValues.DataMember = "X";
-            this.fy_Line.XValues.DateTime = true;
-            this.fy_Line.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
-            // 
-            // 
-            // 
-            this.fy_Line.YValues.DataMember = "Y";
             // 
             // groupBox1
             // 
@@ -821,11 +843,22 @@
             this.tim_PainPic.Interval = 800;
             this.tim_PainPic.Tick += new System.EventHandler(this.tim_PainPic_Tick);
             // 
+            // tim_wyData
+            // 
+            this.tim_wyData.Enabled = true;
+            this.tim_wyData.Interval = 500;
+            this.tim_wyData.Tick += new System.EventHandler(this.tim_wyData_Tick);
+            // 
+            // tim_fy
+            // 
+            this.tim_fy.Enabled = true;
+            this.tim_fy.Tick += new System.EventHandler(this.tim_fy_Tick);
+            // 
             // WindPressureDetection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1119, 744);
+            this.ClientSize = new System.Drawing.Size(1119, 788);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WindPressureDetection";
@@ -833,6 +866,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_WindPressure)).EndInit();
@@ -860,12 +895,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbl_title;
-        private Steema.TeeChart.TChart tChart_fy;
-        private Steema.TeeChart.Styles.FastLine fy_Line;
         private System.Windows.Forms.Timer tim_PainPic;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rdb_DWDD3;
-        private System.Windows.Forms.RadioButton rdb_DWDD2;
         private System.Windows.Forms.RadioButton rdb_DWDD1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btn_datahandle;
@@ -917,5 +949,12 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Timer tim_wyData;
+        private System.Windows.Forms.Timer tim_fy;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label26;
+        private Steema.TeeChart.TChart tChart_qm;
+        private Steema.TeeChart.Styles.FastLine qm_Line;
     }
 }

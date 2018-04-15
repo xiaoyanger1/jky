@@ -69,8 +69,6 @@ namespace text.doors.Detection
         /// </summary>
         private void Initial()
         {
-            //todo
-            // Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
             Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
@@ -744,7 +742,7 @@ namespace text.doors.Detection
                 var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
                 lbldqyl.Text = value.ToString();

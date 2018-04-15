@@ -84,6 +84,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -116,6 +117,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -148,6 +150,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 IsSuccess = false;
             }
@@ -178,6 +181,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 IsSuccess = false;
             }
@@ -210,6 +214,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -249,6 +254,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -272,6 +278,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -298,6 +305,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -323,6 +331,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -351,6 +360,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -379,6 +389,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -406,6 +417,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -433,6 +445,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -461,6 +474,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -490,6 +504,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -515,6 +530,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -547,6 +563,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -574,6 +591,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -623,6 +641,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -652,6 +671,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -679,6 +699,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -705,6 +726,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -732,6 +754,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -759,7 +782,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
-
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -786,6 +809,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -812,6 +836,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -840,6 +865,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -885,6 +911,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -911,6 +938,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -932,6 +960,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -963,6 +992,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -987,6 +1017,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
                 // System.Environment.Exit(0);
@@ -1015,6 +1046,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1047,6 +1079,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 IsSuccess = false;
                 Logger.Error(ex);
             }
@@ -1078,6 +1111,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 IsSuccess = false;
             }
@@ -1110,6 +1144,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 IsSuccess = false;
             }
@@ -1144,6 +1179,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 IsSuccess = false;
             }
@@ -1162,9 +1198,33 @@ namespace text.doors.Common
             {
                 lock (_MASTER)
                 {
-                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移置零);
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移1标零);
                     bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
                     if (readCoils[0])
+                        _MASTER.WriteSingleCoil(_StartAddress, false);
+                    else
+                    {
+                        if (logon == false)
+                        {
+                            _MASTER.WriteSingleCoil(_StartAddress, true);
+                        }
+                    }
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移2标零);
+                    bool[] readCoils2 = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (readCoils2[0])
+                        _MASTER.WriteSingleCoil(_StartAddress, false);
+                    else
+                    {
+                        if (logon == false)
+                        {
+                            _MASTER.WriteSingleCoil(_StartAddress, true);
+                        }
+                    }
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移3标零);
+                    bool[] readCoils3 = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (readCoils3[0])
                         _MASTER.WriteSingleCoil(_StartAddress, false);
                     else
                     {
@@ -1177,6 +1237,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1203,6 +1264,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1229,6 +1291,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1258,6 +1321,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1283,6 +1347,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1303,7 +1368,7 @@ namespace text.doors.Common
                 if (!res)
                     return false;
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.反复数值);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复);
@@ -1314,6 +1379,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1331,7 +1397,7 @@ namespace text.doors.Common
                 if (!res)
                     return false;
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.反复数值);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复);
@@ -1342,6 +1408,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1362,7 +1429,7 @@ namespace text.doors.Common
                 if (!res)
                     return false;
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.安全数值);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全);
@@ -1373,6 +1440,7 @@ namespace text.doors.Common
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
@@ -1390,31 +1458,21 @@ namespace text.doors.Common
                 if (!res)
                     return false;
 
-                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.安全数值);
+                _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全数值);
                 _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
 
                 _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全);
                 _MASTER.WriteSingleCoil(_StartAddress, false);
                 _MASTER.WriteSingleCoil(_StartAddress, true);
                 return true;
-
             }
             catch (Exception ex)
             {
+                IsTCPLink = false;
                 Logger.Error(ex);
                 return false;
             }
-
         }
-
-
-
         #endregion
-
-
-
-
-
     }
-
 }

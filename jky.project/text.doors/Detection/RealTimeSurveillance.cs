@@ -472,7 +472,7 @@ namespace text.doors.Detection
                 var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
                 //气密水密
@@ -522,7 +522,7 @@ namespace text.doors.Detection
                 int value = int.Parse(c.ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
 
@@ -545,7 +545,7 @@ namespace text.doors.Detection
             var cyvalue = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
             {
-                MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
