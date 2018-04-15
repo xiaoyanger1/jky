@@ -347,7 +347,7 @@ namespace text.doors.Detection
 
         private BottomType GetBottomType(bool ISOK)
         {
-            BottomType bt = new BottomType(cb_DangQianDangHao.Text, btn_JianYanBianHao.Text, ISOK);
+            BottomType bt = new BottomType(cb_DangQianDangHao.Text, btn_JianYanBianHao.Text, cbb_danshandansuodian.Text == "是" ? true : false, ISOK);
             return bt;
         }
 
@@ -362,18 +362,22 @@ namespace text.doors.Detection
         {
             private string _code;
             private string _tong;
+            private bool _lockPoint;
             private bool _isok;
 
-            public BottomType(string code, string tong, bool isOK)
+            public BottomType(string code, string tong, bool lockPoint, bool isOK)
             {
                 this._code = tong;
                 this._tong = code;
                 this._isok = isOK;
+                this._lockPoint = lockPoint;
 
             }
             public string Code { get { return _code; } }
             public string Tong { get { return _tong; } }
             public bool ISOK { get { return _isok; } }
+
+            public bool LockPoint { get { return _isok; } }
         }
         #endregion
 

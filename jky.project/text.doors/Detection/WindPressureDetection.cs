@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using text.doors.Common;
@@ -23,6 +24,8 @@ namespace text.doors.Detection
         private string _tempCode = "";
         //当前樘号
         private string _tempTong = "";
+        //锁点
+        private bool _lockPoint = false;
         public DateTime dtnow { get; set; }
 
         /// <summary>
@@ -30,12 +33,24 @@ namespace text.doors.Detection
         /// </summary>
         private PublicEnum.WindPressureTest? windPressureTest = null;
 
-        public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong)
+        public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong, bool lockPoint)
         {
             InitializeComponent();
             this._tcpClient = tcpClient;
             this._tempCode = tempCode;
             this._tempTong = tempTong;
+            this._lockPoint = lockPoint;
+
+            if (!this._lockPoint)
+            {
+                rdb_DWDD1.Checked = false;
+                rdb_DWDD1.Checked = false;
+            }
+            else
+            {
+                rdb_DWDD1.Checked = true;
+                rdb_DWDD1.Checked = true;
+            }
 
             BindData();
             BindSetPressure();
@@ -63,7 +78,6 @@ namespace text.doors.Detection
 
         private void BindData()
         {
-
             #region 绑定
             dgv_WindPressure.DataSource = GetWindPressureDGV();
             dgv_WindPressure.Height = 215;
@@ -134,7 +148,6 @@ namespace text.doors.Detection
             dgv_WindPressure.Columns["fzd"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["fix"].DefaultCellStyle.Format = "N2";
             #endregion
-
         }
 
 
@@ -212,55 +225,70 @@ namespace text.doors.Detection
 
         private void btn_zyyb_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                var res = _tcpClient.SetKFYZYYB();
-                if (!res)
-                {
-                    MessageBox.Show("正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            var res = _tcpClient.SetKFYZYYB();
+            if (!res)
+            {
+                MessageBox.Show("正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
             windPressureTest = PublicEnum.WindPressureTest.ZReady;
+            DisableBtnType();
         }
 
         private void btn_zyks_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                var res = _tcpClient.SendKFYZYKS();
-                if (!res)
-                {
-                    MessageBox.Show("正压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
+            }
+            var res = _tcpClient.SendKFYZYKS();
+            if (!res)
+            {
+                MessageBox.Show("正压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
 
+
             windPressureTest = PublicEnum.WindPressureTest.ZStart;
+            DisableBtnType();
         }
 
         private void btn_fyyb_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                var res = _tcpClient.SendKFYFYYB();
-                if (!res)
-                {
-                    MessageBox.Show("负压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            var res = _tcpClient.SendKFYFYYB();
+            if (!res)
+            {
+                MessageBox.Show("负压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
             windPressureTest = PublicEnum.WindPressureTest.FReady;
+            DisableBtnType();
         }
 
         private void btn_fyks_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                var res = _tcpClient.SendKFYFYKS();
-                if (!res)
-                {
-                    MessageBox.Show("负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
+            }
+            var res = _tcpClient.SendKFYFYKS();
+            if (!res)
+            {
+                MessageBox.Show("负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
             }
             windPressureTest = PublicEnum.WindPressureTest.FStart;
+            DisableBtnType();
         }
 
         private void btn_datahandle_Click(object sender, EventArgs e)
@@ -393,54 +421,74 @@ namespace text.doors.Detection
 
         private void btn_zff_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                double value = 0;
-                var res = _tcpClient.SendZFF(value);
-                if (!res)
-                {
-                    MessageBox.Show("正反复异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            double value = 0;
+            var res = _tcpClient.SendZFF(value);
+            if (!res)
+            {
+                MessageBox.Show("正反复异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
+            windPressureTest = PublicEnum.WindPressureTest.ZRepeatedly;
+            DisableBtnType();
         }
 
         private void btn_fff_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                double value = 0;
-                var res = _tcpClient.SendFFF(value);
-                if (!res)
-                {
-                    MessageBox.Show("负反复异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            double value = 0;
+            var res = _tcpClient.SendFFF(value);
+            if (!res)
+            {
+                MessageBox.Show("负反复异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
+            windPressureTest = PublicEnum.WindPressureTest.FRepeatedly;
+            DisableBtnType();
         }
 
         private void btn_zaq_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                double value = 0;
-                var res = _tcpClient.SendZAQ(value);
-                if (!res)
-                {
-                    MessageBox.Show("正安全异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            double value = 0;
+            var res = _tcpClient.SendZAQ(value);
+            if (!res)
+            {
+                MessageBox.Show("正安全异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+            windPressureTest = PublicEnum.WindPressureTest.ZSafety;
+            DisableBtnType();
+
+
         }
 
         private void btnfaq_Click(object sender, EventArgs e)
         {
-            if (_tcpClient.IsTCPLink)
+            if (!_tcpClient.IsTCPLink)
             {
-                double value = 0;
-                var res = _tcpClient.SendFAQ(value);
-                if (!res)
-                {
-                    MessageBox.Show("负安全异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                return;
             }
+            double value = 0;
+            var res = _tcpClient.SendFAQ(value);
+            if (!res)
+            {
+                MessageBox.Show("负安全异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+            windPressureTest = PublicEnum.WindPressureTest.FSafety;
+            DisableBtnType();
         }
 
         private void dgv_WindPressure_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -506,13 +554,198 @@ namespace text.doors.Detection
                     }
                     lbl_setYL.Text = "-" + yl.ToString();
                 }
-              
                 //if (IsStart)
                 //{
                 //    if (this.tim_Top10.Enabled == false)
                 //        SetCurrType(value);
                 //}
             }
+        }
+
+        bool IsStart = false;
+        private void tim_btnType_Tick(object sender, EventArgs e)
+        {
+            if (!_tcpClient.IsTCPLink)
+            {
+                return;
+            }
+            if (windPressureTest == null) { return; }
+
+            var IsSeccess = false;
+            if (windPressureTest == PublicEnum.WindPressureTest.ZReady)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.风压正压预备结束, ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("风压正压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 3)
+                {
+                    windPressureTest = PublicEnum.WindPressureTest.Stop;
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.ZStart)
+            {
+                double value = _tcpClient.ReadFYBtnType(BFMCommand.风压正压开始结束, ref IsSeccess);
+
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("风压正压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value >= 15)
+                {
+                    windPressureTest = PublicEnum.WindPressureTest.Stop;
+                    IsStart = false;
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.FReady)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.风压负压预备结束, ref IsSeccess);
+
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("风压负压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 3)
+                {
+                    windPressureTest = PublicEnum.WindPressureTest.Stop;
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.FStart)
+            {
+                double value = _tcpClient.ReadFYBtnType(BFMCommand.风压负压开始结束, ref IsSeccess);
+
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("风压负压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value >= 15)
+                {
+                    IsStart = false;
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.ZRepeatedly)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.正反复结束, ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("正反复结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 5)
+                {
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.FRepeatedly)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.负反复结束, ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("负反复结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 5)
+                {
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.ZSafety)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.正安全结束, ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("正安全结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 5)
+                {
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+            else if (windPressureTest == PublicEnum.WindPressureTest.FSafety)
+            {
+                int value = _tcpClient.ReadFYBtnType(BFMCommand.负安全结束, ref IsSeccess);
+                if (!IsSeccess)
+                {
+                    MessageBox.Show("负安全结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (value == 5)
+                {
+                    Thread.Sleep(1000);
+                    lbl_setYL.Text = "0";
+                    OpenBtnType();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 开启按钮
+        /// </summary>
+        private void OpenBtnType()
+        {
+            this.btn_zyyb.Enabled = true;
+            this.btn_zyks.Enabled = true;
+            this.btn_fyyb.Enabled = true;
+            this.btn_fyks.Enabled = true;
+            this.btn_zff.Enabled = true;
+            this.btn_fff.Enabled = true;
+            this.btn_zaq.Enabled = true;
+            this.btnfaq.Enabled = true;
+        }
+
+        /// <summary>
+        /// 禁用按钮
+        /// </summary>
+        private void DisableBtnType()
+        {
+            this.btn_zyyb.Enabled = false;
+            this.btn_zyks.Enabled = false;
+            this.btn_fyyb.Enabled = false;
+            this.btn_fyks.Enabled = false;
+            this.btn_zff.Enabled = false;
+            this.btn_fff.Enabled = false;
+            this.btn_zaq.Enabled = false;
+            this.btnfaq.Enabled = false;
+        }
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+            Stop();
+            OpenBtnType();
+            lbl_setYL.Text = "0";
+            windPressureTest = PublicEnum.WindPressureTest.Stop;
+        }
+
+        /// <summary>
+        /// 急停
+        /// </summary>
+        private void Stop()
+        {
+            var res = _tcpClient.Stop();
+            if (!res)
+                MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
     }
 }

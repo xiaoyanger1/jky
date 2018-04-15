@@ -36,11 +36,6 @@ namespace text.doors.Detection
         /// </summary>
         Pressure pressure = new Pressure();
         /// <summary>
-        /// 当前选项卡状态
-        /// </summary>
-        private PublicEnum.SystemItem? systemItem = PublicEnum.SystemItem.Airtight;
-
-        /// <summary>
         /// 气密数据位置
         /// </summary>
         private PublicEnum.AirtightPropertyTest? airtightPropertyTest = null;
@@ -78,7 +73,7 @@ namespace text.doors.Detection
             BindFlowBase();
             BindSetPressure();
             QMchartInit();
-            
+
             Clear();
         }
 
@@ -201,7 +196,8 @@ namespace text.doors.Detection
                     pressureList = pressure.GetPressure();
                 }
             }
-            else {
+            else
+            {
                 pressureList = pressure.GetPressure();
             }
 
@@ -856,7 +852,6 @@ namespace text.doors.Detection
 
         private void btn_stop_Click(object sender, EventArgs e)
         {
-
             Stop();
             this.btn_justready.Enabled = true;
             this.btn_loseready.Enabled = true;
@@ -877,81 +872,78 @@ namespace text.doors.Detection
         /// <param name="e"></param>
         private void tim_getType_Tick(object sender, EventArgs e)
         {
-
             if (_tcpClient.IsTCPLink)
             {
-                if (systemItem == PublicEnum.SystemItem.Airtight)
+
+                if (airtightPropertyTest == null) { return; }
+
+                if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZReady)
                 {
-                    if (airtightPropertyTest == null) { return; }
+                    int value = _tcpClient.GetZYYBJS(ref IsSeccess);
 
-                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZReady)
+                    if (!IsSeccess)
                     {
-                        int value = _tcpClient.GetZYYBJS(ref IsSeccess);
-
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("正压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                            return;
-                        }
-                        if (value == 3)
-                        {
-                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                            lbl_setYL.Text = "0";
-                            OpenBtnType();
-                        }
+                        MessageBox.Show("正压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
                     }
-                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
+                    if (value == 3)
                     {
-                        double value = _tcpClient.GetZYKSJS(ref IsSeccess);
-
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("正压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                            return;
-                        }
-                        if (value >= 15)
-                        {
-                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                            IsStart = false;
-                            Thread.Sleep(1000);
-                            lbl_setYL.Text = "0";
-                            OpenBtnType();
-                        }
+                        airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                        lbl_setYL.Text = "0";
+                        OpenBtnType();
                     }
+                }
+                if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
+                {
+                    double value = _tcpClient.GetZYKSJS(ref IsSeccess);
 
-                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FReady)
+                    if (!IsSeccess)
                     {
-                        int value = _tcpClient.GetFYYBJS(ref IsSeccess);
-
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("负压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                            return;
-                        }
-                        if (value == 3)
-                        {
-                            airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
-                            lbl_setYL.Text = "0";
-                            OpenBtnType();
-                        }
+                        MessageBox.Show("正压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
                     }
-
-                    if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
+                    if (value >= 15)
                     {
-                        double value = _tcpClient.GetFYKSJS(ref IsSeccess);
+                        airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                        IsStart = false;
+                        Thread.Sleep(1000);
+                        lbl_setYL.Text = "0";
+                        OpenBtnType();
+                    }
+                }
 
-                        if (!IsSeccess)
-                        {
-                            MessageBox.Show("负压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                            return;
-                        }
-                        if (value >= 15)
-                        {
-                            IsStart = false;
-                            Thread.Sleep(1000);
-                            lbl_setYL.Text = "0";
-                            OpenBtnType();
-                        }
+                if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FReady)
+                {
+                    int value = _tcpClient.GetFYYBJS(ref IsSeccess);
+
+                    if (!IsSeccess)
+                    {
+                        MessageBox.Show("负压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
+                    }
+                    if (value == 3)
+                    {
+                        airtightPropertyTest = PublicEnum.AirtightPropertyTest.Stop;
+                        lbl_setYL.Text = "0";
+                        OpenBtnType();
+                    }
+                }
+
+                if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
+                {
+                    double value = _tcpClient.GetFYKSJS(ref IsSeccess);
+
+                    if (!IsSeccess)
+                    {
+                        MessageBox.Show("负压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                        return;
+                    }
+                    if (value >= 15)
+                    {
+                        IsStart = false;
+                        Thread.Sleep(1000);
+                        lbl_setYL.Text = "0";
+                        OpenBtnType();
                     }
                 }
             }
@@ -972,7 +964,7 @@ namespace text.doors.Detection
                 Logger.Error(ex);
             }
         }
-        
+
         private void Clear()
         {
             pressure = new Pressure();
@@ -981,12 +973,12 @@ namespace text.doors.Detection
         }
 
 
-        
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindFlowBase();
         }
-        
+
         private void tChart_sm_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -995,7 +987,7 @@ namespace text.doors.Detection
             }
         }
 
-        
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.tChart_qm.Export.ShowExportDialog();

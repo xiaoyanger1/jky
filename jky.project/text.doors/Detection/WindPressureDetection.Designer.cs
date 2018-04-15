@@ -98,6 +98,8 @@
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
             this.tim_wyData = new System.Windows.Forms.Timer(this.components);
             this.tim_fy = new System.Windows.Forms.Timer(this.components);
+            this.tim_btnType = new System.Windows.Forms.Timer(this.components);
+            this.btn_stop = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -122,6 +124,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.btn_stop);
             this.tabPage1.Controls.Add(this.tChart_qm);
             this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox6);
@@ -155,7 +158,7 @@
             // 
             this.tChart_qm.Header.Lines = new string[] {
         "抗风压检测"};
-            this.tChart_qm.Location = new System.Drawing.Point(28, 66);
+            this.tChart_qm.Location = new System.Drawing.Point(19, 79);
             this.tChart_qm.Name = "tChart_qm";
             // 
             // 
@@ -172,7 +175,7 @@
             this.tChart_qm.Panel.MarginRight = 2D;
             this.tChart_qm.Panel.MarginTop = 0D;
             this.tChart_qm.Series.Add(this.qm_Line);
-            this.tChart_qm.Size = new System.Drawing.Size(832, 294);
+            this.tChart_qm.Size = new System.Drawing.Size(851, 277);
             this.tChart_qm.TabIndex = 52;
             // 
             // qm_Line
@@ -335,18 +338,18 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(897, 708);
+            this.button11.Location = new System.Drawing.Point(952, 709);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(84, 30);
+            this.button11.Size = new System.Drawing.Size(62, 30);
             this.button11.TabIndex = 41;
             this.button11.Text = "保存";
             this.button11.UseVisualStyleBackColor = true;
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(1015, 708);
+            this.button12.Location = new System.Drawing.Point(1029, 708);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(81, 30);
+            this.button12.Size = new System.Drawing.Size(65, 30);
             this.button12.TabIndex = 42;
             this.button12.Text = "退出";
             this.button12.UseVisualStyleBackColor = true;
@@ -854,6 +857,21 @@
             this.tim_fy.Enabled = true;
             this.tim_fy.Tick += new System.EventHandler(this.tim_fy_Tick);
             // 
+            // tim_btnType
+            // 
+            this.tim_btnType.Enabled = true;
+            this.tim_btnType.Tick += new System.EventHandler(this.tim_btnType_Tick);
+            // 
+            // btn_stop
+            // 
+            this.btn_stop.Location = new System.Drawing.Point(880, 707);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(66, 33);
+            this.btn_stop.TabIndex = 53;
+            this.btn_stop.Text = "停止";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            // 
             // WindPressureDetection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -956,5 +974,7 @@
         private System.Windows.Forms.Label label26;
         private Steema.TeeChart.TChart tChart_qm;
         private Steema.TeeChart.Styles.FastLine qm_Line;
+        private System.Windows.Forms.Timer tim_btnType;
+        private System.Windows.Forms.Button btn_stop;
     }
 }

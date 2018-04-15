@@ -39,12 +39,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnh_d = new System.Windows.Forms.Button();
+            this.btnh_i = new System.Windows.Forms.Button();
+            this.btnh_p = new System.Windows.Forms.Button();
+            this.txth_d = new System.Windows.Forms.TextBox();
+            this.txth_i = new System.Windows.Forms.TextBox();
+            this.txth_p = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -150,12 +150,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.btnh_d);
+            this.groupBox2.Controls.Add(this.btnh_i);
+            this.groupBox2.Controls.Add(this.btnh_p);
+            this.groupBox2.Controls.Add(this.txth_d);
+            this.groupBox2.Controls.Add(this.txth_i);
+            this.groupBox2.Controls.Add(this.txth_p);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
@@ -166,53 +166,56 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "水密抗风压设定";
             // 
-            // button1
+            // btnh_d
             // 
-            this.button1.Location = new System.Drawing.Point(143, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "写入";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnh_d.Location = new System.Drawing.Point(143, 79);
+            this.btnh_d.Name = "btnh_d";
+            this.btnh_d.Size = new System.Drawing.Size(75, 23);
+            this.btnh_d.TabIndex = 17;
+            this.btnh_d.Text = "写入";
+            this.btnh_d.UseVisualStyleBackColor = true;
+            this.btnh_d.Click += new System.EventHandler(this.btnh_d_Click);
             // 
-            // button2
+            // btnh_i
             // 
-            this.button2.Location = new System.Drawing.Point(143, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "写入";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnh_i.Location = new System.Drawing.Point(143, 48);
+            this.btnh_i.Name = "btnh_i";
+            this.btnh_i.Size = new System.Drawing.Size(75, 23);
+            this.btnh_i.TabIndex = 16;
+            this.btnh_i.Text = "写入";
+            this.btnh_i.UseVisualStyleBackColor = true;
+            this.btnh_i.Click += new System.EventHandler(this.btnh_i_Click);
             // 
-            // button3
+            // btnh_p
             // 
-            this.button3.Location = new System.Drawing.Point(143, 18);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "写入";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnh_p.Location = new System.Drawing.Point(143, 18);
+            this.btnh_p.Name = "btnh_p";
+            this.btnh_p.Size = new System.Drawing.Size(75, 23);
+            this.btnh_p.TabIndex = 15;
+            this.btnh_p.Text = "写入";
+            this.btnh_p.UseVisualStyleBackColor = true;
+            this.btnh_p.Click += new System.EventHandler(this.btnh_p_Click);
             // 
-            // textBox1
+            // txth_d
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(80, 21);
-            this.textBox1.TabIndex = 8;
+            this.txth_d.Location = new System.Drawing.Point(48, 81);
+            this.txth_d.Name = "txth_d";
+            this.txth_d.Size = new System.Drawing.Size(80, 21);
+            this.txth_d.TabIndex = 8;
             // 
-            // textBox2
+            // txth_i
             // 
-            this.textBox2.Location = new System.Drawing.Point(48, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(80, 21);
-            this.textBox2.TabIndex = 6;
+            this.txth_i.Location = new System.Drawing.Point(48, 50);
+            this.txth_i.Name = "txth_i";
+            this.txth_i.Size = new System.Drawing.Size(80, 21);
+            this.txth_i.TabIndex = 6;
             // 
-            // textBox3
+            // txth_p
             // 
-            this.textBox3.Location = new System.Drawing.Point(48, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 21);
-            this.textBox3.TabIndex = 4;
+            this.txth_p.Location = new System.Drawing.Point(48, 20);
+            this.txth_p.Name = "txth_p";
+            this.txth_p.Size = new System.Drawing.Size(80, 21);
+            this.txth_p.TabIndex = 4;
             // 
             // label4
             // 
@@ -245,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 297);
+            this.ClientSize = new System.Drawing.Size(299, 297);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "PIDManager";
@@ -272,12 +275,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnh_d;
+        private System.Windows.Forms.Button btnh_i;
+        private System.Windows.Forms.Button btnh_p;
+        private System.Windows.Forms.TextBox txth_d;
+        private System.Windows.Forms.TextBox txth_i;
+        private System.Windows.Forms.TextBox txth_p;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

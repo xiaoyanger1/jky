@@ -47,6 +47,11 @@ namespace text.doors
         /// </summary>
         private string _tempTong = "";
 
+        /// <summary>
+        /// 锁点
+        /// </summary>
+        private bool _lockPoint = false;
+
 
         public MainForm()
         {
@@ -170,7 +175,7 @@ namespace text.doors
         /// </summary>
         private void ShowWindPressure()
         {
-            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong);
+            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong, _lockPoint);
             this.pl_showItem.Controls.Clear();
             rts.TopLevel = false;
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -188,7 +193,7 @@ namespace text.doors
             {
                 #region 获取面板显示
                 var IsSeccess = false;
-               
+
                 var temperature = _temperature = tcpClient.GetWDXS(ref IsSeccess);
                 if (!IsSeccess) return;
 

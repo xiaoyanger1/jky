@@ -421,10 +421,9 @@ namespace text.doors.Common
                 IsSuccess = false;
                 Logger.Error(ex);
             }
-
             return res;
         }
-
+        
         /// <summary>
         /// 发送正压开始
         /// </summary>
@@ -1073,6 +1072,14 @@ namespace text.doors.Common
                 else if (type == "D")
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.D);
 
+                if (type == "_P")
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand._P);
+                else if (type == "_I")
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand._I);
+                else if (type == "_D")
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand._D);
+
+
                 ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                 res = int.Parse(holding_register[0].ToString());
                 IsSuccess = true;
@@ -1473,6 +1480,35 @@ namespace text.doors.Common
                 return false;
             }
         }
+        
+        /// <summary>
+        /// 风压按钮状态
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public int ReadFYBtnType(string commandStr,ref bool IsSuccess)
+        {
+            int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+            try
+            {
+                _StartAddress = BFMCommand.GetCommandDict(commandStr);
+                ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                res = int.Parse(holding_register[0].ToString());
+                IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+            return res;
+        }
+
         #endregion
     }
 }

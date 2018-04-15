@@ -68,10 +68,42 @@ namespace text.doors.Default
         /// </summary>
         public enum WindPressureTest
         {
-            ZReady,//正压预备
-            ZStart,//正压开始
-            FReady,//负压预备
-            FStart,//负压开始
+            /// <summary>
+            /// 正压预备
+            /// </summary>
+            ZReady,
+            /// <summary>
+            /// 正压开始
+            /// </summary>
+            ZStart,
+            /// <summary>
+            /// 负压预备
+            /// </summary>
+            FReady,
+            /// <summary>
+            /// 负压开始
+            /// </summary>
+            FStart,
+            /// <summary>
+            /// 正反复
+            /// </summary>
+            ZRepeatedly,
+            /// <summary>
+            /// 负反复
+            /// </summary>
+            FRepeatedly,
+            /// <summary>
+            /// 正安全
+            /// </summary>
+            ZSafety,
+            /// <summary>
+            /// 负安全
+            /// </summary>
+            FSafety,
+            /// <summary>
+            /// 结束
+            /// </summary>
+            Stop
         }
 
         /// <summary>
