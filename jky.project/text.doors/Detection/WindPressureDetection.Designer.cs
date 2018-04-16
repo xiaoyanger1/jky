@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindPressureDetection));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_stop = new System.Windows.Forms.Button();
             this.tChart_qm = new Steema.TeeChart.TChart();
             this.qm_Line = new Steema.TeeChart.Styles.FastLine();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_lx = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -99,7 +101,10 @@
             this.tim_wyData = new System.Windows.Forms.Timer(this.components);
             this.tim_fy = new System.Windows.Forms.Timer(this.components);
             this.tim_btnType = new System.Windows.Forms.Timer(this.components);
-            this.btn_stop = new System.Windows.Forms.Button();
+            this.tim_static = new System.Windows.Forms.Timer(this.components);
+            this.tim_view = new System.Windows.Forms.Timer(this.components);
+            this.char_cms_click = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -110,6 +115,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.char_cms_click.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -145,6 +151,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "抗风压检测";
             // 
+            // btn_stop
+            // 
+            this.btn_stop.Location = new System.Drawing.Point(880, 707);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(66, 33);
+            this.btn_stop.TabIndex = 53;
+            this.btn_stop.Text = "停止";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            // 
             // tChart_qm
             // 
             // 
@@ -177,6 +193,7 @@
             this.tChart_qm.Series.Add(this.qm_Line);
             this.tChart_qm.Size = new System.Drawing.Size(851, 277);
             this.tChart_qm.TabIndex = 52;
+            this.tChart_qm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tChart_qm_MouseDown);
             // 
             // qm_Line
             // 
@@ -219,22 +236,22 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.textBox1);
+            this.groupBox7.Controls.Add(this.txt_lx);
             this.groupBox7.Controls.Add(this.label26);
             this.groupBox7.Location = new System.Drawing.Point(897, 66);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(200, 39);
             this.groupBox7.TabIndex = 29;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "X/L";
+            this.groupBox7.Text = "L/X";
             // 
-            // textBox1
+            // txt_lx
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(61, 21);
-            this.textBox1.TabIndex = 30;
-            this.textBox1.Text = "300";
+            this.txt_lx.Location = new System.Drawing.Point(77, 12);
+            this.txt_lx.Name = "txt_lx";
+            this.txt_lx.Size = new System.Drawing.Size(61, 21);
+            this.txt_lx.TabIndex = 30;
+            this.txt_lx.Text = "300";
             // 
             // label26
             // 
@@ -243,7 +260,7 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(29, 12);
             this.label26.TabIndex = 29;
-            this.label26.Text = "X/L:";
+            this.label26.Text = "L/X:";
             // 
             // groupBox6
             // 
@@ -758,7 +775,6 @@
             this.rdb_DWDD3.Name = "rdb_DWDD3";
             this.rdb_DWDD3.Size = new System.Drawing.Size(53, 16);
             this.rdb_DWDD3.TabIndex = 22;
-            this.rdb_DWDD3.TabStop = true;
             this.rdb_DWDD3.Tag = "DWDD";
             this.rdb_DWDD3.Text = "位移3";
             this.rdb_DWDD3.UseVisualStyleBackColor = true;
@@ -770,7 +786,6 @@
             this.rdb_DWDD1.Name = "rdb_DWDD1";
             this.rdb_DWDD1.Size = new System.Drawing.Size(53, 16);
             this.rdb_DWDD1.TabIndex = 22;
-            this.rdb_DWDD1.TabStop = true;
             this.rdb_DWDD1.Tag = "DWDD";
             this.rdb_DWDD1.Text = "位移1";
             this.rdb_DWDD1.UseVisualStyleBackColor = true;
@@ -854,7 +869,6 @@
             // 
             // tim_fy
             // 
-            this.tim_fy.Enabled = true;
             this.tim_fy.Tick += new System.EventHandler(this.tim_fy_Tick);
             // 
             // tim_btnType
@@ -862,15 +876,30 @@
             this.tim_btnType.Enabled = true;
             this.tim_btnType.Tick += new System.EventHandler(this.tim_btnType_Tick);
             // 
-            // btn_stop
+            // tim_static
             // 
-            this.btn_stop.Location = new System.Drawing.Point(880, 707);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(66, 33);
-            this.btn_stop.TabIndex = 53;
-            this.btn_stop.Text = "停止";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            this.tim_static.Interval = 1000;
+            this.tim_static.Tick += new System.EventHandler(this.tim_static_Tick);
+            // 
+            // tim_view
+            // 
+            this.tim_view.Enabled = true;
+            this.tim_view.Interval = 1000;
+            this.tim_view.Tick += new System.EventHandler(this.tim_view_Tick);
+            // 
+            // char_cms_click
+            // 
+            this.char_cms_click.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.char_cms_click.Name = "char_cms_click";
+            this.char_cms_click.Size = new System.Drawing.Size(125, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "导出图片";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // WindPressureDetection
             // 
@@ -899,6 +928,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.char_cms_click.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -970,11 +1000,15 @@
         private System.Windows.Forms.Timer tim_wyData;
         private System.Windows.Forms.Timer tim_fy;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_lx;
         private System.Windows.Forms.Label label26;
         private Steema.TeeChart.TChart tChart_qm;
         private Steema.TeeChart.Styles.FastLine qm_Line;
         private System.Windows.Forms.Timer tim_btnType;
         private System.Windows.Forms.Button btn_stop;
+        private System.Windows.Forms.Timer tim_static;
+        private System.Windows.Forms.Timer tim_view;
+        private System.Windows.Forms.ContextMenuStrip char_cms_click;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

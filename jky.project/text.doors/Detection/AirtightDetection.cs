@@ -315,7 +315,6 @@ namespace text.doors.Detection
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
                 {
                     double yl = _tcpClient.ReadSetkPa(BFMCommand.正压开始_设定值, ref IsSeccess);
-                    //double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("获取正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -326,7 +325,6 @@ namespace text.doors.Detection
                 else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
                 {
                     double yl = _tcpClient.ReadSetkPa(BFMCommand.负压开始_设定值, ref IsSeccess);
-                    //double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("获取负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -497,7 +495,6 @@ namespace text.doors.Detection
                 Z_S_100Stop = false;
             }
 
-            // start = _tcpClient.Get_Z_S150PaTimeStart();
              start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.正压150TimeStart);
             if (start && Z_S_150Stop)
             {
@@ -506,7 +503,6 @@ namespace text.doors.Detection
                 Z_S_150Stop = false;
             }
 
-            // start = _tcpClient.Get_Z_J100PaTimeStart();
             start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.正压_100TimeStart);
             if (start && Z_J_100Stop)
             {
@@ -517,7 +513,6 @@ namespace text.doors.Detection
             }
 
             //负压
-            //start = _tcpClient.Get_F_S100PaTimeStart();
             start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压100TimeStart);
             if (start && F_S_100Stop)
             {
@@ -526,7 +521,6 @@ namespace text.doors.Detection
                 F_S_100Stop = false;
             }
 
-            //start = _tcpClient.Get_F_S150PaTimeStart();
             start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压150TimeStart);
             if (start && F_S_150Stop)
             {
@@ -534,7 +528,6 @@ namespace text.doors.Detection
                 tim_Top10.Enabled = true;
                 F_S_150Stop = false;
             }
-            //start = _tcpClient.Get_F_J100PaTimeStart();
             start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压_100TimeStart);
             if (start && F_J_100Stop)
             {

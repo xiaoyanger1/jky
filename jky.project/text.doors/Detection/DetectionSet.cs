@@ -71,6 +71,11 @@ namespace text.doors.Detection
                     DefaultBase.base_SpecCount = int.Parse(btn_GuiGeShuLiang.Text);
                     DefaultBase.base_TestItem = cb_JianYanXiangMu.Text;
                     DefaultBase.LockPoint = cbb_danshandansuodian.Text == "是" ? true : false;
+
+                    int def = 0;
+                    int.TryParse(txt_ganjianchadu.Text, out def);
+
+                    DefaultBase.BarLength = def;
                     this.btn_add.Enabled = true;
                     this.btn_select.Enabled = true;
                     this.btn_delete.Enabled = true;

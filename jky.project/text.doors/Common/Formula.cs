@@ -49,7 +49,7 @@ namespace text.doors.Common
         /// <param name="y2">坐标点y2</param>
         /// <param name="kvalue">斜率k值</param>
         /// <param name="bvalue">纵截距b值</param>
-        private static void Calculate(float x1, float x2, float y1, float y2, ref float kvalue, ref float bvalue)//求方程y=kx+b 系数 k ,b
+        public static void Calculate(float x1, float x2, float y1, float y2, ref float kvalue, ref float bvalue)//求方程y=kx+b 系数 k ,b
         {
             float coefficient = 1;//系数值
             try
@@ -104,6 +104,18 @@ namespace text.doors.Common
             {
                 return DAL_Demarcate_Dict.temperatureDict;
             }
+            if (enum_Demarcate == PublicEnum.DemarcateType.位移传感器1)
+            {
+                return DAL_Demarcate_Dict.displacement1Dict;
+            }
+            if (enum_Demarcate == PublicEnum.DemarcateType.位移传感器2)
+            {
+                return DAL_Demarcate_Dict.displacement2Dict;
+            }
+            if (enum_Demarcate == PublicEnum.DemarcateType.位移传感器3)
+            {
+                return DAL_Demarcate_Dict.displacement3Dict;
+            }
             return new List<Calibrating_Dict>();
         }
 
@@ -136,6 +148,7 @@ namespace text.doors.Common
             }
         }
 
+        
         #endregion
 
         #region  计算流量

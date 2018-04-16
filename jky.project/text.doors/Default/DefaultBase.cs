@@ -36,6 +36,11 @@ namespace text.doors.Default
         /// </summary>
         public static bool LockPoint = false;
 
+        /// <summary>
+        /// 杆件长度
+        /// </summary>
+        public static int BarLength = 0;
+
 
         public static PublicEnum.DetectionItem? _TestItem
         {

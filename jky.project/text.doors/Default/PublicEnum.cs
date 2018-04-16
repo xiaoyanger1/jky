@@ -125,9 +125,6 @@ namespace text.doors.Default
         /// </summary>
         public enum DetectionItem
         {
-            //enum_气密性能检测,
-            //enum_水密性能检测,
-            //enum_气密性能及水密性能检测
             气密水密抗风压性能检测,
             气密性能检测,
             水密性能检测,
