@@ -314,7 +314,7 @@ namespace text.doors.Detection
         #region 水密性能检测按钮事件
         private void btn_ready_Click(object sender, EventArgs e)
         {
-            double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, "SMYB");
+            double yl = _tcpClient.Get_SM_SetkPa(BFMCommand.水密预备_设定值, ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -405,17 +405,21 @@ namespace text.doors.Detection
 
             if (_tcpClient.IsTCPLink)
             {
-                string TEMP = "";
-                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
-                    TEMP = "SMYB";
-                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
-                    TEMP = "SMKS";
-                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Start)
-                    TEMP = "SMKS";
-                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Next)
-                    TEMP = "XYJ";
 
-                double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, TEMP);
+
+
+                string TEMP = "";
+
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
+                    TEMP = BFMCommand.水密预备_设定值;
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
+                    TEMP = BFMCommand.水密依次加压_设定值;
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Start)
+                    TEMP = BFMCommand.水密开始_设定值;
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Next)
+                    TEMP = BFMCommand.水密开始_设定值;
+
+                double yl = _tcpClient.Get_SM_SetkPa(TEMP, ref IsSeccess);
 
                 if (!IsSeccess)
                 {

@@ -250,8 +250,7 @@ namespace text.doors.Detection
                 MessageBox.Show("正压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
-
-
+            
             windPressureTest = PublicEnum.WindPressureTest.ZStart;
             DisableBtnType();
         }

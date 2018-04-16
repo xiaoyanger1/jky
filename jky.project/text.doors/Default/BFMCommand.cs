@@ -37,19 +37,21 @@ namespace text.doors.Default
         //public const string 温度_40 = "M221";
 
         //public const string 温度0 = "M222";
-      //  public const string 温度80 = "M223";
-      //  public const string 大气压力80 = "M224";
-       // public const string 大气压力103_1 = "M225";
-       // public const string 大气压力110 = "M226";
-       // public const string 标定全部清除 = "M60";
-        public const string 高压标0_交替型按钮 = "M66";
-        public const string 风速标0_交替型按钮 = "M66";//TODO:按钮命令未知
-        public const string 正压阀 = "M62";
-        public const string 负压阀 = "M63";
+        //  public const string 温度80 = "M223";
+        //  public const string 大气压力80 = "M224";
+        // public const string 大气压力103_1 = "M225";
+        // public const string 大气压力110 = "M226";
+        // public const string 标定全部清除 = "M60";
         //public const string 正极限 = "X0";
         //public const string 负极限 = "X1";
         //public const string 正压阀 = "Y0";
         //public const string 负压阀 = "Y1";
+
+
+        public const string 高压标0_交替型按钮 = "M66";
+        public const string 风速标0_交替型按钮 = "M66";
+        public const string 正压阀 = "M62";
+        public const string 负压阀 = "M63";
         public const string 正压预备 = "M50";
         public const string 正压开始 = "M51";
         public const string 负压预备 = "M52";
@@ -61,7 +63,7 @@ namespace text.doors.Default
         //public const string 结束 = "M40";
         public const string 下一级 = "M42";
         public const string 急停 = "M120";
-        public const string 差压显示 = "D130";  //""
+        public const string 差压显示 = "D130";
         public const string 温度显示 = "D132";
         public const string 大气压力显示 = "D134";
         public const string 风速显示 = "D136";
@@ -135,14 +137,10 @@ namespace text.doors.Default
         public const string 位移置零 = "";
 
         #region 未实现
-        public const string 位移1标零 = "M67"; //32位
-        public const string 位移2标零 = "M68";//32位
-        public const string 位移3标零 = "M69";//32位
+        //public const string 位移1标零 = "M67"; //32位
+        //public const string 位移2标零 = "M68";//32位
+        //public const string 位移3标零 = "M69";//32位
 
-        public const string 气密P = "D2101"; //16位
-        public const string 气密I= "D2102";//16位
-        public const string 水密P = "D2151";//16位
-        public const string 水密I = "D2152";//16位
         public const string 风压差压标定后值 = "D130";
 
         #endregion
