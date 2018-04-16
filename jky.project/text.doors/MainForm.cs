@@ -46,7 +46,7 @@ namespace text.doors
         /// 当前樘号
         /// </summary>
         private string _tempTong = "";
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -542,8 +542,32 @@ namespace text.doors
             if (tcpClient.IsTCPLink)
             {
                 DataInit();
+
+                using (BackgroundWorker bw = new BackgroundWorker())
+                {
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(hsb_RunWorkerCompleted);
+                    bw.DoWork += new DoWorkEventHandler(hsb_DoWork);
+                    bw.RunWorkerAsync();
+                }
+
             }
         }
+
+        void hsb_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var IsSeccess = false;
+            var diffPress = tcpClient.GetCYXS(ref IsSeccess);
+            if (!IsSeccess) return;
+
+            //需要计算
+            e.Result = diffPress;
+        }
+
+        void hsb_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.hsb_WindControl.Value = (int)e.Result;
+        }
+
 
         private void pID设定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
