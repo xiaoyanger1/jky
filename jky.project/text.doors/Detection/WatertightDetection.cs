@@ -405,11 +405,7 @@ namespace text.doors.Detection
 
             if (_tcpClient.IsTCPLink)
             {
-
-
-
                 string TEMP = "";
-
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
                     TEMP = BFMCommand.水密预备_设定值;
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)

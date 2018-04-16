@@ -104,6 +104,13 @@ namespace text.doors
             {
                 while (true)
                 {
+                    using (BackgroundWorker bw = new BackgroundWorker())
+                    {
+                        bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Tcp_RunWorkerCompleted);
+                        bw.DoWork += new DoWorkEventHandler(Tcp_DoWork);
+                        bw.RunWorkerAsync();
+                    }
+
                     //tsl_tcpclient.Text = tcpClient.IsTCPLink ? "服务器连接：成功" : "服务器连接：失败";
                     if (!tcpClient.IsTCPLink)
                     {
