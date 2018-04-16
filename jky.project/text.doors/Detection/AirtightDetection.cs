@@ -314,7 +314,8 @@ namespace text.doors.Detection
                 //读取设定值
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
                 {
-                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
+                    double yl = _tcpClient.ReadSetkPa(BFMCommand.正压开始_设定值, ref IsSeccess);
+                    //double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("获取正压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -324,7 +325,8 @@ namespace text.doors.Detection
                 }
                 else if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
                 {
-                    double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
+                    double yl = _tcpClient.ReadSetkPa(BFMCommand.负压开始_设定值, ref IsSeccess);
+                    //double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
                     if (!IsSeccess)
                     {
                         MessageBox.Show("获取负压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -486,8 +488,8 @@ namespace text.doors.Detection
         private void SetCurrType(int value)
         {
 
-            bool start = _tcpClient.Get_Z_S100TimeStart();
-
+            //  bool start = _tcpClient.Get_Z_S100TimeStart();
+            bool start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.正压100TimeStart); 
             if (start && Z_S_100Stop)
             {
                 kpa_Level = PublicEnum.Kpa_Level.liter100;
@@ -495,8 +497,8 @@ namespace text.doors.Detection
                 Z_S_100Stop = false;
             }
 
-            start = _tcpClient.Get_Z_S150PaTimeStart();
-
+            // start = _tcpClient.Get_Z_S150PaTimeStart();
+             start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.正压150TimeStart);
             if (start && Z_S_150Stop)
             {
                 kpa_Level = PublicEnum.Kpa_Level.liter150;
@@ -504,8 +506,8 @@ namespace text.doors.Detection
                 Z_S_150Stop = false;
             }
 
-            start = _tcpClient.Get_Z_J100PaTimeStart();
-
+            // start = _tcpClient.Get_Z_J100PaTimeStart();
+            start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.正压_100TimeStart);
             if (start && Z_J_100Stop)
             {
                 Thread.Sleep(500);
@@ -515,8 +517,8 @@ namespace text.doors.Detection
             }
 
             //负压
-            start = _tcpClient.Get_F_S100PaTimeStart();
-
+            //start = _tcpClient.Get_F_S100PaTimeStart();
+            start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压100TimeStart);
             if (start && F_S_100Stop)
             {
                 kpa_Level = PublicEnum.Kpa_Level.liter100;
@@ -524,16 +526,16 @@ namespace text.doors.Detection
                 F_S_100Stop = false;
             }
 
-            start = _tcpClient.Get_F_S150PaTimeStart();
-
+            //start = _tcpClient.Get_F_S150PaTimeStart();
+            start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压150TimeStart);
             if (start && F_S_150Stop)
             {
                 kpa_Level = PublicEnum.Kpa_Level.liter150;
                 tim_Top10.Enabled = true;
                 F_S_150Stop = false;
             }
-            start = _tcpClient.Get_F_J100PaTimeStart();
-
+            //start = _tcpClient.Get_F_J100PaTimeStart();
+            start = _tcpClient.Read_QM_kPaTimeStart(BFMCommand.负压_100TimeStart);
             if (start && F_J_100Stop)
             {
                 Thread.Sleep(500);
@@ -563,8 +565,7 @@ namespace text.doors.Detection
                 MessageBox.Show("未连接服务器", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
-
-            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYYB");
+            double yl = _tcpClient.ReadSetkPa(BFMCommand.正压预备_设定值, ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -575,7 +576,7 @@ namespace text.doors.Detection
             IsYB = true;
             DisableBtnType();
 
-            var res = _tcpClient.SetZYYB();
+            var res = _tcpClient.Send_QM_Btn(BFMCommand.正压预备);
             if (!res)
             {
                 MessageBox.Show("正压预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -604,7 +605,7 @@ namespace text.doors.Detection
         {
             IsFirst = false;
 
-            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "ZYKS");
+            double yl = _tcpClient.ReadSetkPa(BFMCommand.正压开始_设定值, ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -630,8 +631,8 @@ namespace text.doors.Detection
                 new Pressure().ClearZ_Z();
             }
 
-            _tcpClient.SendZYKS(ref IsSeccess);
-            if (!IsSeccess)
+            var res = _tcpClient.Send_QM_Btn(BFMCommand.正压开始);
+            if (!res)
             {
                 MessageBox.Show("正压开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
@@ -644,7 +645,7 @@ namespace text.doors.Detection
 
         private void btn_loseready_Click(object sender, EventArgs e)
         {
-            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYYB");
+            double yl = _tcpClient.ReadSetkPa(BFMCommand.负压预备_设定值, ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -655,7 +656,7 @@ namespace text.doors.Detection
 
             IsYB = true;
             DisableBtnType();
-            var res = _tcpClient.SendFYYB();
+            var res = _tcpClient.Send_QM_Btn(BFMCommand.负压预备);
             if (!res)
             {
                 MessageBox.Show("负压预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -695,9 +696,8 @@ namespace text.doors.Detection
         /// <param name="e"></param>
         private void btn_losestart_Click(object sender, EventArgs e)
         {
-
             IsFirst = false;
-            double yl = _tcpClient.GetZYYBYLZ(ref IsSeccess, "FYKS");
+            double yl = _tcpClient.ReadSetkPa(BFMCommand.负压开始_设定值, ref IsSeccess);
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -723,7 +723,7 @@ namespace text.doors.Detection
             {
                 new Pressure().ClearF_Z();
             }
-            var res = _tcpClient.SendFYKS();
+            var res = _tcpClient.Send_QM_Btn(BFMCommand.负压开始);
             if (!res)
             {
                 MessageBox.Show("负压开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -746,7 +746,6 @@ namespace text.doors.Detection
 
         private void export_image_qm_Click(object sender, EventArgs e)
         {
-
             this.tChart_qm.Export.ShowExportDialog();
         }
 
@@ -879,8 +878,7 @@ namespace text.doors.Detection
 
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZReady)
                 {
-                    int value = _tcpClient.GetZYYBJS(ref IsSeccess);
-
+                    int value = _tcpClient.Read_SM_BtnType(BFMCommand.正压预备结束, ref IsSeccess);
                     if (!IsSeccess)
                     {
                         MessageBox.Show("正压预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -895,8 +893,7 @@ namespace text.doors.Detection
                 }
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.ZStart)
                 {
-                    double value = _tcpClient.GetZYKSJS(ref IsSeccess);
-
+                    int value = _tcpClient.Read_SM_BtnType(BFMCommand.正压开始结束, ref IsSeccess);
                     if (!IsSeccess)
                     {
                         MessageBox.Show("正压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -914,7 +911,7 @@ namespace text.doors.Detection
 
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FReady)
                 {
-                    int value = _tcpClient.GetFYYBJS(ref IsSeccess);
+                    int value = _tcpClient.Read_SM_BtnType(BFMCommand.负压预备结束, ref IsSeccess);
 
                     if (!IsSeccess)
                     {
@@ -931,8 +928,7 @@ namespace text.doors.Detection
 
                 if (airtightPropertyTest == PublicEnum.AirtightPropertyTest.FStart)
                 {
-                    double value = _tcpClient.GetFYKSJS(ref IsSeccess);
-
+                    int value = _tcpClient.Read_SM_BtnType(BFMCommand.负压开始结束, ref IsSeccess);
                     if (!IsSeccess)
                     {
                         MessageBox.Show("负压开始结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);

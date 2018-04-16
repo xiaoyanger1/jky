@@ -61,14 +61,14 @@ namespace text.doors
             OpenTcp();
 
             //设置高压标零
-            var pressureZero = tcpClient.SendGYBD(true);
+            var pressureZero = tcpClient.SendSignZero(BFMCommand.高压标0_交替型按钮, true);
 
             DataInit();
             ShowDetectionSet();
         }
 
 
-        public void ExamineLAN()
+        private void ExamineLAN()
         {
             Thread thread = new Thread(new ThreadStart(() =>
             {
@@ -76,32 +76,57 @@ namespace text.doors
                 {
                     LAN.ReadLanLink();
 
-                    tcp_type.Text = LAN.IsLanLink ? "网络连接：开启" : "网络连接：断开";
-
-                    Thread.Sleep(1000);
+                    using (BackgroundWorker bw = new BackgroundWorker())
+                    {
+                        bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Lan_RunWorkerCompleted);
+                        bw.DoWork += new DoWorkEventHandler(Lan_DoWork);
+                        bw.RunWorkerAsync();
+                    }
+                    // tcp_type.Text = LAN.IsLanLink ? "网络连接：开启" : "网络连接：断开";
+                    Thread.Sleep(5000);
                 }
             }));
             thread.Start();
         }
+        void Lan_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = LAN.IsLanLink ? "网络连接：开启" : "网络连接：断开";
+        }
 
-        public void OpenTcp()
+        void Lan_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.tcp_type.Text = e.Result.ToString();
+        }
+
+        private void OpenTcp()
         {
             Thread thread = new Thread(new ThreadStart(() =>
             {
                 while (true)
                 {
-                    tsl_tcpclient.Text = tcpClient.IsTCPLink ? "服务器连接：成功" : "服务器连接：失败";
+                    //tsl_tcpclient.Text = tcpClient.IsTCPLink ? "服务器连接：成功" : "服务器连接：失败";
                     if (!tcpClient.IsTCPLink)
                     {
                         tcpClient.TcpOpen();
                         Thread.Sleep(500);
                     }
                     else
-                        Thread.Sleep(1000);
+                        Thread.Sleep(5000);
                 }
             }));
             thread.Start();
         }
+
+        void Tcp_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = tcpClient.IsTCPLink ? "服务器连接：成功" : "服务器连接：失败";
+        }
+
+        void Tcp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.tsl_tcpclient.Text = e.Result.ToString();
+        }
+
 
         private void SelectDangHao(text.doors.Detection.DetectionSet.BottomType bt)
         {
@@ -213,11 +238,11 @@ namespace text.doors
 
 
                 //抗风压
-                var displace1 = tcpClient.GetDisplace1(ref IsSeccess).ToString();
+                var displace1 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace2 = tcpClient.GetDisplace2(ref IsSeccess).ToString();
+                var displace2 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace3 = tcpClient.GetDisplace3(ref IsSeccess).ToString();
+                var displace3 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
                 if (!IsSeccess) return;
 
                 lbl_Displace1.Text = displace1.ToString();
@@ -363,7 +388,7 @@ namespace text.doors
 
         private void btn_gyZero_Click(object sender, EventArgs e)
         {
-            if (!tcpClient.SendGYBD())
+            if (!tcpClient.SendSignZero(BFMCommand.高压标0_交替型按钮))
             {
                 MessageBox.Show("高压归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
@@ -375,7 +400,7 @@ namespace text.doors
         /// <param name="e"></param>
         private void btn_fsgl_Click(object sender, EventArgs e)
         {
-            var res = tcpClient.SendFSGL();
+            var res = tcpClient.SendSignZero(BFMCommand.风速标0_交替型按钮);
             if (!res)
             {
                 MessageBox.Show("风速归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);

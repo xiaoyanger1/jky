@@ -53,7 +53,6 @@ namespace text.doors.Detection
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             Init();
-
         }
 
         private void Init()
@@ -293,7 +292,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            var res = _tcpClient.SendSMXXYJ();
+            var res = _tcpClient.Send_SM_Btn(BFMCommand.下一级);
             if (!res)
             {
                 MessageBox.Show("设置水密性下一级异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -328,7 +327,7 @@ namespace text.doors.Detection
             this.btn_next.Enabled = false;
             this.btn_next.Enabled = false;
 
-            var res = _tcpClient.SetSMYB();
+            var res = _tcpClient.Send_SM_Btn(BFMCommand.水密性预备加压);
             if (!res)
             {
                 MessageBox.Show("水密预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -345,7 +344,7 @@ namespace text.doors.Detection
             this.btn_next.Enabled = true;
             tim_upNext.Enabled = true;
             this.btn_ready.Enabled = false;
-            var res = _tcpClient.SendSMXKS();
+            var res = _tcpClient.Send_SM_Btn(BFMCommand.水密性开始);
             if (!res)
             {
                 MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
