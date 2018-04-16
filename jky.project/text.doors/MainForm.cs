@@ -46,13 +46,7 @@ namespace text.doors
         /// 当前樘号
         /// </summary>
         private string _tempTong = "";
-
-        /// <summary>
-        /// 锁点
-        /// </summary>
-        private bool _lockPoint = false;
-
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -82,7 +76,6 @@ namespace text.doors
                         bw.DoWork += new DoWorkEventHandler(Lan_DoWork);
                         bw.RunWorkerAsync();
                     }
-                    // tcp_type.Text = LAN.IsLanLink ? "网络连接：开启" : "网络连接：断开";
                     Thread.Sleep(5000);
                 }
             }));
@@ -110,8 +103,6 @@ namespace text.doors
                         bw.DoWork += new DoWorkEventHandler(Tcp_DoWork);
                         bw.RunWorkerAsync();
                     }
-
-                    //tsl_tcpclient.Text = tcpClient.IsTCPLink ? "服务器连接：成功" : "服务器连接：失败";
                     if (!tcpClient.IsTCPLink)
                     {
                         tcpClient.TcpOpen();
@@ -207,7 +198,7 @@ namespace text.doors
         /// </summary>
         private void ShowWindPressure()
         {
-            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong, _lockPoint);
+            WindPressureDetection rts = new WindPressureDetection(tcpClient, _tempCode, _tempTong);
             this.pl_showItem.Controls.Clear();
             rts.TopLevel = false;
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

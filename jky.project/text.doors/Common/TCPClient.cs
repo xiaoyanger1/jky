@@ -489,7 +489,7 @@ namespace text.doors.Common
             }
             return true;
         }
-        
+
         /// <summary>
         /// 读取水密按钮状态
         /// </summary>
@@ -732,8 +732,37 @@ namespace text.doors.Common
             return res;
         }
 
+
+        /// <summary>
+        /// 设置位移标零
+        /// </summary>
+        /// <param name="logon"></param>
+        /// <returns></returns>
+        public bool SendDisplacementSignZero(string commandStr)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                _StartAddress = BFMCommand.GetCommandDict(commandStr);
+                bool[] readCoils = _MASTER.ReadCoils(_SlaveID, _StartAddress, _NumOfPoints);
+                if (readCoils[0])
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
+                else
+                    _MASTER.WriteSingleCoil(_StartAddress, true);
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+
         #endregion
-        
+
         #region  PID
 
         /// <summary>

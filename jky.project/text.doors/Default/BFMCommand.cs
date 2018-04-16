@@ -137,9 +137,9 @@ namespace text.doors.Default
         public const string 位移置零 = "";
 
         #region 未实现
-        //public const string 位移1标零 = "M67"; //32位
-        //public const string 位移2标零 = "M68";//32位
-        //public const string 位移3标零 = "M69";//32位
+        public const string 位移1标零 = "M67"; //32位
+        public const string 位移2标零 = "M68";//32位
+        public const string 位移3标零 = "M69";//32位
 
         public const string 风压差压标定后值 = "D130";
 

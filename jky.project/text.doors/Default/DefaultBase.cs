@@ -31,6 +31,11 @@ namespace text.doors.Default
         /// </summary>
         public static bool IsSetTong = false;
 
+        /// <summary>
+        /// 是否锁点
+        /// </summary>
+        public static bool LockPoint = false;
+
 
         public static PublicEnum.DetectionItem? _TestItem
         {

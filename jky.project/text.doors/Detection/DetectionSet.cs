@@ -70,6 +70,7 @@ namespace text.doors.Detection
                     deleBottomTypeEvent(GetBottomType(true));
                     DefaultBase.base_SpecCount = int.Parse(btn_GuiGeShuLiang.Text);
                     DefaultBase.base_TestItem = cb_JianYanXiangMu.Text;
+                    DefaultBase.LockPoint = cbb_danshandansuodian.Text == "是" ? true : false;
                     this.btn_add.Enabled = true;
                     this.btn_select.Enabled = true;
                     this.btn_delete.Enabled = true;

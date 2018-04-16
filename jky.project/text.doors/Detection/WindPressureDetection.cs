@@ -24,8 +24,7 @@ namespace text.doors.Detection
         private string _tempCode = "";
         //当前樘号
         private string _tempTong = "";
-        //锁点
-        private bool _lockPoint = false;
+       
         public DateTime dtnow { get; set; }
 
         /// <summary>
@@ -33,15 +32,14 @@ namespace text.doors.Detection
         /// </summary>
         private PublicEnum.WindPressureTest? windPressureTest = null;
 
-        public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong, bool lockPoint)
+        public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong)
         {
             InitializeComponent();
             this._tcpClient = tcpClient;
             this._tempCode = tempCode;
             this._tempTong = tempTong;
-            this._lockPoint = lockPoint;
 
-            if (!this._lockPoint)
+            if (!DefaultBase.LockPoint)
             {
                 rdb_DWDD1.Checked = false;
                 rdb_DWDD1.Checked = false;
@@ -250,7 +248,7 @@ namespace text.doors.Detection
                 MessageBox.Show("正压开始异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
-            
+
             windPressureTest = PublicEnum.WindPressureTest.ZStart;
             DisableBtnType();
         }
@@ -491,7 +489,13 @@ namespace text.doors.Detection
 
         private void btn_wygl_Click(object sender, EventArgs e)
         {
-
+            if (!_tcpClient.IsTCPLink)
+            {
+                return;
+            }
+            _tcpClient.SendDisplacementSignZero(BFMCommand.位移1标零);
+            _tcpClient.SendDisplacementSignZero(BFMCommand.位移2标零);
+            _tcpClient.SendDisplacementSignZero(BFMCommand.位移3标零);
         }
 
         private void tim_wyData_Tick(object sender, EventArgs e)
