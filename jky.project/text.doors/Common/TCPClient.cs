@@ -787,7 +787,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 读取PID
+        /// 读取风压按钮状态
         /// </summary>
         /// <param name="IsSuccess"></param>
         public int GetPID(string commandStr, ref bool IsSuccess)
