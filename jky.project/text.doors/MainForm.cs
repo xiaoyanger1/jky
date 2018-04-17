@@ -55,7 +55,7 @@ namespace text.doors
             OpenTcp();
 
             //设置高压标零
-            var pressureZero = tcpClient.SendSignZero(BFMCommand.高压标0_交替型按钮, true);
+            var pressureZero = tcpClient.SendGYBD(true);
 
             DataInit();
             ShowDetectionSet();
@@ -236,11 +236,11 @@ namespace text.doors
 
 
                 //抗风压
-                var displace1 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
+                var displace1 = tcpClient.GetDisplace1(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace2 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
+                var displace2 = tcpClient.GetDisplace2(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace3 = tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
+                var displace3 = tcpClient.GetDisplace3(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
 
                 lbl_Displace1.Text = displace1.ToString();
@@ -386,7 +386,7 @@ namespace text.doors
 
         private void btn_gyZero_Click(object sender, EventArgs e)
         {
-            if (!tcpClient.SendSignZero(BFMCommand.高压标0_交替型按钮))
+            if (!tcpClient.SendGYBD())
             {
                 MessageBox.Show("高压归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
@@ -398,7 +398,7 @@ namespace text.doors
         /// <param name="e"></param>
         private void btn_fsgl_Click(object sender, EventArgs e)
         {
-            var res = tcpClient.SendSignZero(BFMCommand.风速标0_交替型按钮);
+            var res = tcpClient.SendFSGL();
             if (!res)
             {
                 MessageBox.Show("风速归零异常,请确认服务器连接是否成功!", "设置", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);

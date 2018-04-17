@@ -68,15 +68,15 @@ namespace text.doors.Detection
             }
             if (name == "位移传感器1      mm")
             {
-                res = _tcpConnection.Get_FY_Displace(BFMCommand.位移1, ref IsSuccess);
+                res = _tcpConnection.GetDisplace1(ref IsSuccess);
             }
             if (name == "位移传感器2      mm")
             {
-                res = _tcpConnection.Get_FY_Displace(BFMCommand.位移2, ref IsSuccess);
+                res = _tcpConnection.GetDisplace2(ref IsSuccess);
             }
             if (name == "位移传感器3      mm")
             {
-                res = _tcpConnection.Get_FY_Displace(BFMCommand.位移3, ref IsSuccess);
+                res = _tcpConnection.GetDisplace3(ref IsSuccess);
             }
 
             lvi.Text = res.ToString();

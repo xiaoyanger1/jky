@@ -53,6 +53,7 @@ namespace text.doors.Detection
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             Init();
+
         }
 
         private void Init()
@@ -292,7 +293,7 @@ namespace text.doors.Detection
                 return;
             }
 
-            var res = _tcpClient.Send_SM_Btn(BFMCommand.下一级);
+            var res = _tcpClient.SendSMXXYJ();
             if (!res)
             {
                 MessageBox.Show("设置水密性下一级异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -314,7 +315,7 @@ namespace text.doors.Detection
         #region 水密性能检测按钮事件
         private void btn_ready_Click(object sender, EventArgs e)
         {
-            double yl = _tcpClient.Get_SM_SetkPa(BFMCommand.水密预备_设定值, ref IsSeccess);
+            double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, "SMYB");
             if (!IsSeccess)
             {
                 MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -327,7 +328,7 @@ namespace text.doors.Detection
             this.btn_next.Enabled = false;
             this.btn_next.Enabled = false;
 
-            var res = _tcpClient.Send_SM_Btn(BFMCommand.水密性预备加压);
+            var res = _tcpClient.SetSMYB();
             if (!res)
             {
                 MessageBox.Show("水密预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -344,7 +345,7 @@ namespace text.doors.Detection
             this.btn_next.Enabled = true;
             tim_upNext.Enabled = true;
             this.btn_ready.Enabled = false;
-            var res = _tcpClient.Send_SM_Btn(BFMCommand.水密性开始);
+            var res = _tcpClient.SendSMXKS();
             if (!res)
             {
                 MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -407,15 +408,15 @@ namespace text.doors.Detection
             {
                 string TEMP = "";
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
-                    TEMP = BFMCommand.水密预备_设定值;
+                    TEMP = "SMYB";
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
-                    TEMP = BFMCommand.水密依次加压_设定值;
+                    TEMP = "SMKS";
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Start)
-                    TEMP = BFMCommand.水密开始_设定值;
+                    TEMP = "SMKS";
                 if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Next)
-                    TEMP = BFMCommand.水密开始_设定值;
+                    TEMP = "XYJ";
 
-                double yl = _tcpClient.Get_SM_SetkPa(TEMP, ref IsSeccess);
+                double yl = _tcpClient.GetSMYBSDYL(ref IsSeccess, TEMP);
 
                 if (!IsSeccess)
                 {

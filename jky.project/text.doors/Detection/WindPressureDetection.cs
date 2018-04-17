@@ -263,7 +263,7 @@ namespace text.doors.Detection
             {
                 return;
             }
-            var res = _tcpClient.Send_FY_Btn(BFMCommand.风压负压预备);
+            var res = _tcpClient.Send_FY_Btn(BFMCommand.风压正压预备);
             if (!res)
             {
                 MessageBox.Show("负压预备异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
@@ -498,9 +498,7 @@ namespace text.doors.Detection
             {
                 return;
             }
-            _tcpClient.SendDisplacementSignZero(BFMCommand.位移1标零);
-            _tcpClient.SendDisplacementSignZero(BFMCommand.位移2标零);
-            _tcpClient.SendDisplacementSignZero(BFMCommand.位移3标零);
+            _tcpClient.SendWYGL();
         }
 
         private void tim_wyData_Tick(object sender, EventArgs e)
@@ -509,11 +507,11 @@ namespace text.doors.Detection
             {
                 var IsSeccess = true;
                 //抗风压
-                var displace1 = _tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess).ToString();
+                var displace1 = _tcpClient.GetDisplace1(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace2 = _tcpClient.Get_FY_Displace(BFMCommand.位移2, ref IsSeccess).ToString();
+                var displace2 = _tcpClient.GetDisplace2(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
-                var displace3 = _tcpClient.Get_FY_Displace(BFMCommand.位移3, ref IsSeccess).ToString();
+                var displace3 = _tcpClient.GetDisplace3(ref IsSeccess).ToString();
                 if (!IsSeccess) return;
 
                 txt_wy1.Text = displace1.ToString();
@@ -665,17 +663,17 @@ namespace text.doors.Detection
             if (staticIndex < 6)
             {
                 var IsSeccess = false;
-                double displace1 = _tcpClient.Get_FY_Displace(BFMCommand.位移1, ref IsSeccess);
+                double displace1 = _tcpClient.GetDisplace1(ref IsSeccess);
                 if (!IsSeccess)
                 {
                     return;
                 }
-                double displace2 = _tcpClient.Get_FY_Displace(BFMCommand.位移2, ref IsSeccess);
+                double displace2 = _tcpClient.GetDisplace2(ref IsSeccess);
                 if (!IsSeccess)
                 {
                     return;
                 }
-                double displace3 = _tcpClient.Get_FY_Displace(BFMCommand.位移3, ref IsSeccess);
+                double displace3 = _tcpClient.GetDisplace3(ref IsSeccess);
                 if (!IsSeccess)
                 {
                     return;
