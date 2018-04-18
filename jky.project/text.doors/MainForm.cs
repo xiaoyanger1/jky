@@ -555,17 +555,17 @@ namespace text.doors
 
         void hsb_DoWork(object sender, DoWorkEventArgs e)
         {
-            var IsSeccess = false;
-            var diffPress = tcpClient.GetCYXS(ref IsSeccess);
-            if (!IsSeccess) return;
+            //var IsSeccess = false;
+            //var diffPress = tcpClient.GetCYXS(ref IsSeccess);
+            //if (!IsSeccess) return;
 
-            //需要计算
-            e.Result = diffPress;
+            ////需要计算
+            //e.Result = diffPress;
         }
 
         void hsb_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.hsb_WindControl.Value = (int)e.Result;
+            // this.hsb_WindControl.Value = (int)e.Result;
         }
 
 
