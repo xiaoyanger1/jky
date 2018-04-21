@@ -150,8 +150,6 @@ namespace text.doors.Detection
         /// </summary>
         private void BindWindSpeedBase()
         {
-            //todo
-            //Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
             Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
@@ -306,7 +304,8 @@ namespace text.doors.Detection
                 var value = int.Parse(_tcpClient.GetCYXS(ref IsSeccess).ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //todo
+                    //MessageBox.Show("获取差压异常--气密！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
                 lbl_dqyl.Text = value.ToString();
@@ -354,7 +353,8 @@ namespace text.doors.Detection
                 int value = int.Parse(c.ToString());
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("获取差压压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //todo
+                   // MessageBox.Show("获取差压压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
 
@@ -371,7 +371,8 @@ namespace text.doors.Detection
             var cyvalue = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
             {
-                MessageBox.Show("获取差压异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                //todo
+              //  MessageBox.Show("获取差压异常--气密前十！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 

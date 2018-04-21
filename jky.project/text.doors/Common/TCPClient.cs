@@ -24,7 +24,7 @@ namespace text.doors.Common
         public bool IsTCPLink = false;
 
         #region TCP
-        
+
         public void TcpOpen()
         {
             IsTCPLink = false;
@@ -63,7 +63,7 @@ namespace text.doors.Common
         }
 
         #endregion
-        
+
         #region 气密
 
         /// <summary>
@@ -531,11 +531,11 @@ namespace text.doors.Common
                 return false;
             }
         }
-        
+
         #endregion
 
         #region 水密
-        
+
         /// <summary>
         /// 设置水密预备
         /// </summary>
@@ -1243,11 +1243,61 @@ namespace text.doors.Common
         }
 
 
+
+        /// <summary>
+        /// 获取正压预备时，设定压力值
+        /// </summary>
+        public double Read_FY_Btn_SetValue(ref bool IsSuccess, string type)
+        {
+            double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+
+            try
+            {
+                lock (syncLock)
+                {
+                    if (type == "ZYYB")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压_正压预备_设定值);
+                    }
+                    else if (type == "ZYKS")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压_正压开始_设定值);
+                    }
+                    else if (type == "FYYB")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压_负压预备_设定值);
+                    }
+                    else if (type == "FYKS")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压_负压开始_设定值);
+                    }
+
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = double.Parse((double.Parse(holding_register[0].ToString())).ToString());
+                    IsSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+            return res;
+        }
+
+
         /// <summary>
         /// 发送风压按钮
         /// </summary>
         /// <param name="IsSuccess"></param>
-        public bool Send_FY_Btn(string commandStr)
+        /// <param name="isZ">是否正压</param>
+        public bool Send_FY_Btn(string commandStr,bool isZ=true)
         {
             if (!IsTCPLink)
                 return false;
@@ -1255,7 +1305,7 @@ namespace text.doors.Common
             {
                 lock (syncLock)
                 {
-                    var res = SendZYF();
+                    var res = isZ? SendZYF(): SendFYF();
                     if (!res)
                         return false;
 
@@ -1439,6 +1489,7 @@ namespace text.doors.Common
             return res;
         }
 
+        
         /// <summary>
         /// 读取差压显示
         /// </summary>

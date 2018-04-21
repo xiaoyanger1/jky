@@ -88,7 +88,13 @@ namespace text.doors
 
         void Lan_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.tcp_type.Text = e.Result.ToString();
+            try
+            {
+                this.tcp_type.Text = e.Result.ToString();
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void OpenTcp()
@@ -122,7 +128,14 @@ namespace text.doors
 
         void Tcp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.tsl_tcpclient.Text = e.Result.ToString();
+            try
+            {
+                this.tsl_tcpclient.Text = e.Result.ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
         }
 
 
@@ -470,9 +483,11 @@ namespace text.doors
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DefaultBase.IsSetTong)
+            if (!DefaultBase.IsSetTong)
+            {
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-
+                return;
+            }
             TakePhotos takePhotos = new TakePhotos(_tempCode);
             takePhotos.Show();
             takePhotos.TopMost = true;
@@ -565,7 +580,8 @@ namespace text.doors
 
         void hsb_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // this.hsb_WindControl.Value = (int)e.Result;
+            //var value = (int)((int)e.Result / 80);
+            //this.hsb_WindControl.Value = value;
         }
 
 

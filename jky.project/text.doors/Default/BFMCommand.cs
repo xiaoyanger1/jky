@@ -136,6 +136,13 @@ namespace text.doors.Default
         public const string 风压负压开始 = "M58";
         public const string 位移置零 = "";
 
+
+
+        public const string 风压_正压预备_设定值 = "";
+        public const string 风压_正压开始_设定值 = "";
+        public const string 风压_负压预备_设定值 = "";
+        public const string 风压_负压开始_设定值 = "";
+
         #region 未实现
         public const string 位移1标零 = "M67"; //32位
         public const string 位移2标零 = "M68";//32位
