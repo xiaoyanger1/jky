@@ -148,7 +148,7 @@ namespace text.doors.Common
             }
         }
 
-        
+
         #endregion
 
         #region  计算流量
@@ -227,17 +227,13 @@ namespace text.doors.Common
                 int min = list[0];
                 int intermediate = list[1];
                 int max = list[2];
-                //int minlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == min).level,
-                //    intermediatelevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
-                //    maxlevel = new QM_Dict.AirtightLevel().GetList().Find(t => t.value == max).level;
-                //todo  update
+
                 int minlevel = DefaultBase.AirtightLevel.Where(t => t.Value == min).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == min).FirstOrDefault().Key : 0;
                 int intermediatelevel = DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).FirstOrDefault().Key : 0;
                 int maxlevel = DefaultBase.AirtightLevel.Where(t => t.Value == max).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == max).FirstOrDefault().Key : 0;
 
                 if ((maxlevel - intermediatelevel) > 2)
                 {
-                    //todo update
                     foreach (var item in DefaultBase.AirtightLevel)
                     {
                         if (item.Value == (intermediatelevel + 2))
@@ -333,6 +329,36 @@ namespace text.doors.Common
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
+        public int GetWindPressureLevel(List<Model_dt_kfy_Info> kfy)
+        {
+            //if (kfy == null || kfy.Count == 0)
+            //    return 0;
+
+            //double zFc = Math.Round(kfy.Sum(t => double.Parse(t.qm_Z_FC)) / kfy.Count, 2);
+            //double fFc = Math.Round(kfy.Sum(t => double.Parse(t.qm_F_FC)) / kfy.Count, 2);
+            //double zMj = Math.Round(kfy.Sum(t => double.Parse(t.qm_Z_MJ)) / kfy.Count, 2);
+            //double fMj = Math.Round(kfy.Sum(t => double.Parse(t.qm_F_MJ)) / kfy.Count, 2);
+
+            //List<int> level = new List<int>();
+            //level.Add(Formula.GetStitchLengthLevel(zFc));
+            //level.Add(Formula.GetStitchLengthLevel(fFc));
+            //level.Add(Formula.GetStitchLengthLevel(zMj));
+            //level.Add(Formula.GetStitchLengthLevel(fMj));
+            //level.Sort();
+
+            //return level[0];
+            return 0;
+        }
+
+
+
+
+        /// <summary>
+        /// 风压等级  获取不标准的等级
+        /// 范式 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public int GetAirTightLevel(List<Model_dt_qm_Info> airTight)
         {
             if (airTight == null || airTight.Count == 0)
@@ -355,6 +381,52 @@ namespace text.doors.Common
 
         /// <summary>
         /// 获取缝长分级
+        /// </summary>
+        /// <returns></returns>
+        private static int GetWindPressureLevel(double value)
+        {
+            int res = 0;
+            if (1500 >= value && value > 1000)
+            {
+                res = 1;
+            }
+            else if (2000 >= value && value > 1500)
+            {
+                res = 2;
+            }
+            else if (2500 >= value && value > 2000)
+            {
+                res = 3;
+            }
+            else if (3000 >= value && value > 2500)
+            {
+                res = 4;
+            }
+            else if (3500 >= value && value > 3000)
+            {
+                res = 5;
+            }
+            else if (4000 >= value && value > 3500)
+            {
+                res = 6;
+            }
+            else if (4500 >= value && value > 4000)
+            {
+                res = 7;
+            }
+            else if (5000 >= value && value > 4500)
+            {
+                res = 8;
+            }
+            else if (value <= 5000)
+            {
+                res = 9;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 获取风压
         /// </summary>
         /// <returns></returns>
         private static int GetStitchLengthLevel(double value)
@@ -438,7 +510,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 获取水密分级
+        /// 获取风压分级
         /// </summary>
         /// <returns></returns>
         private static int GetWaterTightLevel(int value)

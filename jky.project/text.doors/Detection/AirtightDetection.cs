@@ -367,7 +367,7 @@ namespace text.doors.Detection
         private void tim_Top10_Tick(object sender, EventArgs e)
         {
             gv_list.Enabled = true;
-
+                
             var cyvalue = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
             {

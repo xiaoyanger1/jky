@@ -18,6 +18,31 @@ namespace text.doors.Default
             drop100//降100
         }
 
+
+        /// <summary>
+        /// 压力级别枚举
+        /// </summary>
+        public enum FY_Kpa_Static_Level
+        {
+            S250,
+            S500,
+            S750,
+            S1000,
+            S1250,
+            S1500,
+            S1750,
+            S2000,
+            J250,
+            J500,
+            J750,
+            J1000,
+            J1250,
+            J1500,
+            J1750,
+            J2000,
+        }
+
+
         /// <summary>
         /// 系统项
         /// </summary>
@@ -88,7 +113,7 @@ namespace text.doors.Default
             /// 正反复
             /// </summary>
             ZRepeatedly,
-            /// <summary>
+            /// <summary>   
             /// 负反复
             /// </summary>
             FRepeatedly,

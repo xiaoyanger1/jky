@@ -107,7 +107,36 @@ namespace text.doors.Detection
                 }
                 for (int i = 0; i < _settings.dt_kfy_Info.Count; i++)
                 {
-                    //todo：抗风压绑定
+                    if (i == 0)
+                    {
+                        txt_p11.Text = _settings.dt_kfy_Info[i].p1;
+                        txt_p21.Text = _settings.dt_kfy_Info[i].p2;
+                        txt_p31.Text = _settings.dt_kfy_Info[i].p3;
+
+                        txt_f_p11.Text = _settings.dt_kfy_Info[i]._p1;
+                        txt_f_p21.Text = _settings.dt_kfy_Info[i]._p2;
+                        txt_f_p31.Text = _settings.dt_kfy_Info[i]._p3;
+                    }
+                    if (i == 1)
+                    {
+                        txt_p12.Text = _settings.dt_kfy_Info[i].p1;
+                        txt_p22.Text = _settings.dt_kfy_Info[i].p2;
+                        txt_p32.Text = _settings.dt_kfy_Info[i].p3;
+
+                        txt_f_p12.Text = _settings.dt_kfy_Info[i]._p1;
+                        txt_f_p22.Text = _settings.dt_kfy_Info[i]._p2;
+                        txt_f_p32.Text = _settings.dt_kfy_Info[i]._p3;
+                    }
+                    if (i == 2)
+                    {
+                        txt_p13.Text = _settings.dt_kfy_Info[i].p1;
+                        txt_p23.Text = _settings.dt_kfy_Info[i].p2;
+                        txt_p33.Text = _settings.dt_kfy_Info[i].p3;
+
+                        txt_f_p13.Text = _settings.dt_kfy_Info[i]._p1;
+                        txt_f_p23.Text = _settings.dt_kfy_Info[i]._p2;
+                        txt_f_p33.Text = _settings.dt_kfy_Info[i]._p3;
+                    }
                 }
 
                 #region old
@@ -447,7 +476,7 @@ namespace text.doors.Detection
                         else
                             txt_jg5.Text = "不合格";
                     }
-                    
+
                     if (_settings.dt_sm_Info != null && _settings.dt_sm_Info.Count > 0)
                     {
                         txt_dj2.Text = formula.GetWaterTightLevel(_settings.dt_sm_Info).ToString();
@@ -461,6 +490,7 @@ namespace text.doors.Detection
                     if (_settings.dt_kfy_Info != null && _settings.dt_kfy_Info.Count > 0)
                     {
                         //todo:抗风压
+                        //GetWaterTightLevel
                     }
 
                     #endregion

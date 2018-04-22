@@ -79,23 +79,24 @@ namespace text.doors.Default
         public const string 正压开始结束 = "T20";
         public const string 负压开始结束 = "T10";
 
-        
+
         public const string 风压正压预备结束 = "D33";
         public const string 风压负压预备结束 = "D34";
 
         public const string 风压正压开始结束 = "T24";
         public const string 风压负压开始结束 = "T27";
-        
+
         //五次
         public const string 正反复结束 = "D35";
         public const string 负反复结束 = "D36";
 
 
-        public const string 正安全结束= "T33";
-        public const string 负安全结束= "T35";
+        public const string 正安全结束 = "T33";
+        public const string 负安全结束 = "T35";
 
 
         public const string 风机控制 = "D40";
+        public const string 风机设定值 = "D40";
         public const string 正压预备_设定值 = "D2000";
         public const string 正压开始_设定值 = "D2001";
         public const string 负压预备_设定值 = "D2002";
@@ -107,13 +108,15 @@ namespace text.doors.Default
         public const string 负压100TimeStart = "T7";
         public const string 负压150TimeStart = "T8";
         public const string 负压_100TimeStart = "T9";
-       // public const string 水密设定压力 = "D2009";
+
+
+        // public const string 水密设定压力 = "D2009";
         public const string 水密预备结束 = "D32";
         //public const string 水密开始结束 = "T12";
-        public const string 水密预备_设定值 = "D2008"; 
+        public const string 水密预备_设定值 = "D2008";
         public const string 水密开始_设定值 = "D2009";
         public const string 水密依次加压_设定值 = "D550";
-     
+
         //气密
         public const string P = "D2101";
         public const string I = "D2102";
@@ -126,27 +129,34 @@ namespace text.doors.Default
 
         #region 风压
 
-        public const string 位移1 = "D410";
-        public const string 位移2 = "D420";
-        public const string 位移3 = "D430";
-        
+        //public const string 位移1 = "D410";
+        //public const string 位移2 = "D420";
+        //public const string 位移3 = "D430";
+
+
+        public const string 位移1 = "D440";
+        public const string 位移2 = "D442";
+        public const string 位移3 = "D444";
+
         public const string 风压正压预备 = "M55";
         public const string 风压正压开始 = "M56";
         public const string 风压负压预备 = "M57";
         public const string 风压负压开始 = "M58";
-        public const string 位移置零 = "";
+        public const string 位移1标零 = "M67";
+        public const string 位移2标零 = "M68";
+        public const string 位移3标零 = "M69";
+
+        public const string 风压_正压是否计时 = "T23";
+        public const string 风压_负压是否计时 = "T26";
 
 
-
-        public const string 风压_正压预备_设定值 = "";
-        public const string 风压_正压开始_设定值 = "";
-        public const string 风压_负压预备_设定值 = "";
-        public const string 风压_负压开始_设定值 = "";
+        public const string 风压_正压预备_设定值 = "D2200";
+        public const string 风压_正压开始_设定值 = "D2202";
+        public const string 风压_负压预备_设定值 = "D2204";
+        public const string 风压_负压开始_设定值 = "D2206";
 
         #region 未实现
-        public const string 位移1标零 = "M67"; //32位
-        public const string 位移2标零 = "M68";//32位
-        public const string 位移3标零 = "M69";//32位
+
 
         public const string 风压差压标定后值 = "D130";
 
@@ -155,12 +165,12 @@ namespace text.doors.Default
         public const string 正反复数值 = "D2208";
         public const string 负反复数值 = "D2210";
         public const string 正安全数值 = "D560";
-        public const string 负安全数值 = "D563";
+        public const string 负安全数值 = "D566";
 
         public const string 正反复 = "M80";
         public const string 负反复 = "M81";
         public const string 正安全 = "M82";
-        public const string 负安全= "M83";
+        public const string 负安全 = "M83";
         #endregion
 
 

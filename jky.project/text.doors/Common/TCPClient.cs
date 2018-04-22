@@ -785,7 +785,7 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移1);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
                     //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                     //todo:位移标定
                 }
@@ -818,7 +818,7 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移2);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
                     //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                     //todo:位移标定
                 }
@@ -852,7 +852,7 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移3);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
                     //todo:位移标定
                     //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
                 }
@@ -1052,7 +1052,7 @@ namespace text.doors.Common
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool Set_FY_Value(string commandValue, string commandStr, double value)
+        public bool Set_FY_Value(string commandValue, string commandStr, double value, bool isZ = true)
         {
             if (!IsTCPLink)
                 return false;
@@ -1060,7 +1060,7 @@ namespace text.doors.Common
             {
                 lock (syncLock)
                 {
-                    var res = SendZYF();
+                    var res = isZ ? SendZYF() : SendFYF();
                     if (!res)
                         return false;
 
@@ -1082,134 +1082,36 @@ namespace text.doors.Common
         }
 
 
-        /// <summary>
-        /// 设置正反复
-        /// </summary>
-        //public bool SendZFF(double value)
-        //{
-        //    if (!IsTCPLink)
-        //        return false;
-        //    try
-        //    {
-        //        lock (syncLock)
-        //        {
-        //            var res = SendZYF();
-        //            if (!res)
-        //                return false;
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复数值);
-        //            _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复);
-        //            _MASTER.WriteSingleCoil(_StartAddress, false);
-        //            _MASTER.WriteSingleCoil(_StartAddress, true);
-        //            return true;
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        IsTCPLink = false;
-        //        Logger.Error(ex);
-        //        return false;
-        //    }
-        //}
-        /// <summary>
-        /// 设置负反复
-        /// </summary>
-        //public bool SendFFF(double value)
-        //{
-        //    if (!IsTCPLink)
-        //        return false;
-        //    try
-        //    {
-        //        lock (syncLock)
-        //        {
-        //            var res = SendZYF();
-        //            if (!res)
-        //                return false;
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复数值);
-        //            _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复);
-        //            _MASTER.WriteSingleCoil(_StartAddress, false);
-        //            _MASTER.WriteSingleCoil(_StartAddress, true);
-        //            return true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        IsTCPLink = false;
-        //        Logger.Error(ex);
-        //        return false;
-        //    }
-
-        //}
 
 
         /// <summary>
-        /// 设置正安全
+        /// 获取风压是否开始计时
         /// </summary>
-        //public bool SendZAQ(double value)
-        //{
-        //    if (!IsTCPLink)
-        //        return false;
-        //    try
-        //    {
-        //        lock (syncLock)
-        //        {
-        //            var res = SendZYF();
-        //            if (!res)
-        //                return false;
+        public bool Read_FY_Static_IsStart(string commandStr)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(commandStr);
+                    ushort[] t = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (Convert.ToInt32(t[0]) >= 40)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
 
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全数值);
-        //            _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
+        }
 
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全);
-        //            _MASTER.WriteSingleCoil(_StartAddress, false);
-        //            _MASTER.WriteSingleCoil(_StartAddress, true);
-        //            return true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        IsTCPLink = false;
-        //        Logger.Error(ex);
-        //        return false;
-        //    }
-        //}
-        /// <summary>
-        /// 设置负安全
-        /// </summary>
-        //public bool SendFAQ(double value)
-        //{
-        //    if (!IsTCPLink)
-        //        return false;
-        //    try
-        //    {
-        //        lock (syncLock)
-        //        {
-        //            var res = SendZYF();
-        //            if (!res)
-        //                return false;
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全数值);
-        //            _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(value));
-
-        //            _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全);
-        //            _MASTER.WriteSingleCoil(_StartAddress, false);
-        //            _MASTER.WriteSingleCoil(_StartAddress, true);
-        //            return true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        IsTCPLink = false;
-        //        Logger.Error(ex);
-        //        return false;
-        //    }
-        //}
 
         /// <summary>
         /// 读取风压按钮状态
@@ -1277,6 +1179,23 @@ namespace text.doors.Common
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风压_负压开始_设定值);
                     }
 
+                    else if (type == "ZAQ")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正安全数值);
+                    }
+                    else if (type == "FAQ")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负安全数值);
+                    }
+                    else if (type == "ZFF")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.正反复数值);
+                    }
+                    else if (type == "FFF")
+                    {
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.负反复数值);
+                    }
+
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = double.Parse((double.Parse(holding_register[0].ToString())).ToString());
                     IsSuccess = true;
@@ -1297,7 +1216,7 @@ namespace text.doors.Common
         /// </summary>
         /// <param name="IsSuccess"></param>
         /// <param name="isZ">是否正压</param>
-        public bool Send_FY_Btn(string commandStr,bool isZ=true)
+        public bool Send_FY_Btn(string commandStr, bool isZ = true)
         {
             if (!IsTCPLink)
                 return false;
@@ -1305,7 +1224,7 @@ namespace text.doors.Common
             {
                 lock (syncLock)
                 {
-                    var res = isZ? SendZYF(): SendFYF();
+                    var res = isZ ? SendZYF() : SendFYF();
                     if (!res)
                         return false;
 
@@ -1489,7 +1408,7 @@ namespace text.doors.Common
             return res;
         }
 
-        
+
         /// <summary>
         /// 读取差压显示
         /// </summary>
@@ -1554,6 +1473,37 @@ namespace text.doors.Common
             return true;
         }
 
+
+
+        /// <summary>
+        /// 获取风机显示
+        /// </summary>
+        public double ReadFJSD(ref bool IsSuccess)
+        {
+            double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风机设定值);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = int.Parse(holding_register[0].ToString());
+                    IsSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+            return res;
+        }
 
         /// <summary>
         /// 设置正压阀

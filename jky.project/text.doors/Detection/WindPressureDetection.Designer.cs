@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindPressureDetection));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_stop = new System.Windows.Forms.Button();
@@ -270,9 +271,9 @@
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Location = new System.Drawing.Point(19, 583);
+            this.groupBox6.Location = new System.Drawing.Point(19, 590);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(851, 159);
+            this.groupBox6.Size = new System.Drawing.Size(851, 154);
             this.groupBox6.TabIndex = 51;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "注：";
@@ -345,10 +346,10 @@
             this.dgv_WindPressure.AllowUserToResizeColumns = false;
             this.dgv_WindPressure.AllowUserToResizeRows = false;
             this.dgv_WindPressure.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_WindPressure.Location = new System.Drawing.Point(56, 366);
+            this.dgv_WindPressure.Location = new System.Drawing.Point(56, 361);
             this.dgv_WindPressure.Name = "dgv_WindPressure";
             this.dgv_WindPressure.RowTemplate.Height = 23;
-            this.dgv_WindPressure.Size = new System.Drawing.Size(804, 215);
+            this.dgv_WindPressure.Size = new System.Drawing.Size(802, 220);
             this.dgv_WindPressure.TabIndex = 43;
             this.dgv_WindPressure.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_WindPressure_CellPainting);
             // 
@@ -360,6 +361,7 @@
             this.button11.TabIndex = 41;
             this.button11.Text = "保存";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
@@ -759,7 +761,6 @@
             // 
             this.groupBox2.Controls.Add(this.rdb_DWDD3);
             this.groupBox2.Controls.Add(this.rdb_DWDD1);
-            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(896, 9);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 47);
@@ -770,6 +771,7 @@
             // rdb_DWDD3
             // 
             this.rdb_DWDD3.AutoSize = true;
+            this.rdb_DWDD3.Enabled = false;
             this.rdb_DWDD3.Location = new System.Drawing.Point(78, 25);
             this.rdb_DWDD3.Name = "rdb_DWDD3";
             this.rdb_DWDD3.Size = new System.Drawing.Size(53, 16);
@@ -781,6 +783,7 @@
             // rdb_DWDD1
             // 
             this.rdb_DWDD1.AutoSize = true;
+            this.rdb_DWDD1.Enabled = false;
             this.rdb_DWDD1.Location = new System.Drawing.Point(16, 25);
             this.rdb_DWDD1.Name = "rdb_DWDD1";
             this.rdb_DWDD1.Size = new System.Drawing.Size(53, 16);

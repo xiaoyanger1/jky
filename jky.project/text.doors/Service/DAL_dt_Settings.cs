@@ -518,6 +518,16 @@ namespace text.doors.dal
                     model.f_three_2000 = item["f_three_2000"].ToString();
                     model.f_nd_2000 = item["f_nd_2000"].ToString();
                     model.f_ix_2000 = item["f_ix_2000"].ToString();
+
+
+
+                    model.p1 = item["p1"].ToString();
+                    model.p2= item["p2"].ToString();
+                    model.p3= item["p3"].ToString();
+                    model._p1 = item["_p1"].ToString();
+                    model._p2 = item["_p2"].ToString();
+                    model._p3= item["_p3"].ToString();
+
                     list.Add(model);
                     #endregion
                 }

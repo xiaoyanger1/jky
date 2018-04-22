@@ -223,7 +223,7 @@ namespace text.doors
         private void DataInit()
         {
             //隐藏打开按钮
-            tsb_open.Visible = false;
+            // tsb_open.Visible = false;
 
             if (tcpClient.IsTCPLink)
             {
@@ -290,6 +290,9 @@ namespace text.doors
 
             double value = (hsb_WindControl.Value * 0.01) * 80;
 
+
+
+            Logger.Info("发送-" + value);
             var res = tcpClient.SendFJKZ(value);
 
             if (!res)
@@ -570,18 +573,25 @@ namespace text.doors
 
         void hsb_DoWork(object sender, DoWorkEventArgs e)
         {
-            //var IsSeccess = false;
-            //var diffPress = tcpClient.GetCYXS(ref IsSeccess);
-            //if (!IsSeccess) return;
+            var IsSeccess = false;
+            var diffPress = tcpClient.ReadFJSD(ref IsSeccess);
+            if (!IsSeccess) return;
 
-            ////需要计算
-            //e.Result = diffPress;
+            //需要计算
+            e.Result = diffPress;
         }
 
         void hsb_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //var value = (int)((int)e.Result / 80);
-            //this.hsb_WindControl.Value = value;
+            if (e.Result == null)
+                return;
+            if (int.Parse(e.Result.ToString()) == 0)
+                return;
+
+            Logger.Info("获取-" + e.Result.ToString());
+            var value = int.Parse(e.Result.ToString()) / 80;
+            this.hsb_WindControl.Value = value * 100;
+            txt_hz.Text = value.ToString();
         }
 
 

@@ -68,7 +68,7 @@ namespace text.doors.Model.DataBase
         public string f_one_1500 { get; set; }
         public string f_one_1750 { get; set; }
         public string f_one_2000 { get; set; }
-                      
+
         public string f_two_250 { get; set; }
         public string f_two_500 { get; set; }
         public string f_two_750 { get; set; }
@@ -77,7 +77,7 @@ namespace text.doors.Model.DataBase
         public string f_two_1500 { get; set; }
         public string f_two_1750 { get; set; }
         public string f_two_2000 { get; set; }
-                      
+
         public string f_three_250 { get; set; }
         public string f_three_500 { get; set; }
         public string f_three_750 { get; set; }
@@ -86,7 +86,7 @@ namespace text.doors.Model.DataBase
         public string f_three_1500 { get; set; }
         public string f_three_1750 { get; set; }
         public string f_three_2000 { get; set; }
-                      
+
         public string f_nd_250 { get; set; }
         public string f_nd_500 { get; set; }
         public string f_nd_750 { get; set; }
@@ -95,7 +95,7 @@ namespace text.doors.Model.DataBase
         public string f_nd_1500 { get; set; }
         public string f_nd_1750 { get; set; }
         public string f_nd_2000 { get; set; }
-                      
+
         public string f_ix_250 { get; set; }
         public string f_ix_500 { get; set; }
         public string f_ix_750 { get; set; }
@@ -106,6 +106,12 @@ namespace text.doors.Model.DataBase
         public string f_ix_2000 { get; set; }
         public string desc { get; set; }
 
+        public string p1 { get; set; }
+        public string p2 { get; set; }
+        public string p3 { get; set; }
+        public string _p1 { get; set; }
+        public string _p2 { get; set; }
+        public string _p3 { get; set; }
 
     }
 }

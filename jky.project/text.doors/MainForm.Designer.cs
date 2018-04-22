@@ -223,6 +223,7 @@
             this.tsb_open.Name = "tsb_open";
             this.tsb_open.Size = new System.Drawing.Size(68, 33);
             this.tsb_open.Text = "打开";
+            this.tsb_open.Visible = false;
             this.tsb_open.Click += new System.EventHandler(this.tsb_open_Click);
             // 
             // toolStripSeparator5
