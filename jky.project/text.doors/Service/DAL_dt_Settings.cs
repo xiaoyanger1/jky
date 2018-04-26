@@ -527,6 +527,7 @@ namespace text.doors.dal
                     model._p1 = item["_p1"].ToString();
                     model._p2 = item["_p2"].ToString();
                     model._p3= item["_p3"].ToString();
+                    model.CheckLock=int.Parse(item["CheckLock"].ToString());
 
                     list.Add(model);
                     #endregion

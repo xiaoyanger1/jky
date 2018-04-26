@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindPressureDetection));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_stop = new System.Windows.Forms.Button();
@@ -105,6 +104,10 @@
             this.tim_view = new System.Windows.Forms.Timer(this.components);
             this.char_cms_click = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -116,6 +119,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.char_cms_click.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -130,6 +135,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.btn_stop);
             this.tabPage1.Controls.Add(this.tChart_qm);
             this.tabPage1.Controls.Add(this.groupBox7);
@@ -260,7 +267,7 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(29, 12);
             this.label26.TabIndex = 29;
-            this.label26.Text = "L/X:";
+            this.label26.Text = "l/X:";
             // 
             // groupBox6
             // 
@@ -271,9 +278,9 @@
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Location = new System.Drawing.Point(19, 590);
+            this.groupBox6.Location = new System.Drawing.Point(19, 599);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(851, 154);
+            this.groupBox6.Size = new System.Drawing.Size(851, 148);
             this.groupBox6.TabIndex = 51;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "注：";
@@ -281,7 +288,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(45, 37);
+            this.label20.Location = new System.Drawing.Point(45, 30);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(227, 12);
             this.label20.TabIndex = 45;
@@ -290,7 +297,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(56, 135);
+            this.label25.Location = new System.Drawing.Point(56, 128);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(503, 12);
             this.label25.TabIndex = 50;
@@ -299,7 +306,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(45, 19);
+            this.label19.Location = new System.Drawing.Point(45, 12);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(149, 12);
             this.label19.TabIndex = 44;
@@ -308,7 +315,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(45, 116);
+            this.label24.Location = new System.Drawing.Point(45, 109);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(575, 12);
             this.label24.TabIndex = 49;
@@ -317,7 +324,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(45, 55);
+            this.label21.Location = new System.Drawing.Point(45, 48);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(401, 12);
             this.label21.TabIndex = 46;
@@ -326,7 +333,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(56, 95);
+            this.label23.Location = new System.Drawing.Point(56, 88);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(335, 12);
             this.label23.TabIndex = 48;
@@ -335,7 +342,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(56, 76);
+            this.label22.Location = new System.Drawing.Point(56, 69);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(743, 12);
             this.label22.TabIndex = 47;
@@ -346,7 +353,7 @@
             this.dgv_WindPressure.AllowUserToResizeColumns = false;
             this.dgv_WindPressure.AllowUserToResizeRows = false;
             this.dgv_WindPressure.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_WindPressure.Location = new System.Drawing.Point(56, 361);
+            this.dgv_WindPressure.Location = new System.Drawing.Point(56, 383);
             this.dgv_WindPressure.Name = "dgv_WindPressure";
             this.dgv_WindPressure.RowTemplate.Height = 23;
             this.dgv_WindPressure.Size = new System.Drawing.Size(802, 220);
@@ -902,6 +909,42 @@
             this.toolStripMenuItem1.Text = "导出图片";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label27);
+            this.panel1.Location = new System.Drawing.Point(136, 360);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(359, 23);
+            this.panel1.TabIndex = 54;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label28);
+            this.panel2.Location = new System.Drawing.Point(494, 360);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(364, 23);
+            this.panel2.TabIndex = 55;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(157, 2);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(29, 12);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "正压";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(140, 2);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(29, 12);
+            this.label28.TabIndex = 1;
+            this.label28.Text = "负压";
+            // 
             // WindPressureDetection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -930,6 +973,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.char_cms_click.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1011,5 +1058,9 @@
         private System.Windows.Forms.Timer tim_view;
         private System.Windows.Forms.ContextMenuStrip char_cms_click;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
     }
 }

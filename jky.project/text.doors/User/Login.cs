@@ -42,7 +42,6 @@ namespace text.doors
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-
             if (txt_passWord.Text == "")
             {
                 lbl_LoginType.Text = "密码不能为空";

@@ -323,38 +323,12 @@ namespace text.doors.Common
             return value;
         }
 
-        /// <summary>
-        /// 气密计算  获取不标准的等级
-        /// 范式 气密正负缝长平均值等级 与 气密正负压缝长平均值等级 最大的最次
-        /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
-        public int GetWindPressureLevel(List<Model_dt_kfy_Info> kfy)
-        {
-            //if (kfy == null || kfy.Count == 0)
-            //    return 0;
-
-            //double zFc = Math.Round(kfy.Sum(t => double.Parse(t.qm_Z_FC)) / kfy.Count, 2);
-            //double fFc = Math.Round(kfy.Sum(t => double.Parse(t.qm_F_FC)) / kfy.Count, 2);
-            //double zMj = Math.Round(kfy.Sum(t => double.Parse(t.qm_Z_MJ)) / kfy.Count, 2);
-            //double fMj = Math.Round(kfy.Sum(t => double.Parse(t.qm_F_MJ)) / kfy.Count, 2);
-
-            //List<int> level = new List<int>();
-            //level.Add(Formula.GetStitchLengthLevel(zFc));
-            //level.Add(Formula.GetStitchLengthLevel(fFc));
-            //level.Add(Formula.GetStitchLengthLevel(zMj));
-            //level.Add(Formula.GetStitchLengthLevel(fMj));
-            //level.Sort();
-
-            //return level[0];
-            return 0;
-        }
 
 
 
 
         /// <summary>
-        /// 风压等级  获取不标准的等级
+        /// 气密等级  获取不标准的等级
         /// 范式 
         /// </summary>
         /// <param name="dt"></param>
@@ -383,7 +357,7 @@ namespace text.doors.Common
         /// 获取缝长分级
         /// </summary>
         /// <returns></returns>
-        private static int GetWindPressureLevel(double value)
+        public static int GetWindPressureLevel(int value)
         {
             int res = 0;
             if (1500 >= value && value > 1000)
@@ -426,7 +400,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 获取风压
+        /// 获取逢长等级
         /// </summary>
         /// <returns></returns>
         private static int GetStitchLengthLevel(double value)
@@ -510,7 +484,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 获取风压分级
+        /// 获取水密分级
         /// </summary>
         /// <returns></returns>
         private static int GetWaterTightLevel(int value)

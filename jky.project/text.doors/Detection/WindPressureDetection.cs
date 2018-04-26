@@ -113,9 +113,9 @@ namespace text.doors.Detection
             dgv_WindPressure.Columns[4].Width = 72;
             dgv_WindPressure.Columns[4].DataPropertyName = "zzd";
 
-            dgv_WindPressure.Columns[5].HeaderText = "I/x";
+            dgv_WindPressure.Columns[5].HeaderText = "l/X";
             dgv_WindPressure.Columns[5].Width = 72;
-            dgv_WindPressure.Columns[5].DataPropertyName = "zix";
+            dgv_WindPressure.Columns[5].DataPropertyName = "zlx";
 
 
 
@@ -136,22 +136,22 @@ namespace text.doors.Detection
             dgv_WindPressure.Columns[9].Width = 72;
             dgv_WindPressure.Columns[9].DataPropertyName = "fzd";
 
-            dgv_WindPressure.Columns[10].HeaderText = "I/x";
+            dgv_WindPressure.Columns[10].HeaderText = "l/X";
             dgv_WindPressure.Columns[10].Width = 72;
-            dgv_WindPressure.Columns[10].DataPropertyName = "fix";
+            dgv_WindPressure.Columns[10].DataPropertyName = "flx";
 
 
             dgv_WindPressure.Columns["zwy1"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["zwy2"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["zwy3"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["zzd"].DefaultCellStyle.Format = "N2";
-            dgv_WindPressure.Columns["zix"].DefaultCellStyle.Format = "N2";
+            //dgv_WindPressure.Columns["zlx"].DefaultCellStyle.Format = "N";
 
             dgv_WindPressure.Columns["fwy1"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["fwy2"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["fwy3"].DefaultCellStyle.Format = "N2";
             dgv_WindPressure.Columns["fzd"].DefaultCellStyle.Format = "N2";
-            dgv_WindPressure.Columns["fix"].DefaultCellStyle.Format = "N2";
+            //dgv_WindPressure.Columns["flx"].DefaultCellStyle.Format = "N";
             dgv_WindPressure.Refresh();
             #endregion
         }
@@ -168,6 +168,12 @@ namespace text.doors.Detection
             {
                 DataRow dr = dt.Rows[0];
 
+                //绑定锁点
+                if (dr["CheckLock"].ToString() == "1")
+                    rdb_DWDD1.Checked = true;
+                if (dr["CheckLock"].ToString() == "3")
+                    rdb_DWDD3.Checked = true;
+
                 foreach (var value in KFYPa)
                 {
                     windPressureDGV.Add(new WindPressureDGV()
@@ -177,13 +183,13 @@ namespace text.doors.Detection
                         zwy2 = string.IsNullOrWhiteSpace(dr["z_two_" + value].ToString()) ? 0 : double.Parse(dr["z_two_" + value].ToString()),
                         zwy3 = string.IsNullOrWhiteSpace(dr["z_three_" + value].ToString()) ? 0 : double.Parse(dr["z_three_" + value].ToString()),
                         zzd = string.IsNullOrWhiteSpace(dr["z_nd_" + value].ToString()) ? 0 : double.Parse(dr["z_nd_" + value].ToString()),
-                        zix = string.IsNullOrWhiteSpace(dr["z_ix_" + value].ToString()) ? 0 : double.Parse(dr["z_ix_" + value].ToString()),
+                        zlx = string.IsNullOrWhiteSpace(dr["z_ix_" + value].ToString()) ? 0 : Convert.ToInt32(dr["z_ix_" + value].ToString()),
 
                         fwy1 = string.IsNullOrWhiteSpace(dr["f_one_" + value].ToString()) ? 0 : double.Parse(dr["f_one_" + value].ToString()),
                         fwy2 = string.IsNullOrWhiteSpace(dr["f_two_" + value].ToString()) ? 0 : double.Parse(dr["f_two_" + value].ToString()),
                         fwy3 = string.IsNullOrWhiteSpace(dr["f_three_" + value].ToString()) ? 0 : double.Parse(dr["f_three_" + value].ToString()),
                         fzd = string.IsNullOrWhiteSpace(dr["f_nd_" + value].ToString()) ? 0 : double.Parse(dr["f_nd_" + value].ToString()),
-                        fix = string.IsNullOrWhiteSpace(dr["f_ix_" + value].ToString()) ? 0 : double.Parse(dr["f_ix_" + value].ToString()),
+                        flx = string.IsNullOrWhiteSpace(dr["f_ix_" + value].ToString()) ? 0 : Convert.ToInt32(dr["f_ix_" + value].ToString()),
                     });
                 }
                 this.txt_p1.Text = dr["p1"] == null ? "0" : dr["p1"].ToString();
@@ -204,12 +210,12 @@ namespace text.doors.Detection
                         zwy2 = 0,
                         zwy3 = 0,
                         zzd = 0,
-                        zix = 0,
+                        zlx = 0,
                         fwy1 = 0,
                         fwy2 = 0,
                         fwy3 = 0,
                         fzd = 0,
-                        fix = 0,
+                        flx = 0,
                     });
                 }
             }
@@ -353,10 +359,10 @@ namespace text.doors.Detection
             foreach (var item in windPressureDGV)
             {
                 item.zzd = Math.Round(item.zwy2 - (item.zwy1 + item.zwy3) / 2, 2);
-                item.zix = Math.Round(item.zzd == 0 ? 0 : DefaultBase.BarLength / item.zzd, 0);
+                item.zlx = item.zzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / item.zzd);
 
                 item.fzd = Math.Round(item.fwy2 - (item.fwy1 + item.fwy3) / 2, 2);
-                item.fix = Math.Round(item.fzd == 0 ? 0 : DefaultBase.BarLength / item.fzd, 0);
+                item.flx = item.fzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / item.fzd);
             }
 
             BindData();
@@ -389,7 +395,7 @@ namespace text.doors.Detection
                 txt_f_p2.Text = Math.Round(_p * 1.5, 0).ToString();
                 txt_f_p3.Text = Math.Round(_p * 2.5, 0).ToString();
                 currentkPa = 0;
-              
+
             }
         }
 
@@ -516,6 +522,7 @@ namespace text.doors.Detection
             model._p1 = txt_f_p1.Text;
             model._p2 = txt_f_p2.Text;
             model._p3 = txt_f_p3.Text;
+            model.CheckLock = rdb_DWDD1.Checked ? 1 : rdb_DWDD3.Checked ? 3 : 0;
             return dal.Add_kfy_Info(model);
         }
 
@@ -896,7 +903,7 @@ namespace text.doors.Detection
                     pa.zwy2 = Math.Round(ave2 / average.Count, 2);
                     pa.zwy3 = Math.Round(ave3 / average.Count, 2);
                     pa.zzd = Math.Round(pa.zwy2 - (pa.zwy1 + pa.zwy3) / 2, 2);
-                    pa.zix = Math.Round(pa.zzd == 0 ? 0 : DefaultBase.BarLength / pa.zzd, 0);
+                    pa.zlx = pa.zzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / pa.zzd);
                 }
                 else if (windPressureTest == PublicEnum.WindPressureTest.FStart)
                 {
@@ -904,15 +911,15 @@ namespace text.doors.Detection
                     pa.fwy2 = Math.Round(ave2 / average.Count, 2);
                     pa.fwy3 = Math.Round(ave3 / average.Count, 2);
                     pa.fzd = Math.Round(pa.fwy2 - (pa.fwy1 + pa.fwy3) / 2, 2);
-                    pa.fix = Math.Round(pa.fzd == 0 ? 0 : Math.Round(DefaultBase.BarLength / pa.fzd, 0));
+                    pa.flx = pa.fzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / pa.fzd);
                 }
                 //清空初始化
 
                 var def_LX = 0;
                 int.TryParse(txt_lx.Text, out def_LX);
 
-                var ix = windPressureTest == PublicEnum.WindPressureTest.ZStart ? pa.zix : pa.fix;
-                if (ix < def_LX)
+                var lx = windPressureTest == PublicEnum.WindPressureTest.ZStart ? pa.zlx : pa.flx;
+                if (lx < def_LX)
                 {
                     BindData();
                     Stop();
@@ -1202,11 +1209,55 @@ namespace text.doors.Detection
 
         private void button11_Click(object sender, EventArgs e)
         {
+            if (DefaultBase.LockPoint)
+            {
+                if (!rdb_DWDD1.Checked && !rdb_DWDD3.Checked)
+                {
+                    MessageBox.Show("请选择位移！", "请选择位移！", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+            }
             if (AddKfyInfo())
             {
                 MessageBox.Show("处理成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             complete = new List<int>();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                              this.panel1.ClientRectangle,
+                              Color.Black,//7f9db9
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                              this.panel2.ClientRectangle,
+                             Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid,
+                              Color.Black,
+                              1,
+                              ButtonBorderStyle.Solid);
         }
     }
 }

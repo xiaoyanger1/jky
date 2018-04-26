@@ -113,5 +113,6 @@ namespace text.doors.Model.DataBase
         public string _p2 { get; set; }
         public string _p3 { get; set; }
 
+        public int CheckLock { get; set; }
     }
 }

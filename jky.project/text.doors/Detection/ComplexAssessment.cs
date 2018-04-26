@@ -427,75 +427,128 @@ namespace text.doors.Detection
                             setting.sm_Remark = lbl_3desc.Text;
                         }
                     }
-                    new DAL_dt_qm_Info().UpdateResult(_settings);
-
-                    #endregion
-
-                    #region 获取设置后的樘号信息 --   判定
-
-                    InitResult();
-
-
-                    Formula formula = new Formula();
-                    DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
-                    if (settings != null && settings.Rows.Count > 0)
-                    {
-                        txt_sjz1.Text = settings.Rows[0]["ShuiMiSheJiZhi"].ToString();
-                        txt_sjz2.Text = settings.Rows[0]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
-                        txt_sjz3.Text = settings.Rows[0]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
-                        txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
-                        txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
-                    }
-                    if (_settings.dt_qm_Info != null && _settings.dt_qm_Info.Count > 0)
-                    {
-                        var airTight = _settings.dt_qm_Info;
-                        txt_dj1.Text = formula.GetAirTightLevel(airTight).ToString();
-
-                        double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
-                        double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
-                        double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
-                        double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
-
-                        if (zFc >= double.Parse(txt_sjz2.Text))
-                            txt_jg2.Text = "合格";
-                        else
-                            txt_jg2.Text = "不合格";
-
-                        if (fFc >= double.Parse(txt_sjz3.Text))
-                            txt_jg3.Text = "合格";
-                        else
-                            txt_jg3.Text = "不合格";
-
-                        if (zMj >= double.Parse(txt_sjz4.Text))
-                            txt_jg4.Text = "合格";
-                        else
-                            txt_jg4.Text = "不合格";
-
-                        if (fMj <= double.Parse(txt_sjz4.Text))
-                            txt_jg5.Text = "合格";
-                        else
-                            txt_jg5.Text = "不合格";
-                    }
-
-                    if (_settings.dt_sm_Info != null && _settings.dt_sm_Info.Count > 0)
-                    {
-                        txt_dj2.Text = formula.GetWaterTightLevel(_settings.dt_sm_Info).ToString();
-
-                        if (sm_value >= int.Parse(txt_sjz1.Text))
-                            txt_jg1.Text = "合格";
-                        else
-                            txt_jg1.Text = "不合格";
-                    }
-
-                    if (_settings.dt_kfy_Info != null && _settings.dt_kfy_Info.Count > 0)
-                    {
-                        //todo:抗风压
-                        //GetWaterTightLevel
-                    }
-
-                    #endregion
-                    MessageBox.Show("生成成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
+                if (_settings.dt_kfy_Info != null && _settings.dt_kfy_Info.Count > 0)
+                {
+                    for (int i = 0; i < _settings.dt_kfy_Info.Count; i++)
+                    {
+                        var setting = _settings.dt_kfy_Info[i];
+                        setting.info_DangH = groupBox1.Text;
+                        if (i == 0)
+                        {
+                            setting.info_DangH = groupBox1.Text;
+                            setting.p1 = txt_p11.Text;
+                            setting._p1 = txt_f_p11.Text;
+                            setting.p2 = txt_p21.Text;
+                            setting._p2 = txt_f_p21.Text;
+                            setting.p3 = txt_p31.Text;
+                            setting._p3 = txt_f_p31.Text;
+                        }
+                        if (i == 1)
+                        {
+                            setting.info_DangH = groupBox2.Text;
+                            setting.p1 = txt_p12.Text;
+                            setting._p1 = txt_f_p12.Text;
+                            setting.p2 = txt_p22.Text;
+                            setting._p2 = txt_f_p22.Text;
+                            setting.p3 = txt_p32.Text;
+                            setting._p3 = txt_f_p32.Text;
+                        }
+                        if (i == 2)
+                        {
+                            setting.info_DangH = groupBox3.Text;
+                            setting.p1 = txt_p13.Text;
+                            setting._p1 = txt_f_p13.Text;
+                            setting.p2 = txt_p23.Text;
+                            setting._p2 = txt_f_p23.Text;
+                            setting.p3 = txt_p33.Text;
+                            setting._p3 = txt_f_p33.Text;
+                        }
+                    }
+                }
+                new DAL_dt_qm_Info().UpdateResult(_settings);
+
+                #endregion
+
+                #region 获取设置后的樘号信息 --   判定
+
+                InitResult();
+
+
+                Formula formula = new Formula();
+                DataTable settings = new DAL_dt_Settings().Getdt_SettingsByCode(_code);
+                if (settings != null && settings.Rows.Count > 0)
+                {
+                    txt_sjz0.Text = settings.Rows[0]["KangFengYaSheJiZhi"].ToString();
+                    txt_sjz1.Text = settings.Rows[0]["ShuiMiSheJiZhi"].ToString();
+                    txt_sjz2.Text = settings.Rows[0]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
+                    txt_sjz3.Text = settings.Rows[0]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
+                    txt_sjz4.Text = settings.Rows[0]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
+                    txt_sjz5.Text = settings.Rows[0]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
+                }
+                if (_settings.dt_qm_Info != null && _settings.dt_qm_Info.Count > 0)
+                {
+                    var airTight = _settings.dt_qm_Info;
+                    txt_dj1.Text = formula.GetAirTightLevel(airTight).ToString();
+
+                    double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
+                    double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
+                    double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
+                    double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
+
+                    if (zFc >= double.Parse(txt_sjz2.Text))
+                        txt_jg2.Text = "合格";
+                    else
+                        txt_jg2.Text = "不合格";
+
+                    if (fFc >= double.Parse(txt_sjz3.Text))
+                        txt_jg3.Text = "合格";
+                    else
+                        txt_jg3.Text = "不合格";
+
+                    if (zMj >= double.Parse(txt_sjz4.Text))
+                        txt_jg4.Text = "合格";
+                    else
+                        txt_jg4.Text = "不合格";
+
+                    if (fMj <= double.Parse(txt_sjz4.Text))
+                        txt_jg5.Text = "合格";
+                    else
+                        txt_jg5.Text = "不合格";
+                }
+
+                if (_settings.dt_sm_Info != null && _settings.dt_sm_Info.Count > 0)
+                {
+                    txt_dj2.Text = formula.GetWaterTightLevel(_settings.dt_sm_Info).ToString();
+
+                    if (sm_value >= int.Parse(txt_sjz1.Text))
+                        txt_jg1.Text = "合格";
+                    else
+                        txt_jg1.Text = "不合格";
+                }
+
+                if (_settings.dt_kfy_Info != null && _settings.dt_kfy_Info.Count > 0)
+                {
+                    var value = new List<int>();
+
+                    foreach (var item in _settings.dt_kfy_Info)
+                    {
+                        value.Add(int.Parse(item.p3));
+                        value.Add(int.Parse(item._p3));
+                    }
+                    var minValue = value.Min(t => t);
+                    txt_dj3.Text = Formula.GetWindPressureLevel(minValue).ToString();
+                    if (minValue >= double.Parse(txt_sjz0.Text))
+                        txt_jg0.Text = "合格";
+                    else
+                    {
+                        txt_jg0.Text = "不合格";
+                    }
+                }
+
+                #endregion
+                MessageBox.Show("生成成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
             }
             catch (Exception ex)
             {
