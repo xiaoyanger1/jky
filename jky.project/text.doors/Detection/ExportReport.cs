@@ -788,10 +788,6 @@ namespace text.doors.Detection
                     dc.Add($"强度检测第{index}樘负压P2", kfy._p1);
                     dc.Add($"强度检测第{index}樘负压P3", kfy._p1);
                     #endregion
-
-                    dc.Add("曲线杆1第1樘90，160，300，410","1" );//todo
-                    dc.Add("曲线杆1第2樘350，160，560，410","1" );//todo
-                    dc.Add("曲线杆1第3樘90，460，300，710","1" ); //todo
                 }
             }
             else
@@ -880,7 +876,12 @@ namespace text.doors.Detection
                 }
                 //dc.Add ( "强度检测第1樘试验情况记录", "--" );
 
+                dc.Add("曲线杆1第1樘90，160，300，410", "1");//todo
+                dc.Add("曲线杆1第2樘350，160，560，410", "1");//todo
+                dc.Add("曲线杆1第3樘90，460，300，710", "1"); //todo
             }
+
+
             #endregion
 
 

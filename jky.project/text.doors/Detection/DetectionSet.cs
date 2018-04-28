@@ -195,7 +195,8 @@ namespace text.doors.Detection
                     cbb_danshandansuodian.Text = dt.Rows[0]["DanShanDanSuoDian"].ToString();
 
                     _tempCode = dt.Rows[0]["dt_Code"].ToString();
-                    _tempTong = dt.Rows[0]["info_DangH"].ToString();
+                    if (_tempTong == "")
+                        _tempTong = dt.Rows[0]["info_DangH"].ToString();
                     cb_DangQianDangHao.Text = dt.Rows[0]["info_DangH"].ToString();
                     btn_JianYanBianHao.Text = dt.Rows[0]["dt_Code"].ToString();
                     this.cb_JianYanXiangMu.Enabled = false;
@@ -316,6 +317,12 @@ namespace text.doors.Detection
                 {
                     cb_DangQianDangHao.Items.Add("第" + i + "樘");
                 }
+
+                if (_tempTong != "")
+                {
+                    cb_DangQianDangHao.Text = _tempTong;
+                }
+
             }
             catch (Exception ex)
             {
