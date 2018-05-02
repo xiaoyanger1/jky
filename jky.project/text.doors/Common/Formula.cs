@@ -77,24 +77,9 @@ namespace text.doors.Common
                 bvalue = 0;
                 kvalue = 0;
             }
-
-            //if ((x1 == 0) || (x2 == 0) || (x1 == x2)) return; //排除为零的情况以及x1，x2相等时无法运算的情况
-            //if (y1 == y2) return; //根据具体情况而定，如何这两个值相等，得到的就是一条直线
-
-            //kvalue = (y2 - y1) / (x2 - x1);
-            //bvalue = y1 - x1 * kvalue;
+            
         }
-
-        public static void SubstituteY(float x1, float x2, float y1, float y2, ref float kvalue, ref float bvalue)//求方程y=kx+b 系数 k ,b
-        {
-
-        }
-
-        public static void SubstituteB(float x1, float x2, float y1, float y2, ref float kvalue, ref float bvalue)//求方程y=kx+b 系数 k ,b
-        {
-
-        }
-
+        
 
         /// <summary>
         /// 根据枚举获取字典数据

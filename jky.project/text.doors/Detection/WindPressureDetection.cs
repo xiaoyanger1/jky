@@ -369,31 +369,40 @@ namespace text.doors.Detection
             BindData();
 
             var data = windPressureDGV.FindAll(t => t.zwy1 > 0 || t.zwy2 > 0 || t.zwy3 > 0 || t.fwy3 > 0 || t.fwy2 > 0 || t.fwy1 > 0);
-            var defPa = 0;
-            
+            var zdefPa = 0;
+            var fdefPa = 0;
             double lx = 0;
             double.TryParse(txt_lx.Text, out lx);
             foreach (var item in data)
             {
+                if (item.zlx <= lx)
+                {
+                    zdefPa = int.Parse(item.Pa.Replace("Pa", ""));
+                    break;
+                }
+            }
+
+            foreach (var item in data)
+            {
                 if (item.flx <= lx)
                 {
-                    defPa = int.Parse(item.Pa.Replace("Pa", ""));
+                    fdefPa = int.Parse(item.Pa.Replace("Pa", ""));
                     break;
                 }
             }
 
 
-            var one = new WindPressureDGV();
-            var two = new WindPressureDGV();
 
-            one = windPressureDGV.Find(t => t.Pa == (defPa - 250) + "Pa");
-            two = windPressureDGV.Find(t => t.Pa == defPa + "Pa");
-            if (one != null || two != null)
+            var zone = new WindPressureDGV();
+            var ztwo = new WindPressureDGV();
+            zone = windPressureDGV.Find(t => t.Pa == (zdefPa - 250) + "Pa");
+            ztwo = windPressureDGV.Find(t => t.Pa == zdefPa + "Pa");
+            if (zone != null || ztwo != null)
             {
-                var x1 = float.Parse(one.zzd.ToString());
-                var x2 = float.Parse(two.zzd.ToString());
-                var y1 = defPa - 250;
-                var y2 = defPa;
+                var x1 = float.Parse(zone.zzd.ToString());
+                var x2 = float.Parse(ztwo.zzd.ToString());
+                var y1 = zdefPa - 250;
+                var y2 = zdefPa;
 
                 var p = Calculate(x1, x2, y1, y2);
 
@@ -401,15 +410,25 @@ namespace text.doors.Detection
                 txt_p2.Text = Math.Round(p * 1.5, 0).ToString();
                 txt_p3.Text = Math.Round(p * 2.5, 0).ToString();
 
-                var _x1 = float.Parse(one.fzd.ToString());
-                var _x2 = float.Parse(two.fzd.ToString());
+
+            }
+
+            var fone = new WindPressureDGV();
+            var ftwo = new WindPressureDGV();
+            fone = windPressureDGV.Find(t => t.Pa == (fdefPa - 250) + "Pa");
+            ftwo = windPressureDGV.Find(t => t.Pa == fdefPa + "Pa");
+            if (zone != null || ztwo != null)
+            {
+                var _x1 = float.Parse(fone.fzd.ToString());
+                var _x2 = float.Parse(ftwo.fzd.ToString());
+                var y1 = fdefPa - 250;
+                var y2 = fdefPa;
                 var _p = Calculate(_x1, _x2, y1, y2);
                 txt_f_p1.Text = Math.Round(_p, 0).ToString();
                 txt_f_p2.Text = Math.Round(_p * 1.5, 0).ToString();
                 txt_f_p3.Text = Math.Round(_p * 2.5, 0).ToString();
-                currentkPa = 0;
-
             }
+            currentkPa = 0;
         }
 
         private bool AddKfyInfo()
@@ -1271,6 +1290,20 @@ namespace text.doors.Detection
                               Color.Black,
                               1,
                               ButtonBorderStyle.Solid);
+        }
+
+        private void dgv_WindPressure_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (var item in windPressureDGV)
+            {
+                item.zzd = Math.Round(item.zwy2 - (item.zwy1 + item.zwy3) / 2, 2);
+                item.zlx = item.zzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / item.zzd);
+
+                item.fzd = Math.Round(item.fwy2 - (item.fwy1 + item.fwy3) / 2, 2);
+                item.flx = item.fzd == 0 ? 0 : Convert.ToInt32(DefaultBase.BarLength / item.fzd);
+            }
+
+            BindData();
         }
     }
 }

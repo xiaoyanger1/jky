@@ -358,6 +358,7 @@
             this.dgv_WindPressure.RowTemplate.Height = 23;
             this.dgv_WindPressure.Size = new System.Drawing.Size(802, 220);
             this.dgv_WindPressure.TabIndex = 43;
+            this.dgv_WindPressure.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_WindPressure_CellContentClick);
             this.dgv_WindPressure.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_WindPressure_CellPainting);
             // 
             // button11

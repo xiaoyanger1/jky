@@ -40,14 +40,6 @@ namespace text.doors.Default
         /// 杆件长度
         /// </summary>
         public static int BarLength = 0;
-
-
-        /// <summary>
-        /// 是否连接
-        /// </summary>
-       // public static bool IsTCPLink = false;
-
-
         public static PublicEnum.DetectionItem? _TestItem
         {
             get
