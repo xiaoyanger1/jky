@@ -369,8 +369,9 @@ namespace text.doors.Detection
             BindData();
 
             var data = windPressureDGV.FindAll(t => t.zwy1 > 0 || t.zwy2 > 0 || t.zwy3 > 0 || t.fwy3 > 0 || t.fwy2 > 0 || t.fwy1 > 0);
-            var zdefPa = 0;
-            var fdefPa = 0;
+            //初始化按最大等级计算。
+            var zdefPa = 2000;
+            var fdefPa = 2000;
             double lx = 0;
             double.TryParse(txt_lx.Text, out lx);
             foreach (var item in data)
@@ -390,9 +391,7 @@ namespace text.doors.Detection
                     break;
                 }
             }
-
-
-
+            
             var zone = new WindPressureDGV();
             var ztwo = new WindPressureDGV();
             zone = windPressureDGV.Find(t => t.Pa == (zdefPa - 250) + "Pa");

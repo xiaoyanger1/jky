@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Young.Core.SQLite;
+using System.Drawing.Drawing2D;
 
 namespace text.doors
 {
@@ -19,10 +20,10 @@ namespace text.doors
         public Login()
         {
             InitializeComponent();
+          
             Init();
         }
-
-
+        
         private string administrator = "administrator";
         private void Init()
         {

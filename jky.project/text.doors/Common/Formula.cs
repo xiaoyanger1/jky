@@ -77,9 +77,9 @@ namespace text.doors.Common
                 bvalue = 0;
                 kvalue = 0;
             }
-            
+
         }
-        
+
 
         /// <summary>
         /// 根据枚举获取字典数据
@@ -236,9 +236,9 @@ namespace text.doors.Common
                 {
                     foreach (var item in DefaultBase.AirtightLevel)
                     {
-                        if (item.Value == (intermediatelevel + 2))
+                        if (item.Key == (intermediatelevel + 2))
                         {
-                            max = item.Key; break;
+                            max = item.Value; break;
                         }
                     }
                 }
@@ -278,17 +278,7 @@ namespace text.doors.Common
                 int min = pas[0];
                 int intermediate = pas[1];
                 int max = pas[2];
-
-                //int minlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == min).level,
-                //    intermediatelevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == intermediate).level,
-                //    maxlevel = new AirtightLevel.AirtightLevel().GetList().Find(t => t.value == max).level;
-
-                //if ((maxlevel - intermediatelevel) > 2)
-                //{
-                //    max = new AirtightLevel.AirtightLevel().GetList().Find(t => t.level == (intermediatelevel + 2)).value;
-                //}
-
-                //todo update
+                
                 int minlevel = DefaultBase.AirtightLevel.Where(t => t.Value == min).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == min).FirstOrDefault().Key : 0;
                 int intermediatelevel = DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).FirstOrDefault().Key : 0;
                 int maxlevel = DefaultBase.AirtightLevel.Where(t => t.Value == max).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == max).FirstOrDefault().Key : 0;
@@ -297,9 +287,9 @@ namespace text.doors.Common
                 {
                     foreach (var item in DefaultBase.AirtightLevel)
                     {
-                        if (item.Value == (intermediatelevel + 2))
+                        if (item.Key == (intermediatelevel + 2))
                         {
-                            max = item.Key; break;
+                            max = item.Value; break;
                         }
                     }
                 }
@@ -328,33 +318,52 @@ namespace text.doors.Common
 
 
         /// <summary>
-        /// 气密等级  获取不标准的等级
+        /// 气密等级 正压  获取不标准的等级
         /// 范式 
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public int GetAirTightLevel(List<Model_dt_qm_Info> airTight)
+        public int Get_Z_AirTightLevel(List<Model_dt_qm_Info> airTight)
         {
             if (airTight == null || airTight.Count == 0)
                 return 0;
 
             double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
-            double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
             double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
-            double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
 
             List<int> level = new List<int>();
             level.Add(Formula.GetStitchLengthLevel(zFc));
+            level.Add(Formula.GetAreaLevel(zMj));
+            level.Sort();
+
+            return level[0];
+        }
+
+
+        /// <summary>
+        /// 气密等级 负压  获取不标准的等级
+        /// 范式 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public int Get_F_AirTightLevel(List<Model_dt_qm_Info> airTight)
+        {
+            if (airTight == null || airTight.Count == 0)
+                return 0;
+
+            double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);
+            double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
+
+            List<int> level = new List<int>();
             level.Add(Formula.GetStitchLengthLevel(fFc));
-            level.Add(Formula.GetStitchLengthLevel(zMj));
-            level.Add(Formula.GetStitchLengthLevel(fMj));
+            level.Add(Formula.GetAreaLevel(fMj));
             level.Sort();
 
             return level[0];
         }
 
         /// <summary>
-        /// 获取缝长分级
+        /// 获取风压分级
         /// </summary>
         /// <returns></returns>
         public static int GetWindPressureLevel(int value)

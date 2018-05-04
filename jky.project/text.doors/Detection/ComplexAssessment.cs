@@ -489,7 +489,8 @@ namespace text.doors.Detection
                 if (_settings.dt_qm_Info != null && _settings.dt_qm_Info.Count > 0)
                 {
                     var airTight = _settings.dt_qm_Info;
-                    txt_dj1.Text = formula.GetAirTightLevel(airTight).ToString();
+                    txt_dj1.Text = formula.Get_Z_AirTightLevel(airTight).ToString();
+                    txt_dj4.Text = formula.Get_F_AirTightLevel(airTight).ToString();
 
                     double zFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_FC)) / airTight.Count, 2);
                     double fFc = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_FC)) / airTight.Count, 2);

@@ -15,7 +15,7 @@ namespace Young.Core.Common
         private static Word._Document wDoc = null;  //word文档
         private static Word._Application wApp = null; //word进程
         private object missing = System.Reflection.Missing.Value;
-
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -104,12 +104,10 @@ namespace Young.Core.Common
                 // 替换书签
                 foreach (Word.Bookmark bm in wDoc.Bookmarks)
                 {
-
-                    //s += "=" + bm.Name + ",\r\n";
-
+                    var bmName = bm.Name;
                     foreach (string item in dc.Keys)
                     {
-                        if (bm.Name == item)
+                        if (bmName == item)
                         {
                             bm.Select();
                             bm.Range.Text = dc[item];
@@ -126,8 +124,9 @@ namespace Young.Core.Common
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 MessageUtil.ShowError("生成失败");
                 return false;
             }
@@ -203,9 +202,9 @@ namespace Young.Core.Common
                     object replaceKey = item;
                     object replaceValue = dc[item];
                     table.Range.Find.Execute(ref replaceKey, ref missing, ref missing, ref missing,
-                      ref  missing, ref missing, ref missing, ref missing, ref missing,
-                      ref  replaceValue, ref replaceArea, ref missing, ref missing, ref missing,
-                      ref  missing);
+                      ref missing, ref missing, ref missing, ref missing, ref missing,
+                      ref replaceValue, ref replaceArea, ref missing, ref missing, ref missing,
+                      ref missing);
                 }
                 return true;
             }
@@ -228,9 +227,9 @@ namespace Young.Core.Common
                     object replaceKey = item;
                     object replaceValue = dc[item];
                     wApp.Selection.Find.Execute(ref replaceKey, ref missing, ref missing, ref missing,
-                      ref  missing, ref missing, ref missing, ref missing, ref missing,
-                      ref  replaceValue, ref replaceArea, ref missing, ref missing, ref missing,
-                      ref  missing);
+                      ref missing, ref missing, ref missing, ref missing, ref missing,
+                      ref replaceValue, ref replaceArea, ref missing, ref missing, ref missing,
+                      ref missing);
                 }
                 return true;
             }
