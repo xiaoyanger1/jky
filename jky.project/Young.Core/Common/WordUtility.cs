@@ -98,9 +98,6 @@ namespace Young.Core.Common
 
                 wDoc.Activate();// 当前文档置前
 
-
-                //string s = "";
-
                 // 替换书签
                 foreach (Word.Bookmark bm in wDoc.Bookmarks)
                 {

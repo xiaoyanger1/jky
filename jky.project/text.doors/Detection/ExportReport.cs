@@ -60,16 +60,18 @@ namespace text.doors.Detection
                 path.ShowDialog();
 
                 label3.Visible = true;
-
+                if (string.IsNullOrWhiteSpace(path.SelectedPath))
+                {
+                    return;
+                }
                 btn_ok.Enabled = false;
                 cm_Report.Enabled = false;
                 btn_close.Enabled = false;
 
-
                 string[] name = fileName.Split('.');
 
                 string _name = name[0] + "_" + _tempCode + "." + name[1];
-
+                
                 var saveExcelUrl = path.SelectedPath + "\\" + _name;
 
                 Model_dt_Settings settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
@@ -127,7 +129,7 @@ namespace text.doors.Detection
 
                             var file = System.Windows.Forms.Application.StartupPath + ("\\tempImage\\第" + index + "樘" + DateTime.Now.ToString("hhmmdd") + ".jpg");
                             ImageLine(file, item.info_DangH, zitem, fitem);
-                            InsertPtctureToExcel(saveExcelUrl, "曲线杆1第" + (index == 1 ? "一" : index == 2 ? "二" : index == 3 ? "三" : "1") + "樘曲线", file);
+                            InsertPtctureToExcel(saveExcelUrl, "曲线杆1第" + index + "樘曲线", file);
                         }
                     }
 
@@ -192,7 +194,8 @@ namespace text.doors.Detection
                         inlineShape.Width = 500;
                         inlineShape.Height = 300;
                     }
-                    else {
+                    else
+                    {
                         inlineShape.Width = 250;
                         inlineShape.Height = 215;
                     }
@@ -774,71 +777,71 @@ namespace text.doors.Detection
                     var kfy = settings.dt_kfy_Info[i];
                     #region 第一樘
                     var index = i + 1;
-                    dc.Add($"强度检测第{index}樘正压250帕位移1", Math.Round(double.Parse(kfy.z_one_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压250帕位移2", Math.Round(double.Parse(kfy.z_two_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压250帕位移3", Math.Round(double.Parse(kfy.z_three_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压250帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压500帕位移1", Math.Round(double.Parse(kfy.z_one_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压500帕位移2", Math.Round(double.Parse(kfy.z_two_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压500帕位移3", Math.Round(double.Parse(kfy.z_three_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压500帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压750帕位移1", Math.Round(double.Parse(kfy.z_one_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压750帕位移2", Math.Round(double.Parse(kfy.z_two_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压750帕位移3", Math.Round(double.Parse(kfy.z_three_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压750帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1000帕位移1", Math.Round(double.Parse(kfy.z_one_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1000帕位移2", Math.Round(double.Parse(kfy.z_two_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1000帕位移3", Math.Round(double.Parse(kfy.z_three_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1000帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1250帕位移1", Math.Round(double.Parse(kfy.z_one_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1250帕位移2", Math.Round(double.Parse(kfy.z_two_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1250帕位移3", Math.Round(double.Parse(kfy.z_three_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1250帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1500帕位移1", Math.Round(double.Parse(kfy.z_one_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1500帕位移2", Math.Round(double.Parse(kfy.z_two_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1500帕位移3", Math.Round(double.Parse(kfy.z_three_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1500帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1750帕位移1", Math.Round(double.Parse(kfy.z_one_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1750帕位移2", Math.Round(double.Parse(kfy.z_two_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1750帕位移3", Math.Round(double.Parse(kfy.z_three_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压1750帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压2000帕位移1", Math.Round(double.Parse(kfy.z_one_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压2000帕位移2", Math.Round(double.Parse(kfy.z_two_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压2000帕位移3", Math.Round(double.Parse(kfy.z_three_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘正压2000帕第一组挠度", Math.Round(double.Parse(kfy.z_nd_2000.ToString()), 2).ToString());
+                    dc.Add($"强度检测第{index}樘正压250帕位移1", double.Parse(kfy.z_one_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压250帕位移2", double.Parse(kfy.z_two_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压250帕位移3", double.Parse(kfy.z_three_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压250帕第一组挠度", double.Parse(kfy.z_nd_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压500帕位移1", double.Parse(kfy.z_one_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压500帕位移2", double.Parse(kfy.z_two_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压500帕位移3", double.Parse(kfy.z_three_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压500帕第一组挠度", double.Parse(kfy.z_nd_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压750帕位移1", double.Parse(kfy.z_one_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压750帕位移2", double.Parse(kfy.z_two_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压750帕位移3", double.Parse(kfy.z_three_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压750帕第一组挠度", double.Parse(kfy.z_nd_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1000帕位移1", double.Parse(kfy.z_one_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1000帕位移2", double.Parse(kfy.z_two_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1000帕位移3", double.Parse(kfy.z_three_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1000帕第一组挠度", double.Parse(kfy.z_nd_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1250帕位移1", double.Parse(kfy.z_one_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1250帕位移2", double.Parse(kfy.z_two_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1250帕位移3", double.Parse(kfy.z_three_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1250帕第一组挠度", double.Parse(kfy.z_nd_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1500帕位移1", double.Parse(kfy.z_one_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1500帕位移2", double.Parse(kfy.z_two_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1500帕位移3", double.Parse(kfy.z_three_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1500帕第一组挠度", double.Parse(kfy.z_nd_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1750帕位移1", double.Parse(kfy.z_one_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1750帕位移2", double.Parse(kfy.z_two_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1750帕位移3", double.Parse(kfy.z_three_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压1750帕第一组挠度", double.Parse(kfy.z_nd_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压2000帕位移1", double.Parse(kfy.z_one_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压2000帕位移2", double.Parse(kfy.z_two_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压2000帕位移3", double.Parse(kfy.z_three_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘正压2000帕第一组挠度", double.Parse(kfy.z_nd_2000).ToString("#0.00"));
 
-                    dc.Add($"强度检测第{index}樘负压250帕位移1", Math.Round(double.Parse(kfy.f_one_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压250帕位移2", Math.Round(double.Parse(kfy.f_two_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压250帕位移3", Math.Round(double.Parse(kfy.f_three_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压250帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压500帕位移1", Math.Round(double.Parse(kfy.f_one_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压500帕位移2", Math.Round(double.Parse(kfy.f_two_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压500帕位移3", Math.Round(double.Parse(kfy.f_three_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压500帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压750帕位移1", Math.Round(double.Parse(kfy.f_one_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压750帕位移2", Math.Round(double.Parse(kfy.f_two_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压750帕位移3", Math.Round(double.Parse(kfy.f_three_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压750帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1000帕位移1", Math.Round(double.Parse(kfy.f_one_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1000帕位移2", Math.Round(double.Parse(kfy.f_two_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1000帕位移3", Math.Round(double.Parse(kfy.f_three_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1000帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_1000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1250帕位移1", Math.Round(double.Parse(kfy.f_one_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1250帕位移2", Math.Round(double.Parse(kfy.f_two_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1250帕位移3", Math.Round(double.Parse(kfy.f_three_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1250帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_1250.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1500帕位移1", Math.Round(double.Parse(kfy.f_one_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1500帕位移2", Math.Round(double.Parse(kfy.f_two_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1500帕位移3", Math.Round(double.Parse(kfy.f_three_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1500帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_1500.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1750帕位移1", Math.Round(double.Parse(kfy.f_one_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1750帕位移2", Math.Round(double.Parse(kfy.f_two_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1750帕位移3", Math.Round(double.Parse(kfy.f_three_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压1750帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_1750.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压2000帕位移1", Math.Round(double.Parse(kfy.f_one_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压2000帕位移2", Math.Round(double.Parse(kfy.f_two_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压2000帕位移3", Math.Round(double.Parse(kfy.f_three_2000.ToString()), 2).ToString());
-                    dc.Add($"强度检测第{index}樘负压2000帕第一组挠度", Math.Round(double.Parse(kfy.f_nd_2000.ToString()), 2).ToString());
+                    dc.Add($"强度检测第{index}樘负压250帕位移1", double.Parse(kfy.f_one_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压250帕位移2", double.Parse(kfy.f_two_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压250帕位移3", double.Parse(kfy.f_three_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压250帕第一组挠度", double.Parse(kfy.f_nd_250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压500帕位移1", double.Parse(kfy.f_one_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压500帕位移2", double.Parse(kfy.f_two_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压500帕位移3", double.Parse(kfy.f_three_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压500帕第一组挠度", double.Parse(kfy.f_nd_500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压750帕位移1", double.Parse(kfy.f_one_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压750帕位移2", double.Parse(kfy.f_two_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压750帕位移3", double.Parse(kfy.f_three_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压750帕第一组挠度", double.Parse(kfy.f_nd_750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1000帕位移1", double.Parse(kfy.f_one_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1000帕位移2", double.Parse(kfy.f_two_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1000帕位移3", double.Parse(kfy.f_three_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1000帕第一组挠度", double.Parse(kfy.f_nd_1000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1250帕位移1", double.Parse(kfy.f_one_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1250帕位移2", double.Parse(kfy.f_two_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1250帕位移3", double.Parse(kfy.f_three_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1250帕第一组挠度", double.Parse(kfy.f_nd_1250).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1500帕位移1", double.Parse(kfy.f_one_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1500帕位移2", double.Parse(kfy.f_two_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1500帕位移3", double.Parse(kfy.f_three_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1500帕第一组挠度", double.Parse(kfy.f_nd_1500).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1750帕位移1", double.Parse(kfy.f_one_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1750帕位移2", double.Parse(kfy.f_two_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1750帕位移3", double.Parse(kfy.f_three_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压1750帕第一组挠度", double.Parse(kfy.f_nd_1750).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压2000帕位移1", double.Parse(kfy.f_one_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压2000帕位移2", double.Parse(kfy.f_two_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压2000帕位移3", double.Parse(kfy.f_three_2000).ToString("#0.00"));
+                    dc.Add($"强度检测第{index}樘负压2000帕第一组挠度", double.Parse(kfy.f_nd_2000).ToString("#0.00"));
 
                     dc.Add($"强度检测第{index}樘正压P1", kfy.p1);
                     dc.Add($"强度检测第{index}樘正压P2", kfy.p2);
@@ -940,6 +943,7 @@ namespace text.doors.Detection
         }
         #endregion
 
+
         private void ImageLine(string file, string name, List<double> zitem, List<double> fitem)
         {
             int height = 350, width = 350;
@@ -1035,7 +1039,15 @@ namespace text.doors.Detection
                 {
                     if (m[i] == "0")
                     { y = y + 15; continue; }
-                    g.DrawString(m[i].ToString(), font, Brushes.Black, 173, y); //设置文字内容及输出位置
+
+                    if (Convert.ToInt32(m[i]) > -1)
+                    {
+                        g.DrawString(m[i].ToString(), font, Brushes.Black, 130, y); //设置文字内容及输出位置
+                    }
+                    else
+                    {
+                        g.DrawString(m[i].ToString(), font, Brushes.Black, 173, y); //设置文字内容及输出位置
+                    }
                     y = y + 15;
                 }
 
@@ -1049,12 +1061,13 @@ namespace text.doors.Detection
                 System.Drawing.Point[] points1 = new System.Drawing.Point[9];
                 Pen mypen2 = new Pen(Color.Black, 1);
                 double initialx = 165;
-                double initialy = 215;
+                double initialy = 200;
 
                 for (int i = 0; i < zitem.Count; i++)
                 {
-                    points1[i].X = Convert.ToInt32(initialx + zitem[i] * (i) * 1.5);
-                    points1[i].Y = (int)initialy - (i) * 15;
+                    points1[i].X = Convert.ToInt32(initialx + zitem[i] * 10 * 1.5);
+                    points1[i].Y = (int)initialy - i * 15;
+                    g.DrawRectangle(mypen2, points1[i].X - 1, points1[i].Y - 1, 2, 2);
                 }
                 g.DrawLines(mypen2, points1); //绘制折线
 
@@ -1070,8 +1083,9 @@ namespace text.doors.Detection
 
                 for (int i = 0; i < 9; i++)
                 {
-                    points2[i].X = Convert.ToInt32(initialx - fitem[i] * (i) * 1.5);
+                    points2[i].X = Convert.ToInt32(initialx - fitem[i] * 10 * 1.5);
                     points2[i].Y = (int)initialy + i * 15;
+                    g.DrawRectangle(mypen3, points2[i].X - 1, points2[i].Y - 1, 2, 2);
                 }
                 g.DrawLines(mypen3, points2); //绘制折线
 
@@ -1095,10 +1109,5 @@ namespace text.doors.Detection
                 image.Dispose();
             }
         }
-
-
-
-
-
     }
 }
