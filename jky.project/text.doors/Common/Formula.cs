@@ -18,6 +18,10 @@ namespace text.doors.Common
         /// <returns></returns>
         public static double GetValues(PublicEnum.DemarcateType enum_Demarcate, float x)
         {
+            if (x == 0)
+            {
+                return x;
+            }
             List<Calibrating_Dict> dict = GetListByEnum(enum_Demarcate);
 
             if (dict == null || dict.Count == 0)
@@ -278,7 +282,7 @@ namespace text.doors.Common
                 int min = pas[0];
                 int intermediate = pas[1];
                 int max = pas[2];
-                
+
                 int minlevel = DefaultBase.AirtightLevel.Where(t => t.Value == min).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == min).FirstOrDefault().Key : 0;
                 int intermediatelevel = DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == intermediate).FirstOrDefault().Key : 0;
                 int maxlevel = DefaultBase.AirtightLevel.Where(t => t.Value == max).Count() > 0 ? DefaultBase.AirtightLevel.Where(t => t.Value == max).FirstOrDefault().Key : 0;

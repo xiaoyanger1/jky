@@ -766,7 +766,7 @@ namespace text.doors.Common
         }
         #endregion
 
-        #region 风压
+        #region 位移
 
         /// <summary>
         /// 获取位移传感器1
@@ -785,11 +785,14 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移1);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
-                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
-                    //todo:位移标定
+                    if (holding_register.Length > 0)
+                    {
+                        res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.位移传感器1, float.Parse(res.ToString()));
+                        IsSuccess = true;
+                    }
                 }
-                IsSuccess = true;
+               
             }
             catch (Exception ex)
             {
@@ -818,11 +821,14 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移2);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
-                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
-                    //todo:位移标定
+                    if (holding_register.Length > 0)
+                    {
+                        res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.位移传感器2, float.Parse(res.ToString()));
+                        IsSuccess = true;
+                    }
                 }
-                IsSuccess = true;
+              
             }
             catch (Exception ex)
             {
@@ -852,11 +858,13 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.位移3);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
-                    //todo:位移标定
-                    //res = Formula.GetValues(PublicEnum.DemarcateType.enum_大气压力传感器, float.Parse(res.ToString()));
+                    if (holding_register.Length > 0)
+                    {
+                        res = double.Parse((double.Parse(holding_register[0].ToString()) / 1000).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.位移传感器3, float.Parse(res.ToString()));
+                        IsSuccess = true;
+                    }
                 }
-                IsSuccess = true;
             }
             catch (Exception ex)
             {
@@ -1329,8 +1337,11 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.温度显示);
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.温度传感器, float.Parse(res.ToString()));
+                    if (holding_register.Length > 0)
+                    {
+                        res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.温度传感器, float.Parse(res.ToString()));
+                    }
                     IsSuccess = true;
                 }
             }
@@ -1361,8 +1372,11 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.大气压力显示);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.大气压力传感器, float.Parse(res.ToString()));
+                    if (holding_register.Length > 0)
+                    {
+                        res = double.Parse((double.Parse(holding_register[0].ToString()) / 10).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.大气压力传感器, float.Parse(res.ToString()));
+                    }
                 }
                 IsSuccess = true;
             }
@@ -1394,9 +1408,13 @@ namespace text.doors.Common
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.风速显示);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    var f = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
-                    res = Formula.GetValues(PublicEnum.DemarcateType.风速传感器, float.Parse(f.ToString()));
-                    IsSuccess = true;
+                    if (holding_register.Length > 0)
+                    {
+                        var f = double.Parse((double.Parse(holding_register[0].ToString()) / 100).ToString());
+                        res = Formula.GetValues(PublicEnum.DemarcateType.风速传感器, float.Parse(f.ToString()));
+
+                        IsSuccess = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1429,15 +1447,18 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.差压显示);
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
-                    var f = double.Parse(holding_register[0].ToString()) / 100;
+                    if (holding_register.Length > 0)
+                    {
+                        var f = double.Parse(holding_register[0].ToString()) / 100;
 
-                    if (int.Parse(holding_register[0].ToString()) > 1100)
-                        f = -(65535 - int.Parse(holding_register[0].ToString()));
-                    else
-                        f = int.Parse(holding_register[0].ToString());
+                        if (int.Parse(holding_register[0].ToString()) > 1100)
+                            f = -(65535 - int.Parse(holding_register[0].ToString()));
+                        else
+                            f = int.Parse(holding_register[0].ToString());
 
-                    res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
-                    IsSuccess = true;
+                        res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
+                        IsSuccess = true;
+                    }
                 }
             }
             catch (Exception ex)

@@ -7,6 +7,7 @@ using Young.Core.SQLite;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
+using text.doors.Default;
 
 namespace text.doors
 {
@@ -16,54 +17,7 @@ namespace text.doors
         public Login()
         {
             InitializeComponent();
-
-            //Document doc = new Document("C: \\Users\\z_young\\Desktop\\试验室记录_20180503.doc");
-            //Section sec = doc.AddSection();
-            //Paragraph para1 = sec.AddParagraph();
-            //ShapeObject shape1 = para1.AppendShape(230, 200, ShapeType.Line);
-            //shape1.FillColor = Color.Black;
-            //shape1.StrokeColor = Color.Black;
-            //shape1.HorizontalPosition = 250;
-            //shape1.VerticalPosition = 370;
-
-            //ShapeObject shape2 = para1.AppendShape(100, 100, ShapeType.Arrow);
-            //shape2.FillColor = Color.Purple;
-            //shape2.StrokeColor = Color.Black;
-            //shape2.LineStyle = ShapeLineStyle.Double;
-            //shape2.StrokeWeight = 3;
-            //shape2.HorizontalPosition = 200;
-            //shape2.VerticalPosition = 200;
-
-
-            //Paragraph para2 = sec.AddParagraph();
-            //ShapeGroup shapegr = para2.AppendShapeGroup(200, 400);
-            //shapegr.ChildObjects.Add(new ShapeObject(doc, ShapeType.Rectangle)
-            //{
-            //    Width = 500,
-            //    Height = 300,
-            //    LineStyle = ShapeLineStyle.ThickThin,
-            //    StrokeColor = System.Drawing.Color.Blue,
-            //    StrokeWeight = 1.5,
-            //});
-            //shapegr.ChildObjects.Add(new ShapeObject(doc, ShapeType.RightTriangle)
-            //{
-            //    Width = 500,
-            //    Height = 300,
-            //    VerticalPosition = 301,
-            //    LineStyle = ShapeLineStyle.ThickThin,
-            //    StrokeColor = System.Drawing.Color.Green,
-            //    StrokeWeight = 1.5,
-            //});
-            //shapegr.ChildObjects.Add(new ShapeObject(doc, ShapeType.QuadArrow)
-            //{
-            //    Width = 500,
-            //    Height = 300,
-            //    VerticalPosition = 601,
-            //    LineStyle = ShapeLineStyle.ThickThin,
-            //    StrokeColor = System.Drawing.Color.Blue,
-            //    StrokeWeight = 1.5,
-            //});
-            // doc.SaveToFile("C: \\Users\\z_young\\Desktop\\试验室记录_20180503.doc", FileFormat.Docx2010);
+           
             Init();
         }
 

@@ -13,12 +13,23 @@ namespace text.doors
 {
     static class Program
     {
+
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         /// <summary>   
         /// 应用程序的主入口点。
         /// </summary>  
         [STAThread]
         static void Main()
         {
+
+            //处理未捕获的异常  
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            //处理UI线程异常  
+            Application.ThreadException += Application_ThreadException;
+            //处理非UI线程异常  
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+
             //RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
             //if (reg.MiStart_Infos() && reg.MiEnd_Infos())
             //{
@@ -46,6 +57,25 @@ namespace text.doors
             //    Application.Exit();
             //}
         }
+
+        #region 全局错误
+        //处理UI线程异常  
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            Exception error = e.Exception as Exception;
+            Logger.Error(error);
+        }
+
+        //处理非UI线程异常  
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception error = e.ExceptionObject as Exception;
+            Logger.Error(error);
+        }
+
+
+        #endregion
+
 
         #region  确保程序只运行一个实例
 

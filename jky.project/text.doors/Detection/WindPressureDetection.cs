@@ -408,8 +408,6 @@ namespace text.doors.Detection
                 txt_p1.Text = Math.Round(p, 0).ToString();
                 txt_p2.Text = Math.Round(p * 1.5, 0).ToString();
                 txt_p3.Text = Math.Round(p * 2.5, 0).ToString();
-
-
             }
 
             var fone = new WindPressureDGV();
@@ -697,7 +695,7 @@ namespace text.doors.Detection
             var value = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
                 return;
-
+            
             lbl_dqyl.Text = value.ToString();
 
             if (!IsOk)
@@ -985,6 +983,7 @@ namespace text.doors.Detection
                     }
                 }
                 this.tim_static.Enabled = false;
+                BindData();
                 average = new List<Tuple<double, double, double>>();
                 staticIndex = 1;
                 IsOk = true;

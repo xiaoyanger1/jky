@@ -20,7 +20,7 @@ namespace text.doors.Service
 
         public DAL_Demarcate_Dict()
         {
-            DemarcateList = GetCalibrating_Dict();
+            // DemarcateList = GetCalibrating_Dict();
         }
 
 
@@ -32,6 +32,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_temperatureDict == null)
                     temperatureDict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.温度传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _temperatureDict;
@@ -50,6 +54,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_differentialPressureDict == null)
                     differentialPressureDict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.差压传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _differentialPressureDict;
@@ -68,6 +76,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_windSpeedDict == null)
                     windSpeedDict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.风速传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _windSpeedDict;
@@ -86,6 +98,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_kPaDict == null)
                     kPaDict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.大气压力传感器.ToString()).OrderBy(t => t.x).ToList();
                 return _kPaDict;
@@ -104,6 +120,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_displacement1Dict == null)
                     displacement1Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.位移传感器1.ToString()).OrderBy(t => t.x).ToList();
                 return _displacement1Dict;
@@ -121,6 +141,10 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_displacement2Dict == null)
                     displacement2Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.位移传感器2.ToString()).OrderBy(t => t.x).ToList();
                 return _displacement2Dict;
@@ -139,8 +163,12 @@ namespace text.doors.Service
         {
             get
             {
+                if (DemarcateList.Count == 0)
+                {
+                    DemarcateList = GetCalibrating_Dict();
+                }
                 if (_displacement3Dict == null)
-                    displacement3Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.位移传感器2.ToString()).OrderBy(t => t.x).ToList();
+                    displacement3Dict = DemarcateList.FindAll(t => t.Enum == PublicEnum.DemarcateType.位移传感器3.ToString()).OrderBy(t => t.x).ToList();
                 return _displacement3Dict;
             }
             set
