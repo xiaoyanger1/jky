@@ -792,7 +792,7 @@ namespace text.doors.Common
                         IsSuccess = true;
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -828,7 +828,7 @@ namespace text.doors.Common
                         IsSuccess = true;
                     }
                 }
-              
+
             }
             catch (Exception ex)
             {
@@ -1449,12 +1449,17 @@ namespace text.doors.Common
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     if (holding_register.Length > 0)
                     {
-                        var f = double.Parse(holding_register[0].ToString()) / 100;
-
-                        if (int.Parse(holding_register[0].ToString()) > 1100)
+                        var f = double.Parse(holding_register[0].ToString());// / 100;
+                        
+                        if (int.Parse(holding_register[0].ToString()) >10000)
                             f = -(65535 - int.Parse(holding_register[0].ToString()));
                         else
                             f = int.Parse(holding_register[0].ToString());
+
+                        //if (int.Parse(holding_register[0].ToString()) > 1100)
+                        //    f = -(65535 - int.Parse(holding_register[0].ToString()));
+                        //else
+                        //    f = int.Parse(holding_register[0].ToString());
 
                         res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
                         IsSuccess = true;

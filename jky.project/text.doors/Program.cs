@@ -30,32 +30,32 @@ namespace text.doors
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
 
-            //RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
-            //if (reg.MiStart_Infos() && reg.MiEnd_Infos())
-            //{
-            Process instance = RunningInstance();
-            if (instance == null)
+            RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
+            if (reg.MiStart_Infos() && reg.MiEnd_Infos())
             {
-                //Application.EnableVisualStyles();
-                //Application.SetCompatibleTextRenderingDefault(false);
-                Form Login = new Login();
-                Login.ShowDialog();//显示登陆窗体  
-                if (Login.DialogResult == DialogResult.OK)
+                Process instance = RunningInstance();
+                if (instance == null)
                 {
-                    Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口
+                    //Application.EnableVisualStyles();
+                    //Application.SetCompatibleTextRenderingDefault(false);
+                    Form Login = new Login();
+                    Login.ShowDialog();//显示登陆窗体  
+                    if (Login.DialogResult == DialogResult.OK)
+                    {
+                        Application.Run(new MainForm());//判断登陆成功时主进程显示主窗口
+                    }
+                    else return;
                 }
-                else return;
+                else
+                {
+                    // 已经有一个实例在运行
+                    HandleRunningInstance(instance);
+                }
             }
             else
             {
-                // 已经有一个实例在运行
-                HandleRunningInstance(instance);
+                Application.Exit();
             }
-            //}
-            //else
-            //{
-            //    Application.Exit();
-            //}
         }
 
         #region 全局错误

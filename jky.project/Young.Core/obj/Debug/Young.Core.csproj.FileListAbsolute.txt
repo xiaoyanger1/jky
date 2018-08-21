@@ -24,4 +24,3 @@ F:\jky\jky.project\Young.Core\bin\Debug\NPOI.xml
 F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.dll
 F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.pdb
 F:\jky\jky.project\Young.Core\bin\Debug\Young.Core.dll.config
-F:\jky\jky.project\Young.Core\obj\Debug\Young.Core.csprojResolveAssemblyReference.cache
