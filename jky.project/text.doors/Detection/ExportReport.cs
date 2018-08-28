@@ -848,8 +848,8 @@ namespace text.doors.Detection
                     dc.Add($"强度检测第{index}樘正压P3", kfy.p3);
 
                     dc.Add($"强度检测第{index}樘负压P1", kfy._p1);
-                    dc.Add($"强度检测第{index}樘负压P2", kfy._p1);
-                    dc.Add($"强度检测第{index}樘负压P3", kfy._p1);
+                    dc.Add($"强度检测第{index}樘负压P2", kfy._p2);
+                    dc.Add($"强度检测第{index}樘负压P3", kfy._p3);
                     #endregion
                 }
             }

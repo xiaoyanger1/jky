@@ -62,7 +62,12 @@ namespace text.doors.dal
             }
             if (settings.dt_kfy_Info != null && settings.dt_kfy_Info.Count > 0)
             {
-                //todo:抗风压
+                string sql = "";
+                foreach (var item in settings.dt_kfy_Info)
+                {
+                    sql += $"update dt_kfy_Info  set p1	='{item.p1}',p2 ='{item.p2}',p3='{item.p3}',_p1='{item._p1}' ,_p2='{item._p2}',_p3='{item._p3}' where dt_Code = '{item.dt_Code}' and info_DangH='{item.info_DangH}' ;   ";
+                }
+                SQLiteHelper.ExecuteNonQuery(sql);
             }
         }
     }
