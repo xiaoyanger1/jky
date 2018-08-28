@@ -521,8 +521,10 @@ namespace text.doors.Detection
                 if (_settings.dt_sm_Info != null && _settings.dt_sm_Info.Count > 0)
                 {
                     txt_dj2.Text = formula.GetWaterTightLevel(_settings.dt_sm_Info).ToString();
+                    
+                    sm_value = _settings.dt_sm_Info.Sum(t => Convert.ToInt32(t.sm_Pa)) / _settings.dt_sm_Info.Count;
 
-                    if (Convert.ToInt32(this._settings.ShuiMiSheJiZhi) <= int.Parse(txt_sjz1.Text))
+                    if (sm_value >= int.Parse(txt_sjz1.Text))
                         txt_jg1.Text = "合格";
                     else
                         txt_jg1.Text = "不合格";
