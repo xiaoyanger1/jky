@@ -76,7 +76,7 @@ namespace text.doors.Detection
 
         private void btnh_p_Click(object sender, EventArgs e)
         {
-            double p = int.Parse(btnh_p.Text);
+            double p = int.Parse(txth_p.Text);
             var res = tcpClient.SendPid("_P", p);
             if (!res)
             {
@@ -86,7 +86,7 @@ namespace text.doors.Detection
 
         private void btnh_i_Click(object sender, EventArgs e)
         {
-            double i = int.Parse(btnh_i.Text);
+            double i = int.Parse(txth_i.Text);
             var res = tcpClient.SendPid("_I", i);
             if (!res)
             {
@@ -97,7 +97,7 @@ namespace text.doors.Detection
 
         private void btnh_d_Click(object sender, EventArgs e)
         {
-            double D = int.Parse(btnh_d.Text);
+            double D = int.Parse(txth_d.Text);
             var res = tcpClient.SendPid("_D", D);
             if (!res)
             {

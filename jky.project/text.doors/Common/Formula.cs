@@ -373,39 +373,39 @@ namespace text.doors.Common
         public static int GetWindPressureLevel(int value)
         {
             int res = 0;
-            if (1500 >= value && value > 1000)
+            if (1500 > value && value >= 1000)
             {
                 res = 1;
             }
-            else if (2000 >= value && value > 1500)
+            else if (2000 > value && value >= 1500)
             {
                 res = 2;
             }
-            else if (2500 >= value && value > 2000)
+            else if (2500 > value && value >= 2000)
             {
                 res = 3;
             }
-            else if (3000 >= value && value > 2500)
+            else if (3000 > value && value >= 2500)
             {
                 res = 4;
             }
-            else if (3500 >= value && value > 3000)
+            else if (3500 > value && value >= 3000)
             {
                 res = 5;
             }
-            else if (4000 >= value && value > 3500)
+            else if (4000 > value && value >= 3500)
             {
                 res = 6;
             }
-            else if (4500 >= value && value > 4000)
+            else if (4500 > value && value >= 4000)
             {
                 res = 7;
             }
-            else if (5000 >= value && value > 4500)
+            else if (5000 > value && value >= 4500)
             {
                 res = 8;
             }
-            else if (value <= 5000)
+            else if (value >= 5000)
             {
                 res = 9;
             }

@@ -57,11 +57,11 @@ namespace text.doors.Detection
                 {
                     if (i == 0)
                     {
-                        groupBox1.Text = _settings.dt_qm_Info[i].info_DangH;
-                        txt_1zfc.Text = _settings.dt_qm_Info[i].qm_Z_FC;
-                        txt_1ffc.Text = _settings.dt_qm_Info[i].qm_F_FC;
-                        txt_1zmj.Text = _settings.dt_qm_Info[i].qm_Z_MJ;
-                        txt_1fmj.Text = _settings.dt_qm_Info[i].qm_F_MJ;
+                        groupBox1.Text = _settings.dt_qm_Info?[i].info_DangH;
+                        txt_1zfc.Text = _settings.dt_qm_Info?[i].qm_Z_FC;
+                        txt_1ffc.Text = _settings.dt_qm_Info?[i].qm_F_FC;
+                        txt_1zmj.Text = _settings.dt_qm_Info?[i].qm_Z_MJ;
+                        txt_1fmj.Text = _settings.dt_qm_Info?[i].qm_F_MJ;
                     }
                     else if (i == 1)
                     {
@@ -85,21 +85,21 @@ namespace text.doors.Detection
                 {
                     if (i == 0)
                     {
-                        groupBox1.Text = _settings.dt_qm_Info[i].info_DangH;
+                        groupBox1.Text = _settings.dt_sm_Info[i].info_DangH;
                         lbl_1desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_1resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_1fy.Text = _settings.dt_sm_Info[i].sm_Pa;
                     }
                     else if (i == 1)
                     {
-                        groupBox2.Text = _settings.dt_qm_Info[i].info_DangH;
+                        groupBox2.Text = _settings.dt_sm_Info[i].info_DangH;
                         lbl_2desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_2resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_2fy.Text = _settings.dt_sm_Info[i].sm_Pa;
                     }
                     else if (i == 2)
                     {
-                        groupBox3.Text = _settings.dt_qm_Info[i].info_DangH;
+                        groupBox3.Text = _settings.dt_sm_Info[i].info_DangH;
                         lbl_3desc.Text = _settings.dt_sm_Info[i].sm_Remark;
                         lbl_3resdesc.Text = _settings.dt_sm_Info[i].sm_PaDesc;
                         txt_3fy.Text = _settings.dt_sm_Info[i].sm_Pa;
@@ -294,9 +294,9 @@ namespace text.doors.Detection
             {
                 foreach (var item in _settings.dt_InfoList)
                 {
-                    if (item.Watertight == 0)
+                    if (item.Airtight == 0)
                     {
-                        if (item.Watertight == 0)
+                        if (item.Airtight == 0)
                             error = item.info_DangH + "未完成气密性能检测";
                         return false;
                     }
@@ -497,17 +497,17 @@ namespace text.doors.Detection
                     double zMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_Z_MJ)) / airTight.Count, 2);
                     double fMj = Math.Round(airTight.Sum(t => double.Parse(t.qm_F_MJ)) / airTight.Count, 2);
 
-                    if (zFc >= double.Parse(txt_sjz2.Text))
+                    if (zFc <= double.Parse(txt_sjz2.Text))
                         txt_jg2.Text = "合格";
                     else
                         txt_jg2.Text = "不合格";
 
-                    if (fFc >= double.Parse(txt_sjz3.Text))
+                    if (fFc <= double.Parse(txt_sjz3.Text))
                         txt_jg3.Text = "合格";
                     else
                         txt_jg3.Text = "不合格";
 
-                    if (zMj >= double.Parse(txt_sjz4.Text))
+                    if (zMj <= double.Parse(txt_sjz4.Text))
                         txt_jg4.Text = "合格";
                     else
                         txt_jg4.Text = "不合格";
