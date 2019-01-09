@@ -135,7 +135,7 @@ namespace JKY.Calculate
 
         private void ac_TextChanged(object sender, EventArgs e)
         {
-            pw.Text = InputCheck(ac.Text.TrimEnd());
+            ac.Text = InputCheck(ac.Text.TrimEnd());
         }
 
         private void te_TextChanged(object sender, EventArgs e)

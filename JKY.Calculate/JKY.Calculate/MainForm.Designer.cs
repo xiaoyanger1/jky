@@ -36,6 +36,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_export = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -59,6 +62,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.lbl_q17 = new System.Windows.Forms.Label();
             this.H = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -67,8 +73,16 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.tas = new System.Windows.Forms.TextBox();
             this.tf = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.ti = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.msfh = new System.Windows.Forms.TextBox();
@@ -77,6 +91,11 @@
             this.label18 = new System.Windows.Forms.Label();
             this.btn_442 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
             this.lbl_tsd = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.btn_4432 = new System.Windows.Forms.Button();
@@ -96,32 +115,13 @@
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.tas = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.btn_export = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,6 +211,35 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "日有用的热量  4.4.1-1";
+            // 
+            // btn_export
+            // 
+            this.btn_export.Location = new System.Drawing.Point(736, 20);
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(92, 33);
+            this.btn_export.TabIndex = 25;
+            this.btn_export.Text = "数据导出";
+            this.btn_export.UseVisualStyleBackColor = true;
+            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(92, 110);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(229, 64);
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label45.Location = new System.Drawing.Point(17, 110);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(70, 12);
+            this.label45.TabIndex = 23;
+            this.label45.Text = "计算公式：";
             // 
             // label35
             // 
@@ -431,6 +460,34 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "太阳辐照量  4.4.1-2";
             // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(81, 31);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(287, 12);
+            this.label46.TabIndex = 26;
+            this.label46.Text = "太阳能集热器采光口所在平面的日太阳辐照量(MJ/m²)";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(84, 109);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(135, 62);
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.Location = new System.Drawing.Point(10, 104);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(70, 12);
+            this.label20.TabIndex = 24;
+            this.label20.Text = "计算公式：";
+            // 
             // lbl_q17
             // 
             this.lbl_q17.AutoSize = true;
@@ -524,6 +581,70 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "贮热水箱平均热损因数  4.4.2";
             // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(111, 26);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(359, 12);
+            this.label50.TabIndex = 37;
+            this.label50.Text = "贮热水箱保温性能试验期间贮热水箱周围的环境空气平均温度(°C)";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(107, 75);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(294, 65);
+            this.pictureBox3.TabIndex = 38;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label51.Location = new System.Drawing.Point(15, 90);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(70, 12);
+            this.label51.TabIndex = 37;
+            this.label51.Text = "计算公式：";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(439, 52);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(215, 12);
+            this.label49.TabIndex = 35;
+            this.label49.Text = "热损试验中贮热水箱内的最终水温(°C)";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(111, 53);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(215, 12);
+            this.label48.TabIndex = 36;
+            this.label48.Text = "热损试验中贮热水箱内的初始温度(°C)";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(584, 28);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(71, 12);
+            this.label47.TabIndex = 35;
+            this.label47.Text = "时间间隔(s)";
+            // 
+            // tas
+            // 
+            this.tas.Location = new System.Drawing.Point(59, 23);
+            this.tas.Name = "tas";
+            this.tas.Size = new System.Drawing.Size(46, 21);
+            this.tas.TabIndex = 25;
+            this.tas.Text = "0";
+            this.tas.TextChanged += new System.EventHandler(this.tas_TextChanged);
+            // 
             // tf
             // 
             this.tf.Location = new System.Drawing.Point(387, 47);
@@ -541,6 +662,15 @@
             this.label38.Size = new System.Drawing.Size(23, 12);
             this.label38.TabIndex = 22;
             this.label38.Text = "tf:";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(3, 28);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(53, 12);
+            this.label39.TabIndex = 24;
+            this.label39.Text = "tas(av):";
             // 
             // ti
             // 
@@ -631,6 +761,52 @@
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "贮热水箱降温值 4.4.3-2";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(19, 120);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(217, 72);
+            this.pictureBox4.TabIndex = 35;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label55.Location = new System.Drawing.Point(6, 97);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(70, 12);
+            this.label55.TabIndex = 47;
+            this.label55.Text = "计算公式：";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(96, 68);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(191, 12);
+            this.label54.TabIndex = 46;
+            this.label54.Text = "太阳热水系统的当前标准温差(°C)";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(96, 43);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(323, 12);
+            this.label53.TabIndex = 45;
+            this.label53.Text = "贮热水温保温性能试验开始时贮热水箱中水的平均温度(°C)";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(96, 21);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(323, 12);
+            this.label52.TabIndex = 44;
+            this.label52.Text = "贮热水箱保温性能试验开始时贮热水箱中水的平均温度(°C)";
             // 
             // lbl_tsd
             // 
@@ -808,182 +984,6 @@
             this.label44.TabIndex = 34;
             this.label44.Text = "tas(av)-贮热水箱保温性能试验期间贮热水箱周围的环境空气平均温度(°C)";
             // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label45.Location = new System.Drawing.Point(17, 110);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(70, 12);
-            this.label45.TabIndex = 23;
-            this.label45.Text = "计算公式：";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(92, 110);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(229, 64);
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(10, 104);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(70, 12);
-            this.label20.TabIndex = 24;
-            this.label20.Text = "计算公式：";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(84, 109);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(135, 62);
-            this.pictureBox2.TabIndex = 25;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(81, 31);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(287, 12);
-            this.label46.TabIndex = 26;
-            this.label46.Text = "太阳能集热器采光口所在平面的日太阳辐照量(MJ/m²)";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(584, 28);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(71, 12);
-            this.label47.TabIndex = 35;
-            this.label47.Text = "时间间隔(s)";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(111, 53);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(215, 12);
-            this.label48.TabIndex = 36;
-            this.label48.Text = "热损试验中贮热水箱内的初始温度(°C)";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(439, 52);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(215, 12);
-            this.label49.TabIndex = 35;
-            this.label49.Text = "热损试验中贮热水箱内的最终水温(°C)";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label51.Location = new System.Drawing.Point(15, 90);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(70, 12);
-            this.label51.TabIndex = 37;
-            this.label51.Text = "计算公式：";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(107, 75);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(294, 65);
-            this.pictureBox3.TabIndex = 38;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(96, 21);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(323, 12);
-            this.label52.TabIndex = 44;
-            this.label52.Text = "贮热水箱保温性能试验开始时贮热水箱中水的平均温度(°C)";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(96, 43);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(323, 12);
-            this.label53.TabIndex = 45;
-            this.label53.Text = "贮热水温保温性能试验开始时贮热水箱中水的平均温度(°C)";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(96, 68);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(191, 12);
-            this.label54.TabIndex = 46;
-            this.label54.Text = "太阳热水系统的当前标准温差(°C)";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label55.Location = new System.Drawing.Point(6, 97);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(70, 12);
-            this.label55.TabIndex = 47;
-            this.label55.Text = "计算公式：";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(3, 28);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(53, 12);
-            this.label39.TabIndex = 24;
-            this.label39.Text = "tas(av):";
-            // 
-            // tas
-            // 
-            this.tas.Location = new System.Drawing.Point(59, 23);
-            this.tas.Name = "tas";
-            this.tas.Size = new System.Drawing.Size(46, 21);
-            this.tas.TabIndex = 25;
-            this.tas.Text = "0";
-            this.tas.TextChanged += new System.EventHandler(this.tas_TextChanged);
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(111, 26);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(359, 12);
-            this.label50.TabIndex = 37;
-            this.label50.Text = "贮热水箱保温性能试验期间贮热水箱周围的环境空气平均温度(°C)";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(19, 120);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(217, 72);
-            this.pictureBox4.TabIndex = 35;
-            this.pictureBox4.TabStop = false;
-            // 
-            // btn_export
-            // 
-            this.btn_export.Location = new System.Drawing.Point(736, 20);
-            this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(92, 33);
-            this.btn_export.TabIndex = 25;
-            this.btn_export.Text = "数据导出";
-            this.btn_export.UseVisualStyleBackColor = true;
-            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1012,19 +1012,20 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "建科源";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
