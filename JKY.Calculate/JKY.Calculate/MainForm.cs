@@ -46,7 +46,7 @@ namespace JKY.Calculate
                 MessageBox.Show("请将H设置大于0"); return;
             }
             var _q17 = 17 * (double.Parse(lbl_q.Text) / double.Parse(H.Text));
-            lbl_q17.Text = Math.Round(_q17,2).ToString();
+            lbl_q17.Text = Math.Round(_q17, 2).ToString();
         }
 
         private void btn_442_Click(object sender, EventArgs e)
@@ -109,13 +109,14 @@ namespace JKY.Calculate
                 return false;
         }
 
-
+    
 
         public string InputCheck(string val)
         {
             if (val.Trim() != "")
             {
-                if (!Validate(val.Trim(), @"^(-?\d+)(\.\d+)?$"))
+                // if (!Validate(val.Trim(), @"^(-?\d+)(\.\d+)?$"))
+                if (!Validate(val.Trim(), @"^\d*\.{0,1}\d{0,1}$"))
                 {
                     MessageBox.Show("请输入数字"); return "0";
                 }
@@ -129,72 +130,72 @@ namespace JKY.Calculate
 
         private void pw_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(pw.Text.TrimEnd());
+            pw.Text = InputCheck(pw.Text.TrimEnd());
         }
 
         private void ac_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(ac.Text.TrimEnd());
+            pw.Text = InputCheck(ac.Text.TrimEnd());
         }
 
         private void te_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(te.Text.TrimEnd());
+            te.Text = InputCheck(te.Text.TrimEnd());
         }
 
         private void cpw_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(cpw.Text.TrimEnd());
+            cpw.Text = InputCheck(cpw.Text.TrimEnd());
         }
 
         private void tb_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(tb.Text.TrimEnd());
+            tb.Text = InputCheck(tb.Text.TrimEnd());
         }
 
         private void vs_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(vs.Text.TrimEnd());
+            vs.Text = InputCheck(vs.Text.TrimEnd());
         }
 
         private void tr_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(tr.Text.TrimEnd());
+            tr.Text = InputCheck(tr.Text.TrimEnd());
         }
 
         private void tp_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(tp.Text.TrimEnd());
+            tp.Text = InputCheck(tp.Text.TrimEnd());
         }
 
         private void ts_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(ts.Text.TrimEnd());
+            ts.Text = InputCheck(ts.Text.TrimEnd());
         }
 
         private void H_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(H.Text.TrimEnd());
+            H.Text = InputCheck(H.Text.TrimEnd());
         }
 
         private void tas_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(tas.Text.TrimEnd());
+            tas.Text = InputCheck(tas.Text.TrimEnd());
         }
 
         private void msfh_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(msfh.Text.TrimEnd());
+            msfh.Text = InputCheck(msfh.Text.TrimEnd());
         }
 
         private void ti_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(ti.Text.TrimEnd());
+            ti.Text = InputCheck(ti.Text.TrimEnd());
         }
 
         private void tf_TextChanged(object sender, EventArgs e)
         {
-            InputCheck(tr.Text.TrimEnd());
+            tr.Text = InputCheck(tr.Text.TrimEnd());
         }
 
         private void btn_export_Click(object sender, EventArgs e)
@@ -209,8 +210,8 @@ namespace JKY.Calculate
 
             if (string.IsNullOrWhiteSpace(path.SelectedPath))
                 return;
-           
-            string _name =   "计算_" + DateTime.Now.ToString("yyyy-MM-dd") + ".docx";
+
+            string _name = "计算_" + DateTime.Now.ToString("yyyy-MM-dd") + ".docx";
 
             var saveExcelUrl = path.SelectedPath + "\\" + _name;
 
