@@ -22,8 +22,11 @@ namespace JKY.Calculate
         /// <param name="saveFile">保存的文件名</param>
         public WordUtility(string tempFile, string saveFile)
         {
-            this.tempFile = Path.Combine(@tempFile);
-            this.saveFile = Path.Combine(@saveFile);
+            //this.tempFile = Path.Combine(@tempFile);
+            //this.saveFile = Path.Combine(@saveFile);
+
+            this.tempFile = @tempFile;
+            this.saveFile = @saveFile;
         }
 
         // $名子试试$

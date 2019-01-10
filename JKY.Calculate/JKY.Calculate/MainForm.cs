@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.Drawing.Drawing2D;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKY.Calculate
@@ -109,14 +108,14 @@ namespace JKY.Calculate
                 return false;
         }
 
-    
+
 
         public string InputCheck(string val)
         {
             if (val.Trim() != "")
             {
                 // if (!Validate(val.Trim(), @"^(-?\d+)(\.\d+)?$"))
-                if (!Validate(val.Trim(), @"^\d*\.{0,1}\d{0,1}$"))
+                if (!Validate(val.Trim(), @"^\d*\.{0,1}\d{0,4}$"))
                 {
                     MessageBox.Show("请输入数字"); return "0";
                 }
@@ -200,46 +199,62 @@ namespace JKY.Calculate
 
         private void btn_export_Click(object sender, EventArgs e)
         {
-            var fileName = "计算模板.docx";
-            string strResult = string.Empty;
-            string strPath = System.Windows.Forms.Application.StartupPath + "\\template";
-            string strFile = string.Format(@"{0}\{1}", strPath, fileName);
-
             FolderBrowserDialog path = new FolderBrowserDialog();
             path.ShowDialog();
 
-            if (string.IsNullOrWhiteSpace(path.SelectedPath))
+            if (path.SelectedPath == "" && path.SelectedPath == null)
                 return;
 
-            string _name = "计算_" + DateTime.Now.ToString("yyyy-MM-dd") + ".docx";
-
+            string _name = "计算_" + DateTime.Now.ToString("yyyy-MM-dd") + ".png";
             var saveExcelUrl = path.SelectedPath + "\\" + _name;
+            Bitmap bit = new Bitmap(this.Width, this.Height);//实例化一个和窗体一样大的bitmap
+            Graphics g = Graphics.FromImage(bit);
+            g.CompositingQuality = CompositingQuality.HighQuality;//质量设为最高
+            g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));//保存整个窗体为图片
 
-            var dc = new Dictionary<string, string>();
-            dc.Add("ac", ac.Text);
-            dc.Add("cpw", cpw.Text);
-            dc.Add("h", H.Text);
-            dc.Add("pw", pw.Text);
-            dc.Add("q", lbl_q.Text);
-            dc.Add("q17", lbl_q17.Text);
-            dc.Add("tasav", tas.Text);
-            dc.Add("tb", tb.Text);
-            dc.Add("te", te.Text);
-            dc.Add("tf", tf.Text);
-            dc.Add("ti", ti.Text);
-            dc.Add("tp", tp.Text);
-            dc.Add("tr", tr.Text);
-            dc.Add("usl", lblusl.Text);
-            dc.Add("vs", vs.Text);
-            dc.Add("△ts", ts.Text);
-            dc.Add("△tsd", lbl_tsd.Text);
-            dc.Add("△ζ", msfh.Text);
-            dc.Add("日期", DateTime.Now.ToString("yyyy-MM-dd"));
-            WordUtility wu = new WordUtility(strFile, saveExcelUrl);
-            if (wu.GenerateWordByBookmarks(dc))
-            {
-                MessageBox.Show("导出成功");
-            }
+            bit.Save(saveExcelUrl);//默认保存格式为PNG，保存成jpg格式质量不是很好
+            MessageBox.Show("导出成功-路径" + saveExcelUrl);
+
+            //var fileName = "计算模板.docx";
+            //string strResult = string.Empty;
+            //string strPath = System.Windows.Forms.Application.StartupPath + "\\template";
+            //string strFile = string.Format(@"{0}\{1}", strPath, fileName);
+
+            //FolderBrowserDialog path = new FolderBrowserDialog();
+            //path.ShowDialog();
+
+            //if (path.SelectedPath == "" && path.SelectedPath == null)
+            //    return;
+
+            //string _name = "计算_" + DateTime.Now.ToString("yyyy-MM-dd") + ".docx";
+
+            //var saveExcelUrl = path.SelectedPath + "\\" + _name;
+
+            //var dc = new Dictionary<string, string>();
+            //dc.Add("ac", ac.Text);
+            //dc.Add("cpw", cpw.Text);
+            //dc.Add("h", H.Text);
+            //dc.Add("pw", pw.Text);
+            //dc.Add("q", lbl_q.Text);
+            //dc.Add("q17", lbl_q17.Text);
+            //dc.Add("tasav", tas.Text);
+            //dc.Add("tb", tb.Text);
+            //dc.Add("te", te.Text);
+            //dc.Add("tf", tf.Text);
+            //dc.Add("ti", ti.Text);
+            //dc.Add("tp", tp.Text);
+            //dc.Add("tr", tr.Text);
+            //dc.Add("usl", lblusl.Text);
+            //dc.Add("vs", vs.Text);
+            //dc.Add("△ts", ts.Text);
+            //dc.Add("△tsd", lbl_tsd.Text);
+            //dc.Add("△ζ", msfh.Text);
+            //dc.Add("日期", DateTime.Now.ToString("yyyy-MM-dd"));
+            //WordUtility wu = new WordUtility(strFile, saveExcelUrl);
+            //if (wu.GenerateWordByBookmarks(dc))
+            //{
+            //    MessageBox.Show("导出成功");
+            //}
         }
     }
 }
