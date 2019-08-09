@@ -27,6 +27,7 @@ namespace VentilationCalculate
         {
             try
             {
+                Program.excelData = new ExcelData();
                 lbl_load.Visible = true;
 
                 Program.excelData = new ExcelData();
@@ -70,8 +71,9 @@ namespace VentilationCalculate
             Program.excelData.TestPoint4?.ForEach(t => alltime.Add(t.GatherTime.Value));
             Program.excelData.TestPoint5?.ForEach(t => alltime.Add(t.GatherTime.Value));
 
-            dtp_start.Value = alltime.Min(t => t);
-            dtp_end.Value = alltime.Max(t => t);
+            dtp_start.Value = DateTime.Parse(alltime.Min(t => t).ToString("yyyy-MM-dd HH:mm"));
+            dtp_end.Value = DateTime.Parse(alltime.Max(t => t).ToString("yyyy-MM-dd HH:mm"));
+            dtpc0.Value = DateTime.Parse(alltime.Min(t => t).ToString("yyyy-MM-dd HH:mm"));
         }
 
         public DataSet ExcelToDS(string path)
@@ -232,7 +234,7 @@ namespace VentilationCalculate
             var c1 = dataItems.Max(c => c._Value); //浓度最大 第一条数据;
 
             var maxIndex = dataItems.FindIndex(c => c._Value.Equals(c1));
-            var c0 = dataItems.Find(c => c.GatherTime.Value.ToString("yyyy-MM-dd HH:mm") == startTime.ToString("yyyy-MM-dd HH:mm"))?._Value;//除最大浓度随机选一个时间点数据;
+            var c0 = dataItems.Find(c => c.GatherTime.Value.ToString("yyyy-MM-dd HH:mm") == dtpc0.Value.ToString("yyyy-MM-dd HH:mm"))?._Value;
             var ct = dataItems.Find(c => c.GatherTime.Value.ToString("yyyy-MM-dd HH:mm") == endTime.ToString("yyyy-MM-dd HH:mm"))?._Value;
             if (c0 == null || ct == null)
             {

@@ -54,6 +54,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txt_res = new System.Windows.Forms.TextBox();
             this.lbl_load = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtpc0 = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // fbd_browse
@@ -91,7 +99,7 @@
             // 
             this.dtp_end.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dtp_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_end.Location = new System.Drawing.Point(260, 61);
+            this.dtp_end.Location = new System.Drawing.Point(275, 61);
             this.dtp_end.Name = "dtp_end";
             this.dtp_end.Size = new System.Drawing.Size(143, 21);
             this.dtp_end.TabIndex = 3;
@@ -108,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 67);
+            this.label3.Location = new System.Drawing.Point(248, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 5;
@@ -117,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 110);
+            this.label4.Location = new System.Drawing.Point(19, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 12);
             this.label4.TabIndex = 6;
@@ -126,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(163, 110);
+            this.label5.Location = new System.Drawing.Point(147, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 12);
             this.label5.TabIndex = 7;
@@ -135,7 +143,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(325, 110);
+            this.label6.Location = new System.Drawing.Point(264, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 12);
             this.label6.TabIndex = 8;
@@ -144,7 +152,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 141);
+            this.label7.Location = new System.Drawing.Point(19, 61);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 9;
@@ -153,7 +161,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(163, 141);
+            this.label8.Location = new System.Drawing.Point(147, 61);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 12);
             this.label8.TabIndex = 10;
@@ -161,7 +169,7 @@
             // 
             // btn_calculate
             // 
-            this.btn_calculate.Location = new System.Drawing.Point(409, 59);
+            this.btn_calculate.Location = new System.Drawing.Point(436, 59);
             this.btn_calculate.Name = "btn_calculate";
             this.btn_calculate.Size = new System.Drawing.Size(75, 23);
             this.btn_calculate.TabIndex = 11;
@@ -172,7 +180,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(331, 141);
+            this.label9.Location = new System.Drawing.Point(270, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 12);
             this.label9.TabIndex = 12;
@@ -181,7 +189,7 @@
             // lbl_measurepoint1
             // 
             this.lbl_measurepoint1.AutoSize = true;
-            this.lbl_measurepoint1.Location = new System.Drawing.Point(114, 110);
+            this.lbl_measurepoint1.Location = new System.Drawing.Point(98, 30);
             this.lbl_measurepoint1.Name = "lbl_measurepoint1";
             this.lbl_measurepoint1.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint1.TabIndex = 13;
@@ -190,7 +198,7 @@
             // lbl_measurepoint4
             // 
             this.lbl_measurepoint4.AutoSize = true;
-            this.lbl_measurepoint4.Location = new System.Drawing.Point(114, 141);
+            this.lbl_measurepoint4.Location = new System.Drawing.Point(98, 61);
             this.lbl_measurepoint4.Name = "lbl_measurepoint4";
             this.lbl_measurepoint4.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint4.TabIndex = 14;
@@ -199,7 +207,7 @@
             // lbl_measurepoint3
             // 
             this.lbl_measurepoint3.AutoSize = true;
-            this.lbl_measurepoint3.Location = new System.Drawing.Point(426, 110);
+            this.lbl_measurepoint3.Location = new System.Drawing.Point(344, 30);
             this.lbl_measurepoint3.Name = "lbl_measurepoint3";
             this.lbl_measurepoint3.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint3.TabIndex = 15;
@@ -208,7 +216,7 @@
             // lbl_measurepoint2
             // 
             this.lbl_measurepoint2.AutoSize = true;
-            this.lbl_measurepoint2.Location = new System.Drawing.Point(264, 110);
+            this.lbl_measurepoint2.Location = new System.Drawing.Point(226, 30);
             this.lbl_measurepoint2.Name = "lbl_measurepoint2";
             this.lbl_measurepoint2.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint2.TabIndex = 16;
@@ -217,7 +225,7 @@
             // lbl_measurepoint5
             // 
             this.lbl_measurepoint5.AutoSize = true;
-            this.lbl_measurepoint5.Location = new System.Drawing.Point(264, 141);
+            this.lbl_measurepoint5.Location = new System.Drawing.Point(226, 61);
             this.lbl_measurepoint5.Name = "lbl_measurepoint5";
             this.lbl_measurepoint5.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint5.TabIndex = 17;
@@ -226,7 +234,7 @@
             // lbl_measurepoint6
             // 
             this.lbl_measurepoint6.AutoSize = true;
-            this.lbl_measurepoint6.Location = new System.Drawing.Point(424, 141);
+            this.lbl_measurepoint6.Location = new System.Drawing.Point(343, 61);
             this.lbl_measurepoint6.Name = "lbl_measurepoint6";
             this.lbl_measurepoint6.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint6.TabIndex = 18;
@@ -235,7 +243,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 181);
+            this.label10.Location = new System.Drawing.Point(12, 274);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 12);
             this.label10.TabIndex = 19;
@@ -243,7 +251,7 @@
             // 
             // txt_v
             // 
-            this.txt_v.Location = new System.Drawing.Point(144, 178);
+            this.txt_v.Location = new System.Drawing.Point(143, 271);
             this.txt_v.Name = "txt_v";
             this.txt_v.Size = new System.Drawing.Size(70, 21);
             this.txt_v.TabIndex = 20;
@@ -252,7 +260,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(220, 181);
+            this.label11.Location = new System.Drawing.Point(219, 274);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 12);
             this.label11.TabIndex = 21;
@@ -260,7 +268,7 @@
             // 
             // txt_res
             // 
-            this.txt_res.Location = new System.Drawing.Point(243, 178);
+            this.txt_res.Location = new System.Drawing.Point(242, 271);
             this.txt_res.Name = "txt_res";
             this.txt_res.Size = new System.Drawing.Size(104, 21);
             this.txt_res.TabIndex = 22;
@@ -277,29 +285,79 @@
             this.lbl_load.Text = "读取中...";
             this.lbl_load.Visible = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(61, 105);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 12);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "C0：";
+            // 
+            // dtpc0
+            // 
+            this.dtpc0.CustomFormat = "yyyy-MM-dd HH:mm";
+            this.dtpc0.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpc0.Location = new System.Drawing.Point(97, 99);
+            this.dtpc0.Name = "dtpc0";
+            this.dtpc0.Size = new System.Drawing.Size(134, 21);
+            this.dtpc0.TabIndex = 25;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint1);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint4);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint6);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint3);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint5);
+            this.groupBox1.Controls.Add(this.lbl_measurepoint2);
+            this.groupBox1.Location = new System.Drawing.Point(28, 142);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(390, 93);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "测点";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Location = new System.Drawing.Point(436, 135);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(230, 100);
+            this.groupBox2.TabIndex = 27;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "公式";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::VentilationCalculate.Properties.Resources.QQ图片20190809171736;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 53);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Calculate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 224);
+            this.ClientSize = new System.Drawing.Size(697, 345);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.dtpc0);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.lbl_load);
             this.Controls.Add(this.txt_res);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txt_v);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.lbl_measurepoint6);
-            this.Controls.Add(this.lbl_measurepoint5);
-            this.Controls.Add(this.lbl_measurepoint2);
-            this.Controls.Add(this.lbl_measurepoint3);
-            this.Controls.Add(this.lbl_measurepoint4);
-            this.Controls.Add(this.lbl_measurepoint1);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_calculate);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtp_end);
@@ -309,6 +367,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Calculate";
             this.Text = "换气次数计算";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,5 +403,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txt_res;
         private System.Windows.Forms.Label lbl_load;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dtpc0;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
