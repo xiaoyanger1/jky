@@ -53,6 +53,7 @@
             this.txt_v = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txt_res = new System.Windows.Forms.TextBox();
+            this.lbl_load = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fbd_browse
@@ -244,7 +245,7 @@
             // 
             this.txt_v.Location = new System.Drawing.Point(144, 178);
             this.txt_v.Name = "txt_v";
-            this.txt_v.Size = new System.Drawing.Size(49, 21);
+            this.txt_v.Size = new System.Drawing.Size(70, 21);
             this.txt_v.TabIndex = 20;
             this.txt_v.TextChanged += new System.EventHandler(this.txt_v_TextChanged);
             // 
@@ -261,14 +262,27 @@
             // 
             this.txt_res.Location = new System.Drawing.Point(243, 178);
             this.txt_res.Name = "txt_res";
-            this.txt_res.Size = new System.Drawing.Size(49, 21);
+            this.txt_res.Size = new System.Drawing.Size(104, 21);
             this.txt_res.TabIndex = 22;
+            // 
+            // lbl_load
+            // 
+            this.lbl_load.AutoSize = true;
+            this.lbl_load.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_load.ForeColor = System.Drawing.Color.Red;
+            this.lbl_load.Location = new System.Drawing.Point(263, 23);
+            this.lbl_load.Name = "lbl_load";
+            this.lbl_load.Size = new System.Drawing.Size(95, 18);
+            this.lbl_load.TabIndex = 23;
+            this.lbl_load.Text = "读取中...";
+            this.lbl_load.Visible = false;
             // 
             // Calculate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 224);
+            this.Controls.Add(this.lbl_load);
             this.Controls.Add(this.txt_res);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txt_v);
@@ -326,5 +340,6 @@
         private System.Windows.Forms.TextBox txt_v;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txt_res;
+        private System.Windows.Forms.Label lbl_load;
     }
 }

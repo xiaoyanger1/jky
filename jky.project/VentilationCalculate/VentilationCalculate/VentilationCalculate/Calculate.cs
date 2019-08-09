@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Application = Microsoft.Office.Interop.Excel.Application;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace VentilationCalculate
 {
     public partial class Calculate : Form
@@ -24,6 +27,8 @@ namespace VentilationCalculate
         {
             try
             {
+                lbl_load.Visible = true;
+
                 Program.excelData = new ExcelData();
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = true;
@@ -50,16 +55,20 @@ namespace VentilationCalculate
             {
                 MessageBox.Show("异常" + ex);
             }
+            finally
+            {
+                lbl_load.Visible = false;
+            }
         }
 
         public void GetTimeRange()
         {
             List<DateTime> alltime = new List<DateTime>();
-            Program.excelData.TestPoint1.ForEach(t => alltime.Add(t.GatherTime.Value));
-            Program.excelData.TestPoint2.ForEach(t => alltime.Add(t.GatherTime.Value));
-            Program.excelData.TestPoint3.ForEach(t => alltime.Add(t.GatherTime.Value));
-            Program.excelData.TestPoint4.ForEach(t => alltime.Add(t.GatherTime.Value));
-            Program.excelData.TestPoint5.ForEach(t => alltime.Add(t.GatherTime.Value));
+            Program.excelData.TestPoint1?.ForEach(t => alltime.Add(t.GatherTime.Value));
+            Program.excelData.TestPoint2?.ForEach(t => alltime.Add(t.GatherTime.Value));
+            Program.excelData.TestPoint3?.ForEach(t => alltime.Add(t.GatherTime.Value));
+            Program.excelData.TestPoint4?.ForEach(t => alltime.Add(t.GatherTime.Value));
+            Program.excelData.TestPoint5?.ForEach(t => alltime.Add(t.GatherTime.Value));
 
             dtp_start.Value = alltime.Min(t => t);
             dtp_end.Value = alltime.Max(t => t);
@@ -84,25 +93,98 @@ namespace VentilationCalculate
             }
             catch (Exception ex)
             {
-                MessageBox.Show("读取excel异常，请检查数据格式");
+                MessageBox.Show("读取excel异常，请检查数据格式" + ex.Message);
             }
             return new DataSet();
         }
 
+
+
+        public System.Data.DataTable GetDataFromExcelByCom(string strFileName)
+        {
+
+            Excel.Application app = new Excel.Application();
+            Excel.Sheets sheets;
+            object oMissiong = System.Reflection.Missing.Value;
+            Excel.Workbook workbook = null;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+            bool hasTitle = false;
+            try
+            {
+                if (app == null) return null;
+                workbook = app.Workbooks.Open(strFileName, oMissiong, oMissiong, oMissiong, oMissiong, oMissiong,
+                    oMissiong, oMissiong, oMissiong, oMissiong, oMissiong, oMissiong, oMissiong, oMissiong, oMissiong);
+                sheets = workbook.Worksheets;
+
+                //将数据读入到DataTable中
+                Excel.Worksheet worksheet = (Excel.Worksheet)sheets.get_Item(3);//读取第一张表  
+                if (worksheet == null) return null;
+
+                int iRowCount = worksheet.UsedRange.Rows.Count;
+                int iColCount = worksheet.UsedRange.Columns.Count;
+                //生成列头
+                for (int i = 0; i < iColCount; i++)
+                {
+                    var name = "column" + i;
+                    if (hasTitle)
+                    {
+                        var txt = ((Excel.Range)worksheet.Cells[1, i + 1]).Text.ToString();
+                        if (!string.IsNullOrWhiteSpace(txt)) name = txt;
+                    }
+                    while (dt.Columns.Contains(name)) name = name + "_1";//重复行名称会报错。
+                    dt.Columns.Add(new DataColumn(name, typeof(string)));
+                }
+                //生成行数据
+                Excel.Range range;
+                //int rowIdx = hasTitle ? 2 : 1;
+                for (int iRow = 1; iRow <= iRowCount; iRow++)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int iCol = 1; iCol <= iColCount; iCol++)
+                    {
+                        range = (Excel.Range)worksheet.Cells[iRow, iCol];
+                        dr[iCol - 1] = (range.Value2 == null) ? "" : range.Text.ToString();
+                    }
+                    dt.Rows.Add(dr);
+                }
+                return dt;
+            }
+            catch { return null; }
+            finally
+            {
+                workbook.Close(false, oMissiong, oMissiong);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                workbook = null;
+                app.Workbooks.Close();
+                app.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+                app = null;
+            }
+        }
+
+
+
         public List<DataItem> GetExcelGatherData(string filePath)
         {
             List<DataItem> res = new List<DataItem>();
-            DataSet ds = ExcelToDS(filePath);
-            if (ds != null)
+
+            System.Data.DataTable dt = GetDataFromExcelByCom(filePath);
+            //DataSet ds = ExcelToDS(filePath);
+            if (dt != null && dt.Rows.Count > 0)
             {
-                DataTable dt = ds.Tables[0];
                 for (int j = 1; j < dt.Rows.Count; j++)
                 {
                     DataRow dr = dt.Rows[j];
+                    if (dr["column0"] == null || string.IsNullOrWhiteSpace(dr["column0"].ToString()))
+                        continue;
+                    if (dr["column1"] == null || string.IsNullOrWhiteSpace(dr["column1"].ToString()))
+                        continue;
+
                     res.Add(new DataItem()
                     {
-                        GatherTime = DateTime.Parse(dr["F1"].ToString()),
-                        Value = double.Parse(dr["F2"].ToString())
+                        GatherTime = DateTime.Parse(dr["column0"].ToString()),
+                        Value = double.Parse(dr["column1"].ToString())
                     });
                 }
             }
@@ -113,11 +195,11 @@ namespace VentilationCalculate
         {
             try
             {
-                var measurepoint1 = Calculate_A(Program.excelData.TestPoint1);
-                var measurepoint2 = Calculate_A(Program.excelData.TestPoint2);
-                var measurepoint3 = Calculate_A(Program.excelData.TestPoint3);
-                var measurepoint4 = Calculate_A(Program.excelData.TestPoint4);
-                var measurepoint5 = Calculate_A(Program.excelData.TestPoint5);
+                var measurepoint1 = Calculate_A(Program.excelData.TestPoint1, 1);
+                var measurepoint2 = Calculate_A(Program.excelData.TestPoint2, 2);
+                var measurepoint3 = Calculate_A(Program.excelData.TestPoint3, 3);
+                var measurepoint4 = Calculate_A(Program.excelData.TestPoint4, 4);
+                var measurepoint5 = Calculate_A(Program.excelData.TestPoint5, 5);
 
                 lbl_measurepoint1.Text = measurepoint1.ToString();
                 lbl_measurepoint2.Text = measurepoint2.ToString();
@@ -137,8 +219,12 @@ namespace VentilationCalculate
         /// </summary>
         /// <param name="dataItems"></param>
         /// <returns></returns>
-        private double Calculate_A(List<DataItem> dataItems)
+        private double Calculate_A(List<DataItem> dataItems, int index)
         {
+            if (dataItems == null || dataItems.Count == 0)
+            {
+                return 0;
+            }
             var startTime = dtp_start.Value;
             var endTime = dtp_end.Value;
             var t = Math.Round((double)ExecDateDiff(startTime, endTime) / 60, 2);
@@ -150,7 +236,7 @@ namespace VentilationCalculate
             var ct = dataItems.Find(c => c.GatherTime.Value.ToString("yyyy-MM-dd HH:mm") == endTime.ToString("yyyy-MM-dd HH:mm"))?._Value;
             if (c0 == null || ct == null)
             {
-                MessageBox.Show("计算错误,请检查数据是否存在");
+                MessageBox.Show($"计算错误,【{index}】检测点请检查数据是否存在");
                 return 0;
             }
             var a = Math.Round((Math.Log(c1 - c0.Value) - Math.Log(ct.Value - c0.Value)) / t, 2);
