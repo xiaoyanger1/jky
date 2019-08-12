@@ -17,7 +17,6 @@ namespace VentilationCalculate
     public partial class Calculate : Form
     {
 
-
         public Calculate()
         {
             InitializeComponent();
@@ -299,7 +298,7 @@ namespace VentilationCalculate
             {
                 string foldPath = dialog.SelectedPath;
 
-                ExportExcel(dt, foldPath + "\\" + "换气次数计算" + DateTime.Now.ToString("yyyyMMddHHmmss")+".xlsx");
+                ExportExcel(dt, foldPath + "\\" + "换气次数计算" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
             }
 
         }
@@ -320,21 +319,21 @@ namespace VentilationCalculate
 
             excelDataTemp.开始时间 = DateTime.Parse(dtp_start.Text);
 
-            excelDataTemp.结束时间= DateTime.Parse(dtp_end.Text);
+            excelDataTemp.结束时间 = DateTime.Parse(dtp_end.Text);
 
             double num4 = 0;
             if (double.TryParse(lbl_measurepoint1.Text, out num4) == true)
-                excelDataTemp.测点1  = num4;
+                excelDataTemp.测点1 = num4;
 
 
             double num5 = 0;
             if (double.TryParse(lbl_measurepoint2.Text, out num5) == true)
-                excelDataTemp.测点2= num5;
+                excelDataTemp.测点2 = num5;
 
 
             double num6 = 0;
             if (double.TryParse(lbl_measurepoint3.Text, out num6) == true)
-                excelDataTemp.测点3= num6;
+                excelDataTemp.测点3 = num6;
 
             double num7 = 0;
             if (double.TryParse(lbl_measurepoint4.Text, out num7) == true)
@@ -382,7 +381,21 @@ namespace VentilationCalculate
                 float percent = 0;
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dt.Columns[i].ColumnName;
+                    var columnName = "";
+                    if (dt.Columns[i].ColumnName == "检测点数") { columnName = dt.Columns[i].ColumnName + "(个)"; }
+                    else if (dt.Columns[i].ColumnName == "布局方式") { columnName = dt.Columns[i].ColumnName; }
+                    else if (dt.Columns[i].ColumnName == "开始时间") { columnName = dt.Columns[i].ColumnName; }
+                    else if (dt.Columns[i].ColumnName == "结束时间") { columnName = dt.Columns[i].ColumnName; }
+                    else if (dt.Columns[i].ColumnName == "检测间隔") { columnName = dt.Columns[i].ColumnName + "(分钟)"; }
+                    else if (dt.Columns[i].ColumnName == "测点1") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "测点2") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "测点3") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "测点4") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "测点5") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "空气交换率") { columnName = dt.Columns[i].ColumnName + "(h-1)"; }
+                    else if (dt.Columns[i].ColumnName == "室内空气容积") { columnName = dt.Columns[i].ColumnName + "(m3)"; }
+                    else if (dt.Columns[i].ColumnName == "新风量") { columnName = dt.Columns[i].ColumnName + "(m3/h)"; }
+                    worksheet.Cells[1, i + 1] = columnName;
                     range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, i + 1];
                     range.Interior.ColorIndex = 15; range.Font.Bold = true;
                 }
@@ -403,7 +416,8 @@ namespace VentilationCalculate
                 GC.Collect();
                 MessageBox.Show("导出成功");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("导出异常");
             }
         }
@@ -501,11 +515,11 @@ public class ExcelDataTemp
 
     public double 测点2 { get; set; }
 
-    public double 测点3{ get; set; }
+    public double 测点3 { get; set; }
 
-    public double 测点4{ get; set; }
+    public double 测点4 { get; set; }
 
-    public double 测点5{ get; set; }
+    public double 测点5 { get; set; }
 
     public double 空气交换率 { get; set; }
 
