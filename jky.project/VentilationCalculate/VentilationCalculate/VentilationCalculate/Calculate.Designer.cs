@@ -86,6 +86,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -642,11 +643,12 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(378, 536);
+            this.label32.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label32.Location = new System.Drawing.Point(448, 513);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(335, 12);
+            this.label32.Size = new System.Drawing.Size(148, 12);
             this.label32.TabIndex = 33;
-            this.label32.Text = "Copyright © 2019 北京建科源科技有限公司 JKY Smart Meter";
+            this.label32.Text = "北京建科源科技有限公司";
             // 
             // label33
             // 
@@ -666,11 +668,22 @@
             this.label35.TabIndex = 36;
             this.label35.Text = "计算方法：平均法计算平均空气交换率     示踪气体：二氧化碳   ";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(448, 536);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(251, 12);
+            this.label22.TabIndex = 37;
+            this.label22.Text = "JKY Smart Meter | Copyright © 2019 ";
+            // 
             // Calculate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 564);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.label32);
@@ -756,5 +769,6 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button btn_export;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label22;
     }
 }

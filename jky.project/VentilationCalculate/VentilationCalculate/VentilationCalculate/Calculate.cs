@@ -321,6 +321,8 @@ namespace VentilationCalculate
 
             excelDataTemp.结束时间 = DateTime.Parse(dtp_end.Text);
 
+            excelDataTemp.本低浓度 = DateTime.Parse(dtpc0.Text);
+
             double num4 = 0;
             if (double.TryParse(lbl_measurepoint1.Text, out num4) == true)
                 excelDataTemp.测点1 = num4;
@@ -383,7 +385,7 @@ namespace VentilationCalculate
                 {
                     var columnName = "";
                     if (dt.Columns[i].ColumnName == "检测点数") { columnName = dt.Columns[i].ColumnName + "(个)"; }
-                    else if (dt.Columns[i].ColumnName == "布局方式") { columnName = dt.Columns[i].ColumnName; }
+                    else if (dt.Columns[i].ColumnName == "布局方式"|| dt.Columns[i].ColumnName == "本低浓度") { columnName = dt.Columns[i].ColumnName; }
                     else if (dt.Columns[i].ColumnName == "开始时间") { columnName = dt.Columns[i].ColumnName; }
                     else if (dt.Columns[i].ColumnName == "结束时间") { columnName = dt.Columns[i].ColumnName; }
                     else if (dt.Columns[i].ColumnName == "检测间隔") { columnName = dt.Columns[i].ColumnName + "(分钟)"; }
@@ -506,10 +508,13 @@ public class ExcelDataTemp
     public int 检测点数 { get; set; }
 
     public int 检测间隔 { get; set; }
+    public DateTime 本低浓度 { get; set; }
 
     public DateTime 开始时间 { get; set; }
 
     public DateTime 结束时间 { get; set; }
+
+  
 
     public double 测点1 { get; set; }
 
@@ -525,4 +530,6 @@ public class ExcelDataTemp
 
     public double 室内空气容积 { get; set; }
     public double 新风量 { get; set; }
+
+   
 }
