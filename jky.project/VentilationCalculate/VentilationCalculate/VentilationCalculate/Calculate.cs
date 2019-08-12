@@ -1,26 +1,33 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Application = Microsoft.Office.Interop.Excel.Application;
+using DataTable = System.Data.DataTable;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace VentilationCalculate
 {
     public partial class Calculate : Form
     {
 
+
         public Calculate()
         {
             InitializeComponent();
+            Init();
+        }
+        private void Init()
+        {
+            cbb_bjfs.SelectedIndex = 0;
+            dud_jcds.SelectedIndex = 0;
+            dud_jcjg.SelectedIndex = 0;
         }
 
         private void btn_browse_Click(object sender, EventArgs e)
@@ -76,40 +83,14 @@ namespace VentilationCalculate
             dtpc0.Value = DateTime.Parse(alltime.Min(t => t).ToString("yyyy-MM-dd HH:mm"));
         }
 
-        public DataSet ExcelToDS(string path)
-        {
-            try
-            {
-                string strConn = "Provider=Microsoft.Ace.OleDb.12.0;" + "data source=" + path + ";Extended Properties='Excel 12.0; HDR=NO; IMEX=1'";
-                OleDbConnection conn = new OleDbConnection(strConn);
-                conn.Open();
-                string strExcel = "";
-                OleDbDataAdapter myCommand = null;
-                DataSet ds = null;
-                strExcel = "select * from [CO2浓度_3$]";
-                myCommand = new OleDbDataAdapter(strExcel, strConn);
-                ds = new DataSet();
-                myCommand.Fill(ds, "table1");
-                conn.Close();
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("读取excel异常，请检查数据格式" + ex.Message);
-            }
-            return new DataSet();
-        }
-
-
-
-        public System.Data.DataTable GetDataFromExcelByCom(string strFileName)
+        public DataTable GetDataFromExcelByCom(string strFileName)
         {
 
             Excel.Application app = new Excel.Application();
             Excel.Sheets sheets;
             object oMissiong = System.Reflection.Missing.Value;
             Excel.Workbook workbook = null;
-            System.Data.DataTable dt = new System.Data.DataTable();
+            DataTable dt = new DataTable();
 
             bool hasTitle = false;
             try
@@ -171,7 +152,7 @@ namespace VentilationCalculate
         {
             List<DataItem> res = new List<DataItem>();
 
-            System.Data.DataTable dt = GetDataFromExcelByCom(filePath);
+            DataTable dt = GetDataFromExcelByCom(filePath);
             //DataSet ds = ExcelToDS(filePath);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -197,11 +178,22 @@ namespace VentilationCalculate
         {
             try
             {
+                var count = 0;
                 var measurepoint1 = Calculate_A(Program.excelData.TestPoint1, 1);
+                if (measurepoint1 > 0)
+                    count = count + 1;
                 var measurepoint2 = Calculate_A(Program.excelData.TestPoint2, 2);
+                if (measurepoint2 > 0)
+                    count = count + 1;
                 var measurepoint3 = Calculate_A(Program.excelData.TestPoint3, 3);
+                if (measurepoint3 > 0)
+                    count = count + 1;
                 var measurepoint4 = Calculate_A(Program.excelData.TestPoint4, 4);
+                if (measurepoint4 > 0)
+                    count = count + 1;
                 var measurepoint5 = Calculate_A(Program.excelData.TestPoint5, 5);
+                if (measurepoint5 > 0)
+                    count = count + 1;
 
                 lbl_measurepoint1.Text = measurepoint1.ToString();
                 lbl_measurepoint2.Text = measurepoint2.ToString();
@@ -209,7 +201,7 @@ namespace VentilationCalculate
                 lbl_measurepoint4.Text = measurepoint4.ToString();
                 lbl_measurepoint5.Text = measurepoint5.ToString();
 
-                lbl_measurepoint6.Text = Math.Round((measurepoint1 + measurepoint2 + measurepoint3 + measurepoint4 + measurepoint5) / 5, 2).ToString();
+                lbl_measurepoint6.Text = Math.Round((measurepoint1 + measurepoint2 + measurepoint3 + measurepoint4 + measurepoint5) / count, 2).ToString();
             }
             catch (Exception ex)
             {
@@ -224,9 +216,8 @@ namespace VentilationCalculate
         private double Calculate_A(List<DataItem> dataItems, int index)
         {
             if (dataItems == null || dataItems.Count == 0)
-            {
                 return 0;
-            }
+
             var startTime = dtp_start.Value;
             var endTime = dtp_end.Value;
             var t = Math.Round((double)ExecDateDiff(startTime, endTime) / 60, 2);
@@ -294,6 +285,180 @@ namespace VentilationCalculate
                 MessageBox.Show("计算错误");
             }
         }
+
+
+        private void btn_export_Click(object sender, EventArgs e)
+        {
+            List<ExcelDataTemp> list = new List<ExcelDataTemp>();
+            list.Add(GetExcelDataTemp());
+            DataTable dt = ToDataTable<ExcelDataTemp>(list);
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string foldPath = dialog.SelectedPath;
+
+                ExportExcel(dt, foldPath + "\\" + "换气次数计算" + DateTime.Now.ToString("yyyyMMddHHmmss")+".xlsx");
+            }
+
+        }
+
+        public ExcelDataTemp GetExcelDataTemp()
+        {
+            ExcelDataTemp excelDataTemp = new ExcelDataTemp();
+            excelDataTemp.布局方式 = cbb_bjfs.Text;
+
+            int num1 = 0;
+            if (Int32.TryParse(dud_jcds.Text, out num1) == true)
+                excelDataTemp.检测点数 = num1;
+
+
+            int num3 = 0;
+            if (Int32.TryParse(dud_jcjg.Text, out num3) == true)
+                excelDataTemp.检测间隔 = num3;
+
+            excelDataTemp.开始时间 = DateTime.Parse(dtp_start.Text);
+
+            excelDataTemp.结束时间= DateTime.Parse(dtp_end.Text);
+
+            double num4 = 0;
+            if (double.TryParse(lbl_measurepoint1.Text, out num4) == true)
+                excelDataTemp.测点1  = num4;
+
+
+            double num5 = 0;
+            if (double.TryParse(lbl_measurepoint2.Text, out num5) == true)
+                excelDataTemp.测点2= num5;
+
+
+            double num6 = 0;
+            if (double.TryParse(lbl_measurepoint3.Text, out num6) == true)
+                excelDataTemp.测点3= num6;
+
+            double num7 = 0;
+            if (double.TryParse(lbl_measurepoint4.Text, out num7) == true)
+                excelDataTemp.测点4 = num7;
+
+
+            double num8 = 0;
+            if (double.TryParse(lbl_measurepoint5.Text, out num8) == true)
+                excelDataTemp.测点5 = num8;
+
+            double num9 = 0;
+            if (double.TryParse(lbl_measurepoint6.Text, out num9) == true)
+                excelDataTemp.空气交换率 = num9;
+
+            double num10 = 0;
+            if (double.TryParse(txt_v.Text, out num10) == true)
+                excelDataTemp.室内空气容积 = num10;
+
+            double num11 = 0;
+            if (double.TryParse(txt_res.Text, out num11) == true)
+                excelDataTemp.新风量 = num11;
+
+            return excelDataTemp;
+
+        }
+
+        protected void ExportExcel(System.Data.DataTable dt, string fileName)
+        {
+            try
+            {
+                if (dt == null || dt.Rows.Count == 0) return;
+                Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                if (xlApp == null)
+                {
+                    return;
+                }
+                System.Globalization.CultureInfo CurrentCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
+                Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
+                Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];
+                Microsoft.Office.Interop.Excel.Range range;
+                long totalCount = dt.Rows.Count;
+                long rowRead = 0;
+                float percent = 0;
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1] = dt.Columns[i].ColumnName;
+                    range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, i + 1];
+                    range.Interior.ColorIndex = 15; range.Font.Bold = true;
+                }
+                for (int r = 0; r < dt.Rows.Count; r++)
+                {
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        worksheet.Cells[r + 2, i + 1] = dt.Rows[r][i].ToString();
+                    }
+                    rowRead++; percent = ((float)(100 * rowRead)) / totalCount;
+                }
+
+                workbook.SaveAs(fileName);
+                xlApp.Visible = false;
+
+                xlApp.Workbooks.Close();
+                xlApp.Quit();
+                GC.Collect();
+                MessageBox.Show("导出成功");
+            }
+            catch (Exception ex) {
+                MessageBox.Show("导出异常");
+            }
+        }
+        private DataTable ToDataTable<T>(List<T> items)
+        {
+            var tb = new DataTable(typeof(T).Name);
+
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                tb.Columns.Add(prop.Name, t);
+            }
+
+            foreach (T item in items)
+            {
+                var values = new object[props.Length];
+
+                for (int i = 0; i < props.Length; i++)
+                {
+                    values[i] = props[i].GetValue(item, null);
+                }
+
+                tb.Rows.Add(values);
+            }
+
+            return tb;
+        }
+        /// <summary>
+        /// Return underlying type if type is Nullable otherwise return the type
+        /// </summary>
+        public static Type GetCoreType(Type t)
+        {
+            if (t != null && IsNullable(t))
+            {
+                if (!t.IsValueType)
+                {
+                    return t;
+                }
+                else
+                {
+                    return Nullable.GetUnderlyingType(t);
+                }
+            }
+            else
+            {
+                return t;
+            }
+        }
+        public static bool IsNullable(Type t)
+        {
+            return !t.IsValueType || (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
+        }
+
     }
 }
 
@@ -319,4 +484,31 @@ public class DataItem
             return this.Value * 1.96;
         }
     }
+}
+public class ExcelDataTemp
+{
+    public string 布局方式 { get; set; }
+
+    public int 检测点数 { get; set; }
+
+    public int 检测间隔 { get; set; }
+
+    public DateTime 开始时间 { get; set; }
+
+    public DateTime 结束时间 { get; set; }
+
+    public double 测点1 { get; set; }
+
+    public double 测点2 { get; set; }
+
+    public double 测点3{ get; set; }
+
+    public double 测点4{ get; set; }
+
+    public double 测点5{ get; set; }
+
+    public double 空气交换率 { get; set; }
+
+    public double 室内空气容积 { get; set; }
+    public double 新风量 { get; set; }
 }
