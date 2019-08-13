@@ -68,6 +68,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.dud_jcds = new System.Windows.Forms.DomainUpDown();
             this.dud_jcjg = new System.Windows.Forms.DomainUpDown();
             this.cbb_bjfs = new System.Windows.Forms.ComboBox();
@@ -85,6 +86,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -162,7 +164,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(225, 30);
+            this.label5.Location = new System.Drawing.Point(241, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 12);
             this.label5.TabIndex = 7;
@@ -171,7 +173,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(436, 30);
+            this.label6.Location = new System.Drawing.Point(455, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 12);
             this.label6.TabIndex = 8;
@@ -189,7 +191,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(225, 61);
+            this.label8.Location = new System.Drawing.Point(241, 61);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 12);
             this.label8.TabIndex = 10;
@@ -208,7 +210,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(412, 61);
+            this.label9.Location = new System.Drawing.Point(431, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 12);
             this.label9.TabIndex = 12;
@@ -235,7 +237,7 @@
             // lbl_measurepoint3
             // 
             this.lbl_measurepoint3.AutoSize = true;
-            this.lbl_measurepoint3.Location = new System.Drawing.Point(516, 30);
+            this.lbl_measurepoint3.Location = new System.Drawing.Point(535, 30);
             this.lbl_measurepoint3.Name = "lbl_measurepoint3";
             this.lbl_measurepoint3.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint3.TabIndex = 15;
@@ -244,7 +246,7 @@
             // lbl_measurepoint2
             // 
             this.lbl_measurepoint2.AutoSize = true;
-            this.lbl_measurepoint2.Location = new System.Drawing.Point(304, 30);
+            this.lbl_measurepoint2.Location = new System.Drawing.Point(320, 30);
             this.lbl_measurepoint2.Name = "lbl_measurepoint2";
             this.lbl_measurepoint2.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint2.TabIndex = 16;
@@ -253,7 +255,7 @@
             // lbl_measurepoint5
             // 
             this.lbl_measurepoint5.AutoSize = true;
-            this.lbl_measurepoint5.Location = new System.Drawing.Point(304, 61);
+            this.lbl_measurepoint5.Location = new System.Drawing.Point(320, 61);
             this.lbl_measurepoint5.Name = "lbl_measurepoint5";
             this.lbl_measurepoint5.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint5.TabIndex = 17;
@@ -262,7 +264,7 @@
             // lbl_measurepoint6
             // 
             this.lbl_measurepoint6.AutoSize = true;
-            this.lbl_measurepoint6.Location = new System.Drawing.Point(516, 61);
+            this.lbl_measurepoint6.Location = new System.Drawing.Point(535, 61);
             this.lbl_measurepoint6.Name = "lbl_measurepoint6";
             this.lbl_measurepoint6.Size = new System.Drawing.Size(11, 12);
             this.lbl_measurepoint6.TabIndex = 18;
@@ -359,7 +361,7 @@
             this.groupBox1.Controls.Add(this.lbl_measurepoint2);
             this.groupBox1.Location = new System.Drawing.Point(29, 221);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(644, 134);
+            this.groupBox1.Size = new System.Drawing.Size(675, 134);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "测点计算";
@@ -367,7 +369,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(559, 30);
+            this.label25.Location = new System.Drawing.Point(578, 30);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(35, 12);
             this.label25.TabIndex = 36;
@@ -376,7 +378,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(345, 61);
+            this.label24.Location = new System.Drawing.Point(361, 61);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 12);
             this.label24.TabIndex = 35;
@@ -385,7 +387,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(345, 30);
+            this.label23.Location = new System.Drawing.Point(361, 30);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(35, 12);
             this.label23.TabIndex = 34;
@@ -412,7 +414,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(559, 61);
+            this.label18.Location = new System.Drawing.Point(578, 61);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(35, 12);
             this.label18.TabIndex = 31;
@@ -457,6 +459,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.dud_jcds);
             this.groupBox3.Controls.Add(this.dud_jcjg);
             this.groupBox3.Controls.Add(this.cbb_bjfs);
@@ -465,10 +468,19 @@
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Location = new System.Drawing.Point(29, 13);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(644, 60);
+            this.groupBox3.Size = new System.Drawing.Size(675, 60);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "检测设定";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(601, 23);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 54;
+            this.label15.Text = "分钟";
             // 
             // dud_jcds
             // 
@@ -477,7 +489,7 @@
             this.dud_jcds.Items.Add("3");
             this.dud_jcds.Items.Add("4");
             this.dud_jcds.Items.Add("5");
-            this.dud_jcds.Location = new System.Drawing.Point(297, 18);
+            this.dud_jcds.Location = new System.Drawing.Point(326, 20);
             this.dud_jcds.Name = "dud_jcds";
             this.dud_jcds.Size = new System.Drawing.Size(83, 21);
             this.dud_jcds.TabIndex = 53;
@@ -495,7 +507,7 @@
             this.dud_jcjg.Items.Add("8");
             this.dud_jcjg.Items.Add("9");
             this.dud_jcjg.Items.Add("10");
-            this.dud_jcjg.Location = new System.Drawing.Point(476, 18);
+            this.dud_jcjg.Location = new System.Drawing.Point(512, 18);
             this.dud_jcjg.Name = "dud_jcjg";
             this.dud_jcjg.Size = new System.Drawing.Size(81, 21);
             this.dud_jcjg.TabIndex = 52;
@@ -506,7 +518,7 @@
             this.cbb_bjfs.FormattingEnabled = true;
             this.cbb_bjfs.Items.AddRange(new object[] {
             "对角线",
-            "梅华状"});
+            "梅花状"});
             this.cbb_bjfs.Location = new System.Drawing.Point(95, 19);
             this.cbb_bjfs.Name = "cbb_bjfs";
             this.cbb_bjfs.Size = new System.Drawing.Size(124, 20);
@@ -515,7 +527,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(236, 27);
+            this.label21.Location = new System.Drawing.Point(257, 23);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(65, 12);
             this.label21.TabIndex = 41;
@@ -533,7 +545,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(405, 23);
+            this.label16.Location = new System.Drawing.Point(441, 23);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
             this.label16.TabIndex = 33;
@@ -554,7 +566,7 @@
             this.groupBox4.Controls.Add(this.lbl_load);
             this.groupBox4.Location = new System.Drawing.Point(29, 79);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(644, 136);
+            this.groupBox4.Size = new System.Drawing.Size(675, 136);
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "采集";
@@ -574,9 +586,9 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(23, 27);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(233, 12);
+            this.label26.Size = new System.Drawing.Size(239, 12);
             this.label26.TabIndex = 22;
-            this.label26.Text = "A――换气次数，即平均空气交换率（h-1）";
+            this.label26.Text = " A――换气次数，即平均空气交换率（h-1）";
             // 
             // label27
             // 
@@ -614,7 +626,7 @@
             this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Location = new System.Drawing.Point(282, 361);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(391, 141);
+            this.groupBox5.Size = new System.Drawing.Size(422, 141);
             this.groupBox5.TabIndex = 32;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "式中";
@@ -624,23 +636,24 @@
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(23, 116);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(113, 12);
+            this.label30.Size = new System.Drawing.Size(119, 12);
             this.label30.TabIndex = 26;
-            this.label30.Text = "t――测定时间（h）";
+            this.label30.Text = " t――测定时间（h）";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(434, 536);
+            this.label32.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label32.Location = new System.Drawing.Point(448, 513);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(239, 12);
+            this.label32.Size = new System.Drawing.Size(148, 12);
             this.label32.TabIndex = 33;
-            this.label32.Text = "Copyright © 2019 北京建科源科技有限公司";
+            this.label32.Text = "北京建科源科技有限公司";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(27, 513);
+            this.label33.Location = new System.Drawing.Point(10, 513);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(353, 12);
             this.label33.TabIndex = 34;
@@ -649,17 +662,28 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(27, 536);
+            this.label35.Location = new System.Drawing.Point(10, 536);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(365, 12);
             this.label35.TabIndex = 36;
             this.label35.Text = "计算方法：平均法计算平均空气交换率     示踪气体：二氧化碳   ";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(448, 536);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(251, 12);
+            this.label22.TabIndex = 37;
+            this.label22.Text = "JKY Smart Meter | Copyright © 2019 ";
+            // 
             // Calculate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 564);
+            this.ClientSize = new System.Drawing.Size(716, 564);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.label32);
@@ -670,7 +694,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Calculate";
-            this.Text = "换气次数计算软件";
+            this.Text = "换气次数测试系统  JKY-EMCSO-P021";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -744,5 +768,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button btn_export;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label22;
     }
 }
