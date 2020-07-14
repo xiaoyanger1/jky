@@ -110,12 +110,28 @@ namespace text.doors.Default
         public const string 负压_100TimeStart = "T9";
 
 
-        // public const string 水密设定压力 = "D2009";
-        public const string 水密预备结束 = "D32";
+        //public const string 水密设定压力 = "D2009";
         //public const string 水密开始结束 = "T12";
+
+
+        public const string 水密预备结束 = "D32";
         public const string 水密预备_设定值 = "D2008";
         public const string 水密开始_设定值 = "D2009";
         public const string 水密依次加压_设定值 = "D550";
+
+
+
+        #region  波动加压
+
+        public const string 波动加压切换 = "M47";
+        public const string 上限压力设定 = "D350";
+        public const string 下限压力设定 = "D354";
+        public const string 开始波动 = "M48";
+        public const string 停止加压 = "M49";
+
+        #endregion
+
+
 
         //气密
         public const string P = "D2101";
@@ -172,6 +188,13 @@ namespace text.doors.Default
         public const string 正安全 = "M82";
         public const string 负安全 = "M83";
         #endregion
+
+
+
+
+
+
+
 
 
         private static int m_10_Min = 0;//M命令十进制最小值
