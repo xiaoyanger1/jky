@@ -1,5 +1,4 @@
-﻿using Jky.Public.Common;
-using SPIC200.Common;
+﻿using SPIC200.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Young.Core.Common;
 
 namespace SPIC_200
 {

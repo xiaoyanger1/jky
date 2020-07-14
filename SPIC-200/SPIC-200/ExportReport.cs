@@ -1,5 +1,4 @@
-﻿using Jky.Public.Common;
-using SPIC_200.DAL;
+﻿using SPIC_200.DAL;
 using SPIC_200.Model;
 using System;
 using System.Collections.Generic;
@@ -10,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Young.Core.Common;
 
 namespace SPIC_200
 {
     public partial class ExportReport : Form
     {
+        private static Young.Core.Logger.ILog Logger = Young.Core.Logger.LoggerManager.Current();
         public ExportReport()
         {
             InitializeComponent();
@@ -96,7 +97,7 @@ namespace SPIC_200
             }
             catch (Exception ex)
             {
-                Log.Error("ExportReport.Eexport", "message:" + ex.Message + "\r\nsource:" + ex.Source + "\r\nStackTrace:" + ex.StackTrace);
+                Logger.Error(ex);
             }
         }
 
@@ -150,11 +151,11 @@ namespace SPIC_200
             var az = "0";
             var xz = "0";
             var color = "0";
-            List<LightData> List_LightData_AZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_安装, Program._TTNum, ref  az);
+            List<LightData> List_LightData_AZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_安装, Program._TTNum, ref az);
 
-            List<LightData> List_LightData_XZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_卸载, Program._TTNum, ref  xz);
+            List<LightData> List_LightData_XZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_卸载, Program._TTNum, ref xz);
 
-            List<LightData> List_ColorData = new LightData().GetListData(TEST_TYPE.颜色投射指数检测, Program._SB_Count, ref  color);
+            List<LightData> List_ColorData = new LightData().GetListData(TEST_TYPE.颜色投射指数检测, Program._SB_Count, ref color);
 
             dc.Add("透光折减系数2", az);
             dc.Add("透光折减系数级数2", GetTG(double.Parse(az)).ToString());
@@ -211,7 +212,7 @@ namespace SPIC_200
             var az = "0";
             var xz = "0";
             var color = "0";
-            List<LightData> List_LightData_AZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_安装, Program._TTNum, ref  az);
+            List<LightData> List_LightData_AZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_安装, Program._TTNum, ref az);
             if (List_LightData_AZ != null && List_LightData_AZ.Count > 0)
             {
                 var data_1 = List_LightData_AZ.Find(t => t.Index == 1);
@@ -251,7 +252,7 @@ namespace SPIC_200
                 }
                 dc.Add("安装vga_4", az);
             }
-            List<LightData> List_LightData_XZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_卸载, Program._TTNum, ref  xz);
+            List<LightData> List_LightData_XZ = new LightData().GetListData(TEST_TYPE.透光投射指数检测_卸载, Program._TTNum, ref xz);
             if (List_LightData_XZ != null && List_LightData_XZ.Count > 0)
             {
                 var data_1 = List_LightData_XZ.Find(t => t.Index == 1);
@@ -291,7 +292,7 @@ namespace SPIC_200
                 }
                 dc.Add("卸载vga_4", xz);
             }
-            List<LightData> List_ColorData = new LightData().GetListData(TEST_TYPE.颜色投射指数检测, Program._SB_Count, ref  color);
+            List<LightData> List_ColorData = new LightData().GetListData(TEST_TYPE.颜色投射指数检测, Program._SB_Count, ref color);
             if (List_ColorData != null && List_ColorData.Count > 0)
             {
                 var data_1 = List_ColorData.Find(t => t.Index == 1);

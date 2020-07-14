@@ -1,5 +1,4 @@
-﻿using Jky.Public.Common;
-using SPIC_200.DAL;
+﻿using SPIC_200.DAL;
 using SPIC_200.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Young.Core.Common;
 
 namespace SPIC_200
 {

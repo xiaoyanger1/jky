@@ -18,9 +18,9 @@ namespace SPIC_200
         [STAThread]
         static void Main()
         {
-            RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
-            if (reg.MiStart_Infos() && reg.MiEnd_Infos())
-            {
+            //RegDLL.RegClass reg = new RegDLL.RegClass(System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetAssembly(typeof(Login)).Location).ToShortDateString());
+            //if (reg.MiStart_Infos() && reg.MiEnd_Infos())
+            //{
                 Process instance = RunningInstance();
                 if (instance == null)
                 {
@@ -37,11 +37,11 @@ namespace SPIC_200
                     // 已经有一个实例在运行
                     HandleRunningInstance(instance);
                 }
-            }
-            else
-            {
-                Application.Exit();
-            }
+            //}
+            //else
+            //{
+            //    Application.Exit();
+            //}
         }
 
         #region  确保程序只运行一个实例
