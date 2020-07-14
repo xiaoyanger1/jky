@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{355E7671-48CC-42F7-83AC-0637E4CFE2D3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPIC_200</RootNamespace>
+    <AssemblyName>SPIC-200</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>acroread.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RegDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RegDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.48.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\SPIC200BAPI.cs" />
+    <Compile Include="API\Z10API.cs" />
+    <Compile Include="CommList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommList.Designer.cs">
+      <DependentUpon>CommList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\SQLiteHelper.cs" />
+    <Compile Include="DAL\DAL_CommList.cs" />
+    <Compile Include="DAL\DAL_SPIC_TEST.cs" />
+    <Compile Include="DAL\DAL_SPIC_TEST_SET.cs" />
+    <Compile Include="ExportReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportReport.Designer.cs">
+      <DependentUpon>ExportReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LightData.cs" />
+    <Compile Include="Model\Model_SPIC_TEST.cs" />
+    <Compile Include="Model\Model_SPIC_TEST_SET.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleteData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeleteData.Designer.cs">
+      <DependentUpon>SeleteData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPIC_ABOUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SPIC_ABOUT.Designer.cs">
+      <DependentUpon>SPIC_ABOUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPIC_TEST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SPIC_TEST.Designer.cs">
+      <DependentUpon>SPIC_TEST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPIC_TEST_SET.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SPIC_TEST_SET.Designer.cs">
+      <DependentUpon>SPIC_TEST_SET.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_pwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sys_pwd.Designer.cs">
+      <DependentUpon>Sys_pwd.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CommList.resx">
+      <DependentUpon>CommList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportReport.resx">
+      <DependentUpon>ExportReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SeleteData.resx">
+      <DependentUpon>SeleteData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPIC_ABOUT.resx">
+      <DependentUpon>SPIC_ABOUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPIC_TEST.resx">
+      <DependentUpon>SPIC_TEST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPIC_TEST_SET.resx">
+      <DependentUpon>SPIC_TEST_SET.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sys_pwd.resx">
+      <DependentUpon>Sys_pwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about - 底板.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\建筑围护结构热工性能采集处理系统\Code\Jky.2.0.setup\Jky.2.0.setup\Jky.Public\Jky.Public.csproj">
+      <Project>{36ab4369-e7c3-465f-8727-6b3532c27c95}</Project>
+      <Name>Jky.Public</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="acroread.ico" />
+    <Content Include="ExZ10DLL.h" />
+    <Content Include="SPIC200B_EX.h" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
