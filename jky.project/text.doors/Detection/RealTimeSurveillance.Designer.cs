@@ -127,6 +127,12 @@
             this.gv_list = new System.Windows.Forms.Timer(this.components);
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
             this.tim_upNext = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tc_RealTimeSurveillance.SuspendLayout();
             this.page_airtight.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -156,9 +162,10 @@
             this.tc_RealTimeSurveillance.Controls.Add(this.page_watertight);
             this.tc_RealTimeSurveillance.ItemSize = new System.Drawing.Size(120, 26);
             this.tc_RealTimeSurveillance.Location = new System.Drawing.Point(0, 0);
+            this.tc_RealTimeSurveillance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tc_RealTimeSurveillance.Name = "tc_RealTimeSurveillance";
             this.tc_RealTimeSurveillance.SelectedIndex = 0;
-            this.tc_RealTimeSurveillance.Size = new System.Drawing.Size(1151, 621);
+            this.tc_RealTimeSurveillance.Size = new System.Drawing.Size(1726, 932);
             this.tc_RealTimeSurveillance.TabIndex = 0;
             this.tc_RealTimeSurveillance.SelectedIndexChanged += new System.EventHandler(this.tc_RealTimeSurveillance_SelectedIndexChanged);
             // 
@@ -174,18 +181,21 @@
             this.page_airtight.Controls.Add(this.groupBox3);
             this.page_airtight.Controls.Add(this.groupBox2);
             this.page_airtight.Location = new System.Drawing.Point(4, 30);
+            this.page_airtight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.page_airtight.Name = "page_airtight";
-            this.page_airtight.Padding = new System.Windows.Forms.Padding(3);
-            this.page_airtight.Size = new System.Drawing.Size(1143, 587);
+            this.page_airtight.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.page_airtight.Size = new System.Drawing.Size(1718, 898);
             this.page_airtight.TabIndex = 0;
             this.page_airtight.Text = "气密监控";
             // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.tChart_qm);
-            this.groupBox9.Location = new System.Drawing.Point(9, 122);
+            this.groupBox9.Location = new System.Drawing.Point(14, 183);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(853, 437);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox9.Size = new System.Drawing.Size(1280, 656);
             this.groupBox9.TabIndex = 20;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "检测";
@@ -204,7 +214,8 @@
             // 
             this.tChart_qm.Header.Lines = new string[] {
         "气密检测"};
-            this.tChart_qm.Location = new System.Drawing.Point(6, 50);
+            this.tChart_qm.Location = new System.Drawing.Point(9, 75);
+            this.tChart_qm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tChart_qm.Name = "tChart_qm";
             // 
             // 
@@ -221,21 +232,22 @@
             this.tChart_qm.Panel.MarginRight = 2D;
             this.tChart_qm.Panel.MarginTop = 0D;
             this.tChart_qm.Series.Add(this.qm_Line);
-            this.tChart_qm.Size = new System.Drawing.Size(832, 294);
+            this.tChart_qm.Size = new System.Drawing.Size(1248, 441);
             this.tChart_qm.TabIndex = 18;
             this.tChart_qm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tChart1_MouseDown);
             // 
             // chart_cms_click
             // 
+            this.chart_cms_click.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.chart_cms_click.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.导出图片ToolStripMenuItem});
             this.chart_cms_click.Name = "contextMenuStrip1";
-            this.chart_cms_click.Size = new System.Drawing.Size(125, 26);
+            this.chart_cms_click.Size = new System.Drawing.Size(153, 34);
             // 
             // 导出图片ToolStripMenuItem
             // 
             this.导出图片ToolStripMenuItem.Name = "导出图片ToolStripMenuItem";
-            this.导出图片ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导出图片ToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.导出图片ToolStripMenuItem.Text = "导出图片";
             this.导出图片ToolStripMenuItem.Click += new System.EventHandler(this.导出图片ToolStripMenuItem_Click);
             // 
@@ -280,9 +292,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1052, 526);
+            this.button1.Location = new System.Drawing.Point(1578, 789);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.Size = new System.Drawing.Size(112, 50);
             this.button1.TabIndex = 19;
             this.button1.Text = "退出";
             this.button1.UseVisualStyleBackColor = true;
@@ -295,9 +308,11 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.lbl_title);
-            this.groupBox1.Location = new System.Drawing.Point(9, 14);
+            this.groupBox1.Location = new System.Drawing.Point(14, 21);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(853, 82);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1280, 123);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "状态";
@@ -306,9 +321,10 @@
             // 
             this.lbl_dqyl.AutoSize = true;
             this.lbl_dqyl.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_dqyl.Location = new System.Drawing.Point(673, 46);
+            this.lbl_dqyl.Location = new System.Drawing.Point(1010, 69);
+            this.lbl_dqyl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_dqyl.Name = "lbl_dqyl";
-            this.lbl_dqyl.Size = new System.Drawing.Size(17, 16);
+            this.lbl_dqyl.Size = new System.Drawing.Size(23, 24);
             this.lbl_dqyl.TabIndex = 24;
             this.lbl_dqyl.Text = "0";
             // 
@@ -316,9 +332,10 @@
             // 
             this.lbl_setYL.AutoSize = true;
             this.lbl_setYL.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_setYL.Location = new System.Drawing.Point(672, 15);
+            this.lbl_setYL.Location = new System.Drawing.Point(1008, 22);
+            this.lbl_setYL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_setYL.Name = "lbl_setYL";
-            this.lbl_setYL.Size = new System.Drawing.Size(17, 16);
+            this.lbl_setYL.Size = new System.Drawing.Size(23, 24);
             this.lbl_setYL.TabIndex = 23;
             this.lbl_setYL.Text = "0";
             // 
@@ -326,9 +343,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(497, 46);
+            this.label7.Location = new System.Drawing.Point(746, 69);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 16);
+            this.label7.Size = new System.Drawing.Size(210, 24);
             this.label7.TabIndex = 22;
             this.label7.Text = "当前压力（帕）：";
             // 
@@ -336,9 +354,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(497, 14);
+            this.label6.Location = new System.Drawing.Point(746, 21);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 16);
+            this.label6.Size = new System.Drawing.Size(210, 24);
             this.label6.TabIndex = 21;
             this.label6.Text = "设定压力（帕）：";
             // 
@@ -346,9 +365,10 @@
             // 
             this.lbl_title.AutoSize = true;
             this.lbl_title.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_title.Location = new System.Drawing.Point(77, 36);
+            this.lbl_title.Location = new System.Drawing.Point(116, 54);
+            this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(257, 16);
+            this.lbl_title.Size = new System.Drawing.Size(375, 24);
             this.lbl_title.TabIndex = 20;
             this.lbl_title.Text = "门窗气密性能检测  第0号 第0樘";
             // 
@@ -356,20 +376,22 @@
             // 
             this.tabControl1.Controls.Add(this.风速原始数据);
             this.tabControl1.Controls.Add(this.流量原始数据);
-            this.tabControl1.Location = new System.Drawing.Point(868, 7);
+            this.tabControl1.Location = new System.Drawing.Point(1302, 10);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(273, 202);
+            this.tabControl1.Size = new System.Drawing.Size(410, 303);
             this.tabControl1.TabIndex = 16;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // 风速原始数据
             // 
             this.风速原始数据.Controls.Add(this.dgv_WindSpeed);
-            this.风速原始数据.Location = new System.Drawing.Point(4, 22);
+            this.风速原始数据.Location = new System.Drawing.Point(4, 28);
+            this.风速原始数据.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.风速原始数据.Name = "风速原始数据";
-            this.风速原始数据.Padding = new System.Windows.Forms.Padding(3);
-            this.风速原始数据.Size = new System.Drawing.Size(265, 176);
+            this.风速原始数据.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.风速原始数据.Size = new System.Drawing.Size(402, 271);
             this.风速原始数据.TabIndex = 0;
             this.风速原始数据.Text = "风速原始数据(m/s)";
             this.风速原始数据.UseVisualStyleBackColor = true;
@@ -379,19 +401,22 @@
             this.dgv_WindSpeed.AllowUserToResizeColumns = false;
             this.dgv_WindSpeed.AllowUserToResizeRows = false;
             this.dgv_WindSpeed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_WindSpeed.Location = new System.Drawing.Point(3, 5);
+            this.dgv_WindSpeed.Location = new System.Drawing.Point(4, 8);
+            this.dgv_WindSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_WindSpeed.Name = "dgv_WindSpeed";
+            this.dgv_WindSpeed.RowHeadersWidth = 62;
             this.dgv_WindSpeed.RowTemplate.Height = 23;
-            this.dgv_WindSpeed.Size = new System.Drawing.Size(260, 165);
+            this.dgv_WindSpeed.Size = new System.Drawing.Size(390, 248);
             this.dgv_WindSpeed.TabIndex = 0;
             // 
             // 流量原始数据
             // 
             this.流量原始数据.Controls.Add(this.dgv_ll);
-            this.流量原始数据.Location = new System.Drawing.Point(4, 22);
+            this.流量原始数据.Location = new System.Drawing.Point(4, 28);
+            this.流量原始数据.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.流量原始数据.Name = "流量原始数据";
-            this.流量原始数据.Padding = new System.Windows.Forms.Padding(3);
-            this.流量原始数据.Size = new System.Drawing.Size(265, 176);
+            this.流量原始数据.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.流量原始数据.Size = new System.Drawing.Size(402, 271);
             this.流量原始数据.TabIndex = 1;
             this.流量原始数据.Text = "流量原始数据(m3/h)";
             this.流量原始数据.UseVisualStyleBackColor = true;
@@ -399,17 +424,20 @@
             // dgv_ll
             // 
             this.dgv_ll.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ll.Location = new System.Drawing.Point(4, 5);
+            this.dgv_ll.Location = new System.Drawing.Point(6, 8);
+            this.dgv_ll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_ll.Name = "dgv_ll";
+            this.dgv_ll.RowHeadersWidth = 62;
             this.dgv_ll.RowTemplate.Height = 23;
-            this.dgv_ll.Size = new System.Drawing.Size(260, 165);
+            this.dgv_ll.Size = new System.Drawing.Size(390, 248);
             this.dgv_ll.TabIndex = 0;
             // 
             // btn_sjcl
             // 
-            this.btn_sjcl.Location = new System.Drawing.Point(865, 526);
+            this.btn_sjcl.Location = new System.Drawing.Point(1298, 789);
+            this.btn_sjcl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_sjcl.Name = "btn_sjcl";
-            this.btn_sjcl.Size = new System.Drawing.Size(82, 33);
+            this.btn_sjcl.Size = new System.Drawing.Size(123, 50);
             this.btn_sjcl.TabIndex = 14;
             this.btn_sjcl.Text = "数据处理";
             this.btn_sjcl.UseVisualStyleBackColor = true;
@@ -417,9 +445,10 @@
             // 
             // btn_tc
             // 
-            this.btn_tc.Location = new System.Drawing.Point(961, 526);
+            this.btn_tc.Location = new System.Drawing.Point(1442, 789);
+            this.btn_tc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_tc.Name = "btn_tc";
-            this.btn_tc.Size = new System.Drawing.Size(83, 33);
+            this.btn_tc.Size = new System.Drawing.Size(124, 50);
             this.btn_tc.TabIndex = 12;
             this.btn_tc.Text = "停止";
             this.btn_tc.UseVisualStyleBackColor = true;
@@ -433,9 +462,11 @@
             this.groupBox3.Controls.Add(this.btn_fyyb);
             this.groupBox3.Controls.Add(this.btn_zyyb);
             this.groupBox3.Controls.Add(this.rdb_fjstl);
-            this.groupBox3.Location = new System.Drawing.Point(865, 352);
+            this.groupBox3.Location = new System.Drawing.Point(1298, 528);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(272, 142);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(408, 213);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "监控";
@@ -444,9 +475,10 @@
             // 
             this.rdb_zdstl.AutoSize = true;
             this.rdb_zdstl.Checked = true;
-            this.rdb_zdstl.Location = new System.Drawing.Point(160, 20);
+            this.rdb_zdstl.Location = new System.Drawing.Point(240, 30);
+            this.rdb_zdstl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdb_zdstl.Name = "rdb_zdstl";
-            this.rdb_zdstl.Size = new System.Drawing.Size(83, 16);
+            this.rdb_zdstl.Size = new System.Drawing.Size(123, 22);
             this.rdb_zdstl.TabIndex = 0;
             this.rdb_zdstl.TabStop = true;
             this.rdb_zdstl.Tag = "stl";
@@ -455,9 +487,10 @@
             // 
             // btn_fyks
             // 
-            this.btn_fyks.Location = new System.Drawing.Point(148, 88);
+            this.btn_fyks.Location = new System.Drawing.Point(222, 132);
+            this.btn_fyks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_fyks.Name = "btn_fyks";
-            this.btn_fyks.Size = new System.Drawing.Size(95, 41);
+            this.btn_fyks.Size = new System.Drawing.Size(142, 62);
             this.btn_fyks.TabIndex = 4;
             this.btn_fyks.Text = "负压开始";
             this.btn_fyks.UseVisualStyleBackColor = true;
@@ -465,9 +498,10 @@
             // 
             // btn_zyks
             // 
-            this.btn_zyks.Location = new System.Drawing.Point(38, 89);
+            this.btn_zyks.Location = new System.Drawing.Point(57, 134);
+            this.btn_zyks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_zyks.Name = "btn_zyks";
-            this.btn_zyks.Size = new System.Drawing.Size(95, 41);
+            this.btn_zyks.Size = new System.Drawing.Size(142, 62);
             this.btn_zyks.TabIndex = 4;
             this.btn_zyks.Text = "正压开始";
             this.btn_zyks.UseVisualStyleBackColor = true;
@@ -475,9 +509,10 @@
             // 
             // btn_fyyb
             // 
-            this.btn_fyyb.Location = new System.Drawing.Point(148, 42);
+            this.btn_fyyb.Location = new System.Drawing.Point(222, 63);
+            this.btn_fyyb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_fyyb.Name = "btn_fyyb";
-            this.btn_fyyb.Size = new System.Drawing.Size(95, 41);
+            this.btn_fyyb.Size = new System.Drawing.Size(142, 62);
             this.btn_fyyb.TabIndex = 4;
             this.btn_fyyb.Text = "负压预备 150Pa";
             this.btn_fyyb.UseVisualStyleBackColor = true;
@@ -485,9 +520,10 @@
             // 
             // btn_zyyb
             // 
-            this.btn_zyyb.Location = new System.Drawing.Point(38, 43);
+            this.btn_zyyb.Location = new System.Drawing.Point(57, 64);
+            this.btn_zyyb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_zyyb.Name = "btn_zyyb";
-            this.btn_zyyb.Size = new System.Drawing.Size(95, 41);
+            this.btn_zyyb.Size = new System.Drawing.Size(142, 62);
             this.btn_zyyb.TabIndex = 4;
             this.btn_zyyb.Text = "正压预备 150Pa";
             this.btn_zyyb.UseVisualStyleBackColor = true;
@@ -496,9 +532,10 @@
             // rdb_fjstl
             // 
             this.rdb_fjstl.AutoSize = true;
-            this.rdb_fjstl.Location = new System.Drawing.Point(38, 21);
+            this.rdb_fjstl.Location = new System.Drawing.Point(57, 32);
+            this.rdb_fjstl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdb_fjstl.Name = "rdb_fjstl";
-            this.rdb_fjstl.Size = new System.Drawing.Size(83, 16);
+            this.rdb_fjstl.Size = new System.Drawing.Size(123, 22);
             this.rdb_fjstl.TabIndex = 0;
             this.rdb_fjstl.Tag = "stl";
             this.rdb_fjstl.Text = "附加渗透量";
@@ -508,9 +545,11 @@
             // 
             this.groupBox2.Controls.Add(this.dgv_levelIndex);
             this.groupBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(865, 222);
+            this.groupBox2.Location = new System.Drawing.Point(1298, 333);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(275, 112);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(412, 168);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "分级指标";
@@ -518,10 +557,12 @@
             // dgv_levelIndex
             // 
             this.dgv_levelIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_levelIndex.Location = new System.Drawing.Point(10, 20);
+            this.dgv_levelIndex.Location = new System.Drawing.Point(15, 30);
+            this.dgv_levelIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_levelIndex.Name = "dgv_levelIndex";
+            this.dgv_levelIndex.RowHeadersWidth = 62;
             this.dgv_levelIndex.RowTemplate.Height = 23;
-            this.dgv_levelIndex.Size = new System.Drawing.Size(259, 86);
+            this.dgv_levelIndex.Size = new System.Drawing.Size(388, 129);
             this.dgv_levelIndex.TabIndex = 0;
             // 
             // page_watertight
@@ -534,9 +575,10 @@
             this.page_watertight.Controls.Add(this.groupBox6);
             this.page_watertight.Controls.Add(this.groupBox7);
             this.page_watertight.Location = new System.Drawing.Point(4, 30);
+            this.page_watertight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.page_watertight.Name = "page_watertight";
-            this.page_watertight.Padding = new System.Windows.Forms.Padding(3);
-            this.page_watertight.Size = new System.Drawing.Size(1143, 587);
+            this.page_watertight.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.page_watertight.Size = new System.Drawing.Size(1718, 898);
             this.page_watertight.TabIndex = 1;
             this.page_watertight.Text = "水密监控";
             // 
@@ -547,9 +589,11 @@
             this.groupBox10.Controls.Add(this.label19);
             this.groupBox10.Controls.Add(this.label20);
             this.groupBox10.Controls.Add(this.lbl_smjc);
-            this.groupBox10.Location = new System.Drawing.Point(8, 18);
+            this.groupBox10.Location = new System.Drawing.Point(12, 27);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(853, 75);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox10.Size = new System.Drawing.Size(1280, 112);
             this.groupBox10.TabIndex = 18;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "状态";
@@ -558,9 +602,10 @@
             // 
             this.lbldqyl.AutoSize = true;
             this.lbldqyl.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbldqyl.Location = new System.Drawing.Point(704, 47);
+            this.lbldqyl.Location = new System.Drawing.Point(1056, 70);
+            this.lbldqyl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbldqyl.Name = "lbldqyl";
-            this.lbldqyl.Size = new System.Drawing.Size(17, 16);
+            this.lbldqyl.Size = new System.Drawing.Size(23, 24);
             this.lbldqyl.TabIndex = 29;
             this.lbldqyl.Text = "0";
             // 
@@ -568,9 +613,10 @@
             // 
             this.lbl_sdyl.AutoSize = true;
             this.lbl_sdyl.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_sdyl.Location = new System.Drawing.Point(703, 16);
+            this.lbl_sdyl.Location = new System.Drawing.Point(1054, 24);
+            this.lbl_sdyl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_sdyl.Name = "lbl_sdyl";
-            this.lbl_sdyl.Size = new System.Drawing.Size(17, 16);
+            this.lbl_sdyl.Size = new System.Drawing.Size(23, 24);
             this.lbl_sdyl.TabIndex = 28;
             this.lbl_sdyl.Text = "0";
             // 
@@ -578,9 +624,10 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(528, 47);
+            this.label19.Location = new System.Drawing.Point(792, 70);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(144, 16);
+            this.label19.Size = new System.Drawing.Size(210, 24);
             this.label19.TabIndex = 27;
             this.label19.Text = "当前压力（帕）：";
             // 
@@ -588,9 +635,10 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(528, 15);
+            this.label20.Location = new System.Drawing.Point(792, 22);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(144, 16);
+            this.label20.Size = new System.Drawing.Size(210, 24);
             this.label20.TabIndex = 26;
             this.label20.Text = "设定压力（帕）：";
             // 
@@ -598,18 +646,21 @@
             // 
             this.lbl_smjc.AutoSize = true;
             this.lbl_smjc.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_smjc.Location = new System.Drawing.Point(77, 34);
+            this.lbl_smjc.Location = new System.Drawing.Point(116, 51);
+            this.lbl_smjc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_smjc.Name = "lbl_smjc";
-            this.lbl_smjc.Size = new System.Drawing.Size(257, 16);
+            this.lbl_smjc.Size = new System.Drawing.Size(375, 24);
             this.lbl_smjc.TabIndex = 25;
             this.lbl_smjc.Text = "门窗水密性能检测  第0号 第0樘";
             // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.tChart_sm);
-            this.groupBox8.Location = new System.Drawing.Point(8, 99);
+            this.groupBox8.Location = new System.Drawing.Point(12, 148);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(853, 473);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Size = new System.Drawing.Size(1280, 714);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "监控";
@@ -689,7 +740,8 @@
             // 
             // 
             this.tChart_sm.Legend.Visible = false;
-            this.tChart_sm.Location = new System.Drawing.Point(7, 21);
+            this.tChart_sm.Location = new System.Drawing.Point(10, 32);
+            this.tChart_sm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tChart_sm.Name = "tChart_sm";
             // 
             // 
@@ -703,21 +755,22 @@
             this.tChart_sm.Panel.MarginRight = 2D;
             this.tChart_sm.Panel.MarginTop = 0D;
             this.tChart_sm.Series.Add(this.sm_Line);
-            this.tChart_sm.Size = new System.Drawing.Size(840, 420);
+            this.tChart_sm.Size = new System.Drawing.Size(1260, 630);
             this.tChart_sm.TabIndex = 0;
             this.tChart_sm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tChart_sm_MouseDown);
             // 
             // chart_cms_sm_click
             // 
+            this.chart_cms_sm_click.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.chart_cms_sm_click.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.chart_cms_sm_click.Name = "chart_cms_sm_click";
-            this.chart_cms_sm_click.Size = new System.Drawing.Size(125, 26);
+            this.chart_cms_sm_click.Size = new System.Drawing.Size(153, 34);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 30);
             this.toolStripMenuItem1.Text = "导出图片";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -764,9 +817,11 @@
             this.groupBox4.Controls.Add(this.btn_ks);
             this.groupBox4.Controls.Add(this.btn_yb);
             this.groupBox4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(867, 516);
+            this.groupBox4.Location = new System.Drawing.Point(1300, 784);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(270, 52);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Size = new System.Drawing.Size(405, 78);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "国标检测";
@@ -774,9 +829,10 @@
             // btn_2tc
             // 
             this.btn_2tc.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_2tc.Location = new System.Drawing.Point(202, 20);
+            this.btn_2tc.Location = new System.Drawing.Point(303, 30);
+            this.btn_2tc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_2tc.Name = "btn_2tc";
-            this.btn_2tc.Size = new System.Drawing.Size(50, 23);
+            this.btn_2tc.Size = new System.Drawing.Size(75, 34);
             this.btn_2tc.TabIndex = 3;
             this.btn_2tc.Text = "停止";
             this.btn_2tc.UseVisualStyleBackColor = true;
@@ -785,9 +841,10 @@
             // btn_xyj
             // 
             this.btn_xyj.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_xyj.Location = new System.Drawing.Point(129, 20);
+            this.btn_xyj.Location = new System.Drawing.Point(194, 30);
+            this.btn_xyj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_xyj.Name = "btn_xyj";
-            this.btn_xyj.Size = new System.Drawing.Size(67, 23);
+            this.btn_xyj.Size = new System.Drawing.Size(100, 34);
             this.btn_xyj.TabIndex = 2;
             this.btn_xyj.Text = "做下一级";
             this.btn_xyj.UseVisualStyleBackColor = true;
@@ -796,9 +853,10 @@
             // btn_ks
             // 
             this.btn_ks.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ks.Location = new System.Drawing.Point(73, 21);
+            this.btn_ks.Location = new System.Drawing.Point(110, 32);
+            this.btn_ks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ks.Name = "btn_ks";
-            this.btn_ks.Size = new System.Drawing.Size(50, 23);
+            this.btn_ks.Size = new System.Drawing.Size(75, 34);
             this.btn_ks.TabIndex = 1;
             this.btn_ks.Text = "开始";
             this.btn_ks.UseVisualStyleBackColor = true;
@@ -807,9 +865,10 @@
             // btn_yb
             // 
             this.btn_yb.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_yb.Location = new System.Drawing.Point(17, 21);
+            this.btn_yb.Location = new System.Drawing.Point(26, 32);
+            this.btn_yb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_yb.Name = "btn_yb";
-            this.btn_yb.Size = new System.Drawing.Size(50, 23);
+            this.btn_yb.Size = new System.Drawing.Size(75, 34);
             this.btn_yb.TabIndex = 0;
             this.btn_yb.Text = "预备";
             this.btn_yb.UseVisualStyleBackColor = true;
@@ -817,13 +876,21 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Controls.Add(this.button2);
+            this.groupBox5.Controls.Add(this.label18);
+            this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.btn_ycjy);
             this.groupBox5.Controls.Add(this.txt_ycjy);
             this.groupBox5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox5.Location = new System.Drawing.Point(867, 464);
+            this.groupBox5.Location = new System.Drawing.Point(1300, 662);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(270, 43);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Size = new System.Drawing.Size(405, 114);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "工程检测";
@@ -831,18 +898,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 20);
+            this.label1.Location = new System.Drawing.Point(97, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 12);
+            this.label1.Size = new System.Drawing.Size(28, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Pa";
             // 
             // btn_ycjy
             // 
             this.btn_ycjy.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ycjy.Location = new System.Drawing.Point(190, 14);
+            this.btn_ycjy.Location = new System.Drawing.Point(9, 69);
+            this.btn_ycjy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ycjy.Name = "btn_ycjy";
-            this.btn_ycjy.Size = new System.Drawing.Size(74, 23);
+            this.btn_ycjy.Size = new System.Drawing.Size(92, 34);
             this.btn_ycjy.TabIndex = 2;
             this.btn_ycjy.Text = "依次加压";
             this.btn_ycjy.UseVisualStyleBackColor = true;
@@ -850,27 +919,31 @@
             // 
             // txt_ycjy
             // 
-            this.txt_ycjy.Location = new System.Drawing.Point(56, 16);
+            this.txt_ycjy.Location = new System.Drawing.Point(12, 29);
+            this.txt_ycjy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_ycjy.Name = "txt_ycjy";
-            this.txt_ycjy.Size = new System.Drawing.Size(52, 21);
+            this.txt_ycjy.Size = new System.Drawing.Size(76, 28);
             this.txt_ycjy.TabIndex = 0;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txt_desc);
-            this.groupBox6.Location = new System.Drawing.Point(867, 346);
+            this.groupBox6.Location = new System.Drawing.Point(1300, 519);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(270, 104);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Size = new System.Drawing.Size(405, 135);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "水密实验备注";
             // 
             // txt_desc
             // 
-            this.txt_desc.Location = new System.Drawing.Point(6, 20);
+            this.txt_desc.Location = new System.Drawing.Point(9, 30);
+            this.txt_desc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_desc.Multiline = true;
             this.txt_desc.Name = "txt_desc";
-            this.txt_desc.Size = new System.Drawing.Size(258, 78);
+            this.txt_desc.Size = new System.Drawing.Size(385, 86);
             this.txt_desc.TabIndex = 1;
             // 
             // groupBox7
@@ -913,9 +986,11 @@
             this.groupBox7.Controls.Add(this.btn_2sjcl);
             this.groupBox7.Controls.Add(this.txt_zgfy);
             this.groupBox7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox7.Location = new System.Drawing.Point(867, 6);
+            this.groupBox7.Location = new System.Drawing.Point(1300, 9);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(270, 334);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Size = new System.Drawing.Size(405, 501);
             this.groupBox7.TabIndex = 5;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "检测记录";
@@ -923,99 +998,110 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 50);
+            this.label12.Location = new System.Drawing.Point(4, 75);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 12);
+            this.label12.Size = new System.Drawing.Size(68, 18);
             this.label12.TabIndex = 66;
             this.label12.Text = "100 Pa";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 271);
+            this.label10.Location = new System.Drawing.Point(4, 406);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 12);
+            this.label10.Size = new System.Drawing.Size(68, 18);
             this.label10.TabIndex = 65;
             this.label10.Text = "700 Pa";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 245);
+            this.label9.Location = new System.Drawing.Point(4, 368);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 12);
+            this.label9.Size = new System.Drawing.Size(68, 18);
             this.label9.TabIndex = 64;
             this.label9.Text = "600 Pa";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 220);
+            this.label8.Location = new System.Drawing.Point(4, 330);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 12);
+            this.label8.Size = new System.Drawing.Size(68, 18);
             this.label8.TabIndex = 63;
             this.label8.Text = "500 Pa";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 194);
+            this.label4.Location = new System.Drawing.Point(4, 291);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.Size = new System.Drawing.Size(68, 18);
             this.label4.TabIndex = 62;
             this.label4.Text = "400 Pa";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 170);
+            this.label11.Location = new System.Drawing.Point(4, 255);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(47, 12);
+            this.label11.Size = new System.Drawing.Size(68, 18);
             this.label11.TabIndex = 61;
             this.label11.Text = "350 Pa";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 145);
+            this.label13.Location = new System.Drawing.Point(4, 218);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 12);
+            this.label13.Size = new System.Drawing.Size(68, 18);
             this.label13.TabIndex = 60;
             this.label13.Text = "300 Pa";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 121);
+            this.label14.Location = new System.Drawing.Point(4, 182);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 12);
+            this.label14.Size = new System.Drawing.Size(68, 18);
             this.label14.TabIndex = 59;
             this.label14.Text = "250 Pa";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 97);
+            this.label15.Location = new System.Drawing.Point(4, 146);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(47, 12);
+            this.label15.Size = new System.Drawing.Size(68, 18);
             this.label15.TabIndex = 58;
             this.label15.Text = "200 Pa";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(3, 70);
+            this.label16.Location = new System.Drawing.Point(4, 105);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 12);
+            this.label16.Size = new System.Drawing.Size(68, 18);
             this.label16.TabIndex = 57;
             this.label16.Text = "150 Pa";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(14, 26);
+            this.label17.Location = new System.Drawing.Point(21, 39);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(33, 12);
+            this.label17.Size = new System.Drawing.Size(48, 18);
             this.label17.TabIndex = 56;
             this.label17.Text = "0 Pa";
             // 
@@ -1030,9 +1116,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_100Pa.Location = new System.Drawing.Point(146, 48);
+            this.cbb_2_100Pa.Location = new System.Drawing.Point(219, 72);
+            this.cbb_2_100Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_100Pa.Name = "cbb_2_100Pa";
-            this.cbb_2_100Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_100Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_100Pa.TabIndex = 55;
             this.cbb_2_100Pa.Tag = "100";
             this.cbb_2_100Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_100Pa_SelectedIndexChanged);
@@ -1048,9 +1135,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_150Pa.Location = new System.Drawing.Point(146, 71);
+            this.cbb_2_150Pa.Location = new System.Drawing.Point(219, 106);
+            this.cbb_2_150Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_150Pa.Name = "cbb_2_150Pa";
-            this.cbb_2_150Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_150Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_150Pa.TabIndex = 54;
             this.cbb_2_150Pa.Tag = "150";
             this.cbb_2_150Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_150Pa_SelectedIndexChanged);
@@ -1066,9 +1154,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_200Pa.Location = new System.Drawing.Point(146, 95);
+            this.cbb_2_200Pa.Location = new System.Drawing.Point(219, 142);
+            this.cbb_2_200Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_200Pa.Name = "cbb_2_200Pa";
-            this.cbb_2_200Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_200Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_200Pa.TabIndex = 53;
             this.cbb_2_200Pa.Tag = "200";
             this.cbb_2_200Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_200Pa_SelectedIndexChanged);
@@ -1084,9 +1173,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_250Pa.Location = new System.Drawing.Point(146, 119);
+            this.cbb_2_250Pa.Location = new System.Drawing.Point(219, 178);
+            this.cbb_2_250Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_250Pa.Name = "cbb_2_250Pa";
-            this.cbb_2_250Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_250Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_250Pa.TabIndex = 52;
             this.cbb_2_250Pa.Tag = "250";
             this.cbb_2_250Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_250Pa_SelectedIndexChanged);
@@ -1102,9 +1192,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_300Pa.Location = new System.Drawing.Point(146, 143);
+            this.cbb_2_300Pa.Location = new System.Drawing.Point(219, 214);
+            this.cbb_2_300Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_300Pa.Name = "cbb_2_300Pa";
-            this.cbb_2_300Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_300Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_300Pa.TabIndex = 51;
             this.cbb_2_300Pa.Tag = "300";
             this.cbb_2_300Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_300Pa_SelectedIndexChanged);
@@ -1120,9 +1211,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_350Pa.Location = new System.Drawing.Point(146, 168);
+            this.cbb_2_350Pa.Location = new System.Drawing.Point(219, 252);
+            this.cbb_2_350Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_350Pa.Name = "cbb_2_350Pa";
-            this.cbb_2_350Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_350Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_350Pa.TabIndex = 50;
             this.cbb_2_350Pa.Tag = "350";
             this.cbb_2_350Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_350Pa_SelectedIndexChanged);
@@ -1138,9 +1230,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_400Pa.Location = new System.Drawing.Point(146, 193);
+            this.cbb_2_400Pa.Location = new System.Drawing.Point(219, 290);
+            this.cbb_2_400Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_400Pa.Name = "cbb_2_400Pa";
-            this.cbb_2_400Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_400Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_400Pa.TabIndex = 49;
             this.cbb_2_400Pa.Tag = "400";
             this.cbb_2_400Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_400Pa_SelectedIndexChanged);
@@ -1156,9 +1249,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_500Pa.Location = new System.Drawing.Point(146, 218);
+            this.cbb_2_500Pa.Location = new System.Drawing.Point(219, 327);
+            this.cbb_2_500Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_500Pa.Name = "cbb_2_500Pa";
-            this.cbb_2_500Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_500Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_500Pa.TabIndex = 48;
             this.cbb_2_500Pa.Tag = "500";
             this.cbb_2_500Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_500Pa_SelectedIndexChanged);
@@ -1174,9 +1268,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_600Pa.Location = new System.Drawing.Point(146, 243);
+            this.cbb_2_600Pa.Location = new System.Drawing.Point(219, 364);
+            this.cbb_2_600Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_600Pa.Name = "cbb_2_600Pa";
-            this.cbb_2_600Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_600Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_600Pa.TabIndex = 47;
             this.cbb_2_600Pa.Tag = "600";
             this.cbb_2_600Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_600Pa_SelectedIndexChanged);
@@ -1192,9 +1287,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_700Pa.Location = new System.Drawing.Point(146, 269);
+            this.cbb_2_700Pa.Location = new System.Drawing.Point(219, 404);
+            this.cbb_2_700Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_700Pa.Name = "cbb_2_700Pa";
-            this.cbb_2_700Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_700Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_700Pa.TabIndex = 46;
             this.cbb_2_700Pa.Tag = "700";
             this.cbb_2_700Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_700Pa_SelectedIndexChanged);
@@ -1218,9 +1314,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_0Pa.Location = new System.Drawing.Point(51, 23);
+            this.cbb_1_0Pa.Location = new System.Drawing.Point(76, 34);
+            this.cbb_1_0Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_0Pa.Name = "cbb_1_0Pa";
-            this.cbb_1_0Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_0Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_0Pa.TabIndex = 45;
             this.cbb_1_0Pa.Tag = "0";
             // 
@@ -1243,9 +1340,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_100Pa.Location = new System.Drawing.Point(51, 47);
+            this.cbb_1_100Pa.Location = new System.Drawing.Point(76, 70);
+            this.cbb_1_100Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_100Pa.Name = "cbb_1_100Pa";
-            this.cbb_1_100Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_100Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_100Pa.TabIndex = 44;
             this.cbb_1_100Pa.Tag = "100";
             // 
@@ -1268,9 +1366,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_150Pa.Location = new System.Drawing.Point(51, 70);
+            this.cbb_1_150Pa.Location = new System.Drawing.Point(76, 105);
+            this.cbb_1_150Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_150Pa.Name = "cbb_1_150Pa";
-            this.cbb_1_150Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_150Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_150Pa.TabIndex = 43;
             this.cbb_1_150Pa.Tag = "150";
             // 
@@ -1293,9 +1392,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_200Pa.Location = new System.Drawing.Point(51, 94);
+            this.cbb_1_200Pa.Location = new System.Drawing.Point(76, 141);
+            this.cbb_1_200Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_200Pa.Name = "cbb_1_200Pa";
-            this.cbb_1_200Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_200Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_200Pa.TabIndex = 42;
             this.cbb_1_200Pa.Tag = "200";
             // 
@@ -1310,9 +1410,10 @@
             "△局部少量喷溅",
             "▲喷溅出窗试件界面",
             "●水溢出窗试件界面"});
-            this.cbb_2_0Pa.Location = new System.Drawing.Point(146, 24);
+            this.cbb_2_0Pa.Location = new System.Drawing.Point(219, 36);
+            this.cbb_2_0Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_2_0Pa.Name = "cbb_2_0Pa";
-            this.cbb_2_0Pa.Size = new System.Drawing.Size(121, 20);
+            this.cbb_2_0Pa.Size = new System.Drawing.Size(180, 26);
             this.cbb_2_0Pa.TabIndex = 41;
             this.cbb_2_0Pa.Tag = "0";
             this.cbb_2_0Pa.SelectedIndexChanged += new System.EventHandler(this.cbb_2_0Pa_SelectedIndexChanged);
@@ -1336,9 +1437,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_250Pa.Location = new System.Drawing.Point(51, 118);
+            this.cbb_1_250Pa.Location = new System.Drawing.Point(76, 177);
+            this.cbb_1_250Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_250Pa.Name = "cbb_1_250Pa";
-            this.cbb_1_250Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_250Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_250Pa.TabIndex = 40;
             this.cbb_1_250Pa.Tag = "250";
             // 
@@ -1361,9 +1463,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_300Pa.Location = new System.Drawing.Point(51, 142);
+            this.cbb_1_300Pa.Location = new System.Drawing.Point(76, 213);
+            this.cbb_1_300Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_300Pa.Name = "cbb_1_300Pa";
-            this.cbb_1_300Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_300Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_300Pa.TabIndex = 39;
             this.cbb_1_300Pa.Tag = "300";
             // 
@@ -1386,9 +1489,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_350Pa.Location = new System.Drawing.Point(51, 167);
+            this.cbb_1_350Pa.Location = new System.Drawing.Point(76, 250);
+            this.cbb_1_350Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_350Pa.Name = "cbb_1_350Pa";
-            this.cbb_1_350Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_350Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_350Pa.TabIndex = 38;
             this.cbb_1_350Pa.Tag = "350";
             // 
@@ -1411,9 +1515,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_400Pa.Location = new System.Drawing.Point(51, 192);
+            this.cbb_1_400Pa.Location = new System.Drawing.Point(76, 288);
+            this.cbb_1_400Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_400Pa.Name = "cbb_1_400Pa";
-            this.cbb_1_400Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_400Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_400Pa.TabIndex = 37;
             this.cbb_1_400Pa.Tag = "400";
             // 
@@ -1436,9 +1541,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_500Pa.Location = new System.Drawing.Point(51, 217);
+            this.cbb_1_500Pa.Location = new System.Drawing.Point(76, 326);
+            this.cbb_1_500Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_500Pa.Name = "cbb_1_500Pa";
-            this.cbb_1_500Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_500Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_500Pa.TabIndex = 36;
             this.cbb_1_500Pa.Tag = "500";
             // 
@@ -1461,9 +1567,10 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_600Pa.Location = new System.Drawing.Point(51, 242);
+            this.cbb_1_600Pa.Location = new System.Drawing.Point(76, 363);
+            this.cbb_1_600Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_600Pa.Name = "cbb_1_600Pa";
-            this.cbb_1_600Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_600Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_600Pa.TabIndex = 35;
             this.cbb_1_600Pa.Tag = "600";
             // 
@@ -1486,18 +1593,20 @@
             "铰链安装",
             "执手安装",
             "五金安装"});
-            this.cbb_1_700Pa.Location = new System.Drawing.Point(51, 268);
+            this.cbb_1_700Pa.Location = new System.Drawing.Point(76, 402);
+            this.cbb_1_700Pa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_1_700Pa.Name = "cbb_1_700Pa";
-            this.cbb_1_700Pa.Size = new System.Drawing.Size(93, 20);
+            this.cbb_1_700Pa.Size = new System.Drawing.Size(138, 26);
             this.cbb_1_700Pa.TabIndex = 34;
             this.cbb_1_700Pa.Tag = "700";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(176, 310);
+            this.label3.Location = new System.Drawing.Point(264, 465);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 12);
+            this.label3.Size = new System.Drawing.Size(28, 18);
             this.label3.TabIndex = 3;
             this.label3.Text = "Pa";
             // 
@@ -1505,18 +1614,20 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(6, 309);
+            this.label2.Location = new System.Drawing.Point(9, 464);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 12);
+            this.label2.Size = new System.Drawing.Size(188, 18);
             this.label2.TabIndex = 0;
             this.label2.Text = "本膛最高保持风压为：";
             // 
             // btn_2sjcl
             // 
             this.btn_2sjcl.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_2sjcl.Location = new System.Drawing.Point(197, 304);
+            this.btn_2sjcl.Location = new System.Drawing.Point(296, 456);
+            this.btn_2sjcl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_2sjcl.Name = "btn_2sjcl";
-            this.btn_2sjcl.Size = new System.Drawing.Size(67, 23);
+            this.btn_2sjcl.Size = new System.Drawing.Size(100, 34);
             this.btn_2sjcl.TabIndex = 2;
             this.btn_2sjcl.Text = "数据处理";
             this.btn_2sjcl.UseVisualStyleBackColor = true;
@@ -1524,9 +1635,10 @@
             // 
             // txt_zgfy
             // 
-            this.txt_zgfy.Location = new System.Drawing.Point(132, 304);
+            this.txt_zgfy.Location = new System.Drawing.Point(198, 456);
+            this.txt_zgfy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_zgfy.Name = "txt_zgfy";
-            this.txt_zgfy.Size = new System.Drawing.Size(42, 21);
+            this.txt_zgfy.Size = new System.Drawing.Size(61, 28);
             this.txt_zgfy.TabIndex = 0;
             this.txt_zgfy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_zgfy_KeyPress);
             // 
@@ -1561,13 +1673,70 @@
             this.tim_upNext.Interval = 2000;
             this.tim_upNext.Tick += new System.EventHandler(this.tim_upNext_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(126, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 18);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "上限压力：";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(126, 81);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(98, 18);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "下限压力：";
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.Location = new System.Drawing.Point(294, 28);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 29);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "开始波动";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.Location = new System.Drawing.Point(295, 75);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 29);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "停止波动";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(216, 28);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(76, 28);
+            this.textBox1.TabIndex = 6;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(216, 76);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(76, 28);
+            this.textBox2.TabIndex = 7;
+            // 
             // RealTimeSurveillance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 628);
+            this.ClientSize = new System.Drawing.Size(1730, 942);
             this.Controls.Add(this.tc_RealTimeSurveillance);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "RealTimeSurveillance";
             this.Text = "RealTimeSurveillance";
             this.tc_RealTimeSurveillance.ResumeLayout(false);
@@ -1700,5 +1869,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
