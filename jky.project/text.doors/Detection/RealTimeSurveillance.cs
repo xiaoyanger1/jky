@@ -172,7 +172,7 @@ namespace text.doors.Detection
         private void BindWindSpeedBase()
         {
             //todo
-           // Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
+            // Model_dt_Settings dt_Settings = new DAL_dt_Settings().Getdt_SettingsResByCode(_tempCode);
             Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
             if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
@@ -524,7 +524,7 @@ namespace text.doors.Detection
                 if (!IsSeccess)
                 {
                     //todo
-                   // MessageBox.Show("获取差压异常--画图！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    // MessageBox.Show("获取差压异常--画图！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
 
@@ -548,7 +548,7 @@ namespace text.doors.Detection
             if (!IsSeccess)
             {
                 //todo
-              //  MessageBox.Show("获取差压异常--取前十！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                //  MessageBox.Show("获取差压异常--取前十！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -768,6 +768,16 @@ namespace text.doors.Detection
         private void Stop()
         {
             var res = _tcpClient.Stop();
+            if (!res)
+                MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
+        /// <summary>
+        /// 停止波动
+        /// </summary>
+        private void StopBoDong()
+        {
+            var res = _tcpClient.StopBoDong();
             if (!res)
                 MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
@@ -1257,6 +1267,7 @@ namespace text.doors.Detection
             BindFlowBase();
         }
 
+
         #region 水密性能检测按钮事件
         private void btn_yb_Click(object sender, EventArgs e)
         {
@@ -1279,9 +1290,7 @@ namespace text.doors.Detection
                 MessageBox.Show("水密预备异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 return;
             }
-
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Ready;
-
         }
 
         private void btn_ks_Click(object sender, EventArgs e)
@@ -1290,12 +1299,26 @@ namespace text.doors.Detection
             this.btn_xyj.Enabled = true;
             tim_upNext.Enabled = true;
             this.btn_yb.Enabled = false;
-            var res = _tcpClient.SendSMXKS();
-            if (!res)
-            {
-                MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-            }
 
+            //todo:增加波动
+            if (this.rdb_bdjy.Checked == true)
+            {
+                //波动加压
+                var res = _tcpClient.SendSMXKS_波动();
+                if (!res)
+                {
+                    MessageBox.Show("波动水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
+            else
+            {
+                //稳定加压
+                var res = _tcpClient.SendSMXKS();
+                if (!res)
+                {
+                    MessageBox.Show("稳定水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
         }
         /// <summary>
@@ -1314,7 +1337,6 @@ namespace text.doors.Detection
             if (!ycjyType)
             {
                 btn_ycjy.Text = "停止";
-
             }
             else
             {
@@ -1667,6 +1689,58 @@ namespace text.doors.Detection
             }
         }
         #endregion
+
+
+        /// <summary>
+        /// 开始波动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_ksbd_Click(object sender, EventArgs e)
+        {
+            int minValue = -1;
+            int maxValue = -1;
+
+            int.TryParse(txt_minValue.Text, out minValue);
+
+            int.TryParse(txt_minValue.Text, out maxValue);
+
+            if (minValue == -1 || maxValue == -1)
+            {
+                MessageBox.Show("上线-下线压力设置异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
+            this.btn_yb.Enabled = false;
+            this.btn_ks.Enabled = false;
+            this.btn_xyj.Enabled = false;
+
+            tim_upNext.Enabled = false;
+
+            var res = _tcpClient.SendBoDongksjy(maxValue, minValue);
+            if (!res)
+            {
+                MessageBox.Show("水密波动开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            }
+
+            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
+        }
+
+        /// <summary>
+        /// 停止波动按钮【波动】
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_tzbd_Click(object sender, EventArgs e)
+        {
+            lbl_sdyl.Text = "0";
+            StopBoDong();
+            this.btn_yb.Enabled = true;
+            this.btn_ks.Enabled = true;
+            this.btn_xyj.Enabled = true;
+
+            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+        }
 
         private void tChart_sm_MouseDown(object sender, MouseEventArgs e)
         {

@@ -123,11 +123,11 @@ namespace text.doors.Default
 
         #region  波动加压
 
-        public const string 波动加压切换 = "M47";
+        public const string 国标检测波动加压开始 = "M47";
         public const string 上限压力设定 = "D350";
         public const string 下限压力设定 = "D354";
-        public const string 开始波动 = "M48";
-        public const string 停止加压 = "M49";
+        public const string 工程检测水密性波动开始 = "M48";
+        public const string 工程检测水密性停止加压 = "M49";
 
         #endregion
 

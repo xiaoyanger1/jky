@@ -600,7 +600,7 @@ namespace text.doors.Common
 
 
         /// <summary>
-        /// 读取水密预备设定压力
+        /// 读取水密预备设定压力-稳定加压
         /// </summary>
         /// <param name="IsSuccess"></param>
         public int GetSMYBSDYL(ref bool IsSuccess, string type)
@@ -648,7 +648,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 发送水密开始
+        /// 发送水密开始-稳定加压
         /// </summary>
         public bool SendSMXKS()
         {
@@ -677,7 +677,7 @@ namespace text.doors.Common
         }
 
         /// <summary>
-        /// 发送水密性下一级
+        /// 发送水密性下一级 -稳定加压
         /// </summary>
         public bool SendSMXXYJ()
         {
@@ -700,6 +700,8 @@ namespace text.doors.Common
                 return false;
             }
         }
+
+
 
 
 
@@ -734,7 +736,6 @@ namespace text.doors.Common
                 Logger.Error(ex);
                 return false;
             }
-
         }
 
 
@@ -765,6 +766,101 @@ namespace text.doors.Common
             }
         }
         #endregion
+
+
+        #region 波动加压
+
+        public bool SendSMXKS_波动()
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                lock (syncLock)
+                {
+                    var res = SendZYF();
+                    if (!res)
+                        return false;
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.国标检测波动加压开始);
+                    _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, false);
+                    _MASTER.WriteSingleCoil(_SlaveID, _StartAddress, true);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 停止波动
+        /// </summary>
+        public bool StopBoDong()
+        {
+            if (!IsTCPLink)
+                return false;
+
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性停止加压);
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
+                    _MASTER.WriteSingleCoil(_StartAddress, true);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 设置水密-工程检测波动开始波动
+        /// </summary>
+        public bool SendBoDongksjy(double maxValue, double minValue)
+        {
+            if (!IsTCPLink)
+                return false;
+            try
+            {
+                lock (syncLock)
+                {
+                    var res = SendZYF();
+                    if (!res)
+                        return false;
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.上限压力设定);
+                    _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(maxValue));
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.下限压力设定);
+                    _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(minValue));
+
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性波动开始);
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
+                    _MASTER.WriteSingleCoil(_StartAddress, true);
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
+
+        }
+
+        #endregion
+
 
         #region 位移
 
@@ -1450,8 +1546,8 @@ namespace text.doors.Common
                     if (holding_register.Length > 0)
                     {
                         var f = double.Parse(holding_register[0].ToString());// / 100;
-                        
-                        if (int.Parse(holding_register[0].ToString()) >10000)
+
+                        if (int.Parse(holding_register[0].ToString()) > 10000)
                             f = -(65535 - int.Parse(holding_register[0].ToString()));
                         else
                             f = int.Parse(holding_register[0].ToString());
