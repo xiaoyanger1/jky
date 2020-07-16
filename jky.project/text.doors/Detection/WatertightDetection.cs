@@ -279,6 +279,16 @@ namespace text.doors.Detection
                 MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
+        /// <summary>
+        /// 停止波动
+        /// </summary>
+        private void StopBoDong()
+        {
+            var res = _tcpClient.StopBoDong();
+            if (!res)
+                MessageBox.Show("急停异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+        }
+
 
         private void btn_next_Click(object sender, EventArgs e)
         {
@@ -343,14 +353,35 @@ namespace text.doors.Detection
         {
             this.btn_start.Enabled = false;
             this.btn_next.Enabled = true;
-            tim_upNext.Enabled = true;
+            this.tim_upNext.Enabled = true;
             this.btn_ready.Enabled = false;
-            var res = _tcpClient.SendSMXKS();
-            if (!res)
-            {
-                MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-            }
+            //var res = _tcpClient.SendSMXKS();
+            //if (!res)
+            //{
+            //    MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            //}
 
+            //waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
+
+            //todo:增加波动
+            if (this.rdb_bdjy.Checked == true)
+            {
+                //波动加压
+                var res = _tcpClient.SendSMXKS_波动();
+                if (!res)
+                {
+                    MessageBox.Show("波动水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
+            else
+            {
+                //稳定加压
+                var res = _tcpClient.SendSMXKS();
+                if (!res)
+                {
+                    MessageBox.Show("稳定水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
         }
         /// <summary>
@@ -748,6 +779,47 @@ namespace text.doors.Detection
                 }
                 lbldqyl.Text = value.ToString();
             }
+        }
+
+        private void btn_ksbd_Click(object sender, EventArgs e)
+        {
+            int minValue = -1;
+            int maxValue = -1;
+
+            int.TryParse(txt_minValue.Text, out minValue);
+
+            int.TryParse(txt_minValue.Text, out maxValue);
+
+            if (minValue == -1 || maxValue == -1)
+            {
+                MessageBox.Show("上线-下线压力设置异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
+            this.btn_ready.Enabled = false;
+            this.btn_start.Enabled = false;
+            this.btn_next.Enabled = false;
+
+            tim_upNext.Enabled = false;
+
+            var res = _tcpClient.SendBoDongksjy(maxValue, minValue);
+            if (!res)
+            {
+                MessageBox.Show("水密波动开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            }
+
+            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
+        }
+
+        private void btn_tzbd_Click(object sender, EventArgs e)
+        {
+            lbl_sdyl.Text = "0";
+            StopBoDong();
+            this.btn_ready.Enabled = true;
+            this.btn_start.Enabled = true;
+            this.btn_next.Enabled = true;
+
+            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
         }
     }
 }

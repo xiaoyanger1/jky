@@ -89,6 +89,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txt_desc = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.rdb_wdjy = new System.Windows.Forms.RadioButton();
+            this.rdb_bdjy = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -132,8 +134,6 @@
             this.gv_list = new System.Windows.Forms.Timer(this.components);
             this.tim_PainPic = new System.Windows.Forms.Timer(this.components);
             this.tim_upNext = new System.Windows.Forms.Timer(this.components);
-            this.rdb_wdjy = new System.Windows.Forms.RadioButton();
-            this.rdb_bdjy = new System.Windows.Forms.RadioButton();
             this.tc_RealTimeSurveillance.SuspendLayout();
             this.page_airtight.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -1056,6 +1056,28 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "检测记录";
             // 
+            // rdb_wdjy
+            // 
+            this.rdb_wdjy.AutoSize = true;
+            this.rdb_wdjy.Checked = true;
+            this.rdb_wdjy.Location = new System.Drawing.Point(110, 0);
+            this.rdb_wdjy.Name = "rdb_wdjy";
+            this.rdb_wdjy.Size = new System.Drawing.Size(109, 22);
+            this.rdb_wdjy.TabIndex = 19;
+            this.rdb_wdjy.TabStop = true;
+            this.rdb_wdjy.Text = "稳定加压";
+            this.rdb_wdjy.UseVisualStyleBackColor = true;
+            // 
+            // rdb_bdjy
+            // 
+            this.rdb_bdjy.AutoSize = true;
+            this.rdb_bdjy.Location = new System.Drawing.Point(261, -1);
+            this.rdb_bdjy.Name = "rdb_bdjy";
+            this.rdb_bdjy.Size = new System.Drawing.Size(109, 22);
+            this.rdb_bdjy.TabIndex = 20;
+            this.rdb_bdjy.Text = "波动加压";
+            this.rdb_bdjy.UseVisualStyleBackColor = true;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -1733,28 +1755,6 @@
             // 
             this.tim_upNext.Interval = 2000;
             this.tim_upNext.Tick += new System.EventHandler(this.tim_upNext_Tick);
-            // 
-            // rdb_wdjy
-            // 
-            this.rdb_wdjy.AutoSize = true;
-            this.rdb_wdjy.Checked = true;
-            this.rdb_wdjy.Location = new System.Drawing.Point(110, 0);
-            this.rdb_wdjy.Name = "rdb_wdjy";
-            this.rdb_wdjy.Size = new System.Drawing.Size(109, 22);
-            this.rdb_wdjy.TabIndex = 19;
-            this.rdb_wdjy.TabStop = true;
-            this.rdb_wdjy.Text = "稳定加压";
-            this.rdb_wdjy.UseVisualStyleBackColor = true;
-            // 
-            // rdb_bdjy
-            // 
-            this.rdb_bdjy.AutoSize = true;
-            this.rdb_bdjy.Location = new System.Drawing.Point(261, -1);
-            this.rdb_bdjy.Name = "rdb_bdjy";
-            this.rdb_bdjy.Size = new System.Drawing.Size(109, 22);
-            this.rdb_bdjy.TabIndex = 20;
-            this.rdb_bdjy.Text = "波动加压";
-            this.rdb_bdjy.UseVisualStyleBackColor = true;
             // 
             // RealTimeSurveillance
             // 
