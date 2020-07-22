@@ -216,6 +216,10 @@ namespace text.doors.Detection
         private void Title()
         {
             lbl_smjc.Text = string.Format("门窗水密性能检测  第{0}号 {1}", this._tempCode, this._tempTong);
+
+            btn_ksbd.Enabled = false;
+            btn_tzbd.Enabled = false;
+            _tcpClient.qiehuanTab(false);
         }
 
         #endregion
@@ -244,11 +248,11 @@ namespace text.doors.Detection
             {
                 var c = _tcpClient.GetCYXS(ref IsSeccess);
                 int value = int.Parse(c.ToString());
-                if (!IsSeccess)
-                {
-                    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                    return;
-                }
+                //if (!IsSeccess)
+                //{
+                //    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                //    return;
+                //}
                 AnimateSeries(this.tChart_sm, value);
             }
         }
@@ -355,34 +359,34 @@ namespace text.doors.Detection
             this.btn_next.Enabled = true;
             this.tim_upNext.Enabled = true;
             this.btn_ready.Enabled = false;
-            //var res = _tcpClient.SendSMXKS();
-            //if (!res)
-            //{
-            //    MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-            //}
+            var res = _tcpClient.SendSMXKS();
+            if (!res)
+            {
+                MessageBox.Show("水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            }
 
-            //waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
+            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
 
             //todo:增加波动
-            if (this.rdb_bdjy.Checked == true)
-            {
-                //波动加压
-                var res = _tcpClient.SendSMXKS_波动();
-                if (!res)
-                {
-                    MessageBox.Show("波动水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
-            }
-            else
-            {
-                //稳定加压
-                var res = _tcpClient.SendSMXKS();
-                if (!res)
-                {
-                    MessageBox.Show("稳定水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
-            }
-            waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
+            //if (this.rdb_bdjy.Checked == true)
+            //{
+            //    //波动加压
+            //    var res = _tcpClient.SendSMXKS_波动();
+            //    if (!res)
+            //    {
+            //        MessageBox.Show("波动水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            //    }
+            //}
+            //else
+            //{
+            //    //稳定加压
+            //    var res = _tcpClient.SendSMXKS();
+            //    if (!res)
+            //    {
+            //        MessageBox.Show("稳定水密开始异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            //    }
+            //}
+            //waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Start;
         }
         /// <summary>
         /// 依次加压
@@ -405,7 +409,9 @@ namespace text.doors.Detection
             {
                 btn_upKpa.Text = "依次加压";
 
-                lbl_sdyl.Text = "0";
+                //lbl_sdyl.Text = "0";
+                lbl_sdyl.Text = txt_ycjy.Text;
+
                 Stop();
                 this.btn_ready.Enabled = true;
                 this.btn_start.Enabled = true;
@@ -774,7 +780,7 @@ namespace text.doors.Detection
                 if (!IsSeccess)
                 {
                     //todo
-                   // MessageBox.Show("获取差压异常--水密！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    // MessageBox.Show("获取差压异常--水密！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     return;
                 }
                 lbldqyl.Text = value.ToString();
@@ -786,9 +792,9 @@ namespace text.doors.Detection
             int minValue = -1;
             int maxValue = -1;
 
-            int.TryParse(txt_minValue.Text, out minValue);
-
             int.TryParse(txt_minValue.Text, out maxValue);
+
+            int.TryParse(txt_maxValue.Text, out minValue);
 
             if (minValue == -1 || maxValue == -1)
             {
@@ -820,6 +826,81 @@ namespace text.doors.Detection
             this.btn_next.Enabled = true;
 
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+        }
+
+        private void tim_getType_Tick(object sender, EventArgs e)
+        {
+            if (_tcpClient.IsTCPLink)
+            {
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.Ready)
+                {
+                    int value = _tcpClient.GetSMYBJS(ref IsSeccess);
+
+                    //if (!IsSeccess)
+                    //{
+                    //    MessageBox.Show("水密预备结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //    return;
+                    //}
+                    if (value == 3)
+                    {
+                        waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+                        lbl_sdyl.Text = "0";
+
+                        this.btn_ready.Enabled = true;
+                        this.btn_start.Enabled = true;
+                        this.btn_next.Enabled = true;
+                    }
+                }
+
+                if (waterTightPropertyTest == PublicEnum.WaterTightPropertyTest.CycleLoading)
+                {
+                    int value = _tcpClient.GetSMYBJS(ref IsSeccess);
+
+                    //if (!IsSeccess)
+                    //{
+                    //    MessageBox.Show("依次加压结束状态异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //    return;
+                    //}
+                    if (value == 3)
+                    {
+                        waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.Stop;
+                        lbl_sdyl.Text = "0";
+
+                        this.btn_upKpa.Enabled = true;
+                    }
+                }
+            }
+        }
+
+        private void rdb_bdjy_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_upKpa.Enabled = false;
+            btn_ksbd.Enabled = true;
+            btn_tzbd.Enabled = true;
+
+            if (this.rdb_bdjy.Checked == true)
+            {
+                _tcpClient.qiehuanTab(true);
+            }
+            else {
+                _tcpClient.qiehuanTab(false);
+            }
+        }
+
+        private void rdb_wdjy_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_upKpa.Enabled = false;
+            btn_ksbd.Enabled = false;
+            btn_tzbd.Enabled = false;
+            if (this.rdb_bdjy.Checked == true)
+            {
+                _tcpClient.qiehuanTab(true);
+            }
+            else
+            {
+                _tcpClient.qiehuanTab(false);
+            }
+
         }
     }
 }

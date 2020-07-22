@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading;
 using System.Windows.Forms;
 using text.doors.Default;
 using Young.Core.Common;
@@ -809,7 +810,7 @@ namespace text.doors.Common
                 lock (syncLock)
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性停止加压);
-                    _MASTER.WriteSingleCoil(_StartAddress, false);
+                    // _MASTER.WriteSingleCoil(_StartAddress, false);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
                     return true;
                 }
@@ -843,6 +844,7 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.下限压力设定);
                     _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)(minValue));
 
+
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性波动开始);
                     _MASTER.WriteSingleCoil(_StartAddress, false);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
@@ -856,8 +858,35 @@ namespace text.doors.Common
                 Logger.Error(ex);
                 return false;
             }
-
         }
+
+        /// <summary>
+        /// 切换波动
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public bool qiehuanTab(bool type)
+        {
+            if (!IsTCPLink)
+            {
+                return false;
+            }
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.国标检测波动加压开始);
+                    _MASTER.WriteSingleCoil(_StartAddress, type);
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
 
         #endregion
 
@@ -1703,7 +1732,7 @@ namespace text.doors.Common
             {
                 IsTCPLink = false;
                 Logger.Error(ex);
-                return false;
+                // return false;
             }
             return true;
         }
