@@ -103,7 +103,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_gyZero = new System.Windows.Forms.Button();
             this.pl_showItem = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tim_panelValue = new System.Windows.Forms.Timer(this.components);
             this.ssp_button.SuspendLayout();
             this.pl_top.SuspendLayout();
             this.ts_pic.SuspendLayout();
@@ -796,11 +796,11 @@
             this.pl_showItem.Size = new System.Drawing.Size(731, 626);
             this.pl_showItem.TabIndex = 9;
             // 
-            // timer1
+            // tim_panelValue
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.tim_panelValue.Enabled = true;
+            this.tim_panelValue.Interval = 1000;
+            this.tim_panelValue.Tick += new System.EventHandler(this.tim_panelValue_Tick);
             // 
             // MainForm
             // 
@@ -911,7 +911,7 @@
         private System.Windows.Forms.ToolStripButton tsb_WindPressure;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tim_panelValue;
         private System.Windows.Forms.ToolStripMenuItem pID设定ToolStripMenuItem;
     }
 }

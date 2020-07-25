@@ -457,7 +457,8 @@ namespace text.doors.Detection
 
                 if (!IsSeccess)
                 {
-                    MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    // MessageBox.Show("读取设定值异常", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
                 }
                 lbl_sdyl.Text = yl.ToString();
             }
@@ -882,7 +883,8 @@ namespace text.doors.Detection
             {
                 _tcpClient.qiehuanTab(true);
             }
-            else {
+            else
+            {
                 _tcpClient.qiehuanTab(false);
             }
         }

@@ -275,7 +275,8 @@ namespace text.doors
             var res = tcpClient.GetZFYF(ref z, ref f);
             if (!res)
             {
-                MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                return;
+              //  MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             btn_z.BackColor = z ? Color.Green : Color.Transparent;
             btn_f.BackColor = f ? Color.Green : Color.Transparent;
@@ -555,21 +556,6 @@ namespace text.doors
                 MessageBox.Show("请先检测设定", "检测", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (tcpClient.IsTCPLink)
-            {
-                DataInit();
-
-                using (BackgroundWorker bw = new BackgroundWorker())
-                {
-                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(hsb_RunWorkerCompleted);
-                    bw.DoWork += new DoWorkEventHandler(hsb_DoWork);
-                    bw.RunWorkerAsync();
-                }
-
-            }
-        }
 
         void hsb_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -599,6 +585,22 @@ namespace text.doors
         {
             PIDManager p = new PIDManager(tcpClient);
             p.Show();
+        }
+
+        private void tim_panelValue_Tick(object sender, EventArgs e)
+        {
+            if (tcpClient.IsTCPLink)
+            {
+                DataInit();
+
+                using (BackgroundWorker bw = new BackgroundWorker())
+                {
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(hsb_RunWorkerCompleted);
+                    bw.DoWork += new DoWorkEventHandler(hsb_DoWork);
+                    bw.RunWorkerAsync();
+                }
+
+            }
         }
     }
 }

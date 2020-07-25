@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AirtightDetection));
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
             this.page_airtight = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -455,6 +454,7 @@
             // tim_qm
             // 
             this.tim_qm.Enabled = true;
+            this.tim_qm.Interval = 2000;
             this.tim_qm.Tick += new System.EventHandler(this.tim_qm_Tick);
             // 
             // tim_getType
