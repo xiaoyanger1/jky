@@ -1,0 +1,10 @@
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\bin\Debug\JKY.Calculate.exe.config
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\bin\Debug\JKY.Calculate.exe
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\bin\Debug\JKY.Calculate.pdb
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.csprojAssemblyReference.cache
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.MainForm.resources
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.Properties.Resources.resources
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.csproj.GenerateResource.cache
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.csproj.CoreCompileInputs.cache
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.exe
+E:\08-GitHub\jky\JKY.Calculate\JKY.Calculate\obj\Debug\JKY.Calculate.pdb

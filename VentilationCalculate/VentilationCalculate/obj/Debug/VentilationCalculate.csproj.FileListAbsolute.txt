@@ -1,0 +1,10 @@
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\bin\Debug\VentilationCalculate.exe.config
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\bin\Debug\VentilationCalculate.exe
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\bin\Debug\VentilationCalculate.pdb
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.csprojAssemblyReference.cache
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.Calculate.resources
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.Properties.Resources.resources
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.csproj.GenerateResource.cache
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.csproj.CoreCompileInputs.cache
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.exe
+E:\08-GitHub\jky\VentilationCalculate\VentilationCalculate\obj\Debug\VentilationCalculate.pdb
