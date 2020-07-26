@@ -38,6 +38,9 @@ namespace text.doors.Detection
         /// </summary>
         private PublicEnum.WindPressureTest? windPressureTest = null;
 
+        public WindPressureDetection()
+        { }
+
         public WindPressureDetection(TCPClient tcpClient, string tempCode, string tempTong)
         {
             InitializeComponent();
@@ -60,6 +63,20 @@ namespace text.doors.Detection
             BindSetPressure();
             FYchartInit();
         }
+
+        public void StopTimer()
+        {
+            this.tim_PainPic.Enabled = false;
+            this.tim_wyData.Enabled = false;
+            this.tim_btnType.Enabled = false;
+        }
+        public void InitTimer()
+        {
+            this.tim_PainPic.Enabled = true;
+            this.tim_wyData.Enabled = true;
+            this.tim_btnType.Enabled = true;
+        }
+
         /// <summary>
         /// 绑定设定压力
         /// </summary>
@@ -391,7 +408,7 @@ namespace text.doors.Detection
                     break;
                 }
             }
-            
+
             var zone = new WindPressureDGV();
             var ztwo = new WindPressureDGV();
             zone = windPressureDGV.Find(t => t.Pa == (zdefPa - 250) + "Pa");
@@ -695,7 +712,7 @@ namespace text.doors.Detection
             var value = _tcpClient.GetCYXS(ref IsSeccess);
             if (!IsSeccess)
                 return;
-            
+
             lbl_dqyl.Text = value.ToString();
 
             if (!IsOk)

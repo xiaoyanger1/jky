@@ -32,6 +32,7 @@
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
             this.page_watertight = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.lbl_max = new System.Windows.Forms.Label();
             this.lbldqyl = new System.Windows.Forms.Label();
             this.lbl_sdyl = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -142,6 +143,7 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.lbl_max);
             this.groupBox10.Controls.Add(this.lbldqyl);
             this.groupBox10.Controls.Add(this.lbl_sdyl);
             this.groupBox10.Controls.Add(this.label19);
@@ -153,6 +155,17 @@
             this.groupBox10.TabIndex = 18;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "状态";
+            // 
+            // lbl_max
+            // 
+            this.lbl_max.AutoSize = true;
+            this.lbl_max.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_max.Location = new System.Drawing.Point(771, 17);
+            this.lbl_max.Name = "lbl_max";
+            this.lbl_max.Size = new System.Drawing.Size(17, 16);
+            this.lbl_max.TabIndex = 30;
+            this.lbl_max.Text = "0";
+            this.lbl_max.Visible = false;
             // 
             // lbldqyl
             // 
@@ -441,6 +454,7 @@
             this.txt_minValue.Name = "txt_minValue";
             this.txt_minValue.Size = new System.Drawing.Size(52, 21);
             this.txt_minValue.TabIndex = 13;
+            this.txt_minValue.Text = "150";
             // 
             // txt_maxValue
             // 
@@ -448,6 +462,7 @@
             this.txt_maxValue.Name = "txt_maxValue";
             this.txt_maxValue.Size = new System.Drawing.Size(52, 21);
             this.txt_maxValue.TabIndex = 12;
+            this.txt_maxValue.Text = "50";
             // 
             // btn_tzbd
             // 
@@ -1241,11 +1256,13 @@
             // tim_sm
             // 
             this.tim_sm.Enabled = true;
+            this.tim_sm.Interval = 300;
             this.tim_sm.Tick += new System.EventHandler(this.tim_sm_Tick);
             // 
             // tim_getType
             // 
             this.tim_getType.Enabled = true;
+            this.tim_getType.Interval = 200;
             this.tim_getType.Tick += new System.EventHandler(this.tim_getType_Tick);
             // 
             // WatertightDetection
@@ -1331,7 +1348,6 @@
         private System.Windows.Forms.GroupBox groupBox10;
         private Steema.TeeChart.TChart tChart_sm;
         private Steema.TeeChart.Styles.FastLine sm_Line;
-        private System.Windows.Forms.Timer tim_PainPic;
         private System.Windows.Forms.Label lbldqyl;
         private System.Windows.Forms.Label lbl_sdyl;
         private System.Windows.Forms.Label label19;
@@ -1340,7 +1356,6 @@
         private System.Windows.Forms.Timer tim_upNext;
         private System.Windows.Forms.ContextMenuStrip chart_cms_sm_click;
         private System.Windows.Forms.ToolStripMenuItem export_image_sm;
-        private System.Windows.Forms.Timer tim_sm;
         private System.Windows.Forms.RadioButton rdb_wdjy;
         private System.Windows.Forms.RadioButton rdb_bdjy;
         private System.Windows.Forms.TextBox txt_minValue;
@@ -1349,6 +1364,9 @@
         private System.Windows.Forms.Button btn_ksbd;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_max;
+        private System.Windows.Forms.Timer tim_PainPic;
+        private System.Windows.Forms.Timer tim_sm;
         private System.Windows.Forms.Timer tim_getType;
     }
 }

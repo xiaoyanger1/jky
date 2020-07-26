@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
             this.btn_stop = new System.Windows.Forms.Button();
             this.tChart_qm = new Steema.TeeChart.TChart();
             this.qm_Line = new Steema.TeeChart.Styles.FastLine();
@@ -104,12 +108,10 @@
             this.tim_view = new System.Windows.Forms.Timer(this.components);
             this.char_cms_click = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_WindPressure)).BeginInit();
@@ -119,8 +121,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.char_cms_click.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -157,6 +157,42 @@
             this.tabPage1.Size = new System.Drawing.Size(1111, 750);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "抗风压检测";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label28);
+            this.panel2.Location = new System.Drawing.Point(494, 360);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(364, 23);
+            this.panel2.TabIndex = 55;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(140, 2);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(29, 12);
+            this.label28.TabIndex = 1;
+            this.label28.Text = "负压";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label27);
+            this.panel1.Location = new System.Drawing.Point(136, 360);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(359, 23);
+            this.panel1.TabIndex = 54;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(157, 2);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(29, 12);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "正压";
             // 
             // btn_stop
             // 
@@ -910,42 +946,6 @@
             this.toolStripMenuItem1.Text = "导出图片";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label27);
-            this.panel1.Location = new System.Drawing.Point(136, 360);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(359, 23);
-            this.panel1.TabIndex = 54;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label28);
-            this.panel2.Location = new System.Drawing.Point(494, 360);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(364, 23);
-            this.panel2.TabIndex = 55;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(157, 2);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(29, 12);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "正压";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(140, 2);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(29, 12);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "负压";
-            // 
             // WindPressureDetection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -958,6 +958,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -974,10 +978,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.char_cms_click.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -992,7 +992,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbl_title;
-        private System.Windows.Forms.Timer tim_PainPic;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rdb_DWDD3;
         private System.Windows.Forms.RadioButton rdb_DWDD1;
@@ -1046,14 +1045,12 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Timer tim_wyData;
         private System.Windows.Forms.Timer tim_fy;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox txt_lx;
         private System.Windows.Forms.Label label26;
         private Steema.TeeChart.TChart tChart_qm;
         private Steema.TeeChart.Styles.FastLine qm_Line;
-        private System.Windows.Forms.Timer tim_btnType;
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.Timer tim_static;
         private System.Windows.Forms.Timer tim_view;
@@ -1063,5 +1060,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Timer tim_PainPic;
+        private System.Windows.Forms.Timer tim_wyData;
+        private System.Windows.Forms.Timer tim_btnType;
     }
 }

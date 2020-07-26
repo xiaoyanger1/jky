@@ -84,7 +84,9 @@ namespace text.doors.Default
             Start,//开始
             Next,//下一级
             CycleLoading,//依次加压
-            Stop //停止
+            Stop, //停止
+            SrartBD, //开始波动
+            StopBD //结束波动
         }
 
 

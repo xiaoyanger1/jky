@@ -156,6 +156,19 @@ namespace text.doors
         }
 
         /// <summary>
+        /// 检测监控
+        /// </summary>
+        //private void ShowRealTimeSurveillance(int type)
+        //{
+        //    RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, _tempCode, _tempTong, type);
+        //    this.pl_showItem.Controls.Clear();
+        //    rts.TopLevel = false;
+        //    rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+        //    rts.Parent = this.pl_showItem;
+        //    rts.Show();
+        //}
+
+        /// <summary>
         /// 参数设置
         /// </summary>
         private void ShowDetectionSet()
@@ -167,19 +180,10 @@ namespace text.doors
             ds.TopLevel = false;
             ds.Parent = this.pl_showItem;
             ds.Show();
-        }
 
-        /// <summary>
-        /// 检测监控
-        /// </summary>
-        private void ShowRealTimeSurveillance(int type)
-        {
-            RealTimeSurveillance rts = new RealTimeSurveillance(tcpClient, _tempCode, _tempTong, type);
-            this.pl_showItem.Controls.Clear();
-            rts.TopLevel = false;
-            rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            rts.Parent = this.pl_showItem;
-            rts.Show();
+            //new AirtightDetection().StopTimer();
+            //new WatertightDetection().StopTimer();
+            //new WindPressureDetection().StopTimer();
         }
 
         /// <summary>
@@ -193,6 +197,10 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
+
+            //new AirtightDetection().StopTimer();
+            //new WatertightDetection().InitTimer();
+            //new WindPressureDetection().StopTimer();
         }
         /// <summary>
         /// 气密监控
@@ -205,6 +213,10 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
+
+            //new AirtightDetection().InitTimer();
+            //new WatertightDetection().StopTimer();
+            //new WindPressureDetection().StopTimer();
         }
         /// <summary>
         /// 抗风压
@@ -217,6 +229,10 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
+
+            //new AirtightDetection().StopTimer();
+            //new WatertightDetection().StopTimer();
+            //new WindPressureDetection().InitTimer();
         }
 
 
@@ -276,7 +292,7 @@ namespace text.doors
             if (!res)
             {
                 return;
-              //  MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                //  MessageBox.Show("压阀状态异常,请确认服务器连接是否成功!", "检测状态", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
             btn_z.BackColor = z ? Color.Green : Color.Transparent;
             btn_f.BackColor = f ? Color.Green : Color.Transparent;

@@ -129,6 +129,13 @@ namespace text.doors.Default
         public const string 工程检测水密性波动开始 = "M48";
         public const string 工程检测水密性停止加压 = "M49";
 
+
+        public const string 读取设定波动加压Min = "D16";
+        public const string 读取设定波动加压Max = "D14";
+        public const string 水密开始波动结束 = "T17";
+
+        public const string 水密开始波动逐级结束 = "D46";
+
         #endregion
 
 
@@ -142,6 +149,10 @@ namespace text.doors.Default
         public const string _I = "D2152";
         public const string _D = "D2153";
 
+        //波动
+        public const string B_P = "D2251";
+        public const string B_I = "D2252";
+        public const string B_D = "D2253";
 
         #region 风压
 
@@ -174,7 +185,7 @@ namespace text.doors.Default
         #region 未实现
 
 
-        public const string 风压差压标定后值 = "D130";
+        //public const string 风压差压标定后值 = "D130";
 
         #endregion
 

@@ -556,6 +556,7 @@ namespace text.doors.Common
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密性预备加压);
                     _MASTER.WriteSingleCoil(_StartAddress, false);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
+                 
                 }
             }
             catch (Exception ex)
@@ -585,6 +586,68 @@ namespace text.doors.Common
                 lock (syncLock)
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备结束);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = int.Parse(holding_register[0].ToString());
+                    IsSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 读取水密预备结束——波动
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public int GetSMXYJJS_BD(ref bool IsSuccess)
+        {
+            int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密预备结束);
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    res = int.Parse(holding_register[0].ToString());
+                    IsSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 读取水密波动加压结束
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        public int GetSMJS_BD(ref bool IsSuccess)
+        {
+            int res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+                return res;
+            }
+            try
+            {
+                lock (syncLock)
+                {
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.水密开始波动结束);
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
                     res = int.Parse(holding_register[0].ToString());
                     IsSuccess = true;
@@ -753,8 +816,8 @@ namespace text.doors.Common
                 lock (syncLock)
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.急停);
-                    _MASTER.WriteSingleCoil(_StartAddress, false);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
                     return true;
                 }
             }
@@ -810,8 +873,8 @@ namespace text.doors.Common
                 lock (syncLock)
                 {
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性停止加压);
-                    // _MASTER.WriteSingleCoil(_StartAddress, false);
-                    _MASTER.WriteSingleCoil(_StartAddress, true);
+                     _MASTER.WriteSingleCoil(_StartAddress, true);
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
                     return true;
                 }
             }
@@ -846,8 +909,8 @@ namespace text.doors.Common
 
 
                     _StartAddress = BFMCommand.GetCommandDict(BFMCommand.工程检测水密性波动开始);
-                    _MASTER.WriteSingleCoil(_StartAddress, false);
                     _MASTER.WriteSingleCoil(_StartAddress, true);
+                    _MASTER.WriteSingleCoil(_StartAddress, false);
                     return true;
                 }
 
@@ -1600,6 +1663,68 @@ namespace text.doors.Common
             return int.Parse(Math.Round(res, 0).ToString());
         }
 
+
+        /// <summary>
+        /// 读取波动差压显示（min ,max ）
+        /// </summary>
+        /// <param name="IsSuccess"></param>
+        /// <returns></returns>
+        public void GetCYXS_BODONG(ref bool IsSuccess, ref int minVal, ref int maxVal)
+        {
+            // double res = 0;
+            if (!IsTCPLink)
+            {
+                IsSuccess = false;
+            }
+            try
+            {
+                lock (syncLock)
+                {
+                    //最小
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.读取设定波动加压Min);
+
+                    ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (holding_register.Length > 0)
+                    {
+                        var f = double.Parse(holding_register[0].ToString());
+
+                        if (int.Parse(holding_register[0].ToString()) > 10000)
+                            f = -(65535 - int.Parse(holding_register[0].ToString()));
+                        else
+                            f = int.Parse(holding_register[0].ToString());
+
+                        var res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
+                        minVal = int.Parse(Math.Round(res, 0).ToString());
+                    }
+
+                    //最大
+                    _StartAddress = BFMCommand.GetCommandDict(BFMCommand.读取设定波动加压Max);
+
+                    ushort[] holding_register1 = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);
+                    if (holding_register1.Length > 0)
+                    {
+                        var f = double.Parse(holding_register1[0].ToString());
+
+                        if (int.Parse(holding_register1[0].ToString()) > 10000)
+                            f = -(65535 - int.Parse(holding_register1[0].ToString()));
+                        else
+                            f = int.Parse(holding_register1[0].ToString());
+
+                        var res = Formula.GetValues(PublicEnum.DemarcateType.差压传感器, float.Parse(f.ToString()));
+                        maxVal = int.Parse(Math.Round(res, 0).ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                IsTCPLink = false;
+                IsSuccess = false;
+                Logger.Error(ex);
+            }
+        }
+
+
+
         /// <summary>
         /// 设置风机控制
         /// </summary>
@@ -1761,6 +1886,12 @@ namespace text.doors.Common
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand._I);
                     else if (type == "_D")
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand._D);
+                    else if (type == "B_P")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_P);
+                    else if (type == "B_I")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_I);
+                    else if (type == "B_D")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_D);
 
                     _MASTER.WriteSingleRegister(_SlaveID, _StartAddress, (ushort)value);
                     return true;
@@ -1803,6 +1934,13 @@ namespace text.doors.Common
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand._I);
                     else if (type == "_D")
                         _StartAddress = BFMCommand.GetCommandDict(BFMCommand._D);
+
+                    else if (type == "B_P")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_P);
+                    else if (type == "B_I")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_I);
+                    else if (type == "B_D")
+                        _StartAddress = BFMCommand.GetCommandDict(BFMCommand.B_D);
 
 
                     ushort[] holding_register = _MASTER.ReadHoldingRegisters(_SlaveID, _StartAddress, _NumOfPoints);

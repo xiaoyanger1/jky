@@ -54,6 +54,9 @@ namespace text.doors.Detection
 
 
         public DateTime dtnow { get; set; }
+        public AirtightDetection() { 
+        
+        }
 
         public AirtightDetection(TCPClient tcpClient, string tempCode, string tempTong)
         {
@@ -75,6 +78,19 @@ namespace text.doors.Detection
             QMchartInit();
 
             Clear();
+        }
+
+        public void StopTimer()
+        {
+            this.tim_PainPic.Enabled = false;
+            this.tim_qm.Enabled = false;
+            this.tim_getType.Enabled = false;
+        }
+        public void InitTimer()
+        {
+            this.tim_PainPic.Enabled = true;
+            this.tim_qm.Enabled = true;
+            this.tim_getType.Enabled = true;
         }
 
         /// <summary>

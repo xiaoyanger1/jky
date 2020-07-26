@@ -536,12 +536,12 @@
         private System.Windows.Forms.ToolStripMenuItem export_image_qm;
         private System.Windows.Forms.Label lbl_setYL;
         private System.Windows.Forms.Label lbl_dqyl;
-        private System.Windows.Forms.Timer tim_qm;
-        private System.Windows.Forms.Timer tim_getType;
         private System.Windows.Forms.Timer tim_Top10;
         private System.Windows.Forms.Timer gv_list;
-        private System.Windows.Forms.Timer tim_PainPic;
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Timer tim_qm;
+        private System.Windows.Forms.Timer tim_getType;
+        private System.Windows.Forms.Timer tim_PainPic;
     }
 }
