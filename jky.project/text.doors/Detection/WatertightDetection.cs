@@ -353,7 +353,7 @@ namespace text.doors.Detection
         private void btn_stop_Click(object sender, EventArgs e)
         {
             lbl_sdyl.Text = "0";
-           // StopBoDong();
+            // StopBoDong();
             Stop();
 
             this.btn_ready.Enabled = true;
@@ -883,13 +883,13 @@ namespace text.doors.Detection
         {
             lbl_sdyl.Text = "0";
             StopBoDong();
-           // Stop();
+            // Stop();
             this.btn_tzbd.Enabled = false;
             this.btn_ksbd.Enabled = true;
             this.btn_ready.Enabled = true;
             this.btn_start.Enabled = true;
             this.btn_next.Enabled = true;
-
+            Thread.Sleep(1000);
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.StopBD;
         }
 
