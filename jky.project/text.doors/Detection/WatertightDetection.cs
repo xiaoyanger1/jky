@@ -54,7 +54,7 @@ namespace text.doors.Detection
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             Init();
-            InitTimer();
+            // InitTimer();
 
         }
 
@@ -94,7 +94,18 @@ namespace text.doors.Detection
                     var checkDesc = sm[0].sm_PaDesc;
                     var sm_pa = sm[0].sm_Pa;
                     var remark = sm[0].sm_Remark;
+                    var method = sm[0].Method;
 
+                    if (method == "稳定加压") {
+                        this.rdb_wdjy.Checked = true;
+                    }
+                    else if (method == "波动加压") {
+                        this.rdb_bdjy.Checked = true;
+                    }
+                    else
+                    {
+                        this.rdb_wdjy.Checked = true;
+                    }
                     var flish = "";
                     var two = "";
                     string[] temp = null;
@@ -137,85 +148,154 @@ namespace text.doors.Detection
                             two = temp[1];
                         }
 
-                        if (sm_pa == "0")
+
+
+                        if (checkDesc.Contains("●") || checkDesc.Contains("▲"))
                         {
-                            cbb_1_0Pa.Text = flish;
-                            cbb_2_0Pa.Text = two;
+                            //if (sm_pa == "0")
+                            //{
+                            //    cbb_1_0Pa.Text = flish;
+                            //    cbb_2_0Pa.Text = two;
+                            //}
+                            if (sm_pa == "0")
+                            {
+                                cbb_1_100Pa.Text = flish;
+                                cbb_2_100Pa.Text = two;
+                            }
+                            if (sm_pa == "100")
+                            {
+                                cbb_1_150Pa.Text = flish;
+                                cbb_2_150Pa.Text = two;
+                            }
+                            if (sm_pa == "150")
+                            {
+                                cbb_1_200Pa.Text = flish;
+                                cbb_2_200Pa.Text = two;
+                            }
+                            if (sm_pa == "200")
+                            {
+                                cbb_1_250Pa.Text = flish;
+                                cbb_2_250Pa.Text = two;
+                            }
+                            if (sm_pa == "250")
+                            {
+                                cbb_1_300Pa.Text = flish;
+                                cbb_2_300Pa.Text = two;
+                            }
+                            if (sm_pa == "300")
+                            {
+                                cbb_1_350Pa.Text = flish;
+                                cbb_2_350Pa.Text = two;
+                            }
+                            if (sm_pa == "350")
+                            {
+                                cbb_1_400Pa.Text = flish;
+                                cbb_2_400Pa.Text = two;
+                            }
+                            if (sm_pa == "400")
+                            {
+                                cbb_1_500Pa.Text = flish;
+                                cbb_2_500Pa.Text = two;
+                            }
+                            if (sm_pa == "500")
+                            {
+                                cbb_1_600Pa.Text = flish;
+                                cbb_2_600Pa.Text = two;
+                            }
+                            if (sm_pa == "600")
+                            {
+                                cbb_1_700Pa.Text = flish;
+                                cbb_2_700Pa.Text = two;
+                            }
+                            if (sm_pa == "700")
+                            {
+                                cbb_1_700Pa.Text = flish;
+                                cbb_2_700Pa.Text = two;
+                            }
                         }
-                        if (sm_pa == "100")
+                        else
                         {
-                            cbb_1_100Pa.Text = flish;
-                            cbb_2_100Pa.Text = two;
-                        }
-                        if (sm_pa == "150")
-                        {
-                            cbb_1_150Pa.Text = flish;
-                            cbb_2_150Pa.Text = two;
-                        }
-                        if (sm_pa == "200")
-                        {
-                            cbb_1_200Pa.Text = flish;
-                            cbb_2_200Pa.Text = two;
-                        }
-                        if (sm_pa == "250")
-                        {
-                            cbb_1_250Pa.Text = flish;
-                            cbb_2_250Pa.Text = two;
-                        }
-                        if (sm_pa == "300")
-                        {
-                            cbb_1_300Pa.Text = flish;
-                            cbb_2_300Pa.Text = two;
-                        }
-                        if (sm_pa == "350")
-                        {
-                            cbb_1_350Pa.Text = flish;
-                            cbb_2_350Pa.Text = two;
-                        }
-                        if (sm_pa == "400")
-                        {
-                            cbb_1_400Pa.Text = flish;
-                            cbb_2_400Pa.Text = two;
-                        }
-                        if (sm_pa == "500")
-                        {
-                            cbb_1_500Pa.Text = flish;
-                            cbb_2_500Pa.Text = two;
-                        }
-                        if (sm_pa == "600")
-                        {
-                            cbb_1_600Pa.Text = flish;
-                            cbb_2_600Pa.Text = two;
-                        }
-                        if (sm_pa == "700")
-                        {
-                            cbb_1_700Pa.Text = flish;
-                            cbb_2_700Pa.Text = two;
+                            if (sm_pa == "0")
+                            {
+                                cbb_1_0Pa.Text = flish;
+                                cbb_2_0Pa.Text = two;
+                            }
+                            if (sm_pa == "100")
+                            {
+                                cbb_1_100Pa.Text = flish;
+                                cbb_2_100Pa.Text = two;
+                            }
+                            if (sm_pa == "150")
+                            {
+                                cbb_1_150Pa.Text = flish;
+                                cbb_2_150Pa.Text = two;
+                            }
+                            if (sm_pa == "200")
+                            {
+                                cbb_1_200Pa.Text = flish;
+                                cbb_2_200Pa.Text = two;
+                            }
+                            if (sm_pa == "250")
+                            {
+                                cbb_1_250Pa.Text = flish;
+                                cbb_2_250Pa.Text = two;
+                            }
+                            if (sm_pa == "300")
+                            {
+                                cbb_1_300Pa.Text = flish;
+                                cbb_2_300Pa.Text = two;
+                            }
+                            if (sm_pa == "350")
+                            {
+                                cbb_1_350Pa.Text = flish;
+                                cbb_2_350Pa.Text = two;
+                            }
+                            if (sm_pa == "400")
+                            {
+                                cbb_1_400Pa.Text = flish;
+                                cbb_2_400Pa.Text = two;
+                            }
+                            if (sm_pa == "500")
+                            {
+                                cbb_1_500Pa.Text = flish;
+                                cbb_2_500Pa.Text = two;
+                            }
+                            if (sm_pa == "600")
+                            {
+                                cbb_1_600Pa.Text = flish;
+                                cbb_2_600Pa.Text = two;
+                            }
+                            if (sm_pa == "700")
+                            {
+                                cbb_1_700Pa.Text = flish;
+                                cbb_2_700Pa.Text = two;
+                            }
                         }
 
-                        if (checkDesc.Contains("▲") || checkDesc.Contains("●"))
-                        {
-                            if (sm_pa == "100")
-                                sm_pa = "0";
-                            if (sm_pa == "150")
-                                sm_pa = "100";
-                            if (sm_pa == "200")
-                                sm_pa = "150";
-                            if (sm_pa == "250")
-                                sm_pa = "200";
-                            if (sm_pa == "300")
-                                sm_pa = "250";
-                            if (sm_pa == "350")
-                                sm_pa = "300";
-                            if (sm_pa == "400")
-                                sm_pa = "350";
-                            if (sm_pa == "500")
-                                sm_pa = "400";
-                            if (sm_pa == "600")
-                                sm_pa = "500";
-                            if (sm_pa == "700")
-                                sm_pa = "600";
-                        }
+
+                        //if (checkDesc.Contains("▲") || checkDesc.Contains("●"))
+                        //{
+                        //    if (sm_pa == "100")
+                        //        sm_pa = "0";
+                        //    if (sm_pa == "150")
+                        //        sm_pa = "100";
+                        //    if (sm_pa == "200")
+                        //        sm_pa = "150";
+                        //    if (sm_pa == "250")
+                        //        sm_pa = "200";
+                        //    if (sm_pa == "300")
+                        //        sm_pa = "250";
+                        //    if (sm_pa == "350")
+                        //        sm_pa = "300";
+                        //    if (sm_pa == "400")
+                        //        sm_pa = "350";
+                        //    if (sm_pa == "500")
+                        //        sm_pa = "400";
+                        //    if (sm_pa == "600")
+                        //        sm_pa = "500";
+                        //    if (sm_pa == "700")
+                        //        sm_pa = "600";
+                        //}
 
                     }
                     txt_zgfy.Text = sm_pa;
@@ -787,6 +867,17 @@ namespace text.doors.Detection
             model.sm_Pa = CheckValue.ToString();
             model.sm_PaDesc = CheckPosition + "," + CheckProblem;
             model.sm_Remark = txt_desc.Text;
+
+            if (this.rdb_bdjy.Checked == true)
+            {
+                model.Method = "波动加压";
+            }
+            else
+            {
+                model.Method = "稳定加压";
+            }
+
+
             if (new DAL_dt_sm_Info().Add(model))
             {
                 MessageBox.Show("处理成功！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);

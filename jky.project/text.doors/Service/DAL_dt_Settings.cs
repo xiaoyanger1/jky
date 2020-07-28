@@ -177,124 +177,124 @@ namespace text.doors.dal
         /// </summary>
         /// <param name="code">编号</param>
         /// <returns></returns>
-//        public Model_dt_Settings Getdt_SettingsResByCode(string code)
-//        {
-//            string sql = @"select t.*,t1.info_DangH,t2.qm_Z_FC,t2.qm_F_FC,t2.qm_Z_MJ,t2.qm_F_MJ,t3.sm_PaDesc,t3.sm_Pa,t3.sm_Remark,
-//    qm_s_z_fj100,qm_s_z_fj150,qm_j_z_fj100,qm_s_z_zd100,qm_s_z_zd150,qm_j_z_zd100,qm_s_f_fj100,qm_s_f_fj150,qm_j_f_fj100,qm_s_f_zd100,qm_s_f_zd150,qm_j_f_zd100	
-//from dt_Settings  t
-//                            left join dt_Info  t1 on t.dt_Code = t1.dt_Code
-//                            left join dt_qm_Info t2  on t2.dt_Code = t1.dt_Code and t1.info_DangH = t2.info_DangH 
-//                            where t.dt_Code ='" + code + "'";
+        //        public Model_dt_Settings Getdt_SettingsResByCode(string code)
+        //        {
+        //            string sql = @"select t.*,t1.info_DangH,t2.qm_Z_FC,t2.qm_F_FC,t2.qm_Z_MJ,t2.qm_F_MJ,t3.sm_PaDesc,t3.sm_Pa,t3.sm_Remark,
+        //    qm_s_z_fj100,qm_s_z_fj150,qm_j_z_fj100,qm_s_z_zd100,qm_s_z_zd150,qm_j_z_zd100,qm_s_f_fj100,qm_s_f_fj150,qm_j_f_fj100,qm_s_f_zd100,qm_s_f_zd150,qm_j_f_zd100	
+        //from dt_Settings  t
+        //                            left join dt_Info  t1 on t.dt_Code = t1.dt_Code
+        //                            left join dt_qm_Info t2  on t2.dt_Code = t1.dt_Code and t1.info_DangH = t2.info_DangH 
+        //                            where t.dt_Code ='" + code + "'";
 
-//            DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
-//            if (dr == null)
-//                return null;
-//            DataTable dt = dr.Table;
+        //            DataRow dr = SQLiteHelper.ExecuteDataRow(sql);
+        //            if (dr == null)
+        //                return null;
+        //            DataTable dt = dr.Table;
 
-//            Model_dt_Settings dt_Settings = new Model_dt_Settings();
+        //            Model_dt_Settings dt_Settings = new Model_dt_Settings();
 
-//            List<Model_dt_Info> dt_InfoList = new List<Model_dt_Info>();
-//            List<Model_dt_qm_Info> dt_qm_InfoList = new List<Model_dt_qm_Info>();
-//            List<Model_dt_sm_Info> dt_sm_InfoList = new List<Model_dt_sm_Info>();
+        //            List<Model_dt_Info> dt_InfoList = new List<Model_dt_Info>();
+        //            List<Model_dt_qm_Info> dt_qm_InfoList = new List<Model_dt_qm_Info>();
+        //            List<Model_dt_sm_Info> dt_sm_InfoList = new List<Model_dt_sm_Info>();
 
-//            for (int i = 0; i < dt.Rows.Count; i++)
-//            {
-//                Model_dt_Info dt_Info = new Model_dt_Info();
-//                Model_dt_qm_Info dt_qm_Info = new Model_dt_qm_Info();
-//                Model_dt_sm_Info dt_sm_Info = new Model_dt_sm_Info();
-//                if (i == 0)
-//                {
-//                    dt_Settings.WeiTuoBianHao = dt.Rows[i]["WeiTuoBianHao"].ToString();
-//                    dt_Settings.WeiTuoDanWei = dt.Rows[i]["WeiTuoDanWei"].ToString();
-//                    dt_Settings.WeiTuoRen = dt.Rows[i]["WeiTuoRen"].ToString();
-//                    dt_Settings.YangPinMingCheng = dt.Rows[i]["YangPinMingCheng"].ToString();
-//                    dt_Settings.CaiYangFangShi = dt.Rows[i]["CaiYangFangShi"].ToString();
-//                    dt_Settings.JianYanXiangMu = dt.Rows[i]["JianYanXiangMu"].ToString();
-//                    dt_Settings.GuiGeXingHao = dt.Rows[i]["GuiGeXingHao"].ToString();
-//                    dt_Settings.GuiGeShuLiang = dt.Rows[i]["GuiGeShuLiang"].ToString();
-//                    dt_Settings.JianYanRiQi = dt.Rows[i]["JianYanRiQi"].ToString();
-//                    dt_Settings.KaiQiFangShi = dt.Rows[i]["KaiQiFangShi"].ToString();
-//                    dt_Settings.DaQiYaLi = dt.Rows[i]["DaQiYaLi"].ToString();
-//                    dt_Settings.BoLiPinZhong = dt.Rows[i]["BoLiPinZhong"].ToString();
-//                    dt_Settings.DangQianWenDu = dt.Rows[i]["DangQianWenDu"].ToString();
-//                    dt_Settings.BoLiHouDu = dt.Rows[i]["BoLiHouDu"].ToString();
-//                    dt_Settings.ZongMianJi = dt.Rows[i]["ZongMianJi"].ToString();
-//                    dt_Settings.ZuiDaBoLi = dt.Rows[i]["ZuiDaBoLi"].ToString();
-//                    dt_Settings.KaiQiFengChang = dt.Rows[i]["KaiQiFengChang"].ToString();
-//                    dt_Settings.BoLiMiFeng = dt.Rows[i]["BoLiMiFeng"].ToString();
-//                    dt_Settings.XiangQianFangShi = dt.Rows[i]["XiangQianFangShi"].ToString();
-//                    dt_Settings.ShuiMiDengJiSheJiZhi = dt.Rows[i]["ShuiMiDengJiSheJiZhi"].ToString();
-//                    dt_Settings.KuangShanMiFang = dt.Rows[i]["KuangShanMiFang"].ToString();
-//                    dt_Settings.QiMiZhengYaDanWeiFengChangSheJiZhi = dt.Rows[i]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
-//                    dt_Settings.ZhengYaQiMiDengJiSheJiZhi = dt.Rows[i]["ZhengYaQiMiDengJiSheJiZhi"].ToString();
-//                    dt_Settings.QiMiFuYaDanWeiFengChangSheJiZhi = dt.Rows[i]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
-//                    dt_Settings.FuYaQiMiDengJiSheJiZhi = dt.Rows[i]["FuYaQiMiDengJiSheJiZhi"].ToString();
-//                    dt_Settings.ShuiMiSheJiZhi = dt.Rows[i]["ShuiMiSheJiZhi"].ToString();
-//                    dt_Settings.QiMiZhengYaDanWeiMianJiSheJiZhi = dt.Rows[i]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
-//                    dt_Settings.QiMiFuYaDanWeiMianJiSheJiZhi = dt.Rows[i]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
-//                    dt_Settings.JianYanYiJu = dt.Rows[i]["JianYanYiJu"].ToString();
-//                    dt_Settings.GongChengMingCheng = dt.Rows[i]["GongChengMingCheng"].ToString();
-//                    dt_Settings.GongChengDiDian = dt.Rows[i]["GongChengDiDian"].ToString();
-//                    dt_Settings.ShengChanDanWei = dt.Rows[i]["ShengChanDanWei"].ToString();
-//                    dt_Settings.JianLiDanWei = dt.Rows[i]["JianLiDanWei"].ToString();
-//                    dt_Settings.JianZhengRen = dt.Rows[i]["JianZhengRen"].ToString();
-//                    dt_Settings.JianZhengHao = dt.Rows[i]["JianZhengHao"].ToString();
-//                    dt_Settings.ShiGongDanWei = dt.Rows[i]["ShiGongDanWei"].ToString();
-//                    dt_Settings.WuJinJianZhuangKuang = dt.Rows[i]["WuJinJianZhuangKuang"].ToString();
-//                    dt_Settings.SuLiaoChuangChenJinChiCun = dt.Rows[i]["SuLiaoChuangChenJinChiCun"].ToString();
-//                    dt_Settings.ShiFouJiaLuoSi = dt.Rows[i]["ShiFouJiaLuoSi"].ToString();
-//                    dt_Settings.XingCaiGuiGe = dt.Rows[i]["XingCaiGuiGe"].ToString();
-//                    dt_Settings.XingCaiBiHou = dt.Rows[i]["XingCaiBiHou"].ToString();
-//                    dt_Settings.XingCaiShengChanChang = dt.Rows[i]["XingCaiShengChanChang"].ToString();
-//                    dt_Settings.dt_Code = dt.Rows[i]["dt_Code"].ToString();
-//                    dt_Settings.dt_Create = DateTime.Parse(dt.Rows[i]["dt_Create"].ToString());
-//                    dt_Settings.GanJianChangDu = dt.Rows[i]["GanJianChangDu"].ToString();
-//                    dt_Settings.KangFengYaDengJiSheJiZhi = dt.Rows[i]["KangFengYaDengJiSheJiZhi"].ToString();
-//                    dt_Settings.KangFengYaSheJiZhi = dt.Rows[i]["KangFengYaSheJiZhi"].ToString();
-//                    dt_Settings.DanShanDanSuoDian = dt.Rows[i]["DanShanDanSuoDian"].ToString();
-//                }
+        //            for (int i = 0; i < dt.Rows.Count; i++)
+        //            {
+        //                Model_dt_Info dt_Info = new Model_dt_Info();
+        //                Model_dt_qm_Info dt_qm_Info = new Model_dt_qm_Info();
+        //                Model_dt_sm_Info dt_sm_Info = new Model_dt_sm_Info();
+        //                if (i == 0)
+        //                {
+        //                    dt_Settings.WeiTuoBianHao = dt.Rows[i]["WeiTuoBianHao"].ToString();
+        //                    dt_Settings.WeiTuoDanWei = dt.Rows[i]["WeiTuoDanWei"].ToString();
+        //                    dt_Settings.WeiTuoRen = dt.Rows[i]["WeiTuoRen"].ToString();
+        //                    dt_Settings.YangPinMingCheng = dt.Rows[i]["YangPinMingCheng"].ToString();
+        //                    dt_Settings.CaiYangFangShi = dt.Rows[i]["CaiYangFangShi"].ToString();
+        //                    dt_Settings.JianYanXiangMu = dt.Rows[i]["JianYanXiangMu"].ToString();
+        //                    dt_Settings.GuiGeXingHao = dt.Rows[i]["GuiGeXingHao"].ToString();
+        //                    dt_Settings.GuiGeShuLiang = dt.Rows[i]["GuiGeShuLiang"].ToString();
+        //                    dt_Settings.JianYanRiQi = dt.Rows[i]["JianYanRiQi"].ToString();
+        //                    dt_Settings.KaiQiFangShi = dt.Rows[i]["KaiQiFangShi"].ToString();
+        //                    dt_Settings.DaQiYaLi = dt.Rows[i]["DaQiYaLi"].ToString();
+        //                    dt_Settings.BoLiPinZhong = dt.Rows[i]["BoLiPinZhong"].ToString();
+        //                    dt_Settings.DangQianWenDu = dt.Rows[i]["DangQianWenDu"].ToString();
+        //                    dt_Settings.BoLiHouDu = dt.Rows[i]["BoLiHouDu"].ToString();
+        //                    dt_Settings.ZongMianJi = dt.Rows[i]["ZongMianJi"].ToString();
+        //                    dt_Settings.ZuiDaBoLi = dt.Rows[i]["ZuiDaBoLi"].ToString();
+        //                    dt_Settings.KaiQiFengChang = dt.Rows[i]["KaiQiFengChang"].ToString();
+        //                    dt_Settings.BoLiMiFeng = dt.Rows[i]["BoLiMiFeng"].ToString();
+        //                    dt_Settings.XiangQianFangShi = dt.Rows[i]["XiangQianFangShi"].ToString();
+        //                    dt_Settings.ShuiMiDengJiSheJiZhi = dt.Rows[i]["ShuiMiDengJiSheJiZhi"].ToString();
+        //                    dt_Settings.KuangShanMiFang = dt.Rows[i]["KuangShanMiFang"].ToString();
+        //                    dt_Settings.QiMiZhengYaDanWeiFengChangSheJiZhi = dt.Rows[i]["QiMiZhengYaDanWeiFengChangSheJiZhi"].ToString();
+        //                    dt_Settings.ZhengYaQiMiDengJiSheJiZhi = dt.Rows[i]["ZhengYaQiMiDengJiSheJiZhi"].ToString();
+        //                    dt_Settings.QiMiFuYaDanWeiFengChangSheJiZhi = dt.Rows[i]["QiMiFuYaDanWeiFengChangSheJiZhi"].ToString();
+        //                    dt_Settings.FuYaQiMiDengJiSheJiZhi = dt.Rows[i]["FuYaQiMiDengJiSheJiZhi"].ToString();
+        //                    dt_Settings.ShuiMiSheJiZhi = dt.Rows[i]["ShuiMiSheJiZhi"].ToString();
+        //                    dt_Settings.QiMiZhengYaDanWeiMianJiSheJiZhi = dt.Rows[i]["QiMiZhengYaDanWeiMianJiSheJiZhi"].ToString();
+        //                    dt_Settings.QiMiFuYaDanWeiMianJiSheJiZhi = dt.Rows[i]["QiMiFuYaDanWeiMianJiSheJiZhi"].ToString();
+        //                    dt_Settings.JianYanYiJu = dt.Rows[i]["JianYanYiJu"].ToString();
+        //                    dt_Settings.GongChengMingCheng = dt.Rows[i]["GongChengMingCheng"].ToString();
+        //                    dt_Settings.GongChengDiDian = dt.Rows[i]["GongChengDiDian"].ToString();
+        //                    dt_Settings.ShengChanDanWei = dt.Rows[i]["ShengChanDanWei"].ToString();
+        //                    dt_Settings.JianLiDanWei = dt.Rows[i]["JianLiDanWei"].ToString();
+        //                    dt_Settings.JianZhengRen = dt.Rows[i]["JianZhengRen"].ToString();
+        //                    dt_Settings.JianZhengHao = dt.Rows[i]["JianZhengHao"].ToString();
+        //                    dt_Settings.ShiGongDanWei = dt.Rows[i]["ShiGongDanWei"].ToString();
+        //                    dt_Settings.WuJinJianZhuangKuang = dt.Rows[i]["WuJinJianZhuangKuang"].ToString();
+        //                    dt_Settings.SuLiaoChuangChenJinChiCun = dt.Rows[i]["SuLiaoChuangChenJinChiCun"].ToString();
+        //                    dt_Settings.ShiFouJiaLuoSi = dt.Rows[i]["ShiFouJiaLuoSi"].ToString();
+        //                    dt_Settings.XingCaiGuiGe = dt.Rows[i]["XingCaiGuiGe"].ToString();
+        //                    dt_Settings.XingCaiBiHou = dt.Rows[i]["XingCaiBiHou"].ToString();
+        //                    dt_Settings.XingCaiShengChanChang = dt.Rows[i]["XingCaiShengChanChang"].ToString();
+        //                    dt_Settings.dt_Code = dt.Rows[i]["dt_Code"].ToString();
+        //                    dt_Settings.dt_Create = DateTime.Parse(dt.Rows[i]["dt_Create"].ToString());
+        //                    dt_Settings.GanJianChangDu = dt.Rows[i]["GanJianChangDu"].ToString();
+        //                    dt_Settings.KangFengYaDengJiSheJiZhi = dt.Rows[i]["KangFengYaDengJiSheJiZhi"].ToString();
+        //                    dt_Settings.KangFengYaSheJiZhi = dt.Rows[i]["KangFengYaSheJiZhi"].ToString();
+        //                    dt_Settings.DanShanDanSuoDian = dt.Rows[i]["DanShanDanSuoDian"].ToString();
+        //                }
 
-//                dt_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
-//                dt_Info.info_Create = "";
-//                dt_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
-//                dt_InfoList.Add(dt_Info);
+        //                dt_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
+        //                dt_Info.info_Create = "";
+        //                dt_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
+        //                dt_InfoList.Add(dt_Info);
 
-//                dt_qm_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
-//                dt_qm_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
-//                dt_qm_Info.qm_F_FC = dt.Rows[i]["qm_F_FC"].ToString();
-//                dt_qm_Info.qm_F_MJ = dt.Rows[i]["qm_F_MJ"].ToString();
-//                dt_qm_Info.qm_Z_FC = dt.Rows[i]["qm_Z_FC"].ToString();
-//                dt_qm_Info.qm_Z_MJ = dt.Rows[i]["qm_Z_MJ"].ToString();
+        //                dt_qm_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
+        //                dt_qm_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
+        //                dt_qm_Info.qm_F_FC = dt.Rows[i]["qm_F_FC"].ToString();
+        //                dt_qm_Info.qm_F_MJ = dt.Rows[i]["qm_F_MJ"].ToString();
+        //                dt_qm_Info.qm_Z_FC = dt.Rows[i]["qm_Z_FC"].ToString();
+        //                dt_qm_Info.qm_Z_MJ = dt.Rows[i]["qm_Z_MJ"].ToString();
 
-//                dt_qm_Info.qm_s_z_fj100 = dt.Rows[i]["qm_s_z_fj100"].ToString();
-//                dt_qm_Info.qm_s_z_fj150 = dt.Rows[i]["qm_s_z_fj150"].ToString();
-//                dt_qm_Info.qm_j_z_fj100 = dt.Rows[i]["qm_j_z_fj100"].ToString();
-//                dt_qm_Info.qm_s_z_zd100 = dt.Rows[i]["qm_s_z_zd100"].ToString();
-//                dt_qm_Info.qm_s_z_zd150 = dt.Rows[i]["qm_s_z_zd150"].ToString();
-//                dt_qm_Info.qm_j_z_zd100 = dt.Rows[i]["qm_j_z_zd100"].ToString();
-//                dt_qm_Info.qm_s_f_fj100 = dt.Rows[i]["qm_s_f_fj100"].ToString();
-//                dt_qm_Info.qm_s_f_fj150 = dt.Rows[i]["qm_s_f_fj150"].ToString();
-//                dt_qm_Info.qm_j_f_fj100 = dt.Rows[i]["qm_j_f_fj100"].ToString();
-//                dt_qm_Info.qm_s_f_zd100 = dt.Rows[i]["qm_s_f_zd100"].ToString();
-//                dt_qm_Info.qm_s_f_zd150 = dt.Rows[i]["qm_s_f_zd150"].ToString();
-//                dt_qm_Info.qm_j_f_zd100 = dt.Rows[i]["qm_j_f_zd100"].ToString();
-//                dt_qm_InfoList.Add(dt_qm_Info);
+        //                dt_qm_Info.qm_s_z_fj100 = dt.Rows[i]["qm_s_z_fj100"].ToString();
+        //                dt_qm_Info.qm_s_z_fj150 = dt.Rows[i]["qm_s_z_fj150"].ToString();
+        //                dt_qm_Info.qm_j_z_fj100 = dt.Rows[i]["qm_j_z_fj100"].ToString();
+        //                dt_qm_Info.qm_s_z_zd100 = dt.Rows[i]["qm_s_z_zd100"].ToString();
+        //                dt_qm_Info.qm_s_z_zd150 = dt.Rows[i]["qm_s_z_zd150"].ToString();
+        //                dt_qm_Info.qm_j_z_zd100 = dt.Rows[i]["qm_j_z_zd100"].ToString();
+        //                dt_qm_Info.qm_s_f_fj100 = dt.Rows[i]["qm_s_f_fj100"].ToString();
+        //                dt_qm_Info.qm_s_f_fj150 = dt.Rows[i]["qm_s_f_fj150"].ToString();
+        //                dt_qm_Info.qm_j_f_fj100 = dt.Rows[i]["qm_j_f_fj100"].ToString();
+        //                dt_qm_Info.qm_s_f_zd100 = dt.Rows[i]["qm_s_f_zd100"].ToString();
+        //                dt_qm_Info.qm_s_f_zd150 = dt.Rows[i]["qm_s_f_zd150"].ToString();
+        //                dt_qm_Info.qm_j_f_zd100 = dt.Rows[i]["qm_j_f_zd100"].ToString();
+        //                dt_qm_InfoList.Add(dt_qm_Info);
 
 
-//                dt_sm_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
-//                dt_sm_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
-//                dt_sm_Info.sm_Pa = dt.Rows[i]["sm_Pa"].ToString();
-//                dt_sm_Info.sm_PaDesc = dt.Rows[i]["sm_PaDesc"].ToString();
-//                dt_sm_Info.sm_Remark = dt.Rows[i]["sm_Remark"].ToString();
-//                dt_sm_InfoList.Add(dt_sm_Info);
-                
-//            }
-//            dt_Settings.dt_sm_Info = dt_sm_InfoList;
-//            dt_Settings.dt_qm_Info = dt_qm_InfoList;
-//            dt_Settings.dt_InfoList = dt_InfoList;
+        //                dt_sm_Info.dt_Code = dt.Rows[i]["dt_Code"].ToString();
+        //                dt_sm_Info.info_DangH = dt.Rows[i]["info_DangH"].ToString();
+        //                dt_sm_Info.sm_Pa = dt.Rows[i]["sm_Pa"].ToString();
+        //                dt_sm_Info.sm_PaDesc = dt.Rows[i]["sm_PaDesc"].ToString();
+        //                dt_sm_Info.sm_Remark = dt.Rows[i]["sm_Remark"].ToString();
+        //                dt_sm_InfoList.Add(dt_sm_Info);
 
-//            return dt_Settings;
-//        }
+        //            }
+        //            dt_Settings.dt_sm_Info = dt_sm_InfoList;
+        //            dt_Settings.dt_qm_Info = dt_qm_InfoList;
+        //            dt_Settings.dt_InfoList = dt_InfoList;
+
+        //            return dt_Settings;
+        //        }
 
         /// <summary>
         /// 根据编号获取本次检测信息
@@ -304,7 +304,7 @@ namespace text.doors.dal
         public Model_dt_Settings GetInfoByCode(string code)
         {
             Model_dt_Settings settings = new Model_dt_Settings();
-            
+
             var dt_settings = SQLiteHelper.ExecuteDataRow("select * from dt_settings where dt_Code='" + code + "'")?.Table;
 
             settings.WeiTuoBianHao = dt_settings.Rows[0]["WeiTuoBianHao"].ToString();
@@ -355,7 +355,7 @@ namespace text.doors.dal
             settings.DanShanDanSuoDian = dt_settings.Rows[0]["DanShanDanSuoDian"].ToString();
             settings.dt_Code = dt_settings.Rows[0]["dt_Code"].ToString();
 
-            
+
             var dt_Info = SQLiteHelper.ExecuteDataRow("select * from dt_Info where dt_Code='" + code + "'   order by  info_DangH")?.Table;
             if (dt_Info != null)
             {
@@ -423,6 +423,7 @@ namespace text.doors.dal
                     model.sm_PaDesc = item["sm_PaDesc"].ToString();
                     model.sm_Pa = item["sm_Pa"].ToString();
                     model.sm_Remark = item["sm_Remark"].ToString();
+                    model.Method = item["Method"].ToString();
                     list.Add(model);
                     #endregion
                 }
@@ -522,12 +523,12 @@ namespace text.doors.dal
 
 
                     model.p1 = item["p1"].ToString();
-                    model.p2= item["p2"].ToString();
-                    model.p3= item["p3"].ToString();
+                    model.p2 = item["p2"].ToString();
+                    model.p3 = item["p3"].ToString();
                     model._p1 = item["_p1"].ToString();
                     model._p2 = item["_p2"].ToString();
-                    model._p3= item["_p3"].ToString();
-                    model.CheckLock=int.Parse(item["CheckLock"].ToString());
+                    model._p3 = item["_p3"].ToString();
+                    model.CheckLock = int.Parse(item["CheckLock"].ToString());
                     model.info_DangH = item["info_DangH"].ToString();
 
                     list.Add(model);

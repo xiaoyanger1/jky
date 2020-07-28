@@ -25,5 +25,7 @@ namespace text.doors.Model.DataBase
         /// 描述
         /// </summary>
         public string sm_Remark { get; set; }
+
+        public string Method{ get; set; }
     }
 }
