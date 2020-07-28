@@ -197,7 +197,7 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
-
+           
             //new AirtightDetection().StopTimer();
             //new WatertightDetection().InitTimer();
             //new WindPressureDetection().StopTimer();
@@ -617,6 +617,11 @@ namespace text.doors
                 }
 
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

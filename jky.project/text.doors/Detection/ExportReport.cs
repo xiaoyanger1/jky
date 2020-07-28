@@ -12,6 +12,7 @@ using System.Linq;
 using System.Drawing;
 using System.Data;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace text.doors.Detection
 {
@@ -87,7 +88,7 @@ namespace text.doors.Detection
                 {
                     dc = GetDWDetectionReport(settings);
                 }
-                else if (fileName == "试验室记录.doc")
+                else if (fileName == "实验室记录.doc")
                 {
                     dc = GetDetectionReport(settings, saveExcelUrl);
                 }
@@ -101,7 +102,7 @@ namespace text.doors.Detection
                             InsertPtctureToExcel(saveExcelUrl, "图片", DefaultBase.ImagesName);
                     }
 
-                    if (fileName == "试验室记录.doc")
+                    if (fileName == "实验室记录.doc")
                     {
                         var index = 0;
                         foreach (var item in settings.dt_kfy_Info)
@@ -287,7 +288,8 @@ namespace text.doors.Detection
                 var YL = formula.GetWaterTightPressure(settings.dt_sm_Info);
 
                 dc.Add("检测条件第0樘水密等级", sm_level.ToString());
-                dc.Add("检测条件第0樘水密等级设计值", sm_level.ToString());
+                //  dc.Add("检测条件第0樘水密等级设计值", sm_level.ToString());
+                dc.Add("检测条件第0樘水密等级设计值", settings.ShuiMiDengJiSheJiZhi.ToString());
                 dc.Add("检测条件第0樘水密保持风压", YL.ToString());
             }
             else
@@ -418,7 +420,7 @@ namespace text.doors.Detection
             dc.Add("检测条件第0樘玻璃厚度", settings.BoLiHouDu);
             dc.Add("检测条件第0樘玻璃品种", settings.BoLiPinZhong);
             dc.Add("检测条件第0樘玻璃密封", settings.BoLiMiFeng);
-            dc.Add("检测条件第0樘抗风压等级设计值", settings.KangFengYaSheJiZhi);
+            dc.Add("检测条件第0樘抗风压等级设计值", settings.KangFengYaDengJiSheJiZhi);
             dc.Add("检测条件第0樘镶嵌方式", settings.XiangQianFangShi);
 
             #endregion

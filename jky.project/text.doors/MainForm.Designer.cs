@@ -819,6 +819,7 @@
             this.Name = "MainForm";
             this.Text = "建筑门窗三性检测系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ssp_button.ResumeLayout(false);
             this.ssp_button.PerformLayout();
             this.pl_top.ResumeLayout(false);

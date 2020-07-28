@@ -8,6 +8,7 @@ using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
 using text.doors.Default;
+using System.IO;
 
 namespace text.doors
 {
@@ -24,6 +25,13 @@ namespace text.doors
         private string administrator = "administrator";
         private void Init()
         {
+            var file= System.Environment.CurrentDirectory+ "/tempImage";
+            var path = Path.GetFullPath(file);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             //WindowsIdentity identity = WindowsIdentity.GetCurrent();
             //WindowsPrincipal principal = new WindowsPrincipal(identity);
             //if (principal.IsInRole(WindowsBuiltInRole.Administrator))

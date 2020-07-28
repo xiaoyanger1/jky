@@ -185,6 +185,7 @@
             // 
             // lv_cjz
             // 
+            this.lv_cjz.HideSelection = false;
             this.lv_cjz.Location = new System.Drawing.Point(20, 20);
             this.lv_cjz.Name = "lv_cjz";
             this.lv_cjz.Size = new System.Drawing.Size(260, 217);
@@ -323,6 +324,7 @@
             // 
             this.lv_list.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lv_list.FullRowSelect = true;
+            this.lv_list.HideSelection = false;
             this.lv_list.Location = new System.Drawing.Point(29, 64);
             this.lv_list.Name = "lv_list";
             this.lv_list.Size = new System.Drawing.Size(260, 234);

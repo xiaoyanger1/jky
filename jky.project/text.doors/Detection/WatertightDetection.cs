@@ -249,7 +249,7 @@ namespace text.doors.Detection
         private void SMchartInit()
         {
             dtnow = DateTime.Now;
-            sm_Line.GetVertAxis.SetMinMax(-1000, 1000);
+            sm_Line.GetVertAxis.SetMinMax(-1100, 1100);
         }
 
         private void AnimateSeries(Steema.TeeChart.TChart chart, int yl)
@@ -885,11 +885,13 @@ namespace text.doors.Detection
             StopBoDong();
             // Stop();
             this.btn_tzbd.Enabled = false;
+
+            Thread.Sleep(5000);
+
             this.btn_ksbd.Enabled = true;
             this.btn_ready.Enabled = true;
             this.btn_start.Enabled = true;
             this.btn_next.Enabled = true;
-            Thread.Sleep(1000);
             waterTightPropertyTest = PublicEnum.WaterTightPropertyTest.StopBD;
         }
 

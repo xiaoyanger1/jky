@@ -62,7 +62,7 @@
             this.cm_Report.Items.AddRange(new object[] {
             "-------请选择-----",
             "门窗检验报告.doc",
-            "试验室记录.doc"});
+            "实验室记录.doc"});
             this.cm_Report.Location = new System.Drawing.Point(112, 70);
             this.cm_Report.Name = "cm_Report";
             this.cm_Report.Size = new System.Drawing.Size(135, 20);

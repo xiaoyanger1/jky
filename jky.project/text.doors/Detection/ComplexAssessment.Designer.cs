@@ -147,6 +147,9 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label94 = new System.Windows.Forms.Label();
+            this.txt_dj4 = new System.Windows.Forms.TextBox();
+            this.label95 = new System.Windows.Forms.Label();
             this.txt_jg0 = new System.Windows.Forms.TextBox();
             this.txt_sjz0 = new System.Windows.Forms.TextBox();
             this.label92 = new System.Windows.Forms.Label();
@@ -183,9 +186,6 @@
             this.btn_audit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.label94 = new System.Windows.Forms.Label();
-            this.txt_dj4 = new System.Windows.Forms.TextBox();
-            this.label95 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1414,6 +1414,33 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "综合评定结果";
             // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label94.Location = new System.Drawing.Point(16, 42);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(209, 12);
+            this.label94.TabIndex = 15;
+            this.label94.Text = "气密负压性能属国标GB/T7106-2008 第";
+            // 
+            // txt_dj4
+            // 
+            this.txt_dj4.Location = new System.Drawing.Point(228, 39);
+            this.txt_dj4.Name = "txt_dj4";
+            this.txt_dj4.Size = new System.Drawing.Size(51, 21);
+            this.txt_dj4.TabIndex = 13;
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label95.Location = new System.Drawing.Point(293, 42);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(17, 12);
+            this.label95.TabIndex = 14;
+            this.label95.Text = "级";
+            // 
             // txt_jg0
             // 
             this.txt_jg0.Enabled = false;
@@ -1739,33 +1766,6 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "结束";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label94.Location = new System.Drawing.Point(16, 42);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(209, 12);
-            this.label94.TabIndex = 15;
-            this.label94.Text = "气密负压性能属国标GB/T7106-2008 第";
-            // 
-            // txt_dj4
-            // 
-            this.txt_dj4.Location = new System.Drawing.Point(228, 39);
-            this.txt_dj4.Name = "txt_dj4";
-            this.txt_dj4.Size = new System.Drawing.Size(51, 21);
-            this.txt_dj4.TabIndex = 13;
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label95.Location = new System.Drawing.Point(293, 42);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(17, 12);
-            this.label95.TabIndex = 14;
-            this.label95.Text = "级";
             // 
             // ComplexAssessment
             // 
