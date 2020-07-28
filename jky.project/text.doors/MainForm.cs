@@ -181,6 +181,11 @@ namespace text.doors
             ds.Parent = this.pl_showItem;
             ds.Show();
 
+
+            //new AirtightDetection().Dispose();
+            // new WatertightDetection().Dispose();
+            //new WindPressureDetection().Dispose();
+
             //new AirtightDetection().StopTimer();
             //new WatertightDetection().StopTimer();
             //new WindPressureDetection().StopTimer();
@@ -197,7 +202,7 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
-           
+
             //new AirtightDetection().StopTimer();
             //new WatertightDetection().InitTimer();
             //new WindPressureDetection().StopTimer();
@@ -214,6 +219,7 @@ namespace text.doors
             rts.Parent = this.pl_showItem;
             rts.Show();
 
+
             //new AirtightDetection().InitTimer();
             //new WatertightDetection().StopTimer();
             //new WindPressureDetection().StopTimer();
@@ -229,6 +235,10 @@ namespace text.doors
             rts.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             rts.Parent = this.pl_showItem;
             rts.Show();
+
+            //new AirtightDetection().Dispose();
+            //new WatertightDetection().Dispose();
+            //new DetectionSet().Dispose();
 
             //new AirtightDetection().StopTimer();
             //new WatertightDetection().StopTimer();

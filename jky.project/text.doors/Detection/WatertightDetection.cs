@@ -46,10 +46,6 @@ namespace text.doors.Detection
 
         public DateTime dtnow { get; set; }
 
-        public WatertightDetection()
-        {
-
-        }
 
         public WatertightDetection(TCPClient tcpClient, string tempCode, string tempTong)
         {
@@ -58,6 +54,7 @@ namespace text.doors.Detection
             this._tempCode = tempCode;
             this._tempTong = tempTong;
             Init();
+            InitTimer();
 
         }
 
@@ -265,11 +262,11 @@ namespace text.doors.Detection
             {
                 var c = _tcpClient.GetCYXS(ref IsSeccess);
                 int value = int.Parse(c.ToString());
-                //if (!IsSeccess)
-                //{
-                //    MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                //    return;
-                //}
+                if (!IsSeccess)
+                {
+                    //   MessageBox.Show("获取大气压力异常！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    return;
+                }
                 AnimateSeries(this.tChart_sm, value);
             }
         }

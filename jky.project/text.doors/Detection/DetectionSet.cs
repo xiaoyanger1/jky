@@ -26,6 +26,7 @@ namespace text.doors.Detection
         private string _tempCode = "";
         private string _tempTong = "";
 
+        public DetectionSet() { }
         public DetectionSet(double temperature, double temppressure, string tempCode, string tempTong)
         {
             this._temperature = temperature;
