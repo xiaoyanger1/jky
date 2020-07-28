@@ -72,7 +72,7 @@ namespace text.doors.Detection
                 string[] name = fileName.Split('.');
 
                 string _name = name[0] + "_" + _tempCode + "." + name[1];
-                
+
                 var saveExcelUrl = path.SelectedPath + "\\" + _name;
 
                 Model_dt_Settings settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
@@ -552,57 +552,249 @@ namespace text.doors.Detection
                         one = arr[0];
                         two = arr[1];
                     }
+
+                    //if (two.Contains("▲") || two.Contains("●")) { 
+                    
+                    
+                    //} else { 
+                    
+                    //}
+                    /* if (i == 0)
+                     {
+                         if (settings.dt_sm_Info[i].sm_Pa == "0")
+                         {
+                             dc.Add("水密检测第1樘压力0帕状态", one);
+                             dc.Add("水密检测第1樘压力0帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "100")
+                         {
+                             dc.Add("水密检测第1樘压力100帕状态", one);
+                             dc.Add("水密检测第1樘压力100帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "150")
+                         {
+                             dc.Add("水密检测第1樘压力150帕状态", one);
+                             dc.Add("水密检测第1樘压力150帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "200")
+                         {
+                             dc.Add("水密检测第1樘压力200帕状态", one);
+                             dc.Add("水密检测第1樘压力200帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "250")
+                         {
+                             dc.Add("水密检测第1樘压力250帕状态", one);
+                             dc.Add("水密检测第1樘压力250帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "300")
+                         {
+                             dc.Add("水密检测第1樘压力300帕状态", one);
+                             dc.Add("水密检测第1樘压力300帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "350")
+                         {
+                             dc.Add("水密检测第1樘压力350帕状态", one);
+                             dc.Add("水密检测第1樘压力350帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "400")
+                         {
+                             dc.Add("水密检测第1樘压力400帕状态", one);
+                             dc.Add("水密检测第1樘压力400帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "500")
+                         {
+                             dc.Add("水密检测第1樘压力500帕状态", one);
+                             dc.Add("水密检测第1樘压力500帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "600")
+                         {
+                             dc.Add("水密检测第1樘压力600帕状态", one);
+                             dc.Add("水密检测第1樘压力600帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "700")
+                         {
+                             dc.Add("水密检测第1樘压力700帕状态", one);
+                             dc.Add("水密检测第1樘压力700帕部位", two);
+                         }
+                         dc.Add("水密检测第1樘水密实验备注", settings.dt_sm_Info[i].sm_Remark);
+
+                     }
+                     if (i == 1)
+                     {
+                         if (settings.dt_sm_Info[i].sm_Pa == "0")
+                         {
+                             dc.Add("水密检测第2樘压力0帕状态", one);
+                             dc.Add("水密检测第2樘压力0帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "100")
+                         {
+                             dc.Add("水密检测第2樘压力100帕状态", one);
+                             dc.Add("水密检测第2樘压力100帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "150")
+                         {
+                             dc.Add("水密检测第2樘压力150帕状态", one);
+                             dc.Add("水密检测第2樘压力150帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "200")
+                         {
+                             dc.Add("水密检测第2樘压力200帕状态", one);
+                             dc.Add("水密检测第2樘压力200帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "250")
+                         {
+                             dc.Add("水密检测第2樘压力250帕状态", one);
+                             dc.Add("水密检测第2樘压力250帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "300")
+                         {
+                             dc.Add("水密检测第2樘压力300帕状态", one);
+                             dc.Add("水密检测第2樘压力300帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "350")
+                         {
+                             dc.Add("水密检测第2樘压力350帕状态", one);
+                             dc.Add("水密检测第2樘压力350帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "400")
+                         {
+                             dc.Add("水密检测第2樘压力400帕状态", one);
+                             dc.Add("水密检测第2樘压力400帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "500")
+                         {
+                             dc.Add("水密检测第2樘压力500帕状态", "36");
+                             dc.Add("水密检测第2樘压力500帕部位", "36");
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "600")
+                         {
+                             dc.Add("水密检测第2樘压力600帕状态", one);
+                             dc.Add("水密检测第2樘压力600帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "700")
+                         {
+                             dc.Add("水密检测第2樘压力700帕状态", one);
+                             dc.Add("水密检测第2樘压力700帕部位", two);
+                         }
+                         dc.Add("水密检测第2樘水密实验备注", settings.dt_sm_Info[i].sm_Remark);
+                     }
+                     if (i == 2)
+                     {
+                         if (settings.dt_sm_Info[i].sm_Pa == "0")
+                         {
+                             dc.Add("水密检测第3樘压力0帕状态", one);
+                             dc.Add("水密检测第3樘压力0帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "100")
+                         {
+                             dc.Add("水密检测第3樘压力100帕状态", one);
+                             dc.Add("水密检测第3樘压力100帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "150")
+                         {
+                             dc.Add("水密检测第3樘压力150帕状态", one);
+                             dc.Add("水密检测第3樘压力150帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "200")
+                         {
+                             dc.Add("水密检测第3樘压力200帕状态", one);
+                             dc.Add("水密检测第3樘压力200帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "250")
+                         {
+                             dc.Add("水密检测第3樘压力250帕状态", one);
+                             dc.Add("水密检测第3樘压力250帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "300")
+                         {
+                             dc.Add("水密检测第3樘压力300帕状态", one);
+                             dc.Add("水密检测第3樘压力300帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "350")
+                         {
+                             dc.Add("水密检测第3樘压力350帕状态", one);
+                             dc.Add("水密检测第3樘压力350帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "400")
+                         {
+                             dc.Add("水密检测第3樘压力400帕状态", one);
+                             dc.Add("水密检测第3樘压力400帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "500")
+                         {
+                             dc.Add("水密检测第3樘压力500帕状态", "36");
+                             dc.Add("水密检测第3樘压力500帕部位", "36");
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "600")
+                         {
+                             dc.Add("水密检测第3樘压力600帕状态", one);
+                             dc.Add("水密检测第3樘压力600帕部位", two);
+                         }
+                         if (settings.dt_sm_Info[i].sm_Pa == "700")
+                         {
+                             dc.Add("水密检测第3樘压力700帕状态", one);
+                             dc.Add("水密检测第3樘压力700帕部位", two);
+                         }
+                         dc.Add("水密检测第3樘水密实验备注", settings.dt_sm_Info[i].sm_Remark);
+                     }*/
+
+
                     if (i == 0)
                     {
+                        //if (settings.dt_sm_Info[i].sm_Pa == "0")
+                        //{
+                        //    dc.Add("水密检测第1樘压力0帕状态", one);
+                        //    dc.Add("水密检测第1樘压力0帕部位", two);
+                        //}
                         if (settings.dt_sm_Info[i].sm_Pa == "0")
-                        {
-                            dc.Add("水密检测第1樘压力0帕状态", one);
-                            dc.Add("水密检测第1樘压力0帕部位", two);
-                        }
-                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第1樘压力100帕状态", one);
                             dc.Add("水密检测第1樘压力100帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "150")
+                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第1樘压力150帕状态", one);
                             dc.Add("水密检测第1樘压力150帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "200")
+                        if (settings.dt_sm_Info[i].sm_Pa == "150")
                         {
                             dc.Add("水密检测第1樘压力200帕状态", one);
                             dc.Add("水密检测第1樘压力200帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "250")
+                        if (settings.dt_sm_Info[i].sm_Pa == "200")
                         {
                             dc.Add("水密检测第1樘压力250帕状态", one);
                             dc.Add("水密检测第1樘压力250帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "300")
+                        if (settings.dt_sm_Info[i].sm_Pa == "250")
                         {
                             dc.Add("水密检测第1樘压力300帕状态", one);
                             dc.Add("水密检测第1樘压力300帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "350")
+                        if (settings.dt_sm_Info[i].sm_Pa == "300")
                         {
                             dc.Add("水密检测第1樘压力350帕状态", one);
                             dc.Add("水密检测第1樘压力350帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "400")
+                        if (settings.dt_sm_Info[i].sm_Pa == "350")
                         {
                             dc.Add("水密检测第1樘压力400帕状态", one);
                             dc.Add("水密检测第1樘压力400帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "500")
+                        if (settings.dt_sm_Info[i].sm_Pa == "400")
                         {
                             dc.Add("水密检测第1樘压力500帕状态", one);
                             dc.Add("水密检测第1樘压力500帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "600")
+                        if (settings.dt_sm_Info[i].sm_Pa == "500")
                         {
                             dc.Add("水密检测第1樘压力600帕状态", one);
                             dc.Add("水密检测第1樘压力600帕部位", two);
+                        }
+                        if (settings.dt_sm_Info[i].sm_Pa == "600")
+                        {
+                            dc.Add("水密检测第1樘压力700帕状态", one);
+                            dc.Add("水密检测第1樘压力700帕部位", two);
                         }
                         if (settings.dt_sm_Info[i].sm_Pa == "700")
                         {
@@ -614,55 +806,60 @@ namespace text.doors.Detection
                     }
                     if (i == 1)
                     {
+                        //if (settings.dt_sm_Info[i].sm_Pa == "0")
+                        //{
+                        //    dc.Add("水密检测第2樘压力0帕状态", one);
+                        //    dc.Add("水密检测第2樘压力0帕部位", two);
+                        //}
                         if (settings.dt_sm_Info[i].sm_Pa == "0")
-                        {
-                            dc.Add("水密检测第2樘压力0帕状态", one);
-                            dc.Add("水密检测第2樘压力0帕部位", two);
-                        }
-                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第2樘压力100帕状态", one);
                             dc.Add("水密检测第2樘压力100帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "150")
+                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第2樘压力150帕状态", one);
                             dc.Add("水密检测第2樘压力150帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "200")
+                        if (settings.dt_sm_Info[i].sm_Pa == "150")
                         {
                             dc.Add("水密检测第2樘压力200帕状态", one);
                             dc.Add("水密检测第2樘压力200帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "250")
+                        if (settings.dt_sm_Info[i].sm_Pa == "200")
                         {
                             dc.Add("水密检测第2樘压力250帕状态", one);
                             dc.Add("水密检测第2樘压力250帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "300")
+                        if (settings.dt_sm_Info[i].sm_Pa == "250")
                         {
                             dc.Add("水密检测第2樘压力300帕状态", one);
                             dc.Add("水密检测第2樘压力300帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "350")
+                        if (settings.dt_sm_Info[i].sm_Pa == "300")
                         {
                             dc.Add("水密检测第2樘压力350帕状态", one);
                             dc.Add("水密检测第2樘压力350帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "400")
+                        if (settings.dt_sm_Info[i].sm_Pa == "350")
                         {
                             dc.Add("水密检测第2樘压力400帕状态", one);
                             dc.Add("水密检测第2樘压力400帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "500")
+                        if (settings.dt_sm_Info[i].sm_Pa == "400")
                         {
-                            dc.Add("水密检测第2樘压力500帕状态", "36");
-                            dc.Add("水密检测第2樘压力500帕部位", "36");
+                            dc.Add("水密检测第2樘压力500帕状态", one);
+                            dc.Add("水密检测第2樘压力500帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "600")
+                        if (settings.dt_sm_Info[i].sm_Pa == "500")
                         {
                             dc.Add("水密检测第2樘压力600帕状态", one);
                             dc.Add("水密检测第2樘压力600帕部位", two);
+                        }
+                        if (settings.dt_sm_Info[i].sm_Pa == "600")
+                        {
+                            dc.Add("水密检测第2樘压力700帕状态", one);
+                            dc.Add("水密检测第2樘压力700帕部位", two);
                         }
                         if (settings.dt_sm_Info[i].sm_Pa == "700")
                         {
@@ -673,60 +870,65 @@ namespace text.doors.Detection
                     }
                     if (i == 2)
                     {
+                        //if (settings.dt_sm_Info[i].sm_Pa == "0")
+                        //{
+                        //    dc.Add("水密检测第3樘压力0帕状态", one);
+                        //    dc.Add("水密检测第3樘压力0帕部位", two);
+                        //}
                         if (settings.dt_sm_Info[i].sm_Pa == "0")
-                        {
-                            dc.Add("水密检测第3樘压力0帕状态", one);
-                            dc.Add("水密检测第3樘压力0帕部位", two);
-                        }
-                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第3樘压力100帕状态", one);
                             dc.Add("水密检测第3樘压力100帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "150")
+                        if (settings.dt_sm_Info[i].sm_Pa == "100")
                         {
                             dc.Add("水密检测第3樘压力150帕状态", one);
                             dc.Add("水密检测第3樘压力150帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "200")
+                        if (settings.dt_sm_Info[i].sm_Pa == "150")
                         {
                             dc.Add("水密检测第3樘压力200帕状态", one);
                             dc.Add("水密检测第3樘压力200帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "250")
+                        if (settings.dt_sm_Info[i].sm_Pa == "200")
                         {
                             dc.Add("水密检测第3樘压力250帕状态", one);
                             dc.Add("水密检测第3樘压力250帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "300")
+                        if (settings.dt_sm_Info[i].sm_Pa == "250")
                         {
                             dc.Add("水密检测第3樘压力300帕状态", one);
                             dc.Add("水密检测第3樘压力300帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "350")
+                        if (settings.dt_sm_Info[i].sm_Pa == "300")
                         {
                             dc.Add("水密检测第3樘压力350帕状态", one);
                             dc.Add("水密检测第3樘压力350帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "400")
+                        if (settings.dt_sm_Info[i].sm_Pa == "350")
                         {
                             dc.Add("水密检测第3樘压力400帕状态", one);
                             dc.Add("水密检测第3樘压力400帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "500")
+                        if (settings.dt_sm_Info[i].sm_Pa == "400")
                         {
-                            dc.Add("水密检测第3樘压力500帕状态", "36");
-                            dc.Add("水密检测第3樘压力500帕部位", "36");
+                            dc.Add("水密检测第3樘压力500帕状态", one);
+                            dc.Add("水密检测第3樘压力500帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "600")
+                        if (settings.dt_sm_Info[i].sm_Pa == "500")
                         {
                             dc.Add("水密检测第3樘压力600帕状态", one);
                             dc.Add("水密检测第3樘压力600帕部位", two);
                         }
-                        if (settings.dt_sm_Info[i].sm_Pa == "700")
+                        if (settings.dt_sm_Info[i].sm_Pa == "600")
                         {
                             dc.Add("水密检测第3樘压力700帕状态", one);
                             dc.Add("水密检测第3樘压力700帕部位", two);
+                        }
+                        if (settings.dt_sm_Info[i].sm_Pa == "700")
+                        {
+                            dc.Add("水密检测第2樘压力700帕状态", one);
+                            dc.Add("水密检测第2樘压力700帕部位", two);
                         }
                         dc.Add("水密检测第3樘水密实验备注", settings.dt_sm_Info[i].sm_Remark);
                     }

@@ -88,7 +88,7 @@ namespace text.doors.Detection
         {
             Model_dt_Settings dt_Settings = new DAL_dt_Settings().GetInfoByCode(_tempCode);
             List<Pressure> pressureList = new List<Pressure>();
-            if (dt_Settings.dt_qm_Info != null && dt_Settings.dt_qm_Info.Count > 0)
+            if (dt_Settings.dt_sm_Info != null && dt_Settings.dt_sm_Info.Count > 0)
             {
                 var sm = dt_Settings.dt_sm_Info.FindAll(t => t.info_DangH == _tempTong);
                 if (sm != null && sm.Count() > 0)
