@@ -63,12 +63,12 @@
             this.检测结论ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pID设定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_sensorSet = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsm_UpdatePassWord = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_close = new System.Windows.Forms.ToolStripMenuItem();
-            this.pID设定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pl_set = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_f = new System.Windows.Forms.Button();
@@ -371,7 +371,7 @@
             // 抗风压监控ToolStripMenuItem
             // 
             this.抗风压监控ToolStripMenuItem.Name = "抗风压监控ToolStripMenuItem";
-            this.抗风压监控ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.抗风压监控ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.抗风压监控ToolStripMenuItem.Text = "抗风压监控";
             this.抗风压监控ToolStripMenuItem.Visible = false;
             this.抗风压监控ToolStripMenuItem.Click += new System.EventHandler(this.抗风压监控ToolStripMenuItem_Click);
@@ -403,6 +403,13 @@
             this.系统设置ToolStripMenuItem.Name = "系统设置ToolStripMenuItem";
             this.系统设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.系统设置ToolStripMenuItem.Text = "系统设置";
+            // 
+            // pID设定ToolStripMenuItem
+            // 
+            this.pID设定ToolStripMenuItem.Name = "pID设定ToolStripMenuItem";
+            this.pID设定ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.pID设定ToolStripMenuItem.Text = "PID设定";
+            this.pID设定ToolStripMenuItem.Click += new System.EventHandler(this.pID设定ToolStripMenuItem_Click);
             // 
             // tsm_sensorSet
             // 
@@ -436,13 +443,6 @@
             this.tsm_close.Size = new System.Drawing.Size(136, 22);
             this.tsm_close.Text = "关闭系统";
             this.tsm_close.Click += new System.EventHandler(this.tsm_close_Click);
-            // 
-            // pID设定ToolStripMenuItem
-            // 
-            this.pID设定ToolStripMenuItem.Name = "pID设定ToolStripMenuItem";
-            this.pID设定ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.pID设定ToolStripMenuItem.Text = "PID设定";
-            this.pID设定ToolStripMenuItem.Click += new System.EventHandler(this.pID设定ToolStripMenuItem_Click);
             // 
             // pl_set
             // 
@@ -528,6 +528,7 @@
             this.lbl_Displace3.Size = new System.Drawing.Size(16, 16);
             this.lbl_Displace3.TabIndex = 20;
             this.lbl_Displace3.Text = "0";
+            this.lbl_Displace3.Visible = false;
             // 
             // label17
             // 
@@ -537,6 +538,7 @@
             this.label17.Size = new System.Drawing.Size(17, 12);
             this.label17.TabIndex = 18;
             this.label17.Text = "mm";
+            this.label17.Visible = false;
             // 
             // label18
             // 
@@ -546,6 +548,7 @@
             this.label18.Size = new System.Drawing.Size(71, 12);
             this.label18.TabIndex = 19;
             this.label18.Text = "位移传感器3";
+            this.label18.Visible = false;
             // 
             // lbl_Displace2
             // 
@@ -556,6 +559,7 @@
             this.lbl_Displace2.Size = new System.Drawing.Size(16, 16);
             this.lbl_Displace2.TabIndex = 17;
             this.lbl_Displace2.Text = "0";
+            this.lbl_Displace2.Visible = false;
             // 
             // label12
             // 
@@ -565,6 +569,7 @@
             this.label12.Size = new System.Drawing.Size(17, 12);
             this.label12.TabIndex = 15;
             this.label12.Text = "mm";
+            this.label12.Visible = false;
             // 
             // label15
             // 
@@ -574,6 +579,7 @@
             this.label15.Size = new System.Drawing.Size(71, 12);
             this.label15.TabIndex = 16;
             this.label15.Text = "位移传感器2";
+            this.label15.Visible = false;
             // 
             // lbl_Displace1
             // 
@@ -584,6 +590,7 @@
             this.lbl_Displace1.Size = new System.Drawing.Size(16, 16);
             this.lbl_Displace1.TabIndex = 14;
             this.lbl_Displace1.Text = "0";
+            this.lbl_Displace1.Visible = false;
             // 
             // label5
             // 
@@ -593,6 +600,7 @@
             this.label5.Size = new System.Drawing.Size(17, 12);
             this.label5.TabIndex = 12;
             this.label5.Text = "mm";
+            this.label5.Visible = false;
             // 
             // label6
             // 
@@ -602,6 +610,7 @@
             this.label6.Size = new System.Drawing.Size(71, 12);
             this.label6.TabIndex = 13;
             this.label6.Text = "位移传感器1";
+            this.label6.Visible = false;
             // 
             // lbl_dqylcgq
             // 
@@ -819,7 +828,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.ms_emun;
             this.Name = "MainForm";
-            this.Text = "建筑门窗两性检测系统";
+            this.Text = "建筑门窗气密水密性能检测系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ssp_button.ResumeLayout(false);

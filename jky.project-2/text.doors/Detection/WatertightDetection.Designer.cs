@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WatertightDetection));
             this.tc_RealTimeSurveillance = new System.Windows.Forms.TabControl();
             this.page_watertight = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -529,7 +528,7 @@
             // btn_upKpa
             // 
             this.btn_upKpa.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_upKpa.Location = new System.Drawing.Point(7, 45);
+            this.btn_upKpa.Location = new System.Drawing.Point(120, 13);
             this.btn_upKpa.Name = "btn_upKpa";
             this.btn_upKpa.Size = new System.Drawing.Size(74, 23);
             this.btn_upKpa.TabIndex = 2;
